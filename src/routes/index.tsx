@@ -146,6 +146,7 @@ function Home() {
       <Coverage />
       <Concierge />
       <Pricing />
+      <Testimonials />
       <FAQ />
       <FinalCTA />
       <Footer />
