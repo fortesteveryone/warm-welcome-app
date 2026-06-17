@@ -6,6 +6,7 @@ import {
   ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
 import { LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, type Lead, type LeadSource, type LeadStatus } from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads/")({
