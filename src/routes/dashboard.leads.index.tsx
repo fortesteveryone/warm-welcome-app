@@ -3,11 +3,17 @@ import { useMemo, useState } from "react";
 import {
   Filter, Download, Plus, Search, MoreHorizontal, Instagram, Linkedin, Facebook,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, Star, Flame, Snowflake, Twitter, Youtube, Github,
+  MessageCircle, Globe, Send as SendIcon, Hash,
 } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
-import { LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, type Lead, type LeadSource, type LeadStatus } from "@/lib/leads-data";
+import {
+  LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, LEAD_CATEGORIES, LEAD_INTENTS,
+  LEAD_PLATFORMS, LEAD_COUNTRIES, LEAD_QUALIFICATIONS,
+  type Lead, type LeadSource, type LeadStatus, type LeadIntent, type LeadPlatform,
+  type LeadCategory, type LeadQualification,
+} from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads/")({
   component: LeadsPage,
