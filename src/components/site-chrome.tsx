@@ -11,7 +11,7 @@ function Mono({ children, className = "" }: { children: React.ReactNode; classNa
   return <span className={`font-mono text-[11px] tracking-tight ${className}`}>{children}</span>;
 }
 
-export function Logo({ className = "h-7 w-auto" }: { className?: string }) {
+export function Logo({ className = "h-9 w-auto" }: { className?: string }) {
   return <img src={logoAsset.url} alt="Grow By Lead" className={className} />;
 }
 
@@ -28,10 +28,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
-      <Container className="flex h-14 items-center justify-between gap-3">
+      <Container className="flex h-16 items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-7">
           <Link to="/" className="flex shrink-0 items-center gap-2">
-            <Logo />
+            <Logo className="h-9 w-auto" />
           </Link>
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((l) => (
@@ -91,22 +91,69 @@ export function SiteHeader() {
   );
 }
 
+type FooterLink = { label: string; to?: string; href?: string; soon?: boolean };
+
 export function SiteFooter() {
-  const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
-    { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
-    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "SEO teams" }, { label: "Developers" }, { label: "Outreach" }] },
-    { title: "Resources", links: [{ label: "Blog" }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
-    { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
-    { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
+  const cols: { title: string; links: FooterLink[] }[] = [
+    {
+      title: "Product",
+      links: [
+        { label: "Features", href: "/#features" },
+        { label: "Lead examples", href: "/#example" },
+        { label: "Platforms", href: "/#platforms" },
+        { label: "Scoring", href: "/#scoring" },
+        { label: "Pricing", href: "/#pricing" },
+        { label: "Changelog", soon: true },
+      ],
+    },
+    {
+      title: "Solutions",
+      links: [
+        { label: "Agencies", href: "/#features" },
+        { label: "Freelancers", href: "/#features" },
+        { label: "SEO teams", href: "/#features" },
+        { label: "Developers", href: "/#features" },
+        { label: "Outreach", href: "/#example" },
+      ],
+    },
+    {
+      title: "Resources",
+      links: [
+        { label: "Blog", to: "/blog" },
+        { label: "Support", to: "/support" },
+        { label: "Guides", soon: true },
+        { label: "Docs", soon: true },
+        { label: "API reference", soon: true },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "About", to: "/about" },
+        { label: "Contact", to: "/contact" },
+        { label: "Careers", soon: true },
+        { label: "Press", soon: true },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { label: "Privacy", to: "/privacy" },
+        { label: "Terms", to: "/terms" },
+        { label: "Data usage", to: "/data-usage" },
+        { label: "Refund", to: "/refund" },
+        { label: "GDPR", to: "/gdpr" },
+      ],
+    },
   ];
   return (
     <footer className="bg-background">
       <Container className="py-16">
         <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(5,1fr)]">
           <div>
-            <div className="flex items-center gap-2">
-              <Logo className="h-8 w-auto" />
-            </div>
+            <Link to="/" className="inline-flex items-center gap-2">
+              <Logo className="h-11 w-auto" />
+            </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
             </p>
@@ -120,20 +167,38 @@ export function SiteFooter() {
             <div key={c.title}>
               <Mono className="text-foreground">{c.title}</Mono>
               <ul className="mt-4 space-y-2.5">
-                {c.links.map((l) => (
-                  <li key={l.label}>
-                    {l.label === "Blog" ? (
-                      <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
-                        {l.label}
-                      </Link>
-                    ) : (
-                      <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
-                        {l.label}
-                        {l.soon && <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
-                      </a>
-                    )}
-                  </li>
-                ))}
+                {c.links.map((l) => {
+                  const content = (
+                    <>
+                      {l.label}
+                      {l.soon && (
+                        <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">
+                          Soon
+                        </span>
+                      )}
+                    </>
+                  );
+                  const cls = "inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground";
+                  if (l.soon) {
+                    return (
+                      <li key={l.label}>
+                        <span className={`${cls} cursor-default hover:text-muted-foreground`}>{content}</span>
+                      </li>
+                    );
+                  }
+                  if (l.to) {
+                    return (
+                      <li key={l.label}>
+                        <Link to={l.to} className={cls}>{content}</Link>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={l.label}>
+                      <a href={l.href} className={cls}>{content}</a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

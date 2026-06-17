@@ -449,7 +449,7 @@ const afterLoginItems = [
 
 function AfterLogin() {
   return (
-    <section className="section-edge section-surface-cyan">
+    <section id="features" className="section-edge section-surface-cyan">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
