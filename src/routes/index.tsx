@@ -1161,19 +1161,17 @@ function FAQ() {
   return (
     <section className="section-edge">
       <Container className="py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
-          <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
-          <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
-            {faqs.map((f, i) => (
-              <div key={i}>
-                <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
-                  <span className="text-sm font-medium md:text-base">{f.q}</span>
-                  <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition ${open === i ? "rotate-180" : ""}`} />
-                </button>
-                {open === i && <div className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</div>}
-              </div>
-            ))}
-          </div>
+        <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+        <div className="mt-10 divide-y divide-border rounded-xl border border-border bg-card/50">
+          {faqs.map((f, i) => (
+            <div key={i}>
+              <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-5">
+                <span className="text-sm font-medium md:text-base">{f.q}</span>
+                <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition ${open === i ? "rotate-180" : ""}`} />
+              </button>
+              {open === i && <div className="px-5 pb-5 text-sm text-muted-foreground md:px-6 md:pb-6">{f.a}</div>}
+            </div>
+          ))}
         </div>
       </Container>
     </section>
