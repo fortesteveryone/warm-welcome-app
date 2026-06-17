@@ -61,69 +61,65 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Grow By Lead — Paper & Ink editorial */
+/* Grow By Lead — Vercel-style dark */
 :root {
-  --radius: 0.25rem;
+  --radius: 0.5rem;
 
-  --background: oklch(0.965 0.006 85);          /* warm off-white */
-  --foreground: oklch(0.18 0.005 60);            /* near-black ink */
+  --background: oklch(0 0 0);                    /* pure black */
+  --foreground: oklch(0.985 0 0);                /* near white */
 
-  --card: oklch(0.985 0.004 85);
-  --card-foreground: oklch(0.18 0.005 60);
-  --popover: oklch(0.985 0.004 85);
-  --popover-foreground: oklch(0.18 0.005 60);
+  --card: oklch(0.07 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.07 0 0);
+  --popover-foreground: oklch(0.985 0 0);
 
-  --primary: oklch(0.18 0.005 60);               /* ink */
-  --primary-foreground: oklch(0.965 0.006 85);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0 0 0);
 
-  --secondary: oklch(0.92 0.008 80);
-  --secondary-foreground: oklch(0.18 0.005 60);
+  --secondary: oklch(0.13 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
 
-  --muted: oklch(0.93 0.008 80);
-  --muted-foreground: oklch(0.45 0.008 70);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.62 0 0);
 
-  --accent: oklch(0.62 0.21 28);                 /* signal red — single accent */
-  --accent-foreground: oklch(0.985 0.004 85);
+  --accent: oklch(0.13 0 0);
+  --accent-foreground: oklch(0.985 0 0);
 
-  --destructive: oklch(0.55 0.22 27);
-  --destructive-foreground: oklch(0.985 0.004 85);
+  --destructive: oklch(0.62 0.21 28);
+  --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.18 0.005 60 / 14%);
-  --input: oklch(0.18 0.005 60 / 14%);
-  --ring: oklch(0.18 0.005 60 / 40%);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(1 0 0 / 30%);
 
-  --hot: oklch(0.62 0.21 28);
-  --warm: oklch(0.72 0.16 70);
-  --cold: oklch(0.55 0.1 230);
+  --hot: oklch(0.7 0.2 25);                      /* vercel red */
+  --warm: oklch(0.78 0.16 70);                   /* vercel orange */
+  --cold: oklch(0.7 0.16 230);                   /* vercel blue */
+  --signal: oklch(0.72 0.19 145);                /* vercel green */
 
-  --chart-1: oklch(0.18 0.005 60);
-  --chart-2: oklch(0.62 0.21 28);
-  --chart-3: oklch(0.55 0.1 230);
-  --chart-4: oklch(0.72 0.16 70);
-  --chart-5: oklch(0.45 0.008 70);
+  --chart-1: oklch(0.7 0.16 230);
+  --chart-2: oklch(0.72 0.19 145);
+  --chart-3: oklch(0.78 0.16 70);
+  --chart-4: oklch(0.7 0.2 25);
+  --chart-5: oklch(0.7 0.18 300);
 
-  --sidebar: oklch(0.965 0.006 85);
-  --sidebar-foreground: oklch(0.18 0.005 60);
-  --sidebar-primary: oklch(0.18 0.005 60);
-  --sidebar-primary-foreground: oklch(0.965 0.006 85);
-  --sidebar-accent: oklch(0.92 0.008 80);
-  --sidebar-accent-foreground: oklch(0.18 0.005 60);
-  --sidebar-border: oklch(0.18 0.005 60 / 14%);
-  --sidebar-ring: oklch(0.18 0.005 60 / 40%);
-
-  --grid-line: oklch(0.18 0.005 60 / 8%);
-  --paper-noise: 0 0 0;
+  --sidebar: oklch(0.04 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.985 0 0);
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --sidebar-accent: oklch(0.13 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 11%);
+  --sidebar-ring: oklch(1 0 0 / 30%);
 }
 
 @theme inline {
   --color-hot: var(--hot);
   --color-warm: var(--warm);
   --color-cold: var(--cold);
-  --color-ink: var(--foreground);
-  --color-paper: var(--background);
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-signal: var(--signal);
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 @layer base {
@@ -131,20 +127,17 @@
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: "ss01", "cv11";
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "ss03", "cv11";
     -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.011em;
   }
-  body {
-    background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 96px 96px;
-    background-position: -1px -1px;
-  }
-  .font-serif { font-family: "Instrument Serif", ui-serif, Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
-  .font-mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .font-mono { font-family: "Geist Mono", ui-monospace, monospace; letter-spacing: 0; }
+  ::selection { background: oklch(1 0 0 / 0.15); color: var(--color-foreground); }
 }
+
+@utility text-balance { text-wrap: balance; }
+
 
 
 
