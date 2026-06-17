@@ -638,7 +638,7 @@ function Coverage() {
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
-            kicker="12 / Coverage"
+            kicker="07 / Coverage"
             title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
             lede="Country and city show only when confident — left blank when not. We don't guess geography."
           />
