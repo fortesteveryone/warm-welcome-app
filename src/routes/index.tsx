@@ -722,60 +722,7 @@ function Scoring() {
 /* (Outreach standalone section removed — drafts already shown in ExampleLead) */
 
 
-/* ---------- dashboard ---------- */
-const dashFeatures = [
-  "Lead list with status", "Search & filters", "Platform filter", "Category filter",
-  "Temperature filter", "Competition filter", "Saved outreach drafts", "Assigned team member",
-  "Export CSV / JSON", "Copy message", "Open original post", "Manual review queue",
-];
-
-function Dashboard() {
-  return (
-    <section className="section-edge section-surface-charcoal">
-      <Container className="py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
-          <div>
-            <SectionTitle
-              kicker="Dashboard"
-              title={<>An inbox for social leads — <span className="text-muted-foreground">not a spreadsheet.</span></>}
-              lede="Triage by temperature, filter by service or platform, assign to a teammate and export anywhere."
-            />
-            <div className="mt-8 grid grid-cols-2 gap-2">
-              {dashFeatures.map((f) => (
-                <div key={f} className="flex items-center gap-2 rounded-md border border-border bg-card/40 px-3 py-2 text-sm">
-                  <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> {f}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-xl border border-border bg-card/50 p-1">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2">
-              <div className="flex items-center gap-2">
-                <Tag tone="hot">● Hot</Tag>
-                <Tag>Facebook</Tag>
-                <Tag>Web dev</Tag>
-              </div>
-              <Mono className="text-muted-foreground">17 results</Mono>
-            </div>
-            <div className="divide-y divide-border">
-              {sampleLeads.slice(0, 4).map((l, i) => (
-                <div key={i} className={`grid grid-cols-12 items-center gap-2 px-4 py-3 text-sm transition hover:bg-card ${i === 0 ? "bg-foreground/[0.04]" : ""}`}>
-                  <Mono className="col-span-1 text-muted-foreground">0{i + 1}</Mono>
-                  <span className="col-span-6 truncate">{l.title}</span>
-                  <span className="col-span-2 text-xs text-muted-foreground"><PlatformBadge name={l.platform} className="h-3 w-3" /></span>
-                  <span className="col-span-2"><Tag tone={l.temp.toLowerCase() as "hot" | "warm" | "cold"}>{l.temp}</Tag></span>
-                  <Mono className="col-span-1 text-right text-muted-foreground">{l.ago}</Mono>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* (Lead profile + Data quality sections removed — internal detail, not user-facing) */
+/* (Dashboard, Lead profile + Data quality sections removed — internal detail, not user-facing) */
 
 
 /* ---------- use cases ---------- */
