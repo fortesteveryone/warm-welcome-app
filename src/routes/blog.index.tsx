@@ -202,7 +202,7 @@ function BlogIndex() {
 function AuthorRow({ post }: { post: BlogPost }) {
   return (
     <p className="text-xs text-muted-foreground">
-      {formatDate(post.date)} · {post.readMinutes} min read
+      {formatDate(post.date)}
     </p>
   );
 }
