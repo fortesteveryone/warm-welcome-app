@@ -845,21 +845,21 @@ function Concierge() {
       <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-3 py-1 text-xs text-[color:var(--signal)]">
-              <Flame className="h-3 w-3" /> VIP add-on · $30 / month
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground">
+              <Flame className="h-3 w-3 text-[color:var(--signal)]" /> VIP add-on · Coming soon
             </div>
             <h2 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
               Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              Upgrade to VIP and we manually filter the day's hottest website &amp; SEO leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website &amp; SEO leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-                Become a VIP member <ArrowRight className="h-4 w-4" />
-              </a>
+              <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
+                Coming soon
+              </span>
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Cancel anytime · No contract
+                <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Pricing &amp; launch date — to be announced
               </span>
             </div>
           </div>
