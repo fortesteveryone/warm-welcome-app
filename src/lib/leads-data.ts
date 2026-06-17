@@ -56,12 +56,52 @@ export type Lead = {
   platform: LeadPlatform;
   qualification: LeadQualification;
   favourite: boolean;
+  /** Post-style summary the user reads before spending a credit to open. */
+  headline: string;
+  /** Short topic / title pill rendered under the headline. */
+  topic: string;
+  /** Replies / comments on the original post. */
+  comments: number;
+  /** Drafts the team has prepared for this lead. */
+  drafts: number;
+  /** When the underlying post was published, e.g. "14-06-2026 | 17:52". */
+  postedAt: string;
 };
+
+const HEADLINES: Record<LeadCategory, { headline: (n: string, c: string) => string; topic: string }> = {
+  "Digital marketing": { headline: (n, c) => `${n} from ${c} is looking for a digital marketer to run paid ads and grow their pipeline this quarter.`, topic: "Paid ads & growth marketer" },
+  "Video Editor":      { headline: (n)    => `${n} is hiring a video editor for a YouTube vlogger with 20k subscribers, needs 3 long-form edits per week.`, topic: "Video editor for YouTube vlog" },
+  "Website":           { headline: (n, c) => `${n} is looking for a website developer to work on a ${c} portfolio website update and a fresh landing page.`, topic: "Website developer for portfolio" },
+  "Graphic design":    { headline: (n, c) => `${n} from ${c} needs a graphic designer for an upcoming product launch — logo refresh, social kit and ad creatives.`, topic: "Graphic designer for launch kit" },
+  "SaaS":              { headline: (n, c) => `${n} at ${c} is evaluating SaaS tools to replace their current CRM and asked for a 30-minute demo this week.`, topic: "Evaluating a new SaaS CRM" },
+  "E-commerce":        { headline: (n, c) => `${n} runs ${c} on Shopify and is searching for help with conversion-rate optimisation and email flows.`, topic: "Shopify CRO + email flows" },
+  "Coaching":          { headline: (n)    => `${n} wants a 1:1 sales coach to help close higher-ticket coaching offers and structure a new programme.`, topic: "Sales coach for high-ticket offers" },
+  "Real Estate":       { headline: (n, c) => `${n} from ${c} is hiring a marketing partner to generate qualified seller leads in their local market.`, topic: "Local seller-lead generation" },
+  "F&B":               { headline: (n, c) => `${n} owns ${c} and needs help building a delivery-first brand presence across Instagram and TikTok.`, topic: "F&B social presence" },
+  "Healthcare":        { headline: (n, c) => `${n} at ${c} is looking for a paid social specialist with healthcare compliance experience to run patient-acquisition ads.`, topic: "Healthcare patient acquisition" },
+};
+
+function enrich(l: Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts" | "postedAt">, i: number): Lead {
+  const tmpl = HEADLINES[l.category];
+  const headline = tmpl.headline(l.name.split(" ")[0], l.company);
+  const day = String(((i * 3) % 27) + 1).padStart(2, "0");
+  const hh = String(((i * 7) % 22) + 1).padStart(2, "0");
+  const mm = String(((i * 11) % 59)).padStart(2, "0");
+  return {
+    ...l,
+    id: slug(l.name),
+    headline,
+    topic: tmpl.topic,
+    comments: (i * 5) % 14,
+    drafts: (i % 5) + 1,
+    postedAt: `${day}-06-2026 | ${hh}:${mm}`,
+  };
+}
 
 const slug = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-type RawLead = Omit<Lead, "id">;
+type RawLead = Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts" | "postedAt">;
 
 const RAW: RawLead[] = [
   { name: "Aisha Rahman", company: "Velvet & Co.", role: "Founder", source: "instagram", score: 92, status: "hot", stage: "Negotiation", owner: "Nasir", updated: "2m ago", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", country: "Bangladesh", website: "velvet.co", tags: ["VIP", "Apparel"], about: "Founder of a fast-growing premium apparel label, building direct-to-consumer channels across South Asia and the Gulf.", dealValue: 12500, createdAt: "Mar 02, 2026", category: "E-commerce", intent: "High", platform: "instagram", qualification: "qualified", favourite: true },
@@ -81,7 +121,7 @@ const RAW: RawLead[] = [
   { name: "Aaliyah Khan", company: "Khan Legal", role: "Partner", source: "linkedin", score: 60, status: "warm", stage: "Qualified", owner: "Sara", updated: "1w ago", email: "aaliyah@khanlegal.ae", phone: "+971 4 123 4567", city: "Dubai, AE", country: "United Arab Emirates", website: "khanlegal.ae", tags: ["Legal"], about: "Boutique law firm focused on cross-border corporate work.", dealValue: 8200, createdAt: "Apr 22, 2026", category: "Graphic design", intent: "Medium", platform: "linkedin", qualification: "unreviewed", favourite: false },
 ];
 
-export const LEADS: Lead[] = RAW.map((l) => ({ ...l, id: slug(l.name) }));
+export const LEADS: Lead[] = RAW.map((l, i) => enrich(l, i));
 
 export const getLeadById = (id: string): Lead | undefined =>
   LEADS.find((l) => l.id === id);
