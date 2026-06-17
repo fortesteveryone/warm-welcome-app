@@ -622,26 +622,130 @@ function PlatformIcon({ p }: { p: LeadPlatform }) {
   return <v.Icon className={`h-3.5 w-3.5 ${v.color}`} />;
 }
 
-function Pagination({ page, total, totalPages, onPage }: { page: number; total: number; totalPages: number; onPage: (p: number) => void }) {
-  const start = (page - 1) * PAGE_SIZE + 1;
-  const end = Math.min(page * PAGE_SIZE, total);
+function getPageWindow(page: number, totalPages: number): (number | "…")[] {
+  if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+  const out: (number | "…")[] = [1];
+  const left = Math.max(2, page - 1);
+  const right = Math.min(totalPages - 1, page + 1);
+  if (left > 2) out.push("…");
+  for (let i = left; i <= right; i++) out.push(i);
+  if (right < totalPages - 1) out.push("…");
+  out.push(totalPages);
+  return out;
+}
+
+function Pagination({
+  page, total, totalPages, pageSize, onPage, onPageSize,
+}: {
+  page: number;
+  total: number;
+  totalPages: number;
+  pageSize: number;
+  onPage: (p: number) => void;
+  onPageSize: (n: number) => void;
+}) {
+  const start = total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const end = Math.min(page * pageSize, total);
+  const [jump, setJump] = useState("");
+  const submitJump = (e: React.FormEvent) => {
+    e.preventDefault();
+    const n = Number(jump);
+    if (Number.isFinite(n) && n >= 1 && n <= totalPages) onPage(Math.floor(n));
+    setJump("");
+  };
+  const win = getPageWindow(page, totalPages);
+  const atStart = page <= 1;
+  const atEnd = page >= totalPages;
+
   return (
-    <div className="flex items-center justify-between border-t border-border px-4 py-3">
-      <Mono className="text-muted-foreground">Showing {start}–{end} of {total}</Mono>
+    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-4 py-3">
+      {/* Left: range + page size */}
+      <div className="flex items-center gap-3">
+        <Mono className="text-muted-foreground">Showing {start}–{end} of {total}</Mono>
+        <label className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+          <span className="hidden sm:inline">Rows</span>
+          <select
+            value={pageSize}
+            onChange={(e) => onPageSize(Number(e.target.value))}
+            className="h-7 rounded-md border border-border bg-card/50 px-1.5 text-xs text-foreground focus:border-foreground/40 focus:outline-none"
+          >
+            {PAGE_SIZE_OPTIONS.map((n) => (
+              <option key={n} value={n}>{n}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      {/* Center: page buttons */}
       <div className="flex items-center gap-1">
-        <button onClick={() => onPage(Math.max(1, page - 1))} disabled={page === 1} className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30">
+        <button
+          onClick={() => onPage(1)} disabled={atStart}
+          className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30"
+          aria-label="First page" title="First page"
+        >
+          <ChevronsLeft className="h-3.5 w-3.5" />
+        </button>
+        <button
+          onClick={() => onPage(Math.max(1, page - 1))} disabled={atStart}
+          className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30"
+          aria-label="Previous page" title="Previous page"
+        >
           <ChevronLeft className="h-3.5 w-3.5" />
         </button>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-          <button key={p} onClick={() => onPage(p)} className={`h-7 min-w-[28px] rounded-md px-2 text-xs ${p === page ? "bg-foreground/10 text-foreground" : "text-muted-foreground hover:bg-card"}`}>{p}</button>
-        ))}
-        <button onClick={() => onPage(Math.min(totalPages, page + 1))} disabled={page === totalPages} className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30">
+        {win.map((p, i) =>
+          p === "…" ? (
+            <span key={`e${i}`} className="px-1 text-xs text-muted-foreground">…</span>
+          ) : (
+            <button
+              key={p}
+              onClick={() => onPage(p)}
+              aria-current={p === page ? "page" : undefined}
+              className={`h-7 min-w-[28px] rounded-md px-2 text-xs ${
+                p === page ? "bg-foreground text-background font-semibold" : "text-muted-foreground hover:bg-card"
+              }`}
+            >
+              {p}
+            </button>
+          ),
+        )}
+        <button
+          onClick={() => onPage(Math.min(totalPages, page + 1))} disabled={atEnd}
+          className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30"
+          aria-label="Next page" title="Next page"
+        >
           <ChevronRight className="h-3.5 w-3.5" />
         </button>
+        <button
+          onClick={() => onPage(totalPages)} disabled={atEnd}
+          className="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-card disabled:opacity-30"
+          aria-label="Last page" title="Last page"
+        >
+          <ChevronsRight className="h-3.5 w-3.5" />
+        </button>
       </div>
+
+      {/* Right: jump-to-page */}
+      <form onSubmit={submitJump} className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+        <span className="hidden sm:inline">Go to</span>
+        <input
+          type="number" min={1} max={totalPages}
+          value={jump}
+          onChange={(e) => setJump(e.target.value)}
+          placeholder={String(page)}
+          className="h-7 w-14 rounded-md border border-border bg-card/50 px-2 text-xs text-foreground focus:border-foreground/40 focus:outline-none"
+        />
+        <span>/ {totalPages}</span>
+        <button
+          type="submit"
+          className="ml-1 inline-flex h-7 items-center rounded-md border border-border bg-card/50 px-2 text-xs text-foreground hover:bg-card"
+        >
+          Go
+        </button>
+      </form>
     </div>
   );
 }
+
 
 /* ─────────────────────────── new lead dialog ─────────────────────────── */
 
