@@ -24,7 +24,6 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 import { Route as DashboardPipelineRouteImport } from './routes/dashboard.pipeline'
 import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
-import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
 import { Route as DashboardCampaignsRouteImport } from './routes/dashboard.campaigns'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
@@ -107,11 +106,6 @@ const DashboardLeadsRoute = DashboardLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardInboxRoute = DashboardInboxRouteImport.update({
-  id: '/inbox',
-  path: '/inbox',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const DashboardContactsRoute = DashboardContactsRouteImport.update({
   id: '/contacts',
   path: '/contacts',
@@ -158,7 +152,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
-  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -181,7 +174,6 @@ export interface FileRoutesByTo {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
-  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog': typeof BlogIndexRoute
@@ -205,7 +197,6 @@ export interface FileRoutesById {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
-  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -231,7 +222,6 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
-    | '/dashboard/inbox'
     | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
@@ -254,7 +244,6 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
-    | '/dashboard/inbox'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
     | '/blog'
@@ -277,7 +266,6 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
-    | '/dashboard/inbox'
     | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
@@ -409,13 +397,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLeadsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/inbox': {
-      id: '/dashboard/inbox'
-      path: '/inbox'
-      fullPath: '/dashboard/inbox'
-      preLoaderRoute: typeof DashboardInboxRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/dashboard/contacts': {
       id: '/dashboard/contacts'
       path: '/contacts'
@@ -479,7 +460,6 @@ interface DashboardRouteChildren {
   DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardCampaignsRoute: typeof DashboardCampaignsRoute
   DashboardContactsRoute: typeof DashboardContactsRoute
-  DashboardInboxRoute: typeof DashboardInboxRoute
   DashboardLeadsRoute: typeof DashboardLeadsRouteWithChildren
   DashboardPipelineRoute: typeof DashboardPipelineRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
@@ -490,7 +470,6 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAnalyticsRoute: DashboardAnalyticsRoute,
   DashboardCampaignsRoute: DashboardCampaignsRoute,
   DashboardContactsRoute: DashboardContactsRoute,
-  DashboardInboxRoute: DashboardInboxRoute,
   DashboardLeadsRoute: DashboardLeadsRouteWithChildren,
   DashboardPipelineRoute: DashboardPipelineRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
-  LayoutDashboard, Users, UserPlus, GitBranch, Send, Inbox, BarChart3, Settings,
+  LayoutDashboard, Users, UserPlus, GitBranch, Send, BarChart3, Settings,
   Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
@@ -15,7 +15,7 @@ const NAV: NavItem[] = [
   { label: "Contacts", to: "/dashboard/contacts", icon: Users },
   { label: "Pipeline", to: "/dashboard/pipeline", icon: GitBranch },
   { label: "Campaigns", to: "/dashboard/campaigns", icon: Send },
-  { label: "Inbox", to: "/dashboard/inbox", icon: Inbox },
+  
   { label: "Analytics", to: "/dashboard/analytics", icon: BarChart3 },
   { label: "Settings", to: "/dashboard/settings", icon: Settings },
 ];
