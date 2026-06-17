@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Filter, Download, Plus, Search, MoreHorizontal, Instagram, Linkedin, Facebook } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
+import { LEADS } from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads")({
   component: LeadsPage,
