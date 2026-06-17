@@ -614,7 +614,7 @@ function Dashboard() {
                 <div key={i} className={`grid grid-cols-12 items-center gap-2 px-4 py-3 text-sm transition hover:bg-card ${i === 0 ? "bg-foreground/[0.04]" : ""}`}>
                   <Mono className="col-span-1 text-muted-foreground">0{i + 1}</Mono>
                   <span className="col-span-6 truncate">{l.title}</span>
-                  <span className="col-span-2 text-xs text-muted-foreground">{l.platform}</span>
+                  <span className="col-span-2 text-xs text-muted-foreground"><PlatformBadge name={l.platform} className="h-3 w-3" /></span>
                   <span className="col-span-2"><Tag tone={l.temp.toLowerCase() as "hot" | "warm" | "cold"}>{l.temp}</Tag></span>
                   <Mono className="col-span-1 text-right text-muted-foreground">{l.ago}</Mono>
                 </div>
