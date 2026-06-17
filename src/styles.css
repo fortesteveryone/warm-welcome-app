@@ -172,11 +172,42 @@
   }
 }
 
-/* Subtle alternating section tint — barely visible, just enough to break rhythm. */
+/* Dark section surfaces — each uses a different deep hue so adjacent
+   sections read as separate without ever drifting toward light mode. */
 @utility section-tint {
   background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.72 0.19 145 / 0.025), transparent 70%),
-    oklch(0.04 0 0);
+    radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.72 0.19 145 / 0.04), transparent 70%),
+    oklch(0.05 0.01 150);
+}
+@utility section-surface-cyan {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(0.7 0.14 210 / 0.06), transparent 70%),
+    oklch(0.055 0.012 220);
+}
+@utility section-surface-blue {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.6 0.18 255 / 0.05), transparent 70%),
+    oklch(0.05 0.015 255);
+}
+@utility section-surface-violet {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.65 0.2 295 / 0.05), transparent 70%),
+    oklch(0.055 0.018 295);
+}
+@utility section-surface-amber {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.78 0.16 70 / 0.045), transparent 70%),
+    oklch(0.055 0.012 60);
+}
+@utility section-surface-charcoal {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(1 0 0 / 0.025), transparent 70%),
+    oklch(0.035 0 0);
+}
+@utility section-surface-signal {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, oklch(0.72 0.19 145 / 0.08), transparent 70%),
+    oklch(0.06 0.02 150);
 }
 
 

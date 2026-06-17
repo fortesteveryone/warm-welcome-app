@@ -356,7 +356,7 @@ const afterLoginItems = [
 
 function AfterLogin() {
   return (
-    <section className="section-edge section-tint">
+    <section className="section-edge section-surface-cyan">
       <Container className="py-24 md:py-32">
         <SectionTitle
           kicker="After login"
@@ -522,7 +522,7 @@ const platforms: PlatformEntry[] = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge">
+    <section id="platforms" className="section-edge section-surface-blue">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -563,7 +563,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-tint">
+    <section id="scoring" className="section-edge section-surface-violet">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -609,7 +609,7 @@ const dashFeatures = [
 
 function Dashboard() {
   return (
-    <section className="section-edge section-tint">
+    <section className="section-edge section-surface-charcoal">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
@@ -708,7 +708,7 @@ const countries = [
 
 function Coverage() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-surface-amber">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
@@ -755,7 +755,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge section-tint">
+    <section id="pricing" className="section-edge section-surface-charcoal">
       <Container className="py-24 md:py-32">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
@@ -850,7 +850,7 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="section-edge section-tint">
+    <section className="section-edge section-surface-signal">
       <Container className="py-24 md:py-32">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
