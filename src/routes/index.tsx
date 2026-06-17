@@ -248,7 +248,7 @@ function Hero() {
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-            Get early access <ArrowRight className="h-4 w-4" />
+            Get started free <ArrowRight className="h-4 w-4" />
           </a>
           <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
             View sample lead
@@ -973,9 +973,9 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
-            Early access pricing <span className="text-muted-foreground">for launch users.</span>
+            Simple pricing <span className="text-muted-foreground">— free during launch.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Pick a plan that fits how you sell. All paid plans are 100% free while we're launching.</p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
             Launch offer — 100% free for everyone. Just create an account.
@@ -1066,7 +1066,7 @@ function Pricing() {
               To celebrate our launch, Grow By Lead is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Paid plans will be enabled in about 10–15 days. Early users keep launch pricing when billing goes live.
+              Paid plans will be enabled in about 10–15 days. Until then, every feature is free for everyone.
             </p>
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
               <a
