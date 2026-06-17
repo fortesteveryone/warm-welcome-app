@@ -83,21 +83,6 @@ function XIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M19.5 7.6a6.7 6.7 0 0 1-4-1.3v8.3a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3a2.9 2.9 0 1 0 2 2.8V2h2.9a4.6 4.6 0 0 0 4.1 4.1v3.5Z"/>
-    </svg>
-  );
-}
-
-function YouTubeIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2ZM9.8 15.5v-7l5.9 3.5-5.9 3.5Z"/>
-    </svg>
-  );
-}
 
 function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -627,8 +612,6 @@ const platforms: PlatformEntry[] = [
   { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
   { icon: XIcon,       color: "#FFFFFF", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
   { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
-  { icon: TikTokIcon,  color: "#FFFFFF", name: "TikTok",      state: "soon", note: "Captions and comments where buyers ask for website and SEO help." },
-  { icon: YouTubeIcon, color: "#FF0000", name: "YouTube",     state: "soon", note: "Community posts and comments under business and creator channels." },
 ];
 
 function Platforms() {
@@ -1079,7 +1062,7 @@ function Testimonials() {
 const faqs = [
   { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter), Threads, TikTok and YouTube are coming soon." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
   { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
