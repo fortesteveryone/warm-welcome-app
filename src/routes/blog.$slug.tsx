@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Facebook, Linkedin, Link2, Send } from "lucide-react";
 import { useState } from "react";
 import { BLOG_POSTS, formatDate, getPostBySlug, getRelatedPosts, type BlogPost } from "@/lib/blog-data";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
