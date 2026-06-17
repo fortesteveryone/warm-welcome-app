@@ -24,7 +24,6 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
 import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
-import { Route as DashboardCampaignsRouteImport } from './routes/dashboard.campaigns'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as DashboardLeadsIndexRouteImport } from './routes/dashboard.leads.index'
 import { Route as DashboardLeadsLeadIdRouteImport } from './routes/dashboard.leads.$leadId'
@@ -104,11 +103,6 @@ const DashboardContactsRoute = DashboardContactsRouteImport.update({
   path: '/contacts',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardCampaignsRoute = DashboardCampaignsRouteImport.update({
-  id: '/campaigns',
-  path: '/campaigns',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -137,7 +131,6 @@ export interface FileRoutesByFullPath {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -157,7 +150,6 @@ export interface FileRoutesByTo {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog': typeof BlogIndexRoute
@@ -178,7 +170,6 @@ export interface FileRoutesById {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/settings': typeof DashboardSettingsRoute
@@ -201,7 +192,6 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
-    | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/leads'
     | '/dashboard/settings'
@@ -221,7 +211,6 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
-    | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/settings'
     | '/blog'
@@ -241,7 +230,6 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
-    | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/leads'
     | '/dashboard/settings'
@@ -373,13 +361,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardContactsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/campaigns': {
-      id: '/dashboard/campaigns'
-      path: '/campaigns'
-      fullPath: '/dashboard/campaigns'
-      preLoaderRoute: typeof DashboardCampaignsRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -419,7 +400,6 @@ const DashboardLeadsRouteWithChildren = DashboardLeadsRoute._addFileChildren(
 )
 
 interface DashboardRouteChildren {
-  DashboardCampaignsRoute: typeof DashboardCampaignsRoute
   DashboardContactsRoute: typeof DashboardContactsRoute
   DashboardLeadsRoute: typeof DashboardLeadsRouteWithChildren
   DashboardSettingsRoute: typeof DashboardSettingsRoute
@@ -427,7 +407,6 @@ interface DashboardRouteChildren {
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardCampaignsRoute: DashboardCampaignsRoute,
   DashboardContactsRoute: DashboardContactsRoute,
   DashboardLeadsRoute: DashboardLeadsRouteWithChildren,
   DashboardSettingsRoute: DashboardSettingsRoute,
