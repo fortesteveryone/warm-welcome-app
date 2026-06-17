@@ -76,17 +76,12 @@ function Home() {
       <TopBar />
       <Hero />
       <LogoStrip />
-      <Capture />
       <ExampleLead />
       <BeforeAfter />
       <Platforms />
       <Scoring />
-      <Outreach />
       <Dashboard />
-      <Profile />
-      <Review />
       <UseCases />
-      <Categories />
       <Coverage />
       <Pricing />
       <FAQ />
