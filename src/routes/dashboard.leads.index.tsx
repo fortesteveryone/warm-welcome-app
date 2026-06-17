@@ -1,14 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import {
-  Filter, Download, Plus, Search, Instagram, Linkedin, Facebook,
+  Filter, Download, Plus, Search,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
-  ChevronLeft, ChevronRight, Star, Flame, Snowflake, Twitter, Youtube, Github,
-  MessageCircle, Globe, Send as SendIcon, Hash, MessageSquare, FileText, ArrowRight,
-  Eye, Lock,
+  ChevronLeft, ChevronRight, Star, Flame, Snowflake,
+  MessageSquare, FileText, ArrowRight, Eye, Lock,
 } from "lucide-react";
 import { PageHeader, Panel, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
+import { SocialTile, SocialPill, CountryBadge, countryFlag, platformVisual } from "@/lib/lead-visuals";
 import {
   LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, LEAD_CATEGORIES, LEAD_INTENTS,
   LEAD_PLATFORMS, LEAD_COUNTRIES, LEAD_QUALIFICATIONS,
