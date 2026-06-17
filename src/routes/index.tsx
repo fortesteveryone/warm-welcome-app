@@ -540,7 +540,7 @@ function Dashboard() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <SectionTitle
-              kicker="07 / Dashboard"
+              kicker="05 / Dashboard"
               title={<>An inbox for social leads — <span className="text-muted-foreground">not a spreadsheet.</span></>}
               lede="Triage by temperature, filter by service or platform, assign to a teammate and export anywhere."
             />
