@@ -2,9 +2,10 @@ import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard, Users, UserPlus, GitBranch, Send, Inbox, BarChart3, Settings,
-  Bell, Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
+  Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
+import { NotificationsBell } from "./notifications";
 
 type NavItem = { label: string; to: string; icon: typeof LayoutDashboard; exact?: boolean };
 const NAV: NavItem[] = [
