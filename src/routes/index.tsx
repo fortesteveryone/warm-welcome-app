@@ -973,9 +973,9 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
-            Early access pricing <span className="text-muted-foreground">for launch users.</span>
+            Simple pricing <span className="text-muted-foreground">— free during launch.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Pick a plan that fits how you sell. All paid plans are 100% free while we're launching.</p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
             Launch offer — 100% free for everyone. Just create an account.
