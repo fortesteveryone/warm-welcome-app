@@ -153,8 +153,8 @@
 
 @utility text-balance { text-wrap: balance; }
 
-/* Section divider — gradient hairline + centered green pulse marker.
-   Apply to any block to draw a refined bottom edge. */
+/* Section divider — iridescent hairline + centered diamond marker.
+   Warm-to-cool aurora tint so adjacent sections feel intentionally separated. */
 @utility section-edge {
   position: relative;
   &::after {
@@ -167,11 +167,13 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(1 0 0 / 0.04) 20%,
-      oklch(1 0 0 / 0.14) 50%,
-      oklch(1 0 0 / 0.04) 80%,
+      oklch(0.78 0.16 70 / 0.22) 18%,
+      oklch(0.72 0.19 145 / 0.32) 42%,
+      oklch(0.7 0.16 230 / 0.32) 58%,
+      oklch(0.65 0.2 295 / 0.22) 82%,
       transparent 100%
     );
+    filter: drop-shadow(0 0 6px oklch(0.72 0.19 145 / 0.18));
   }
   &::before {
     content: "";
@@ -182,7 +184,10 @@
     height: 7px;
     transform: translateX(-50%) rotate(45deg);
     background: var(--color-background);
-    border: 1px solid oklch(1 0 0 / 0.18);
+    border: 1px solid oklch(0.78 0.16 70 / 0.45);
+    box-shadow:
+      0 0 8px oklch(0.78 0.16 70 / 0.35),
+      0 0 14px oklch(0.72 0.19 145 / 0.22);
     z-index: 1;
   }
 }
