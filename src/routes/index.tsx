@@ -319,7 +319,7 @@ function ExampleLead() {
     <section id="example" className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle
-          kicker="02 / Example"
+          kicker="01 / Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
         />
         <div className="mt-14 grid gap-3 lg:grid-cols-[1.1fr_1fr]">
