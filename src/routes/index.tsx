@@ -83,21 +83,6 @@ function XIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M19.5 7.6a6.7 6.7 0 0 1-4-1.3v8.3a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3a2.9 2.9 0 1 0 2 2.8V2h2.9a4.6 4.6 0 0 0 4.1 4.1v3.5Z"/>
-    </svg>
-  );
-}
-
-function YouTubeIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2ZM9.8 15.5v-7l5.9 3.5-5.9 3.5Z"/>
-    </svg>
-  );
-}
 
 function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
