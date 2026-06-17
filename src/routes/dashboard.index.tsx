@@ -4,7 +4,7 @@ import {
   CalendarRange, Wallet, Eye, Star, Sparkles, MessageSquare, CheckCircle2,
   Clock, ChevronDown, X, Flame, MapPin, ArrowUpRight, Inbox, Zap, TrendingUp,
 } from "lucide-react";
-import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
+import { PageHeader, Stat, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
 
 
 export const Route = createFileRoute("/dashboard/")({
