@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Filter, Download, Plus, Search,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
-  ChevronLeft, ChevronRight, Star, Flame, Snowflake,
+  ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Star, Flame, Snowflake,
   MessageSquare, FileText, ArrowRight, Eye, Lock,
 } from "lucide-react";
+
 import { PageHeader, Panel, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
 import { SocialTile, countryFlag, platformVisual } from "@/lib/lead-visuals";
@@ -365,7 +366,8 @@ function LeadsPage() {
               />
             ))}
           </div>
-          <Panel><Pagination page={safePage} total={filtered.length} totalPages={totalPages} onPage={setPage} /></Panel>
+          <Panel><Pagination page={safePage} total={filtered.length} totalPages={totalPages} pageSize={pageSize} onPage={setPage} onPageSize={(n) => { setPageSize(n); setPage(1); }} /></Panel>
+
         </>
       ) : (
         <>
@@ -382,7 +384,7 @@ function LeadsPage() {
               />
             ))}
           </div>
-          <Panel><Pagination page={safePage} total={filtered.length} totalPages={totalPages} onPage={setPage} /></Panel>
+          <Panel><Pagination page={safePage} total={filtered.length} totalPages={totalPages} pageSize={pageSize} onPage={setPage} onPageSize={(n) => { setPageSize(n); setPage(1); }} /></Panel>
         </>
       )}
 
