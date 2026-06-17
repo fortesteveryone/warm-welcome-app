@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { PageHeader, Panel, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
-import { SocialTile, SocialPill, CountryBadge, countryFlag, platformVisual } from "@/lib/lead-visuals";
+import { SocialTile, countryFlag, platformVisual } from "@/lib/lead-visuals";
 import {
   LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, LEAD_CATEGORIES, LEAD_INTENTS,
   LEAD_PLATFORMS, LEAD_COUNTRIES, LEAD_QUALIFICATIONS,
