@@ -160,7 +160,7 @@ function TopBar() {
     ["Platforms", "#platforms"],
     ["Scoring", "#scoring"],
     ["Pricing", "#pricing"],
-    ["Docs", "#"],
+    ["Blog", "/blog"],
   ];
   const [open, setOpen] = useState(false);
   return (
