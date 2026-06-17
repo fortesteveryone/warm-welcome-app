@@ -740,13 +740,13 @@ function Pricing() {
   const plans = [
     {
       name: "Day pass", price: "$10", cadence: "/ day", desc: "Try a full day of fresh leads — no subscription.",
-      features: ["1 day of unlimited captures", "All platforms supported", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
+      features: ["1 day of full lead access", "Facebook, LinkedIn, Reddit", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
       cta: "Start day pass", featured: false,
     },
     {
       name: "Monthly", price: "$20", cadence: "/ month", desc: "For freelancers and small teams shipping outreach daily.",
-      features: ["Unlimited captures", "All platforms supported", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
-      cta: "Get Monthly", featured: true,
+      features: ["High-volume monthly lead access", "All live platforms", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
+      cta: "Get early access", featured: true,
     },
     {
       name: "Agency", price: "Custom", cadence: "", desc: "For agencies running outreach for multiple clients.",
