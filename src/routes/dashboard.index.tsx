@@ -136,24 +136,36 @@ function Overview() {
           actions={<Badge tone="success">Live</Badge>}
         >
           <div className="p-5">
-            <div className="h-48 text-[color:var(--signal,oklch(0.72_0.19_145))]">
-              <Sparkline data={[6, 9, 7, 11, 14, 12, 16, 13, 18, 15, 20, 22, 19, 24]} />
+            <div className="flex h-[90px] items-end gap-[3px]">
+              {[6, 9, 7, 11, 14, 12, 16, 13, 18, 15, 20, 22, 19, 24].map((v, i, arr) => {
+                const max = Math.max(...arr);
+                const isLast = i === arr.length - 1;
+                return (
+                  <div
+                    key={i}
+                    className={`flex-1 rounded-t-[2px] ${isLast ? "bg-[color:var(--signal)]" : "bg-card"}`}
+                    style={{ height: `${(v / max) * 100}%` }}
+                    title={`${v} leads`}
+                  />
+                );
+              })}
             </div>
             <div className="mt-4 grid grid-cols-4 gap-3 border-t border-border pt-4 text-center">
               {[
-                { l: "Web design", v: "82", c: "text-rose-400" },
-                { l: "Webflow",    v: "54", c: "text-sky-400" },
-                { l: "SEO",        v: "31", c: "text-indigo-400" },
-                { l: "WordPress",  v: "21", c: "text-foreground" },
+                { l: "Web design", v: "82" },
+                { l: "Webflow",    v: "54" },
+                { l: "SEO",        v: "31" },
+                { l: "WordPress",  v: "21" },
               ].map((s) => (
                 <div key={s.l}>
-                  <div className={`text-lg font-semibold ${s.c}`}>{s.v}</div>
+                  <div className="text-lg font-semibold text-foreground">{s.v}</div>
                   <Mono className="text-muted-foreground">{s.l}</Mono>
                 </div>
               ))}
             </div>
           </div>
         </Panel>
+
 
         <Panel title="Your funnel" description="From open to reply">
           <div className="space-y-3 p-5">
