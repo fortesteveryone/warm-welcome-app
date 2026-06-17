@@ -44,7 +44,7 @@ function LeadsPage() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = LEADS.filter((l) => {
+    let list = leads.filter((l) => {
       if (status !== "All" && l.status !== status.toLowerCase()) return false;
       if (sources.length && !sources.includes(l.source)) return false;
       if (stages.length && !stages.includes(l.stage)) return false;
