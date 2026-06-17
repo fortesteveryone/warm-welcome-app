@@ -122,17 +122,26 @@
   --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
+/* Twemoji country-flag webfont — Windows/Chromium don't render flag emojis natively.
+   Unicode range limits this font to flag chars + tag chars only; everything else uses Geist. */
+@font-face {
+  font-family: "Twemoji Country Flags";
+  unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E007F, U+1F30D-1F30F, U+1F310;
+  src: url("https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2") format("woff2");
+  font-display: swap;
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Twemoji Country Flags", "Geist", ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "ss03", "cv11";
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.011em;
   }
-  .font-mono { font-family: "Geist Mono", ui-monospace, monospace; letter-spacing: 0; }
+  .font-mono { font-family: "Twemoji Country Flags", "Geist Mono", ui-monospace, monospace; letter-spacing: 0; }
   ::selection { background: oklch(1 0 0 / 0.15); color: var(--color-foreground); }
 
   /* Pointer cursor on all interactive controls (skip disabled). */
