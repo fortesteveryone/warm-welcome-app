@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowUpRight, ChevronDown, Copy, ExternalLink, Facebook, Linkedin,
-  MessageSquare, Plus, Minus,
+  ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, ExternalLink, Facebook,
+  Linkedin, MessageSquare, Minus, Plus, Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -18,37 +18,51 @@ export const Route = createFileRoute("/")({
 });
 
 /* ============================================================
-   Layout primitives — Swiss editorial
+   Primitives
    ============================================================ */
 
-function Rule() {
-  return <hr className="border-0 border-t border-foreground/15" />;
-}
-
 function Mono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <span className={`font-mono text-[11px] uppercase tracking-[0.16em] ${className}`}>{children}</span>;
-}
-
-function SectionHeader({ index, kicker, title, lede }: { index: string; kicker: string; title: React.ReactNode; lede?: string }) {
-  return (
-    <header className="grid grid-cols-12 gap-6 border-t border-foreground pt-6">
-      <div className="col-span-12 flex items-center justify-between md:col-span-3">
-        <Mono className="text-foreground">§ {index}</Mono>
-        <Mono className="text-muted-foreground md:hidden">{kicker}</Mono>
-      </div>
-      <div className="col-span-12 md:col-span-9">
-        <Mono className="hidden text-muted-foreground md:inline">{kicker}</Mono>
-        <h2 className="mt-2 text-balance font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl">
-          {title}
-        </h2>
-        {lede && <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">{lede}</p>}
-      </div>
-    </header>
-  );
+  return <span className={`font-mono text-[11px] tracking-tight ${className}`}>{children}</span>;
 }
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto max-w-[1280px] px-6 md:px-10 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
+}
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+      <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+      {children}
+    </div>
+  );
+}
+
+function SectionTitle({ kicker, title, lede }: { kicker: string; title: React.ReactNode; lede?: string }) {
+  return (
+    <div className="max-w-2xl">
+      <Mono className="text-muted-foreground">{kicker}</Mono>
+      <h2 className="mt-3 text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-5xl">
+        {title}
+      </h2>
+      {lede && <p className="mt-4 text-base text-muted-foreground md:text-lg">{lede}</p>}
+    </div>
+  );
+}
+
+function Tag({ children, tone = "default" }: { children: React.ReactNode; tone?: "default" | "hot" | "warm" | "cold" | "signal" }) {
+  const tones = {
+    default: "border-border bg-card text-foreground",
+    hot: "border-[color:var(--hot)]/30 bg-[color:var(--hot)]/10 text-[color:var(--hot)]",
+    warm: "border-[color:var(--warm)]/30 bg-[color:var(--warm)]/10 text-[color:var(--warm)]",
+    cold: "border-[color:var(--cold)]/30 bg-[color:var(--cold)]/10 text-[color:var(--cold)]",
+    signal: "border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 text-[color:var(--signal)]",
+  };
+  return (
+    <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>
+      {children}
+    </span>
+  );
 }
 
 /* ============================================================
@@ -57,10 +71,10 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 
 function Home() {
   return (
-    <div className="text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
-      <Marquee />
+      <LogoStrip />
       <Capture />
       <ExampleLead />
       <BeforeAfter />
@@ -83,129 +97,271 @@ function Home() {
 
 /* ---------- top bar ---------- */
 function TopBar() {
+  const links = [
+    ["Product", "#capture"],
+    ["Example", "#example"],
+    ["Scoring", "#scoring"],
+    ["Pricing", "#pricing"],
+    ["Docs", "#"],
+  ];
   return (
-    <div className="border-b border-foreground/15 bg-background/85 backdrop-blur sticky top-0 z-40">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
       <Container className="flex h-14 items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5">
-          <span className="grid h-6 w-6 place-items-center bg-foreground text-background font-serif text-sm leading-none">G</span>
-          <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
-          <Mono className="ml-3 hidden text-muted-foreground md:inline">/ pre-launch</Mono>
-        </a>
-        <nav className="hidden items-center gap-8 md:flex">
-          {[["What it captures", "#capture"], ["Example", "#example"], ["Scoring", "#scoring"], ["Pricing", "#pricing"]].map(([l, h]) => (
-            <a key={h} href={h} className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
-          ))}
-        </nav>
-        <a href="#pricing" className="group inline-flex items-center gap-1.5 border border-foreground bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-background hover:text-foreground">
-          Get access <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="flex items-center gap-7">
+          <a href="#" className="flex items-center gap-2">
+            <Logo />
+            <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
+          </a>
+          <nav className="hidden items-center gap-6 md:flex">
+            {links.map(([l, h]) => (
+              <a key={h} href={h} className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
+            ))}
+          </nav>
+        </div>
+        <div className="flex items-center gap-2">
+          <a href="#" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">Sign in</a>
+          <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90">
+            Get started <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </Container>
-    </div>
+    </header>
+  );
+}
+
+function Logo() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
+      <path d="M12 2 L22 20 L2 20 Z" />
+    </svg>
   );
 }
 
 /* ---------- hero ---------- */
 function Hero() {
   return (
-    <section className="border-b border-foreground/15">
-      <Container className="pt-16 pb-20 md:pt-24 md:pb-28">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 flex items-center justify-between md:col-span-3">
-            <Mono>§ 00 / Index</Mono>
-            <Mono className="text-muted-foreground">Vol. 01</Mono>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <Mono className="text-muted-foreground">Social lead intelligence — for agencies, freelancers & sales teams</Mono>
-            <h1 className="mt-5 font-serif text-[clamp(2.6rem,7.2vw,7rem)] leading-[0.95] tracking-tight">
-              Every social post,<br />
-              <span className="italic">scored</span> and ready to close.
-            </h1>
-            <div className="mt-8 grid grid-cols-12 gap-6">
-              <p className="col-span-12 max-w-xl text-lg text-foreground/80 md:col-span-7">
-                Grow By Lead reads the buying signals people already post on Facebook, LinkedIn and Reddit — and turns each one into a structured lead with summary, intent, urgency, competition and three outreach drafts.
-              </p>
-              <div className="col-span-12 flex flex-col items-start gap-3 md:col-span-5 md:items-end">
-                <a href="#pricing" className="inline-flex items-center gap-2 bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:bg-accent">
-                  Start capturing leads <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <a href="#example" className="inline-flex items-center gap-2 border border-foreground/30 px-5 py-3 text-sm font-medium text-foreground transition hover:border-foreground">
-                  See an example lead
-                </a>
-              </div>
-            </div>
-          </div>
+    <section className="relative overflow-hidden border-b border-border">
+      {/* gradient mesh */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-[-200px] h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
+        <div className="absolute right-[-200px] top-[100px] h-[500px] w-[700px] rounded-full bg-[radial-gradient(circle_at_center,oklch(0.7_0.16_230/0.15),transparent_60%)] blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
+      <Container className="relative pt-24 pb-20 text-center md:pt-32 md:pb-28">
+        <div className="flex justify-center">
+          <Eyebrow>
+            <span>Now in pre-launch</span>
+            <span className="text-foreground/40">→</span>
+            <span className="text-foreground">Read the changelog</span>
+          </Eyebrow>
+        </div>
+        <h1 className="mx-auto mt-7 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[88px]">
+          Social posts to{" "}
+          <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">
+            sales-ready leads.
+          </span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-balance text-base text-muted-foreground md:text-lg">
+          Grow By Lead reads buying signals on Facebook, LinkedIn and Reddit — and ships structured leads with intent, urgency, competition and outreach drafts.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
+            Start for free <ArrowRight className="h-4 w-4" />
+          </a>
+          <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
+            See example lead
+          </a>
         </div>
 
-        {/* hero numbers — real product facts, not fake metrics */}
-        <div className="mt-16 grid grid-cols-2 border-t border-foreground/20 md:grid-cols-4">
-          {[
-            ["06", "Scoring factors per lead"],
-            ["03", "Outreach drafts per lead"],
-            ["04", "Platforms supported"],
-            ["01", "Source of truth"],
-          ].map(([n, l]) => (
-            <div key={l} className="border-r border-foreground/15 px-2 py-6 last:border-r-0 md:px-6">
-              <div className="font-serif text-5xl leading-none md:text-6xl">{n}</div>
-              <div className="mt-3 text-sm text-muted-foreground">{l}</div>
+        {/* preview window */}
+        <div className="relative mx-auto mt-20 max-w-5xl">
+          <div className="absolute -inset-x-20 -top-10 -bottom-10 rounded-[40px] bg-gradient-to-b from-foreground/5 to-transparent blur-2xl" />
+          <div className="relative rounded-xl border border-border bg-card/80 p-1 shadow-[0_30px_120px_-20px_oklch(0.72_0.19_145/0.25),0_0_0_1px_oklch(1_0_0/0.04)] backdrop-blur">
+            <div className="flex items-center justify-between border-b border-border px-4 py-2">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.2_25)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.78_0.16_70)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.72_0.19_145)]" />
+              </div>
+              <Mono className="text-muted-foreground">growbylead.app / inbox</Mono>
+              <Mono className="text-muted-foreground">17 new today</Mono>
             </div>
-          ))}
+            <div className="grid gap-3 p-3 text-left md:grid-cols-[1fr_1.15fr]">
+              <div className="space-y-1.5">
+                {sampleLeads.map((l, i) => <InboxRow key={i} l={l} active={i === 0} />)}
+              </div>
+              <PreviewDetail />
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
 
-/* ---------- marquee strip ---------- */
-function Marquee() {
-  const items = ["Facebook groups", "LinkedIn posts", "Reddit threads", "Manual link import", "Lead summary", "Intent + temperature", "Competition signal", "Outreach drafts", "Manual review", "CSV / JSON export"];
+const sampleLeads = [
+  { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot", service: "Web Dev", comp: "Low", ago: "12m" },
+  { title: "Looking for SEO expert — local plumbing business", platform: "Reddit", temp: "Warm", service: "SEO", comp: "Medium", ago: "38m" },
+  { title: "Need help managing our Instagram for restaurant", platform: "Facebook", temp: "Warm", service: "SMM", comp: "Low", ago: "1h" },
+  { title: "Shopify store redesign — budget $2k", platform: "LinkedIn", temp: "Hot", service: "E-com", comp: "Medium", ago: "2h" },
+  { title: "Anyone do landing pages for SaaS launch?", platform: "Reddit", temp: "Cold", service: "Landing", comp: "High", ago: "4h" },
+] as const;
+
+function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
+  const toneByTemp: Record<string, "hot" | "warm" | "cold"> = { Hot: "hot", Warm: "warm", Cold: "cold" };
   return (
-    <div className="overflow-hidden border-b border-foreground/15 bg-foreground py-4 text-background">
-      <div className="flex animate-[marquee_40s_linear_infinite] gap-12 whitespace-nowrap">
-        {[...items, ...items, ...items].map((t, i) => (
-          <span key={i} className="font-mono text-[12px] uppercase tracking-[0.18em]">— {t}</span>
-        ))}
+    <div className={`rounded-lg border px-3 py-2.5 transition ${active ? "border-foreground/30 bg-foreground/[0.04]" : "border-transparent hover:border-border hover:bg-card"}`}>
+      <div className="flex items-start justify-between gap-3">
+        <p className="line-clamp-1 text-sm font-medium">{l.title}</p>
+        <Tag tone={toneByTemp[l.temp]}>{l.temp}</Tag>
       </div>
-      <style>{`@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-33.333%) } }`}</style>
+      <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
+        <span>{l.platform}</span><span>·</span><span>{l.service}</span><span>·</span><span>{l.comp} comp</span>
+        <span className="ml-auto font-mono">{l.ago}</span>
+      </div>
     </div>
   );
 }
 
-/* ---------- capture ---------- */
-const captureCards = [
-  ["Source details", "Platform, post URL, author name, post type and capture time — every lead is traceable to a real public post."],
-  ["Lead summary", "A clean title, one-line summary, service needed, website type and budget signal if mentioned."],
-  ["Intent & temperature", "Hot, warm or cold — derived from urgency words, specificity and how directly the person asks."],
-  ["Competition signal", "Comments and replies are read at capture time to flag low, medium or high competition."],
-  ["Recommended action", "A specific next step — what to send, what to ask, and how fast to move on this lead."],
-  ["Outreach drafts", "Three angle-tested message drafts ready to copy, adapt and send through DM or email."],
-];
+function PreviewDetail() {
+  return (
+    <div className="rounded-lg border border-border bg-background/40 p-4">
+      <div className="flex flex-wrap items-center gap-1.5">
+        <Tag tone="hot">● Hot</Tag>
+        <Tag tone="signal">High intent</Tag>
+        <Tag>Low competition</Tag>
+        <Tag>Facebook</Tag>
+      </div>
+      <h3 className="mt-3 text-base font-semibold leading-tight tracking-tight">Paid portfolio website developer needed for updates</h3>
+      <p className="mt-1.5 text-sm text-muted-foreground">
+        Khansa Maroof is looking for a developer to update a portfolio website and mentioned good payment.
+      </p>
+      <div className="mt-3 grid grid-cols-2 gap-1.5 text-xs">
+        {[["Service", "Portfolio updates"], ["Channel", "Social DM"], ["Comments", "8 visible"], ["Posted", "12m ago"]].map(([k, v]) => (
+          <div key={k} className="rounded-md border border-border bg-card/40 px-2.5 py-1.5">
+            <Mono className="text-muted-foreground">{k}</Mono>
+            <div className="mt-0.5 text-foreground">{v}</div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 rounded-md border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-3 text-xs">
+        <Mono className="text-[color:var(--signal)]">Recommended action</Mono>
+        <p className="mt-1.5 text-foreground/90">
+          Contact within 30 minutes with portfolio examples. Ask for current site link, required updates, timeline and payment terms.
+        </p>
+      </div>
+    </div>
+  );
+}
 
+/* ---------- logo / values strip ---------- */
+function LogoStrip() {
+  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts included", "Manual review flags", "CSV / JSON export"];
+  return (
+    <div className="border-b border-border">
+      <Container className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-6">
+        {items.map((t) => (
+          <span key={t} className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Check className="h-3.5 w-3.5 text-foreground/60" /> {t}
+          </span>
+        ))}
+      </Container>
+    </div>
+  );
+}
+
+/* ---------- capture (bento) ---------- */
 function Capture() {
   return (
-    <section id="capture">
+    <section id="capture" className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="01"
-          kicker="What Grow By Lead captures"
-          title={<>From messy social posts<br /><span className="italic">to clean sales-ready leads.</span></>}
-          lede="Every captured post is parsed into the same structured shape, so your team works from one consistent surface — not screenshots and bookmarks."
+        <SectionTitle
+          kicker="01 / What we capture"
+          title={<>From messy social posts <span className="text-muted-foreground">to clean leads.</span></>}
+          lede="Every captured post is parsed into the same structured shape — one consistent surface, not screenshots and bookmarks."
         />
-        <div className="mt-12 grid grid-cols-1 border-t border-foreground/15 md:grid-cols-3">
-          {captureCards.map(([t, b], i) => (
-            <div
-              key={t}
-              className={`border-b border-foreground/15 p-6 md:border-r md:p-8 ${
-                (i + 1) % 3 === 0 ? "md:border-r-0" : ""
-              } ${i >= captureCards.length - 3 ? "md:border-b-0" : ""}`}
-            >
-              <Mono className="text-muted-foreground">{String(i + 1).padStart(2, "0")}</Mono>
-              <h3 className="mt-3 font-serif text-2xl leading-tight md:text-3xl">{t}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{b}</p>
-            </div>
-          ))}
+        <div className="mt-14 grid grid-cols-1 gap-3 md:grid-cols-6 md:grid-rows-2">
+          <BentoCard className="md:col-span-3 md:row-span-2" title="Lead summary" body="Clean title, one-line summary, service needed, website type and budget signal when mentioned.">
+            <SummaryGraphic />
+          </BentoCard>
+          <BentoCard className="md:col-span-3" title="Intent & temperature" body="Hot / warm / cold from urgency words, specificity and how directly the person asks.">
+            <TempGraphic />
+          </BentoCard>
+          <BentoCard className="md:col-span-2" title="Competition" body="Comments and replies are read at capture time to flag low, medium or high.">
+            <CompGraphic />
+          </BentoCard>
+          <BentoCard className="md:col-span-1" title="Outreach drafts" body="Three angles, ready to copy.">
+            <Mono className="text-muted-foreground">03 / lead</Mono>
+          </BentoCard>
+        </div>
+        <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
+          <BentoCard title="Source details" body="Platform, post URL, author name, post type and capture time — every lead is traceable." />
+          <BentoCard title="Recommended action" body="A specific next step — what to send, what to ask, and how fast to move." />
+          <BentoCard title="Manual review" body="Critical fields uncertain? Lead is flagged before you contact anyone." />
         </div>
       </Container>
     </section>
+  );
+}
+
+function BentoCard({ title, body, children, className = "" }: { title: string; body: string; children?: React.ReactNode; className?: string }) {
+  return (
+    <div className={`group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card ${className}`}>
+      {children && <div className="mb-6">{children}</div>}
+      <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
+    </div>
+  );
+}
+
+function SummaryGraphic() {
+  return (
+    <div className="rounded-lg border border-border bg-background/60 p-4 font-mono text-[12px] leading-relaxed">
+      <div className="text-muted-foreground">{`{`}</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"title"</span>: <span className="text-foreground">"Paid portfolio website developer needed"</span>,</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"service"</span>: <span className="text-[color:var(--signal)]">"portfolio_updates"</span>,</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"intent"</span>: <span className="text-[color:var(--signal)]">"high"</span>,</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"temperature"</span>: <span className="text-[color:var(--hot)]">"hot"</span>,</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"competition"</span>: <span className="text-foreground">"low"</span>,</div>
+      <div className="pl-3"><span className="text-[color:var(--cold)]">"drafts"</span>: <span className="text-foreground">[ 3 ]</span></div>
+      <div className="text-muted-foreground">{`}`}</div>
+    </div>
+  );
+}
+
+function TempGraphic() {
+  return (
+    <div className="flex gap-2">
+      {[
+        { l: "Hot", c: "var(--hot)", n: "12" },
+        { l: "Warm", c: "var(--warm)", n: "34" },
+        { l: "Cold", c: "var(--cold)", n: "08" },
+      ].map((t) => (
+        <div key={t.l} className="flex-1 rounded-lg border border-border bg-background/40 p-3">
+          <div className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: `oklch(${t.c})` }} />
+            <Mono className="text-muted-foreground">{t.l}</Mono>
+          </div>
+          <div className="mt-2 font-mono text-2xl tracking-tight" style={{ color: `oklch(${t.c})` }}>{t.n}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CompGraphic() {
+  return (
+    <div className="space-y-2">
+      {[["Low", 90, "var(--signal)"], ["Medium", 55, "var(--warm)"], ["High", 25, "var(--hot)"]].map(([l, w, c]) => (
+        <div key={l as string} className="flex items-center gap-3">
+          <Mono className="w-16 text-muted-foreground">{l}</Mono>
+          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-border">
+            <div className="h-full rounded-full" style={{ width: `${w}%`, background: `oklch(${c})` }} />
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -219,94 +375,83 @@ const drafts = [
 function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="example" className="bg-foreground text-background">
+    <section id="example" className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <header className="grid grid-cols-12 gap-6 border-t border-background/20 pt-6">
-          <div className="col-span-12 md:col-span-3"><Mono>§ 02</Mono></div>
-          <div className="col-span-12 md:col-span-9">
-            <Mono className="text-background/60">Example lead intelligence card</Mono>
-            <h2 className="mt-2 text-balance font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl">
-              This is what one captured post<br /><span className="italic">looks like inside Grow By Lead.</span>
-            </h2>
-          </div>
-        </header>
-
-        <div className="mt-14 grid grid-cols-12 gap-6">
-          {/* lead card */}
-          <article className="col-span-12 bg-background p-6 text-foreground md:col-span-7 md:p-10">
-            <div className="flex flex-wrap items-center gap-2 border-b border-foreground/15 pb-4">
+        <SectionTitle
+          kicker="02 / Example"
+          title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
+        />
+        <div className="mt-14 grid gap-3 lg:grid-cols-[1.1fr_1fr]">
+          <article className="rounded-xl border border-border bg-card p-6 md:p-8">
+            <div className="flex flex-wrap items-center gap-1.5">
               <Tag>Facebook</Tag>
-              <Tag tone="hot">Hot</Tag>
-              <Tag>High intent</Tag>
+              <Tag tone="hot">● Hot</Tag>
+              <Tag tone="signal">High intent</Tag>
               <Tag>Low competition</Tag>
-              <Mono className="ml-auto text-muted-foreground">12 min ago</Mono>
+              <Mono className="ml-auto text-muted-foreground">12m ago</Mono>
             </div>
-            <h3 className="mt-6 font-serif text-3xl leading-tight md:text-4xl">
+            <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-[-0.02em] md:text-3xl">
               Paid portfolio website developer needed for updates
             </h3>
-            <p className="mt-3 text-base text-muted-foreground">
+            <p className="mt-3 text-sm text-muted-foreground md:text-base">
               Khansa Maroof is looking for a website developer to update a portfolio website and mentioned good payment.
             </p>
-
-            <dl className="mt-6 grid grid-cols-2 border-t border-foreground/15">
+            <dl className="mt-6 grid grid-cols-2 gap-px rounded-lg bg-border overflow-hidden">
               {[
-                ["Service needed", "Portfolio website updates"],
+                ["Service", "Portfolio updates"],
                 ["Website type", "Portfolio"],
-                ["Best channel", "Social media message"],
-                ["Budget signal", "Mentioned, no amount"],
+                ["Channel", "Social DM"],
+                ["Budget", "Mentioned"],
                 ["Author", "Khansa Maroof"],
-                ["Comments at capture", "8 visible"],
+                ["Comments", "8 visible"],
               ].map(([k, v]) => (
-                <div key={k} className="border-b border-foreground/15 py-3 odd:border-r odd:pr-4 even:pl-4">
+                <div key={k} className="bg-card px-4 py-3">
                   <Mono className="text-muted-foreground">{k}</Mono>
                   <dd className="mt-1 text-sm">{v}</dd>
                 </div>
               ))}
             </dl>
-
-            <div className="mt-6 border-l-2 border-accent bg-accent/5 p-4">
-              <Mono className="text-accent">Recommended next action</Mono>
-              <p className="mt-2 text-sm text-foreground">
+            <div className="mt-6 rounded-lg border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-4">
+              <Mono className="text-[color:var(--signal)]">Recommended next action</Mono>
+              <p className="mt-2 text-sm">
                 Contact quickly with portfolio website examples and ask for the current website link, required updates, timeline and payment details.
               </p>
             </div>
-
-            <div className="mt-6 flex items-center justify-between border-t border-foreground/15 pt-4 text-xs text-muted-foreground">
-              <span>No manual review needed — all key fields present.</span>
-              <a href="#" className="inline-flex items-center gap-1 text-foreground hover:text-accent">
+            <div className="mt-6 flex items-center justify-between text-xs text-muted-foreground">
+              <span>● No manual review needed — all key fields present</span>
+              <a href="#" className="inline-flex items-center gap-1 text-foreground hover:underline">
                 Open original post <ExternalLink className="h-3 w-3" />
               </a>
             </div>
           </article>
-
-          {/* drafts */}
-          <aside className="col-span-12 md:col-span-5">
-            <div className="border border-background/30 p-6 md:p-8">
-              <Mono>Outreach drafts · 03</Mono>
-              <div className="mt-5 divide-y divide-background/20 border-y border-background/20">
-                {drafts.map((d, i) => (
-                  <div key={i}>
-                    <button onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-3 py-4 text-left">
-                      <span className="flex items-center gap-3">
-                        <span className="font-mono text-[11px] text-background/60">0{i + 1}</span>
-                        <span className="font-serif text-xl italic">{d.angle}</span>
-                      </span>
-                      {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                    </button>
-                    {open === i && (
-                      <div className="pb-5 text-sm">
-                        <Mono className="text-background/60">Subject</Mono>
-                        <p className="mt-1">{d.subject}</p>
-                        <Mono className="mt-4 inline-block text-background/60">Message</Mono>
-                        <p className="mt-1 text-background/90">{d.body}</p>
-                        <button className="mt-4 inline-flex items-center gap-1.5 border border-background/30 px-2.5 py-1.5 text-xs transition hover:border-background">
-                          <Copy className="h-3 w-3" /> Copy message
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+          <aside className="rounded-xl border border-border bg-card/50 p-6 md:p-8">
+            <div className="flex items-center justify-between">
+              <Mono className="text-muted-foreground">Outreach drafts</Mono>
+              <Mono className="text-muted-foreground">03 angles</Mono>
+            </div>
+            <div className="mt-4 divide-y divide-border rounded-lg border border-border bg-background/40">
+              {drafts.map((d, i) => (
+                <div key={i}>
+                  <button onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left">
+                    <span className="flex items-center gap-3">
+                      <Mono className="text-muted-foreground">0{i + 1}</Mono>
+                      <span className="text-sm font-medium">{d.angle}</span>
+                    </span>
+                    {open === i ? <Minus className="h-4 w-4 text-muted-foreground" /> : <Plus className="h-4 w-4 text-muted-foreground" />}
+                  </button>
+                  {open === i && (
+                    <div className="border-t border-border bg-card/40 px-4 py-4 text-sm">
+                      <Mono className="text-muted-foreground">Subject</Mono>
+                      <p className="mt-1">{d.subject}</p>
+                      <Mono className="mt-3 inline-block text-muted-foreground">Message</Mono>
+                      <p className="mt-1 text-foreground/90">{d.body}</p>
+                      <button className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs hover:bg-secondary">
+                        <Copy className="h-3 w-3" /> Copy message
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </aside>
         </div>
@@ -315,46 +460,27 @@ function ExampleLead() {
   );
 }
 
-function Tag({ children, tone = "default" }: { children: React.ReactNode; tone?: "default" | "hot" | "warm" | "cold" }) {
-  const tones = {
-    default: "border-foreground/20 text-foreground",
-    hot: "border-[color:var(--hot)] text-[color:var(--hot)]",
-    warm: "border-[color:var(--warm)] text-[color:var(--warm)]",
-    cold: "border-[color:var(--cold)] text-[color:var(--cold)]",
-  };
-  return (
-    <span className={`inline-flex items-center border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.14em] ${tones[tone]}`}>
-      {children}
-    </span>
-  );
-}
-
 /* ---------- before / after ---------- */
 function BeforeAfter() {
   return (
-    <section>
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="03"
-          kicker="Before vs after"
-          title={<>The same post, <span className="italic">before and after.</span></>}
-        />
-        <div className="mt-12 grid grid-cols-1 gap-0 border-t border-foreground/15 md:grid-cols-2">
-          <div className="border-b border-foreground/15 p-8 md:border-b-0 md:border-r md:p-10">
+        <SectionTitle kicker="03 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
+        <div className="mt-14 grid gap-3 md:grid-cols-2">
+          <div className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
             <Mono className="text-muted-foreground">Before — raw Facebook post</Mono>
-            <div className="mt-6 border border-dashed border-foreground/30 p-5">
-              <p className="font-serif text-2xl leading-snug italic text-foreground/80">
-                “Need a developer for portfolio website. Good payment. DM me please 🙏”
-              </p>
-              <p className="mt-4 text-xs text-muted-foreground">12 comments · 4 reactions · posted in “Web Designers BD”</p>
+            <div className="mt-5 rounded-lg border border-dashed border-border bg-background/40 p-4 text-sm">
+              <p className="text-foreground/80">“Need a developer for portfolio website. Good payment. DM me please 🙏”</p>
+              <Mono className="mt-3 inline-block text-muted-foreground">12 comments · 4 reactions · Web Designers BD</Mono>
             </div>
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className="mt-5 text-sm text-muted-foreground">
               Messy. No clear scope, no budget, no signal of freshness or competition. You scroll past it — or burn an hour writing context yourself.
             </p>
           </div>
-          <div className="bg-foreground p-8 text-background md:p-10">
-            <Mono className="text-background/60">After — structured, scored lead</Mono>
-            <ul className="mt-6 divide-y divide-background/20 border-y border-background/20">
+          <div className="relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-card p-6 md:p-8">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)] to-transparent" />
+            <Mono className="text-[color:var(--signal)]">After — structured, scored lead</Mono>
+            <ul className="mt-5 divide-y divide-border rounded-lg border border-border bg-background/40">
               {[
                 ["Service", "Portfolio website update"],
                 ["Intent", "High"],
@@ -363,9 +489,9 @@ function BeforeAfter() {
                 ["Action", "Contact within 30 minutes"],
                 ["Outreach", "3 ready-to-send drafts"],
               ].map(([k, v]) => (
-                <li key={k} className="grid grid-cols-3 gap-4 py-3">
-                  <Mono className="col-span-1 text-background/60">{k}</Mono>
-                  <span className="col-span-2 font-serif text-lg">{v}</span>
+                <li key={k} className="grid grid-cols-3 items-center gap-3 px-4 py-3 text-sm">
+                  <Mono className="text-muted-foreground">{k}</Mono>
+                  <span className="col-span-2 text-right">{v}</span>
                 </li>
               ))}
             </ul>
@@ -378,37 +504,30 @@ function BeforeAfter() {
 
 /* ---------- platforms ---------- */
 const platforms = [
-  { icon: Facebook, name: "Facebook groups", state: "Supported", note: "Service-request posts, business asks." },
-  { icon: Linkedin, name: "LinkedIn posts", state: "Supported", note: "Hiring asks, agency searches, ICP signals." },
-  { icon: MessageSquare, name: "Reddit threads", state: "Supported", note: "Niche subs, freelance asks, vendor recs." },
-  { icon: ArrowUpRight, name: "Manual link import", state: "Supported", note: "Paste any post URL or screenshot text." },
-  { icon: MessageSquare, name: "Instagram captions", state: "Coming soon", note: "Captions and pinned comments only." },
-  { icon: MessageSquare, name: "WhatsApp shared leads", state: "Coming soon", note: "Forward leads from your team groups." },
+  { icon: Facebook, name: "Facebook groups", state: "live", note: "Service-request posts, business asks." },
+  { icon: Linkedin, name: "LinkedIn posts", state: "live", note: "Hiring asks, agency searches, ICP signals." },
+  { icon: MessageSquare, name: "Reddit threads", state: "live", note: "Niche subs, freelance asks, vendor recs." },
+  { icon: ArrowUpRight, name: "Manual link import", state: "live", note: "Paste any post URL or screenshot text." },
+  { icon: MessageSquare, name: "Instagram captions", state: "soon", note: "Captions and pinned comments only." },
+  { icon: MessageSquare, name: "WhatsApp shared", state: "soon", note: "Forward leads from your team groups." },
 ];
 
 function Platforms() {
   return (
-    <section id="platforms" className="border-t border-foreground/15">
+    <section id="platforms" className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="04"
-          kicker="Supported platforms"
-          title={<>Capture leads from the places<br /><span className="italic">where buyers already post.</span></>}
-        />
-        <div className="mt-12 grid grid-cols-1 border-t border-foreground/15 md:grid-cols-3">
-          {platforms.map((p, i) => (
-            <div
-              key={p.name}
-              className={`border-b border-foreground/15 p-6 md:p-8 ${(i + 1) % 3 !== 0 ? "md:border-r" : ""} ${i >= platforms.length - 3 ? "md:border-b-0" : ""}`}
-            >
-              <div className="flex items-start justify-between">
-                <p.icon className="h-5 w-5" strokeWidth={1.5} />
-                <Mono className={p.state === "Supported" ? "text-foreground" : "text-muted-foreground"}>
-                  {p.state === "Supported" ? "● Live" : "○ Soon"}
-                </Mono>
+        <SectionTitle kicker="04 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {platforms.map((p) => (
+            <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
+              <div className="flex items-center justify-between">
+                <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background">
+                  <p.icon className="h-4 w-4" strokeWidth={1.75} />
+                </div>
+                {p.state === "live" ? <Tag tone="signal">● Live</Tag> : <Tag>○ Soon</Tag>}
               </div>
-              <h3 className="mt-5 font-serif text-2xl">{p.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{p.note}</p>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{p.name}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{p.note}</p>
             </div>
           ))}
         </div>
@@ -429,32 +548,34 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring">
+    <section id="scoring" className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="05"
-          kicker="How lead scoring works"
-          title={<>Six explainable factors. <span className="italic">No black box.</span></>}
-          lede="Each score comes with a short reason, so your team trusts the priority order — and can challenge it when needed."
-        />
-        <div className="mt-12 grid grid-cols-12 gap-6">
-          <ol className="col-span-12 divide-y divide-foreground/15 border-y border-foreground/15 md:col-span-8">
-            {scoringFactors.map(([t, b], i) => (
-              <li key={t} className="grid grid-cols-12 gap-6 py-6">
-                <Mono className="col-span-2 text-muted-foreground">F.0{i + 1}</Mono>
-                <h3 className="col-span-10 font-serif text-3xl leading-tight md:col-span-4">{t}</h3>
-                <p className="col-span-12 text-sm text-muted-foreground md:col-span-6">{b}</p>
-              </li>
-            ))}
-          </ol>
-          <aside className="col-span-12 md:col-span-4">
-            <div className="sticky top-24 border border-foreground/15 bg-card p-6">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
+          <div className="md:sticky md:top-24">
+            <SectionTitle
+              kicker="05 / Scoring"
+              title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
+              lede="Each score ships with a short reason — your team trusts the priority order, and can challenge it."
+            />
+            <div className="mt-6 rounded-xl border border-border bg-card p-5">
               <Mono className="text-muted-foreground">Sample reasoning</Mono>
-              <p className="mt-4 font-serif text-2xl italic leading-snug">
-                “Low competition. Based on 8 visible comments at capture time — below the category median of 21.”
+              <p className="mt-3 text-sm">
+                <span className="text-[color:var(--signal)]">Low competition.</span> Based on 8 visible comments at capture time — below the category median of 21.
               </p>
             </div>
-          </aside>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {scoringFactors.map(([t, b], i) => (
+              <div key={t} className="rounded-xl border border-border bg-card/50 p-5">
+                <div className="flex items-center justify-between">
+                  <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
+                  <Sparkles className="h-3.5 w-3.5 text-muted-foreground" />
+                </div>
+                <h3 className="mt-3 text-base font-semibold tracking-tight">{t}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{b}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
@@ -464,28 +585,27 @@ function Scoring() {
 /* ---------- outreach ---------- */
 function Outreach() {
   const items = [
-    { n: "01", angle: "Portfolio update support", excerpt: "Saw your post about needing updates to your portfolio site. Could you share the current link and the specific changes…" },
-    { n: "02", angle: "Fast turnaround offer", excerpt: "If you're looking to wrap the updates this week I can usually turn small changes around in 24–48 hours…" },
-    { n: "03", angle: "Clear scope & payment", excerpt: "To give you an honest quote I'd love to see the current site and the exact updates needed. I work on milestone-based…" },
+    { angle: "Portfolio update support", excerpt: "Saw your post about needing updates to your portfolio site. Could you share the current link and the specific changes…" },
+    { angle: "Fast turnaround offer", excerpt: "If you're looking to wrap the updates this week I can usually turn small changes around in 24–48 hours…" },
+    { angle: "Clear scope & payment", excerpt: "To give you an honest quote I'd love to see the current site and the exact updates needed. I work on milestone-based…" },
   ];
   return (
-    <section className="border-t border-foreground/15 bg-card/40">
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="06"
-          kicker="Outreach drafts included"
-          title={<>Not just leads — <span className="italic">ready-to-send</span> angles.</>}
-          lede="Every lead ships with three short, human-sounding message drafts. Pick the angle that fits, tweak the name, and send."
+        <SectionTitle
+          kicker="06 / Outreach"
+          title={<>Not just leads — <span className="text-muted-foreground">ready-to-send angles.</span></>}
+          lede="Every lead ships with three short, human-sounding drafts. Pick the angle that fits, tweak the name, and send."
         />
-        <div className="mt-12 grid grid-cols-1 gap-0 border-t border-foreground/15 md:grid-cols-3">
+        <div className="mt-14 grid gap-3 md:grid-cols-3">
           {items.map((d, i) => (
-            <div key={d.n} className={`border-b border-foreground/15 p-6 md:p-8 ${i < 2 ? "md:border-r" : ""} md:border-b-0`}>
+            <div key={i} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
               <div className="flex items-center justify-between">
-                <Mono className="text-accent">Angle {d.n}</Mono>
+                <Tag tone="signal">Angle 0{i + 1}</Tag>
                 <Copy className="h-3.5 w-3.5 text-muted-foreground" />
               </div>
-              <h3 className="mt-4 font-serif text-2xl">{d.angle}</h3>
-              <p className="mt-3 text-sm italic text-muted-foreground">“{d.excerpt}”</p>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{d.angle}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">“{d.excerpt}”</p>
             </div>
           ))}
         </div>
@@ -503,44 +623,42 @@ const dashFeatures = [
 
 function Dashboard() {
   return (
-    <section>
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="07"
-          kicker="CRM-style dashboard"
-          title={<>A real inbox for social leads — <span className="italic">not another spreadsheet.</span></>}
-        />
-        <div className="mt-12 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-5">
-            <p className="text-base text-muted-foreground">
-              Triage by temperature, filter by service or platform, assign to a teammate and export anywhere. Built like the CRMs your team already lives in.
-            </p>
-            <ul className="mt-8 grid grid-cols-1 divide-y divide-foreground/15 border-y border-foreground/15">
-              {dashFeatures.map((f, i) => (
-                <li key={f} className="grid grid-cols-[auto,1fr] items-center gap-4 py-2.5">
-                  <Mono className="text-muted-foreground">{String(i + 1).padStart(2, "0")}</Mono>
-                  <span className="text-sm">{f}</span>
-                </li>
+        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
+          <div>
+            <SectionTitle
+              kicker="07 / Dashboard"
+              title={<>An inbox for social leads — <span className="text-muted-foreground">not a spreadsheet.</span></>}
+              lede="Triage by temperature, filter by service or platform, assign to a teammate and export anywhere."
+            />
+            <div className="mt-8 grid grid-cols-2 gap-2">
+              {dashFeatures.map((f) => (
+                <div key={f} className="flex items-center gap-2 rounded-md border border-border bg-card/40 px-3 py-2 text-sm">
+                  <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> {f}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-          <div className="col-span-12 md:col-span-7">
-            <div className="border border-foreground/15 bg-card p-1">
-              <div className="flex items-center justify-between border-b border-foreground/15 px-3 py-2">
-                <Mono className="text-muted-foreground">growbylead.app / inbox</Mono>
-                <Mono>17 new today</Mono>
+          <div className="rounded-xl border border-border bg-card/50 p-1">
+            <div className="flex items-center justify-between border-b border-border px-4 py-2">
+              <div className="flex items-center gap-2">
+                <Tag tone="hot">● Hot</Tag>
+                <Tag>Facebook</Tag>
+                <Tag>Web dev</Tag>
               </div>
-              <ul className="divide-y divide-foreground/10">
-                {sampleLeads.map((l, i) => (
-                  <li key={i} className={`grid grid-cols-12 items-center gap-3 px-3 py-3 text-sm ${i === 0 ? "bg-foreground text-background" : ""}`}>
-                    <Mono className={i === 0 ? "col-span-1 text-background/60" : "col-span-1 text-muted-foreground"}>{String(i + 1).padStart(2, "0")}</Mono>
-                    <span className="col-span-6 truncate font-serif text-lg">{l.title}</span>
-                    <span className={`col-span-2 text-xs ${i === 0 ? "text-background/70" : "text-muted-foreground"}`}>{l.platform}</span>
-                    <span className="col-span-2"><Tag tone={l.temp.toLowerCase() as "hot" | "warm" | "cold"}>{l.temp}</Tag></span>
-                    <span className={`col-span-1 text-right font-mono text-[11px] ${i === 0 ? "text-background/70" : "text-muted-foreground"}`}>{l.ago}</span>
-                  </li>
-                ))}
-              </ul>
+              <Mono className="text-muted-foreground">17 results</Mono>
+            </div>
+            <div className="divide-y divide-border">
+              {sampleLeads.slice(0, 4).map((l, i) => (
+                <div key={i} className={`grid grid-cols-12 items-center gap-2 px-4 py-3 text-sm transition hover:bg-card ${i === 0 ? "bg-foreground/[0.04]" : ""}`}>
+                  <Mono className="col-span-1 text-muted-foreground">0{i + 1}</Mono>
+                  <span className="col-span-6 truncate">{l.title}</span>
+                  <span className="col-span-2 text-xs text-muted-foreground">{l.platform}</span>
+                  <span className="col-span-2"><Tag tone={l.temp.toLowerCase() as "hot" | "warm" | "cold"}>{l.temp}</Tag></span>
+                  <Mono className="col-span-1 text-right text-muted-foreground">{l.ago}</Mono>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -549,44 +667,29 @@ function Dashboard() {
   );
 }
 
-const sampleLeads = [
-  { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot", ago: "12m" },
-  { title: "Looking for SEO expert — local plumbing business", platform: "Reddit", temp: "Warm", ago: "38m" },
-  { title: "Need help managing our Instagram for restaurant", platform: "Facebook", temp: "Warm", ago: "1h" },
-  { title: "Shopify store redesign — budget $2k", platform: "LinkedIn", temp: "Hot", ago: "2h" },
-  { title: "Anyone do landing pages for SaaS launch?", platform: "Reddit", temp: "Cold", ago: "4h" },
-] as const;
-
-/* ---------- lead profile ---------- */
+/* ---------- profile ---------- */
 const profileSections = [
   ["Source", "Platform, author, post URL, post type, timing."],
-  ["Location", "Country, city and confidence level — marked unknown when not clear."],
+  ["Location", "Country, city and confidence — marked unknown when unclear."],
   ["Engagement", "Reactions, comments and shares at capture time."],
   ["Lead score", "Intent, temperature, urgency, competition with reasoning."],
   ["Recommended action", "A specific next step tailored to the post."],
   ["Outreach drafts", "Three angle-tested message drafts you can copy."],
   ["Manual review", "Clear flag if any critical field is uncertain."],
-  ["History", "Status changes, assignments and notes from your team."],
+  ["History", "Status, assignments and notes from your team."],
 ];
 
 function Profile() {
   return (
-    <section className="border-t border-foreground/15">
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="08"
-          kicker="Inside every lead profile"
-          title={<>Eight sections, <span className="italic">one consistent shape.</span></>}
-        />
-        <div className="mt-12 grid grid-cols-2 border-t border-foreground/15 md:grid-cols-4">
+        <SectionTitle kicker="08 / Lead profile" title={<>Eight sections, <span className="text-muted-foreground">one consistent shape.</span></>} />
+        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4">
           {profileSections.map(([t, b], i) => (
-            <div
-              key={t}
-              className={`border-b border-foreground/15 p-5 md:p-7 ${(i + 1) % 4 !== 0 ? "md:border-r" : ""} ${i % 2 === 0 ? "border-r" : ""} ${i >= profileSections.length - 4 ? "md:border-b-0" : ""}`}
-            >
-              <Mono className="text-accent">0{i + 1}</Mono>
-              <h3 className="mt-3 font-serif text-xl">{t}</h3>
-              <p className="mt-2 text-xs text-muted-foreground">{b}</p>
+            <div key={t} className="rounded-xl border border-border bg-card/50 p-5">
+              <Mono className="text-[color:var(--signal)]">0{i + 1}</Mono>
+              <h3 className="mt-3 text-sm font-semibold tracking-tight">{t}</h3>
+              <p className="mt-1.5 text-xs text-muted-foreground">{b}</p>
             </div>
           ))}
         </div>
@@ -595,40 +698,34 @@ function Profile() {
   );
 }
 
-/* ---------- manual review ---------- */
+/* ---------- review ---------- */
 const reviewChecks = [
-  "Missing country → marked unknown, never guessed.",
-  "Low-confidence location → flagged for review.",
-  "Unclear service request → manual review queue.",
-  "Spam-looking post → review required before contact.",
-  "Duplicate post → deduplicated against existing leads.",
-  "Missing budget → left empty instead of fabricated.",
+  "Missing country → marked unknown, never guessed",
+  "Low-confidence location → flagged for review",
+  "Unclear service request → manual review queue",
+  "Spam-looking post → review required before contact",
+  "Duplicate post → deduplicated against existing leads",
+  "Missing budget → left empty instead of fabricated",
 ];
 
 function Review() {
   return (
-    <section>
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <div className="grid grid-cols-12 gap-6 border-t border-foreground pt-6">
-          <div className="col-span-12 md:col-span-5">
-            <Mono>§ 09 · Data quality</Mono>
-            <h2 className="mt-3 font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl">
-              We do not <span className="italic">guess</span> critical data.
-            </h2>
-            <p className="mt-5 max-w-md text-muted-foreground">
-              If something is unknown, we mark it clearly — so your team never sends a message based on a fabricated detail.
-            </p>
-          </div>
-          <div className="col-span-12 md:col-span-7">
-            <ul className="divide-y divide-foreground/15 border-y border-foreground/15">
-              {reviewChecks.map((c, i) => (
-                <li key={c} className="grid grid-cols-[auto,1fr] gap-5 py-4">
-                  <Mono className="text-muted-foreground">Q.0{i + 1}</Mono>
-                  <span className="text-base">{c}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
+          <SectionTitle
+            kicker="09 / Data quality"
+            title={<>We do not <span className="text-muted-foreground">guess critical data.</span></>}
+            lede="If something is unknown, we mark it clearly — so your team never sends a message based on a fabricated detail."
+          />
+          <ul className="divide-y divide-border rounded-xl border border-border bg-card/50">
+            {reviewChecks.map((c, i) => (
+              <li key={c} className="flex items-start gap-4 px-5 py-4">
+                <Mono className="mt-0.5 text-muted-foreground">Q.0{i + 1}</Mono>
+                <span className="text-sm">{c}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
@@ -647,26 +744,17 @@ const useCases = [
 
 function UseCases() {
   return (
-    <section className="border-t border-foreground/15 bg-foreground text-background">
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <header className="grid grid-cols-12 gap-6 border-t border-background/30 pt-6">
-          <div className="col-span-12 md:col-span-3"><Mono>§ 10</Mono></div>
-          <div className="col-span-12 md:col-span-9">
-            <Mono className="text-background/60">Use cases</Mono>
-            <h2 className="mt-2 font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl">
-              Built for teams that <span className="italic">sell digital services.</span>
-            </h2>
-          </div>
-        </header>
-        <div className="mt-12 grid grid-cols-1 border-t border-background/30 md:grid-cols-3">
-          {useCases.map(([t, b], i) => (
-            <div
-              key={t}
-              className={`border-b border-background/30 p-6 md:p-8 ${(i + 1) % 3 !== 0 ? "md:border-r" : ""} ${i >= useCases.length - 3 ? "md:border-b-0" : ""}`}
-            >
-              <Mono className="text-background/60">{String(i + 1).padStart(2, "0")}</Mono>
-              <h3 className="mt-3 font-serif text-2xl">{t}</h3>
-              <p className="mt-3 text-sm text-background/70">{b}</p>
+        <SectionTitle kicker="10 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {useCases.map(([t, b]) => (
+            <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
+              <h3 className="text-base font-semibold tracking-tight">{t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b}</p>
+              <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm text-foreground hover:gap-1.5 transition-all">
+                Learn more <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           ))}
         </div>
@@ -684,24 +772,16 @@ const categories = [
 
 function Categories() {
   return (
-    <section>
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="11"
-          kicker="Lead categories we track"
-          title={<>The service categories <span className="italic">we classify.</span></>}
-        />
-        <ul className="mt-10 grid grid-cols-2 border-t border-foreground/15 md:grid-cols-4">
-          {categories.map((c, i) => (
-            <li
-              key={c}
-              className={`flex items-baseline gap-3 border-b border-foreground/15 p-4 md:p-6 ${(i + 1) % 4 !== 0 ? "md:border-r" : ""} ${i % 2 === 0 ? "border-r md:border-r" : ""} ${i >= categories.length - 4 ? "md:border-b-0" : ""}`}
-            >
-              <Mono className="text-muted-foreground">{String(i + 1).padStart(2, "0")}</Mono>
-              <span className="font-serif text-xl leading-tight">{c}</span>
-            </li>
+        <SectionTitle kicker="11 / Categories" title={<>Service categories <span className="text-muted-foreground">we classify.</span></>} />
+        <div className="mt-10 flex flex-wrap gap-2">
+          {categories.map((c) => (
+            <span key={c} className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-sm transition hover:border-foreground/30 hover:bg-card">
+              {c}
+            </span>
           ))}
-        </ul>
+        </div>
       </Container>
     </section>
   );
@@ -712,30 +792,21 @@ const countries = ["USA", "Canada", "UK", "Australia", "Bangladesh", "India", "U
 
 function Coverage() {
   return (
-    <section className="border-t border-foreground/15">
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <div className="grid grid-cols-12 gap-6 border-t border-foreground pt-6">
-          <div className="col-span-12 md:col-span-5">
-            <Mono>§ 12 · Global coverage</Mono>
-            <h2 className="mt-3 font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl">
-              Wherever buyers post, <span className="italic">we organize.</span>
-            </h2>
-            <p className="mt-5 max-w-md text-muted-foreground">
-              Country, city and confidence level are shown clearly when available — and left blank when they're not certain.
-            </p>
-          </div>
-          <div className="col-span-12 md:col-span-7">
-            <ul className="grid grid-cols-2 border-y border-foreground/15">
-              {countries.map((c, i) => (
-                <li
-                  key={c}
-                  className={`flex items-center justify-between border-b border-foreground/15 px-4 py-4 ${i % 2 === 0 ? "border-r" : ""} ${i >= countries.length - 2 ? "border-b-0" : ""}`}
-                >
-                  <span className="font-serif text-2xl">{c}</span>
-                  <Mono className="text-muted-foreground">Live</Mono>
-                </li>
-              ))}
-            </ul>
+        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
+          <SectionTitle
+            kicker="12 / Coverage"
+            title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
+            lede="Country, city and confidence are shown clearly when available — and left blank when they're not certain."
+          />
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
+            {countries.map((c) => (
+              <div key={c} className="flex items-center justify-between bg-card px-4 py-4">
+                <span className="text-sm font-medium">{c}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+              </div>
+            ))}
           </div>
         </div>
       </Container>
@@ -749,7 +820,7 @@ function Pricing() {
     {
       name: "Day pass", price: "$10", cadence: "/ day", desc: "Try a full day of fresh leads — no subscription.",
       features: ["1 day of unlimited captures", "All platforms supported", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
-      cta: "Start a day pass", featured: false,
+      cta: "Start day pass", featured: false,
     },
     {
       name: "Monthly", price: "$20", cadence: "/ month", desc: "For freelancers and small teams shipping outreach daily.",
@@ -763,48 +834,52 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="border-t border-foreground/15">
+    <section id="pricing" className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader
-          index="13"
-          kicker="Pricing"
-          title={<>Simple pricing <span className="italic">while we're in pre-launch.</span></>}
-          lede="Lock in early pricing — plans will change once we open public access."
-        />
-        <div className="mt-12 grid grid-cols-1 border-t border-foreground/15 md:grid-cols-3">
-          {plans.map((p, i) => (
+        <div className="text-center">
+          <Mono className="text-muted-foreground">13 / Pricing</Mono>
+          <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
+            Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-3 md:grid-cols-3">
+          {plans.map((p) => (
             <div
               key={p.name}
-              className={`relative border-b border-foreground/15 p-8 md:p-10 ${i < 2 ? "md:border-r" : ""} md:border-b-0 ${
-                p.featured ? "bg-foreground text-background" : ""
+              className={`relative flex flex-col rounded-xl border p-6 md:p-7 ${
+                p.featured
+                  ? "border-foreground/30 bg-card shadow-[0_0_0_1px_oklch(1_0_0/0.06),0_30px_80px_-30px_oklch(0.72_0.19_145/0.3)]"
+                  : "border-border bg-card/50"
               }`}
             >
               {p.featured && (
-                <Mono className="absolute right-6 top-6 text-background/70">★ Most popular</Mono>
+                <span className="absolute -top-2.5 left-6 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/15 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
+                  Most popular
+                </span>
               )}
-              <Mono className={p.featured ? "text-background/60" : "text-muted-foreground"}>{p.name}</Mono>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="font-serif text-6xl leading-none">{p.price}</span>
-                <span className={`text-sm ${p.featured ? "text-background/70" : "text-muted-foreground"}`}>{p.cadence}</span>
+              <Mono className="text-muted-foreground">{p.name}</Mono>
+              <div className="mt-4 flex items-baseline gap-1.5">
+                <span className="text-5xl font-semibold tracking-[-0.03em]">{p.price}</span>
+                <span className="text-sm text-muted-foreground">{p.cadence}</span>
               </div>
-              <p className={`mt-3 text-sm ${p.featured ? "text-background/80" : "text-muted-foreground"}`}>{p.desc}</p>
-              <ul className={`mt-8 divide-y border-y ${p.featured ? "divide-background/20 border-background/20" : "divide-foreground/15 border-foreground/15"}`}>
+              <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
+              <ul className="mt-6 space-y-2.5">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 py-2.5 text-sm">
-                    <span className="font-mono text-[11px] opacity-60">→</span>
-                    <span>{f}</span>
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--signal)]" />
+                    <span className="text-foreground/90">{f}</span>
                   </li>
                 ))}
               </ul>
               <a
                 href="#"
-                className={`mt-8 inline-flex w-full items-center justify-between border px-4 py-3 text-sm font-medium transition ${
+                className={`mt-8 inline-flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium transition ${
                   p.featured
-                    ? "border-background bg-background text-foreground hover:bg-accent hover:text-background hover:border-accent"
-                    : "border-foreground bg-foreground text-background hover:bg-accent hover:border-accent"
+                    ? "bg-foreground text-background hover:bg-foreground/90"
+                    : "border border-border bg-background hover:bg-card"
                 }`}
               >
-                {p.cta} <ArrowUpRight className="h-4 w-4" />
+                {p.cta} <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
           ))}
@@ -827,27 +902,21 @@ const faqs = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="border-t border-foreground/15">
+    <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <SectionHeader index="14" kicker="Frequently asked" title={<>Common <span className="italic">questions.</span></>} />
-        <div className="mt-12 divide-y divide-foreground/15 border-y border-foreground/15">
-          {faqs.map((f, i) => (
-            <div key={i}>
-              <button onClick={() => setOpen(open === i ? null : i)} className="grid w-full grid-cols-12 items-center gap-6 py-6 text-left">
-                <Mono className="col-span-2 text-muted-foreground md:col-span-1">Q.0{i + 1}</Mono>
-                <span className="col-span-9 font-serif text-2xl leading-tight md:col-span-10 md:text-3xl">{f.q}</span>
-                <span className="col-span-1 flex justify-end">
-                  {open === i ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
-                </span>
-              </button>
-              {open === i && (
-                <div className="grid grid-cols-12 gap-6 pb-6">
-                  <div className="col-span-12 md:col-span-1" />
-                  <p className="col-span-12 max-w-2xl text-base text-muted-foreground md:col-span-10">{f.a}</p>
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
+          <SectionTitle kicker="14 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+          <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
+            {faqs.map((f, i) => (
+              <div key={i}>
+                <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                  <span className="text-sm font-medium md:text-base">{f.q}</span>
+                  <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition ${open === i ? "rotate-180" : ""}`} />
+                </button>
+                {open === i && <div className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</div>}
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
@@ -857,22 +926,28 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="border-t border-foreground/15 bg-foreground text-background">
-      <Container className="py-32 md:py-40 text-center">
-        <Mono className="text-background/60">— § Closing</Mono>
-        <h2 className="mt-6 font-serif text-[clamp(2.8rem,8vw,8rem)] leading-[0.92] tracking-tight">
-          Stop scrolling groups.<br /><span className="italic text-accent">Start closing.</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-background/80">
-          Structured, scored, outreach-ready leads — from the social posts you'd otherwise miss.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="#pricing" className="inline-flex items-center gap-2 bg-background px-6 py-3.5 text-sm font-medium text-foreground transition hover:bg-accent hover:text-background">
-            Get access <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <a href="#example" className="inline-flex items-center gap-2 border border-background/40 px-6 py-3.5 text-sm font-medium text-background transition hover:border-background">
-            See example lead
-          </a>
+    <section className="border-b border-border">
+      <Container className="py-24 md:py-32">
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/60 to-transparent" />
+          </div>
+          <h2 className="relative text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
+            Stop scrolling.<br />
+            <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
+          </h2>
+          <p className="relative mx-auto mt-5 max-w-md text-muted-foreground">
+            Structured, scored, outreach-ready leads from the social posts you'd otherwise miss.
+          </p>
+          <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
+              Get access <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
+              See example lead
+            </a>
+          </div>
         </div>
       </Container>
     </section>
@@ -882,29 +957,34 @@ function FinalCTA() {
 /* ---------- footer ---------- */
 function Footer() {
   const cols = [
-    { title: "Product", links: ["Features", "Lead dashboard", "Lead examples", "Pricing", "Changelog"] },
-    { title: "Solutions", links: ["For agencies", "For freelancers", "For SEO teams", "For developers", "For outreach"] },
-    { title: "Resources", links: ["Blog", "Guides", "Documentation", "API reference", "Support"] },
+    { title: "Product", links: ["Features", "Dashboard", "Lead examples", "Pricing", "Changelog"] },
+    { title: "Solutions", links: ["Agencies", "Freelancers", "SEO teams", "Developers", "Outreach"] },
+    { title: "Resources", links: ["Blog", "Guides", "Docs", "API reference", "Support"] },
     { title: "Company", links: ["About", "Contact", "Careers", "Press"] },
     { title: "Legal", links: ["Privacy", "Terms", "Data usage", "Refund", "GDPR"] },
   ];
   return (
-    <footer className="border-t border-foreground/15 bg-background">
+    <footer className="bg-background">
       <Container className="py-16">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-[1.6fr,repeat(5,1fr)]">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(5,1fr)]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-6 w-6 place-items-center bg-foreground text-background font-serif text-sm leading-none">G</span>
+            <div className="flex items-center gap-2">
+              <Logo />
               <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
             </p>
+            <div className="mt-5 flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" /> All systems normal
+              </span>
+            </div>
           </div>
           {cols.map((c) => (
             <div key={c.title}>
               <Mono className="text-foreground">{c.title}</Mono>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
                   <li key={l}>
                     <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
@@ -914,9 +994,9 @@ function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-foreground/15 pt-6">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
           <Mono className="text-muted-foreground">© {new Date().getFullYear()} Grow By Lead</Mono>
-          <Mono className="text-muted-foreground">Made for sales teams that move fast</Mono>
+          <Mono className="text-muted-foreground">Built for sales teams that move fast</Mono>
         </div>
       </Container>
     </footer>
