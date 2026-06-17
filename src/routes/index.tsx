@@ -523,37 +523,8 @@ function Scoring() {
   );
 }
 
-/* ---------- outreach ---------- */
-function Outreach() {
-  const items = [
-    { angle: "Portfolio update support", excerpt: "Saw your post about needing updates to your portfolio site. Could you share the current link and the specific changes…" },
-    { angle: "Fast turnaround offer", excerpt: "If you're looking to wrap the updates this week I can usually turn small changes around in 24–48 hours…" },
-    { angle: "Clear scope & payment", excerpt: "To give you an honest quote I'd love to see the current site and the exact updates needed. I work on milestone-based…" },
-  ];
-  return (
-    <section className="section-edge">
-      <Container className="py-24 md:py-32">
-        <SectionTitle
-          kicker="06 / Outreach"
-          title={<>Not just leads — <span className="text-muted-foreground">ready-to-send angles.</span></>}
-          lede="Every lead ships with three short, human-sounding drafts. Pick the angle that fits, tweak the name, and send."
-        />
-        <div className="mt-14 grid gap-3 md:grid-cols-3">
-          {items.map((d, i) => (
-            <div key={i} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
-              <div className="flex items-center justify-between">
-                <Tag tone="signal">Angle 0{i + 1}</Tag>
-                <Copy className="h-3.5 w-3.5 text-muted-foreground" />
-              </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{d.angle}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">“{d.excerpt}”</p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* (Outreach standalone section removed — drafts already shown in ExampleLead) */
+
 
 /* ---------- dashboard ---------- */
 const dashFeatures = [
