@@ -411,7 +411,7 @@ function Scope() {
               ))}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              If your business doesn't sell website or digital marketing services, Grow By Lead probably isn't the right fit — and we'd rather you know now.
+              We focus only on website + SEO leads. If you sell something else, Grow By Lead probably isn't the right fit.
             </p>
           </div>
         </div>
