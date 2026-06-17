@@ -207,13 +207,9 @@ function BlogIndex() {
 
 function AuthorRow({ post }: { post: BlogPost }) {
   return (
-    <div className="flex items-center gap-2.5">
-      <img src={post.author.avatar} alt={post.author.name} className="h-8 w-8 rounded-full object-cover" />
-      <div className="text-xs leading-tight">
-        <p className="font-medium text-foreground">{post.author.name}</p>
-        <p className="text-muted-foreground">{formatDate(post.date)} · {post.readMinutes} min read</p>
-      </div>
-    </div>
+    <p className="text-xs text-muted-foreground">
+      {formatDate(post.date)} · {post.readMinutes} min read
+    </p>
   );
 }
 

@@ -101,15 +101,10 @@ function BlogDetail() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{post.excerpt}</p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-y border-border py-4">
-            <div className="flex items-center gap-3">
-              <img src={post.author.avatar} alt={post.author.name} className="h-10 w-10 rounded-full object-cover" />
-              <div className="text-sm leading-tight">
-                <p className="font-medium">{post.author.name}</p>
-                <p className="text-muted-foreground">{post.author.role}</p>
-              </div>
-            </div>
-            <p className="text-xs text-muted-foreground">{formatDate(post.date)} · {post.readMinutes} min read</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-y border-border py-4 text-xs text-muted-foreground">
+            <span>{formatDate(post.date)}</span>
+            <span aria-hidden>·</span>
+            <span>{post.readMinutes} min read</span>
           </div>
         </Container>
 
