@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, ExternalLink, Facebook,
-  Linkedin, Menu, MessageSquare, Minus, Plus, Sparkles, X,
+  Flame, Heart, Instagram, Linkedin, Link2, MapPin, Menu, MessageCircle,
+  MessageSquare, Minus, Plus, Share2, Sparkles, Twitter, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
