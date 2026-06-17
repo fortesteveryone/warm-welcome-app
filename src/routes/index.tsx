@@ -344,19 +344,45 @@ function PreviewDetail() {
   );
 }
 
-/* ---------- value strip ---------- */
-function LogoStrip() {
-  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts", "Manual review", "CSV / JSON"];
+/* ---------- after login (what you get) ---------- */
+const afterLoginItems = [
+  { Icon: Inbox,      title: "Fresh lead feed",        body: "Newly captured service-request posts from Facebook, LinkedIn, Reddit and manual imports — sorted by freshness." },
+  { Icon: ListChecks, title: "Structured lead profile", body: "Each post becomes a clean profile: title, summary, service need, project type, budget signal and source platform." },
+  { Icon: Target,     title: "Lead scoring with reasons", body: "Intent, temperature, urgency and competition level — each score ships with a short, human reason." },
+  { Icon: Link2,      title: "Original post proof",     body: "Open the source post, see the author, post time, reactions, comments and platform — verify before you reach out." },
+  { Icon: Send,       title: "Outreach drafts",        body: "Multiple ready-to-send message angles per lead — copy, tweak, send. No blank-page outreach." },
+  { Icon: Filter,     title: "Inbox actions & filters", body: "Save, filter, assign, contact, export, or flag for manual review. Built like an inbox, not a spreadsheet." },
+];
+
+function AfterLogin() {
   return (
-    <div className="section-edge">
-      <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5">
-        {items.map((t) => (
-          <span key={t} className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Check className="h-3 w-3 text-[color:var(--signal)]/80" /> {t}
-          </span>
-        ))}
+    <section className="section-edge section-tint">
+      <Container className="py-24 md:py-32">
+        <SectionTitle
+          kicker="After login"
+          title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
+          lede="No mystery box. Here's what lands in your dashboard the moment you sign in."
+        />
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {afterLoginItems.map(({ Icon, title, body }, i) => (
+            <div key={title} className="group relative rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
+              <div className="flex items-center justify-between">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <Mono className="text-muted-foreground">0{i + 1}</Mono>
+              </div>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
+          <Shield className="h-3.5 w-3.5 text-[color:var(--signal)]" />
+          <span>If a field is missing from the post, we mark it as <span className="text-foreground">unknown</span> — we never guess country, budget or service type.</span>
+        </div>
       </Container>
-    </div>
+    </section>
   );
 }
 
