@@ -24,9 +24,9 @@ function BlogIndex() {
   const [active, setActive] = useState<BlogCategory>("All");
   const [showSuggest, setShowSuggest] = useState(false);
 
-  const suggestions = useMemo(() => {
+  const suggestions = useMemo<{ titles: BlogPost[]; tags: string[] }>(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return [];
+    if (!q) return { titles: [], tags: [] };
     const titles = BLOG_POSTS.filter((p) => p.title.toLowerCase().includes(q)).slice(0, 4);
     const tagSet = new Set<string>();
     BLOG_POSTS.forEach((p) => p.tags.forEach((t) => { if (t.toLowerCase().includes(q)) tagSet.add(t); }));
