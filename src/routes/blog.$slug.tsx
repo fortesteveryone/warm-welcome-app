@@ -97,8 +97,6 @@ function BlogDetail() {
 
           <div className="mt-6 flex flex-wrap items-center gap-3 border-y border-border py-4 text-xs text-muted-foreground">
             <span>{formatDate(post.date)}</span>
-            <span aria-hidden>·</span>
-            <span>{post.readMinutes} min read</span>
           </div>
         </Container>
 
