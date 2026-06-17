@@ -971,8 +971,8 @@ function Pricing() {
                 </span>
               )}
               {(p as { vip?: boolean }).vip && (
-                <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1 rounded-full border border-[color:var(--signal)]/40 bg-background px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
-                  <Flame className="h-2.5 w-2.5" /> Hot leads · Gmail
+                <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                  <Flame className="h-2.5 w-2.5 text-[color:var(--signal)]" /> Coming soon
                 </span>
               )}
               <Mono className="text-muted-foreground">{p.name}</Mono>
