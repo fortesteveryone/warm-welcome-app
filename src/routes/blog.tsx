@@ -97,7 +97,7 @@ function BlogIndex() {
               )}
             </div>
 
-            {showSuggest && query && (typeof suggestions === "object") && (
+            {showSuggest && query && (
               <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
                 {suggestions.tags.length > 0 && (
                   <div className="border-b border-border p-3">
