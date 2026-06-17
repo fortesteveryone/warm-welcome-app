@@ -880,12 +880,12 @@ function FinalCTA() {
 
 /* ---------- footer ---------- */
 function Footer() {
-  const cols = [
-    { title: "Product", links: ["Features", "Dashboard", "Lead examples", "Pricing", "Changelog"] },
-    { title: "Solutions", links: ["Agencies", "Freelancers", "SEO teams", "Developers", "Outreach"] },
-    { title: "Resources", links: ["Blog", "Guides", "Docs", "API reference", "Support"] },
-    { title: "Company", links: ["About", "Contact", "Careers", "Press"] },
-    { title: "Legal", links: ["Privacy", "Terms", "Data usage", "Refund", "GDPR"] },
+  const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
+    { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
+    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "SEO teams" }, { label: "Developers" }, { label: "Outreach" }] },
+    { title: "Resources", links: [{ label: "Blog", soon: true }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
+    { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
+    { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
   ];
   return (
     <footer className="bg-background">
