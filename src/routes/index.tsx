@@ -579,70 +579,8 @@ function Dashboard() {
   );
 }
 
-/* ---------- profile ---------- */
-const profileSections = [
-  ["Source", "Platform, author, post URL, post type, timing."],
-  ["Location", "Country, city and confidence — marked unknown when unclear."],
-  ["Engagement", "Reactions, comments and shares at capture time."],
-  ["Lead score", "Intent, temperature, urgency, competition with reasoning."],
-  ["Recommended action", "A specific next step tailored to the post."],
-  ["Outreach drafts", "Three angle-tested message drafts you can copy."],
-  ["Manual review", "Clear flag if any critical field is uncertain."],
-  ["History", "Status, assignments and notes from your team."],
-];
+/* (Lead profile + Data quality sections removed — internal detail, not user-facing) */
 
-function Profile() {
-  return (
-    <section className="section-edge">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="08 / Lead profile" title={<>Eight sections, <span className="text-muted-foreground">one consistent shape.</span></>} />
-        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {profileSections.map(([t, b], i) => (
-            <div key={t} className="rounded-xl border border-border bg-card/50 p-5">
-              <Mono className="text-[color:var(--signal)]">0{i + 1}</Mono>
-              <h3 className="mt-3 text-sm font-semibold tracking-tight">{t}</h3>
-              <p className="mt-1.5 text-xs text-muted-foreground">{b}</p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* ---------- review ---------- */
-const reviewChecks = [
-  "Missing country → marked unknown, never guessed",
-  "Low-confidence location → flagged for review",
-  "Unclear service request → manual review queue",
-  "Spam-looking post → review required before contact",
-  "Duplicate post → deduplicated against existing leads",
-  "Missing budget → left empty instead of fabricated",
-];
-
-function Review() {
-  return (
-    <section className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
-          <SectionTitle
-            kicker="09 / Data quality"
-            title={<>We do not <span className="text-muted-foreground">guess critical data.</span></>}
-            lede="If something is unknown, we mark it clearly — so your team never sends a message based on a fabricated detail."
-          />
-          <ul className="divide-y divide-border rounded-xl border border-border bg-card/50">
-            {reviewChecks.map((c, i) => (
-              <li key={c} className="flex items-start gap-4 px-5 py-4">
-                <Mono className="mt-0.5 text-muted-foreground">Q.0{i + 1}</Mono>
-                <span className="text-sm">{c}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- use cases ---------- */
 const useCases = [
