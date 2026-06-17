@@ -23,12 +23,12 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 import { Route as DashboardPipelineRouteImport } from './routes/dashboard.pipeline'
-import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
 import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
 import { Route as DashboardCampaignsRouteImport } from './routes/dashboard.campaigns'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as DashboardLeadsIndexRouteImport } from './routes/dashboard.leads.index'
 import { Route as DashboardLeadsLeadIdRouteImport } from './routes/dashboard.leads.$leadId'
 
 const TermsRoute = TermsRouteImport.update({
@@ -101,11 +101,6 @@ const DashboardPipelineRoute = DashboardPipelineRouteImport.update({
   path: '/pipeline',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardLeadsRoute = DashboardLeadsRouteImport.update({
-  id: '/leads',
-  path: '/leads',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const DashboardInboxRoute = DashboardInboxRouteImport.update({
   id: '/inbox',
   path: '/inbox',
@@ -131,10 +126,15 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardLeadsIndexRoute = DashboardLeadsIndexRouteImport.update({
+  id: '/leads/',
+  path: '/leads/',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardLeadsLeadIdRoute = DashboardLeadsLeadIdRouteImport.update({
-  id: '/$leadId',
-  path: '/$leadId',
-  getParentRoute: () => DashboardLeadsRoute,
+  id: '/leads/$leadId',
+  path: '/leads/$leadId',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -153,12 +153,12 @@ export interface FileRoutesByFullPath {
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
-  '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads/': typeof DashboardLeadsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -175,12 +175,12 @@ export interface FileRoutesByTo {
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
-  '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog': typeof BlogIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads': typeof DashboardLeadsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -199,12 +199,12 @@ export interface FileRoutesById {
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
-  '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads/': typeof DashboardLeadsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -224,12 +224,12 @@ export interface FileRouteTypes {
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/inbox'
-    | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -246,12 +246,12 @@ export interface FileRouteTypes {
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/inbox'
-    | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
     | '/blog'
     | '/dashboard'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads'
   id:
     | '__root__'
     | '/'
@@ -269,12 +269,12 @@ export interface FileRouteTypes {
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/inbox'
-    | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -392,13 +392,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardPipelineRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/leads': {
-      id: '/dashboard/leads'
-      path: '/leads'
-      fullPath: '/dashboard/leads'
-      preLoaderRoute: typeof DashboardLeadsRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/dashboard/inbox': {
       id: '/dashboard/inbox'
       path: '/inbox'
@@ -434,37 +427,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/leads/': {
+      id: '/dashboard/leads/'
+      path: '/leads'
+      fullPath: '/dashboard/leads/'
+      preLoaderRoute: typeof DashboardLeadsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/leads/$leadId': {
       id: '/dashboard/leads/$leadId'
-      path: '/$leadId'
+      path: '/leads/$leadId'
       fullPath: '/dashboard/leads/$leadId'
       preLoaderRoute: typeof DashboardLeadsLeadIdRouteImport
-      parentRoute: typeof DashboardLeadsRoute
+      parentRoute: typeof DashboardRoute
     }
   }
 }
-
-interface DashboardLeadsRouteChildren {
-  DashboardLeadsLeadIdRoute: typeof DashboardLeadsLeadIdRoute
-}
-
-const DashboardLeadsRouteChildren: DashboardLeadsRouteChildren = {
-  DashboardLeadsLeadIdRoute: DashboardLeadsLeadIdRoute,
-}
-
-const DashboardLeadsRouteWithChildren = DashboardLeadsRoute._addFileChildren(
-  DashboardLeadsRouteChildren,
-)
 
 interface DashboardRouteChildren {
   DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardCampaignsRoute: typeof DashboardCampaignsRoute
   DashboardContactsRoute: typeof DashboardContactsRoute
   DashboardInboxRoute: typeof DashboardInboxRoute
-  DashboardLeadsRoute: typeof DashboardLeadsRouteWithChildren
   DashboardPipelineRoute: typeof DashboardPipelineRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardLeadsLeadIdRoute: typeof DashboardLeadsLeadIdRoute
+  DashboardLeadsIndexRoute: typeof DashboardLeadsIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
@@ -472,10 +461,11 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardCampaignsRoute: DashboardCampaignsRoute,
   DashboardContactsRoute: DashboardContactsRoute,
   DashboardInboxRoute: DashboardInboxRoute,
-  DashboardLeadsRoute: DashboardLeadsRouteWithChildren,
   DashboardPipelineRoute: DashboardPipelineRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardLeadsLeadIdRoute: DashboardLeadsLeadIdRoute,
+  DashboardLeadsIndexRoute: DashboardLeadsIndexRoute,
 }
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(

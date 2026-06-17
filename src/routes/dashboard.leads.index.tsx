@@ -3,7 +3,7 @@ import { Filter, Download, Plus, Search, MoreHorizontal, Instagram, Linkedin, Fa
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
 import { LEADS } from "@/lib/leads-data";
 
-export const Route = createFileRoute("/dashboard/leads")({
+export const Route = createFileRoute("/dashboard/leads/")({
   component: LeadsPage,
 });
 
