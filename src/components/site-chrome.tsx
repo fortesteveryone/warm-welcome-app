@@ -22,6 +22,7 @@ const NAV_LINKS: { label: string; href: string }[] = [
   { label: "Scoring", href: "/#scoring" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
+  { label: "Dashboard", href: "/dashboard" },
 ];
 
 export function SiteHeader() {

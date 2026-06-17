@@ -15,10 +15,19 @@ import { Route as RefundRouteImport } from './routes/refund'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as GdprRouteImport } from './routes/gdpr'
 import { Route as DataUsageRouteImport } from './routes/data-usage'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardPipelineRouteImport } from './routes/dashboard.pipeline'
+import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
+import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
+import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
+import { Route as DashboardCampaignsRouteImport } from './routes/dashboard.campaigns'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TermsRoute = TermsRouteImport.update({
@@ -51,6 +60,11 @@ const DataUsageRoute = DataUsageRouteImport.update({
   path: '/data-usage',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -66,10 +80,50 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPipelineRoute = DashboardPipelineRouteImport.update({
+  id: '/pipeline',
+  path: '/pipeline',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLeadsRoute = DashboardLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardInboxRoute = DashboardInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardContactsRoute = DashboardContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCampaignsRoute = DashboardCampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
@@ -81,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/data-usage': typeof DataUsageRoute
   '/gdpr': typeof GdprRoute
   '/privacy': typeof PrivacyRoute
@@ -88,7 +143,15 @@ export interface FileRoutesByFullPath {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/campaigns': typeof DashboardCampaignsRoute
+  '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/leads': typeof DashboardLeadsRoute
+  '/dashboard/pipeline': typeof DashboardPipelineRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog/': typeof BlogIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,13 +164,22 @@ export interface FileRoutesByTo {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/campaigns': typeof DashboardCampaignsRoute
+  '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/leads': typeof DashboardLeadsRoute
+  '/dashboard/pipeline': typeof DashboardPipelineRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog': typeof BlogIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/data-usage': typeof DataUsageRoute
   '/gdpr': typeof GdprRoute
   '/privacy': typeof PrivacyRoute
@@ -115,7 +187,15 @@ export interface FileRoutesById {
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/campaigns': typeof DashboardCampaignsRoute
+  '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/leads': typeof DashboardLeadsRoute
+  '/dashboard/pipeline': typeof DashboardPipelineRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog/': typeof BlogIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/dashboard'
     | '/data-usage'
     | '/gdpr'
     | '/privacy'
@@ -130,7 +211,15 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
+    | '/dashboard/analytics'
+    | '/dashboard/campaigns'
+    | '/dashboard/contacts'
+    | '/dashboard/inbox'
+    | '/dashboard/leads'
+    | '/dashboard/pipeline'
+    | '/dashboard/settings'
     | '/blog/'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,12 +232,21 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
+    | '/dashboard/analytics'
+    | '/dashboard/campaigns'
+    | '/dashboard/contacts'
+    | '/dashboard/inbox'
+    | '/dashboard/leads'
+    | '/dashboard/pipeline'
+    | '/dashboard/settings'
     | '/blog'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/dashboard'
     | '/data-usage'
     | '/gdpr'
     | '/privacy'
@@ -156,13 +254,22 @@ export interface FileRouteTypes {
     | '/support'
     | '/terms'
     | '/blog/$slug'
+    | '/dashboard/analytics'
+    | '/dashboard/campaigns'
+    | '/dashboard/contacts'
+    | '/dashboard/inbox'
+    | '/dashboard/leads'
+    | '/dashboard/pipeline'
+    | '/dashboard/settings'
     | '/blog/'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   DataUsageRoute: typeof DataUsageRoute
   GdprRoute: typeof GdprRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -217,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataUsageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -238,12 +352,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/pipeline': {
+      id: '/dashboard/pipeline'
+      path: '/pipeline'
+      fullPath: '/dashboard/pipeline'
+      preLoaderRoute: typeof DashboardPipelineRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/leads': {
+      id: '/dashboard/leads'
+      path: '/leads'
+      fullPath: '/dashboard/leads'
+      preLoaderRoute: typeof DashboardLeadsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/inbox': {
+      id: '/dashboard/inbox'
+      path: '/inbox'
+      fullPath: '/dashboard/inbox'
+      preLoaderRoute: typeof DashboardInboxRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/contacts': {
+      id: '/dashboard/contacts'
+      path: '/contacts'
+      fullPath: '/dashboard/contacts'
+      preLoaderRoute: typeof DashboardContactsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/campaigns': {
+      id: '/dashboard/campaigns'
+      path: '/campaigns'
+      fullPath: '/dashboard/campaigns'
+      preLoaderRoute: typeof DashboardCampaignsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
+      path: '/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/blog/$slug': {
       id: '/blog/$slug'
@@ -255,10 +425,37 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
+  DashboardCampaignsRoute: typeof DashboardCampaignsRoute
+  DashboardContactsRoute: typeof DashboardContactsRoute
+  DashboardInboxRoute: typeof DashboardInboxRoute
+  DashboardLeadsRoute: typeof DashboardLeadsRoute
+  DashboardPipelineRoute: typeof DashboardPipelineRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
+  DashboardCampaignsRoute: DashboardCampaignsRoute,
+  DashboardContactsRoute: DashboardContactsRoute,
+  DashboardInboxRoute: DashboardInboxRoute,
+  DashboardLeadsRoute: DashboardLeadsRoute,
+  DashboardPipelineRoute: DashboardPipelineRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   DataUsageRoute: DataUsageRoute,
   GdprRoute: GdprRoute,
   PrivacyRoute: PrivacyRoute,
@@ -271,13 +468,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
