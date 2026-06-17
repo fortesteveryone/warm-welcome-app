@@ -909,8 +909,11 @@ function Footer() {
               <Mono className="text-foreground">{c.title}</Mono>
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
+                  <li key={l.label}>
+                    <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
+                      {l.label}
+                      {l.soon && <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
+                    </a>
                   </li>
                 ))}
               </ul>
