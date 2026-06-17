@@ -112,6 +112,7 @@ function Home() {
       <Dashboard />
       <UseCases />
       <Coverage />
+      <Concierge />
       <Pricing />
       <FAQ />
       <FinalCTA />
