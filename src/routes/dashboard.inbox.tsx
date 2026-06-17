@@ -8,13 +8,15 @@ export const Route = createFileRoute("/dashboard/inbox")({
   component: InboxPage,
 });
 
-const THREADS = [
-  { id: 1, name: "Aisha Rahman", company: "Velvet & Co.", preview: "Looks great — can we hop on a call Thursday?", time: "2m", unread: true, tone: "hot" as const, starred: true },
-  { id: 2, name: "Marcus Lin", company: "Northwave Studio", preview: "Sending over the budget approval now…", time: "1h", unread: true, tone: "hot" as const, starred: false },
-  { id: 3, name: "Priya Devi", company: "Saffron Kitchen", preview: "Thanks! Will review and revert tomorrow.", time: "3h", unread: false, tone: "warm" as const, starred: true },
-  { id: 4, name: "Jonas Weber", company: "Atlas Logistics", preview: "Could you share a case study?", time: "Yesterday", unread: false, tone: "warm" as const, starred: false },
-  { id: 5, name: "Camila Reyes", company: "Lumen Health", preview: "Not the right time, please follow up Q4.", time: "2d", unread: false, tone: "cold" as const, starred: false },
-  { id: 6, name: "Yuki Tanaka", company: "Mori Apparel", preview: "Let's plan a launch sprint for Sept.", time: "3d", unread: false, tone: "hot" as const, starred: false },
+type Thread = { id: number; name: string; company: string; preview: string; time: string; unread: boolean; tone: "hot" | "warm" | "cold"; starred: boolean };
+
+const INITIAL_THREADS: Thread[] = [
+  { id: 1, name: "Aisha Rahman", company: "Velvet & Co.", preview: "Looks great — can we hop on a call Thursday?", time: "2m", unread: true, tone: "hot", starred: true },
+  { id: 2, name: "Marcus Lin", company: "Northwave Studio", preview: "Sending over the budget approval now…", time: "1h", unread: true, tone: "hot", starred: false },
+  { id: 3, name: "Priya Devi", company: "Saffron Kitchen", preview: "Thanks! Will review and revert tomorrow.", time: "3h", unread: false, tone: "warm", starred: true },
+  { id: 4, name: "Jonas Weber", company: "Atlas Logistics", preview: "Could you share a case study?", time: "Yesterday", unread: false, tone: "warm", starred: false },
+  { id: 5, name: "Camila Reyes", company: "Lumen Health", preview: "Not the right time, please follow up Q4.", time: "2d", unread: false, tone: "cold", starred: false },
+  { id: 6, name: "Yuki Tanaka", company: "Mori Apparel", preview: "Let's plan a launch sprint for Sept.", time: "3d", unread: false, tone: "hot", starred: false },
 ];
 
 const FILTERS = ["all", "unread", "starred", "hot"] as const;
