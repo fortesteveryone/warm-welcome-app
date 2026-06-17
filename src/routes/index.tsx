@@ -348,19 +348,15 @@ function PreviewDetail() {
 
 /* ---------- scope (what we cover) ---------- */
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
-  { Icon: Code2,       title: "Website design & development", tags: ["Business sites", "Portfolios", "Landing pages", "Custom builds"] },
-  { Icon: Layers,      title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer", "Squarespace"] },
-  { Icon: ShoppingBag, title: "E-commerce",                   tags: ["Shopify", "WooCommerce", "BigCommerce", "Store redesign"] },
-  { Icon: Search,      title: "SEO",                          tags: ["Local SEO", "Technical SEO", "On-page", "Link building"] },
-  { Icon: Megaphone,   title: "Digital marketing",            tags: ["Paid ads", "Meta / Google Ads", "Content marketing", "Email"] },
-  { Icon: PenTool,     title: "Design & branding",            tags: ["UI / UX", "Logo", "Brand identity", "Graphic design"] },
-  { Icon: Globe,       title: "Social media management",      tags: ["Page management", "Content calendars", "Creatives"] },
-  { Icon: BarChart3,   title: "Analytics & CRO",              tags: ["GA4 setup", "Tracking", "A / B testing", "Conversion fixes"] },
+  { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
+  { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
+  { Icon: Search,  title: "Digital marketing — SEO only", tags: ["Local SEO", "Technical SEO", "On-page SEO", "Off-page / link building", "SEO audits"] },
 ];
 
 const outOfScope = [
-  "Real estate", "Legal", "Healthcare leads", "Recruiting",
-  "Physical products", "Local trades", "B2C consumer apps", "Financial services",
+  "E-commerce stores", "Paid ads (Meta / Google)", "Design & branding", "Logo / graphic design",
+  "Social media management", "Analytics / GTM / CRO", "Real estate", "Legal", "Healthcare",
+  "Recruiting", "Physical products", "Financial services",
 ];
 
 function Scope() {
