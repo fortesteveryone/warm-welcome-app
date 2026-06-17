@@ -752,7 +752,7 @@ function FAQ() {
     <section className="section-edge">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
-          <SectionTitle kicker="14 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+          <SectionTitle kicker="09 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
           <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
             {faqs.map((f, i) => (
               <div key={i}>
