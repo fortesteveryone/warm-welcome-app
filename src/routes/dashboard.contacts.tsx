@@ -73,7 +73,7 @@ function ContactsPage() {
 
       <div className="flex flex-wrap items-center gap-2">
         <Mono className="text-muted-foreground">Filter by tag:</Mono>
-        {ALL_TAGS.map((t) => (
+        {allTags.map((t) => (
           <button
             key={t}
             onClick={() => toggleTag(t)}
@@ -85,7 +85,7 @@ function ContactsPage() {
             <X className="h-3 w-3" /> Clear
           </button>
         )}
-        <Mono className="ml-auto text-muted-foreground">{filtered.length} of {CONTACTS.length}</Mono>
+        <Mono className="ml-auto text-muted-foreground">{filtered.length} of {contacts.length}</Mono>
       </div>
 
       {filtered.length === 0 ? (
