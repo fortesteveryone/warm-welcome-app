@@ -138,7 +138,7 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 /* ---------- hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border">
+    <section className="relative overflow-hidden section-edge">
       {/* gradient mesh */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-[-200px] h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
@@ -257,7 +257,7 @@ function PreviewDetail() {
 function LogoStrip() {
   const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts", "Manual review", "CSV / JSON"];
   return (
-    <div className="border-b border-border">
+    <div className="section-edge">
       <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5">
         {items.map((t) => (
           <span key={t} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -272,7 +272,7 @@ function LogoStrip() {
 /* ---------- capture (bento) ---------- */
 function Capture() {
   return (
-    <section id="capture" className="border-b border-border">
+    <section id="capture" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle
           kicker="01 / What we capture"
@@ -373,7 +373,7 @@ const drafts = [
 function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="example" className="border-b border-border">
+    <section id="example" className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle
           kicker="02 / Example"
@@ -461,7 +461,7 @@ function ExampleLead() {
 /* ---------- before / after ---------- */
 function BeforeAfter() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="03 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
@@ -512,7 +512,7 @@ const platforms = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="border-b border-border">
+    <section id="platforms" className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="04 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -546,7 +546,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="border-b border-border">
+    <section id="scoring" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -588,7 +588,7 @@ function Outreach() {
     { angle: "Clear scope & payment", excerpt: "To give you an honest quote I'd love to see the current site and the exact updates needed. I work on milestone-based…" },
   ];
   return (
-    <section className="border-b border-border">
+    <section className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle
           kicker="06 / Outreach"
@@ -621,7 +621,7 @@ const dashFeatures = [
 
 function Dashboard() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
@@ -679,7 +679,7 @@ const profileSections = [
 
 function Profile() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="08 / Lead profile" title={<>Eight sections, <span className="text-muted-foreground">one consistent shape.</span></>} />
         <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -708,7 +708,7 @@ const reviewChecks = [
 
 function Review() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <SectionTitle
@@ -742,7 +742,7 @@ const useCases = [
 
 function UseCases() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="10 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -770,7 +770,7 @@ const categories = [
 
 function Categories() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="11 / Categories" title={<>Service categories <span className="text-muted-foreground">we classify.</span></>} />
         <div className="mt-10 flex flex-wrap gap-2">
@@ -803,7 +803,7 @@ const countries = [
 
 function Coverage() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
@@ -850,7 +850,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="border-b border-border">
+    <section id="pricing" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="text-center">
           <Mono className="text-muted-foreground">13 / Pricing</Mono>
@@ -918,7 +918,7 @@ const faqs = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="border-b border-border">
+    <section className="section-edge">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
           <SectionTitle kicker="14 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
@@ -942,7 +942,7 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="border-b border-border">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
