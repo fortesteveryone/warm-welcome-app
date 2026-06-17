@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[860px] px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
 }
 
 function Mono({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -46,9 +46,13 @@ export function PageShell({
       </section>
 
       <section>
-        <Container className="prose prose-invert prose-sm md:prose-base max-w-none py-14 md:py-20">
-          <div className="space-y-8 text-sm leading-relaxed text-foreground/85 md:text-[15px]">
-            {children}
+        <Container className="py-14 md:py-20">
+          <div className="max-w-[760px]">
+            <div className="prose prose-invert prose-sm md:prose-base max-w-none">
+              <div className="space-y-8 text-sm leading-relaxed text-foreground/85 md:text-[15px]">
+                {children}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
