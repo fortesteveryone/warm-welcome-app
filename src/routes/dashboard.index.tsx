@@ -1,70 +1,144 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useRef, useState } from "react";
-import { CalendarRange, UserPlus, Target, Flame, DollarSign, MessageSquare, CheckCircle2, Clock, ChevronDown, X } from "lucide-react";
+import {
+  CalendarRange, Wallet, Eye, Star, Sparkles, MessageSquare, CheckCircle2,
+  Clock, ChevronDown, X, Flame, MapPin, ArrowUpRight, Inbox, Zap, TrendingUp,
+} from "lucide-react";
 import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
 
 export const Route = createFileRoute("/dashboard/")({
   component: Overview,
 });
 
-const RECENT_LEADS = [
-  { name: "Aisha Rahman", company: "Velvet & Co.", source: "Instagram", score: 92, status: "hot" as const, when: "2m ago" },
-  { name: "Marcus Lin", company: "Northwave Studio", source: "LinkedIn", score: 81, status: "hot" as const, when: "14m ago" },
-  { name: "Priya Devi", company: "Saffron Kitchen", source: "Facebook", score: 67, status: "warm" as const, when: "1h ago" },
-  { name: "Jonas Weber", company: "Atlas Logistics", source: "X / Twitter", score: 54, status: "warm" as const, when: "3h ago" },
-  { name: "Camila Reyes", company: "Lumen Health", source: "Instagram", score: 41, status: "cold" as const, when: "5h ago" },
+/* ─────────────────────── Mock user data ─────────────────────── */
+
+const CREDITS = { balance: 312, included: 500, used: 188, plan: "Starter · $10/mo", resets: "Jul 1" };
+
+const RECENT_OPENED = [
+  { name: "Aisha Rahman",  headline: "Need a Shopify redesign + SEO for jewellery brand",  country: "United Kingdom", flag: "🇬🇧", budget: "$3–6k",  when: "12m ago",  status: "replied" as const },
+  { name: "Marcus Lin",    headline: "Looking for Webflow developer — 8-page marketing site", country: "United States", flag: "🇺🇸", budget: "$4–8k",  when: "1h ago",   status: "contacted" as const },
+  { name: "Priya Devi",    headline: "Local SEO for a 3-location restaurant in Mumbai",     country: "India",          flag: "🇮🇳", budget: "$800–1.5k", when: "3h ago",   status: "saved" as const },
+  { name: "Jonas Weber",   headline: "WordPress → Framer migration, logistics company",     country: "Germany",        flag: "🇩🇪", budget: "$5–10k", when: "Yesterday", status: "viewed" as const },
 ];
 
-const TASKS = [
-  { text: "Follow up with Velvet & Co. on pricing", due: "Today, 4:30pm", done: false },
-  { text: "Send proposal to Atlas Logistics", due: "Tomorrow", done: false },
-  { text: "Review LinkedIn campaign creatives", due: "Fri", done: false },
-  { text: "Onboarding call · Saffron Kitchen", due: "Done", done: true },
+const RECOMMENDED = [
+  { headline: "SaaS founder needs landing page rebuild on Webflow", country: "🇺🇸", budget: "$2–4k", posted: "8m ago",  score: 94, hot: true },
+  { headline: "Boutique law firm — full SEO audit + on-page",        country: "🇨🇦", budget: "$1.2k/mo", posted: "27m ago", score: 88, hot: true },
+  { headline: "Wix to WordPress migration, 20+ pages",               country: "🇦🇺", budget: "$3k",  posted: "1h ago", score: 81, hot: false },
 ];
 
 const ACTIVITY = [
-  { who: "Aisha Rahman", what: "replied to your outreach", when: "2m" },
-  { who: "Campaign · Q3 SaaS", what: "sent 142 emails (38% open)", when: "1h" },
-  { who: "Marcus Lin", what: "moved to Negotiation", when: "3h" },
-  { who: "You", what: "added 24 new leads from Instagram scan", when: "5h" },
-  { who: "Priya Devi", what: "booked a discovery call", when: "Yesterday" },
+  { who: "You",          what: "opened a lead — Aisha Rahman (Velvet & Co.)", cost: "-1 credit", when: "12m" },
+  { who: "Aisha Rahman", what: "replied to your message",                     cost: "",          when: "8m" },
+  { who: "You",          what: "saved 3 leads from Instagram category",       cost: "",          when: "2h" },
+  { who: "System",       what: "added 142 new leads matching your filters",   cost: "",          when: "5h" },
 ];
 
+const TASKS = [
+  { text: "Follow up with Aisha Rahman — proposal sent",  due: "Today, 4:30pm", done: false },
+  { text: "Open the 12 new leads in Webflow category",    due: "Today",         done: false },
+  { text: "Reply to Marcus Lin",                          due: "Tomorrow",      done: false },
+  { text: "Opened lead · Priya Devi",                     due: "Done",          done: true  },
+];
+
+const TOP_COUNTRIES = [
+  { name: "United States", flag: "🇺🇸", count: 412, pct: 32 },
+  { name: "United Kingdom", flag: "🇬🇧", count: 218, pct: 17 },
+  { name: "Canada", flag: "🇨🇦", count: 184, pct: 14 },
+  { name: "Australia", flag: "🇦🇺", count: 142, pct: 11 },
+  { name: "Germany", flag: "🇩🇪", count: 98, pct: 8 },
+];
+
+function statusTone(s: "replied" | "contacted" | "saved" | "viewed") {
+  if (s === "replied") return "success" as const;
+  if (s === "contacted") return "warm" as const;
+  if (s === "saved") return "hot" as const;
+  return "muted" as const;
+}
+
 function Overview() {
+  const creditsPct = Math.round((CREDITS.used / CREDITS.included) * 100);
+
   return (
     <div className="space-y-8">
       <PageHeader
         kicker="Overview"
         title="Welcome back, Nasir"
-        description="Here's what's happening across your pipeline today."
+        description="Your leads, credits and activity — all in one place."
         actions={<DateRangeFilter />}
       />
 
+      {/* ── Credits / quota strip ─────────────────────────────────── */}
+      <Panel>
+        <div className="grid gap-5 p-5 lg:grid-cols-[1.6fr_1fr_1fr] lg:items-center">
+          <div>
+            <div className="flex items-center gap-2">
+              <Wallet className="h-4 w-4 text-muted-foreground" />
+              <Mono className="text-muted-foreground">Credits</Mono>
+              <Badge tone="muted">{CREDITS.plan}</Badge>
+            </div>
+            <div className="mt-2 flex items-baseline gap-2">
+              <span className="text-3xl font-semibold tracking-tight">{CREDITS.balance}</span>
+              <span className="text-sm text-muted-foreground">credits left · resets {CREDITS.resets}</span>
+            </div>
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-card">
+              <div className="h-full bg-foreground/70" style={{ width: `${creditsPct}%` }} />
+            </div>
+            <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted-foreground">
+              <span>Used {CREDITS.used} of {CREDITS.included}</span>
+              <span>1 credit = 1 lead opened</span>
+            </div>
+          </div>
 
+          <div className="rounded-lg border border-border bg-background/40 p-4">
+            <Mono className="text-muted-foreground">This month</Mono>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="text-2xl font-semibold">188</span>
+              <span className="text-xs text-muted-foreground">leads opened</span>
+            </div>
+            <div className="mt-2 text-xs text-emerald-300">▲ 24 vs last month</div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Link
+              to="/dashboard/leads"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90"
+            >
+              <Inbox className="h-4 w-4" /> Browse leads
+            </Link>
+            <button className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
+              <Zap className="h-4 w-4" /> Top up credits
+            </button>
+          </div>
+        </div>
+      </Panel>
+
+      {/* ── Stat grid ─────────────────────────────────────────────── */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="New leads" value="1,284" delta="▲ 12.4% vs last week" trend="up" icon={<UserPlus className="h-4 w-4" />} />
-        <Stat label="Qualified" value="412" delta="▲ 8.1%" trend="up" icon={<Target className="h-4 w-4" />} />
-        <Stat label="Hot deals" value="38" delta="▼ 2.0%" trend="down" icon={<Flame className="h-4 w-4" />} />
-        <Stat label="Revenue (MTD)" value="$84,120" delta="▲ 21.6%" trend="up" icon={<DollarSign className="h-4 w-4" />} />
+        <Stat label="Opened today" value="14" delta="▲ 3 vs yesterday" trend="up" icon={<Eye className="h-4 w-4" />} />
+        <Stat label="Saved leads" value="46" delta="▲ 5 this week" trend="up" icon={<Star className="h-4 w-4" />} />
+        <Stat label="Replies received" value="18" delta="9.6% reply rate" trend="up" icon={<MessageSquare className="h-4 w-4" />} />
+        <Stat label="Hot matches" value="9" delta="New since morning" trend="up" icon={<Flame className="h-4 w-4" />} />
       </div>
 
+      {/* ── Activity chart + match quality ────────────────────────── */}
       <div className="grid gap-6 lg:grid-cols-3">
         <Panel
           className="lg:col-span-2"
-          title="Lead acquisition"
-          description="New leads captured per day · last 14 days"
+          title="Leads you opened"
+          description="Daily lead opens · last 14 days"
           actions={<Badge tone="success">Live</Badge>}
         >
           <div className="p-5">
             <div className="h-48 text-[color:var(--signal,oklch(0.72_0.19_145))]">
-              <Sparkline data={[12, 18, 14, 22, 28, 24, 33, 30, 41, 38, 46, 52, 49, 61]} />
+              <Sparkline data={[6, 9, 7, 11, 14, 12, 16, 13, 18, 15, 20, 22, 19, 24]} />
             </div>
             <div className="mt-4 grid grid-cols-4 gap-3 border-t border-border pt-4 text-center">
               {[
-                { l: "Instagram", v: "412", c: "text-rose-400" },
-                { l: "LinkedIn", v: "318", c: "text-sky-400" },
-                { l: "Facebook", v: "224", c: "text-indigo-400" },
-                { l: "X / Twitter", v: "108", c: "text-foreground" },
+                { l: "Web design", v: "82", c: "text-rose-400" },
+                { l: "Webflow",    v: "54", c: "text-sky-400" },
+                { l: "SEO",        v: "31", c: "text-indigo-400" },
+                { l: "WordPress",  v: "21", c: "text-foreground" },
               ].map((s) => (
                 <div key={s.l}>
                   <div className={`text-lg font-semibold ${s.c}`}>{s.v}</div>
@@ -75,22 +149,22 @@ function Overview() {
           </div>
         </Panel>
 
-        <Panel title="Pipeline value" description="By stage">
+        <Panel title="Your funnel" description="From open to reply">
           <div className="space-y-3 p-5">
             {[
-              { stage: "New", val: 142, pct: 100, c: "bg-sky-500/70" },
-              { stage: "Qualified", val: 86, pct: 60, c: "bg-indigo-500/70" },
-              { stage: "Proposal", val: 41, pct: 32, c: "bg-amber-500/70" },
-              { stage: "Negotiation", val: 23, pct: 20, c: "bg-orange-500/70" },
-              { stage: "Closed-Won", val: 14, pct: 12, c: "bg-emerald-500/70" },
+              { stage: "Leads opened",   v: 188, w: 100, c: "bg-sky-500/70" },
+              { stage: "Saved",          v: 46,  w: 62,  c: "bg-indigo-500/70" },
+              { stage: "Contacted",      v: 31,  w: 44,  c: "bg-amber-500/70" },
+              { stage: "Replied",        v: 18,  w: 28,  c: "bg-orange-500/70" },
+              { stage: "Deal won",       v: 4,   w: 12,  c: "bg-emerald-500/70" },
             ].map((s) => (
               <div key={s.stage}>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">{s.stage}</span>
-                  <span className="font-medium">${s.val}k</span>
+                  <span className="font-medium">{s.v}</span>
                 </div>
                 <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-card">
-                  <div className={`h-full ${s.c}`} style={{ width: `${s.pct}%` }} />
+                  <div className={`h-full ${s.c}`} style={{ width: `${s.w}%` }} />
                 </div>
               </div>
             ))}
@@ -98,24 +172,83 @@ function Overview() {
         </Panel>
       </div>
 
+      {/* ── Recommended + countries ───────────────────────────────── */}
       <div className="grid gap-6 lg:grid-cols-3">
-        <Panel className="lg:col-span-2" title="Recent leads" actions={<a className="text-xs text-muted-foreground hover:text-foreground" href="/dashboard/leads">View all →</a>}>
+        <Panel
+          className="lg:col-span-2"
+          title="Recommended for you"
+          description="Fresh leads matching your filters"
+          actions={
+            <Link to="/dashboard/leads" className="text-xs text-muted-foreground hover:text-foreground">
+              See all leads →
+            </Link>
+          }
+        >
+          <ul className="divide-y divide-border">
+            {RECOMMENDED.map((r, i) => (
+              <li key={i} className="flex items-start gap-3 px-5 py-4">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-card text-base">{r.country}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="truncate text-sm font-medium">{r.headline}</span>
+                    {r.hot && <Badge tone="hot">Hot</Badge>}
+                  </div>
+                  <div className="mt-0.5 flex items-center gap-3 text-[11px] text-muted-foreground">
+                    <span className="inline-flex items-center gap-1"><Sparkles className="h-3 w-3" /> Match {r.score}</span>
+                    <span>· {r.budget}</span>
+                    <span>· {r.posted}</span>
+                  </div>
+                </div>
+                <button className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs hover:bg-card">
+                  Open <ArrowUpRight className="h-3 w-3" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+
+        <Panel title="Top countries" description="In your lead feed" actions={<MapPin className="h-4 w-4 text-muted-foreground" />}>
+          <ul className="divide-y divide-border">
+            {TOP_COUNTRIES.map((c) => (
+              <li key={c.name} className="flex items-center gap-3 px-5 py-3 text-sm">
+                <span className="text-lg leading-none">{c.flag}</span>
+                <span className="flex-1 truncate">{c.name}</span>
+                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-card">
+                  <div className="h-full bg-foreground/60" style={{ width: `${c.pct * 2.8}%` }} />
+                </div>
+                <Mono className="w-10 text-right text-muted-foreground">{c.count}</Mono>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      </div>
+
+      {/* ── Recently opened + tasks + activity ────────────────────── */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Panel
+          className="lg:col-span-2"
+          title="Recently opened leads"
+          actions={
+            <Link to="/dashboard/leads" className="text-xs text-muted-foreground hover:text-foreground">
+              View all →
+            </Link>
+          }
+        >
           <div className="divide-y divide-border">
-            {RECENT_LEADS.map((l) => (
+            {RECENT_OPENED.map((l) => (
               <div key={l.name} className="flex items-center gap-3 px-5 py-3">
                 <Avatar name={l.name} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="truncate text-sm font-medium">{l.name}</span>
-                    <Badge tone={l.status}>{l.status}</Badge>
+                    <span className="truncate text-sm font-medium">{l.headline}</span>
                   </div>
                   <div className="truncate text-xs text-muted-foreground">
-                    {l.company} · {l.source}
+                    {l.name} · <span className="mr-0.5">{l.flag}</span>{l.country} · {l.budget}
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-sm font-semibold">{l.score}</div>
-                  <Mono className="text-muted-foreground">{l.when}</Mono>
+                <div className="flex shrink-0 items-center gap-3">
+                  <Badge tone={statusTone(l.status)}>{l.status}</Badge>
+                  <Mono className="w-16 text-right text-muted-foreground">{l.when}</Mono>
                 </div>
               </div>
             ))}
@@ -123,7 +256,7 @@ function Overview() {
         </Panel>
 
         <div className="space-y-6">
-          <Panel title="Tasks today">
+          <Panel title="Your tasks">
             <ul className="divide-y divide-border">
               {TASKS.map((t) => (
                 <li key={t.text} className="flex items-start gap-3 px-5 py-3">
@@ -143,14 +276,18 @@ function Overview() {
             </ul>
           </Panel>
 
-          <Panel title="Activity">
+          <Panel title="Activity" actions={<TrendingUp className="h-4 w-4 text-muted-foreground" />}>
             <ul className="space-y-3 p-5">
               {ACTIVITY.map((a, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-sm">
                   <MessageSquare className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                  <div className="min-w-0">
-                    <span className="font-medium">{a.who}</span> <span className="text-muted-foreground">{a.what}</span>
-                    <div className="text-[11px] text-muted-foreground">{a.when} ago</div>
+                  <div className="min-w-0 flex-1">
+                    <span className="font-medium">{a.who}</span>{" "}
+                    <span className="text-muted-foreground">{a.what}</span>
+                    <div className="mt-0.5 flex items-center gap-2 text-[11px] text-muted-foreground">
+                      <span>{a.when} ago</span>
+                      {a.cost && <Badge tone="muted">{a.cost}</Badge>}
+                    </div>
                   </div>
                 </li>
               ))}
