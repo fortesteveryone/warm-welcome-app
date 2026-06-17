@@ -365,11 +365,11 @@ function Scope() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Built for <span className="text-muted-foreground">website &amp; digital marketing</span> service sellers.</>}
-          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work, CMS builds, e-commerce, SEO, ads, design or social media help — so every lead in your inbox actually matches what you sell."
+          title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
+          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
         />
 
-        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-3 md:grid-cols-3">
           {scopeCategories.map(({ Icon, title, tags }) => (
             <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
               <div className="flex items-center gap-3">
