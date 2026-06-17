@@ -53,16 +53,8 @@ function BlogIndex() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* simple header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
-        <Container className="flex h-14 items-center justify-between">
-          <Link to="/" className="text-sm font-semibold tracking-tight">Grow By Lead</Link>
-          <nav className="flex items-center gap-5 text-sm">
-            <Link to="/" className="text-muted-foreground hover:text-foreground">Home</Link>
-            <Link to="/blog" className="text-foreground">Blog</Link>
-          </nav>
-        </Container>
-      </header>
+      <SiteHeader />
+
 
       <section className="border-b border-border">
         <Container className="py-14 md:py-20">
