@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, Send, Mail, Linkedin, MessageSquare, Play, Pause, Search } from "lucide-react";
 import { PageHeader, Panel, Badge, Stat, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, gridCls } from "@/components/dashboard/form-dialog";
 
 export const Route = createFileRoute("/dashboard/campaigns")({
   component: CampaignsPage,
