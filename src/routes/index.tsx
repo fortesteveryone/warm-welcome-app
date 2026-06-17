@@ -377,7 +377,7 @@ function Scope() {
             <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
               <div className="flex items-center gap-3">
                 <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
-                  <Icon className="h-4.5 w-4.5" strokeWidth={1.75} />
+                  <Icon className="h-4 w-4" />
                 </div>
                 <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
               </div>
