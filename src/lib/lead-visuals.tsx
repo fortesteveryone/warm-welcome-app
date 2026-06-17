@@ -1,7 +1,12 @@
+import type { ComponentType, SVGProps } from "react";
 import {
-  Facebook, Linkedin, Instagram, Youtube, Twitter, Github,
-  MessageCircle, Send as SendIcon, Hash, Globe, type LucideIcon,
-} from "lucide-react";
+  SiFacebook, SiLinkedin, SiInstagram, SiReddit, SiWhatsapp, SiX,
+  SiYoutube, SiTiktok, SiTelegram, SiDiscord, SiSnapchat, SiPinterest,
+  SiThreads, SiWechat, SiLine, SiQuora, SiMedium, SiGithub,
+  SiBehance, SiDribbble, SiTwitch, SiMastodon,
+} from "react-icons/si";
+import { FaTwitter } from "react-icons/fa";
+import { Globe } from "lucide-react";
 import type { LeadPlatform } from "@/lib/leads-data";
 
 /* ─────────── Country flags ─────────── */
@@ -39,81 +44,87 @@ export function CountryBadge({
   );
 }
 
-/* ─────────── Colorful social platform icons ─────────── */
+/* ─────────── Authentic brand social logos (simple-icons) ─────────── */
+
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 type PlatformVisual = {
-  Icon: LucideIcon;
-  /** brand text color */
-  color: string;
-  /** brand tinted bg */
-  bg: string;
-  /** brand ring */
-  ring: string;
+  Icon: IconType;
+  /** brand hex */
+  brand: string;
   label: string;
+  /** Tailwind text color class for legacy callers expecting `color`. */
+  color: string;
+  /** Tailwind tinted bg class for legacy callers. */
+  bg: string;
+  /** Tailwind ring class for legacy callers. */
+  ring: string;
 };
 
-const MONO = {
+const make = (Icon: IconType, brand: string, label: string): PlatformVisual => ({
+  Icon, brand, label,
+  // Legacy classes for chips/tiles that still expect these — kept neutral so
+  // the colored SVG carries the brand and the surface stays on the design system.
   color: "text-foreground",
   bg: "bg-foreground/[0.06]",
   ring: "ring-foreground/15",
-} as const;
+});
 
 const PLATFORM: Record<LeadPlatform, PlatformVisual> = {
-  facebook:  { Icon: Facebook,      ...MONO, label: "Facebook" },
-  linkedin:  { Icon: Linkedin,      ...MONO, label: "LinkedIn" },
-  instagram: { Icon: Instagram,     ...MONO, label: "Instagram" },
-  reddit:    { Icon: MessageCircle, ...MONO, label: "Reddit" },
-  whatsapp:  { Icon: MessageCircle, ...MONO, label: "WhatsApp" },
-  twitter:   { Icon: Twitter,       ...MONO, label: "Twitter" },
-  x:         { Icon: Twitter,       ...MONO, label: "X" },
-  youtube:   { Icon: Youtube,       ...MONO, label: "YouTube" },
-  tiktok:    { Icon: Hash,          ...MONO, label: "TikTok" },
-  telegram:  { Icon: SendIcon,      ...MONO, label: "Telegram" },
-  discord:   { Icon: MessageCircle, ...MONO, label: "Discord" },
-  snapchat:  { Icon: Hash,          ...MONO, label: "Snapchat" },
-  pinterest: { Icon: Hash,          ...MONO, label: "Pinterest" },
-  threads:   { Icon: Hash,          ...MONO, label: "Threads" },
-  wechat:    { Icon: MessageCircle, ...MONO, label: "WeChat" },
-  line:      { Icon: MessageCircle, ...MONO, label: "LINE" },
-  quora:     { Icon: Globe,         ...MONO, label: "Quora" },
-  medium:    { Icon: Globe,         ...MONO, label: "Medium" },
-  github:    { Icon: Github,        ...MONO, label: "GitHub" },
-  behance:   { Icon: Globe,         ...MONO, label: "Behance" },
-  dribbble:  { Icon: Globe,         ...MONO, label: "Dribbble" },
-  twitch:    { Icon: Globe,         ...MONO, label: "Twitch" },
-  mastodon:  { Icon: Globe,         ...MONO, label: "Mastodon" },
-  other:     { Icon: Globe,         ...MONO, label: "Other" },
+  facebook:  make(SiFacebook,  "#1877F2", "Facebook"),
+  linkedin:  make(SiLinkedin,  "#0A66C2", "LinkedIn"),
+  instagram: make(SiInstagram, "#E4405F", "Instagram"),
+  reddit:    make(SiReddit,    "#FF4500", "Reddit"),
+  whatsapp:  make(SiWhatsapp,  "#25D366", "WhatsApp"),
+  twitter:   make(FaTwitter,   "#1DA1F2", "Twitter"),
+  x:         make(SiX,         "#000000", "X"),
+  youtube:   make(SiYoutube,   "#FF0000", "YouTube"),
+  tiktok:    make(SiTiktok,    "#000000", "TikTok"),
+  telegram:  make(SiTelegram,  "#26A5E4", "Telegram"),
+  discord:   make(SiDiscord,   "#5865F2", "Discord"),
+  snapchat:  make(SiSnapchat,  "#FFFC00", "Snapchat"),
+  pinterest: make(SiPinterest, "#BD081C", "Pinterest"),
+  threads:   make(SiThreads,   "#000000", "Threads"),
+  wechat:    make(SiWechat,    "#07C160", "WeChat"),
+  line:      make(SiLine,      "#00C300", "LINE"),
+  quora:     make(SiQuora,     "#B92B27", "Quora"),
+  medium:    make(SiMedium,    "#000000", "Medium"),
+  github:    make(SiGithub,    "#FFFFFF", "GitHub"),
+  behance:   make(SiBehance,   "#1769FF", "Behance"),
+  dribbble:  make(SiDribbble,  "#EA4C89", "Dribbble"),
+  twitch:    make(SiTwitch,    "#9146FF", "Twitch"),
+  mastodon:  make(SiMastodon,  "#6364FF", "Mastodon"),
+  other:     make(Globe as unknown as IconType, "#9CA3AF", "Other"),
 };
-
 
 export function platformVisual(p: LeadPlatform): PlatformVisual {
   return PLATFORM[p] ?? PLATFORM.other;
 }
 
-/** Square brand-colored social tile. */
+/** Square brand tile — white surface stamped with the official colored logo. */
 export function SocialTile({
   platform, size = 32, className = "",
 }: { platform: LeadPlatform; size?: number; className?: string }) {
   const v = platformVisual(platform);
   const px = `${size}px`;
-  const iconPx = Math.round(size * 0.48);
+  const iconPx = Math.round(size * 0.58);
   return (
     <span
       aria-label={v.label}
       style={{ width: px, height: px }}
-      className={`grid place-items-center rounded-lg ring-1 ${v.bg} ${v.ring} ${className}`}
+      className={`grid place-items-center rounded-lg bg-white shadow-sm ring-1 ring-black/5 ${className}`}
     >
-      <v.Icon style={{ width: iconPx, height: iconPx }} className={v.color} />
+      <v.Icon style={{ width: iconPx, height: iconPx, color: v.brand }} />
     </span>
   );
 }
 
-/** Pill — brand-tinted bg, brand color icon, label text. */
+/** Pill — colored brand logo + label, neutral surface. */
 export function SocialPill({ platform }: { platform: LeadPlatform }) {
   const v = platformVisual(platform);
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium ring-1 ${v.bg} ${v.ring} ${v.color}`}>
-      <v.Icon className="h-3 w-3" />
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground/90">
+      <v.Icon style={{ width: 12, height: 12, color: v.brand }} />
       <span>{v.label}</span>
     </span>
   );
