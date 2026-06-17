@@ -614,12 +614,39 @@ const platforms: PlatformEntry[] = [
   { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
 ];
 
+const dailyVolumeStats = [
+  { value: "500+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
+  { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
+  { value: "200+", label: "SEO requests", hint: "Local, technical, on-page and link building help." },
+  { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
+];
+
 function Platforms() {
   return (
     <section id="platforms" className="section-edge section-surface-blue">
       <Container className="py-16 md:py-20">
-        <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <SectionTitle
+          kicker="Platforms"
+          title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
+          lede="At least 500 fresh website &amp; SEO leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+        />
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {dailyVolumeStats.map((s) => (
+            <div key={s.label} className="rounded-xl border border-border bg-card/60 p-5">
+              <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
+              <div className="mt-1 text-sm font-medium">{s.label}</div>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.hint}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <Tag tone="signal">● Daily minimum</Tag>
+          <span>500+ total · 400+ web design &amp; development · 200+ SEO · from any country.</span>
+        </div>
+
+        <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => {
             const Icon = p.icon;
             return (
