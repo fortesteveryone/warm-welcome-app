@@ -128,7 +128,7 @@ function Home() {
       <Platforms />
       <Scoring />
       <Dashboard />
-      <UseCases />
+      
       <Coverage />
       <Concierge />
       <Pricing />
