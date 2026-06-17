@@ -225,7 +225,7 @@ function Hero() {
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead turns public posts asking for <span className="text-foreground">website, CMS, e-commerce, SEO, ads and digital marketing</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
+          Grow By Lead turns public posts asking for <span className="text-foreground">website design, development, CMS (WordPress, Webflow, Wix, Framer) and SEO</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
