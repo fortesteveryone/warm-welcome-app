@@ -59,15 +59,15 @@ function LeadsPage() {
             </thead>
             <tbody>
               {LEADS.map((l) => (
-                <tr key={l.name} className="border-b border-border last:border-0 hover:bg-card/30">
+                <tr key={l.id} className="border-b border-border last:border-0 hover:bg-card/30">
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
+                    <Link to="/dashboard/leads/$leadId" params={{ leadId: l.id }} className="flex items-center gap-3 group">
                       <Avatar name={l.name} />
                       <div className="min-w-0">
-                        <div className="truncate font-medium">{l.name}</div>
+                        <div className="truncate font-medium group-hover:underline">{l.name}</div>
                         <div className="truncate text-xs text-muted-foreground">{l.role} · {l.company}</div>
                       </div>
-                    </div>
+                    </Link>
                   </td>
                   <td className="px-4 py-3">
                     <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
