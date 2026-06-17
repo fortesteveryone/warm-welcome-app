@@ -123,8 +123,8 @@ function TopBar() {
           <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
             Sign in
           </a>
-          <a href="#pricing" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
-            Get started
+          <a href="#pricing" className="hidden items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90 sm:inline-flex">
+            Get started <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <button
             type="button"
