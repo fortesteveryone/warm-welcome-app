@@ -182,24 +182,75 @@ function LeadsPage() {
       {/* Filter panel */}
       {showFilters && (
         <Panel>
-          <div className="grid gap-5 p-5 md:grid-cols-4">
-            <FilterGroup label="Source">
-              {LEAD_SOURCES.map((s) => (
-                <Chip key={s} active={sources.includes(s)} onClick={() => { setSources(toggle(sources, s)); setPage(1); }}>
-                  {sourceIcon(s)} <span className="capitalize">{s}</span>
+          <div className="grid gap-6 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <FilterGroup label="Saved">
+              <Chip active={favOnly} onClick={() => { setFavOnly((f) => !f); setPage(1); }}>
+                <Star className={`h-3.5 w-3.5 ${favOnly ? "fill-amber-400 text-amber-400" : ""}`} /> Favourites only
+              </Chip>
+            </FilterGroup>
+
+            <FilterGroup label="Category">
+              <AllChip active={categories.length === 0} onClick={() => { setCategories([]); setPage(1); }} />
+              {LEAD_CATEGORIES.map((c) => (
+                <Chip key={c} active={categories.includes(c)} onClick={() => { setCategories(toggle(categories, c)); setPage(1); }}>{c}</Chip>
+              ))}
+            </FilterGroup>
+
+            <FilterGroup label="Temperature">
+              <AllChip active={temperatures.length === 0} onClick={() => { setTemperatures([]); setPage(1); }} />
+              <Chip active={temperatures.includes("hot")} onClick={() => { setTemperatures(toggle(temperatures, "hot" as LeadStatus)); setPage(1); }}>
+                <Flame className="h-3.5 w-3.5 text-[color:var(--hot,oklch(0.7_0.22_25))]" /> Hot
+              </Chip>
+              <Chip active={temperatures.includes("warm")} onClick={() => { setTemperatures(toggle(temperatures, "warm" as LeadStatus)); setPage(1); }}>
+                <span className="h-2 w-2 rounded-full bg-amber-400" /> Warm
+              </Chip>
+              <Chip active={temperatures.includes("cold")} onClick={() => { setTemperatures(toggle(temperatures, "cold" as LeadStatus)); setPage(1); }}>
+                <Snowflake className="h-3.5 w-3.5 text-sky-400" /> Cold
+              </Chip>
+            </FilterGroup>
+
+            <FilterGroup label="Intent level">
+              <AllChip active={intents.length === 0} onClick={() => { setIntents([]); setPage(1); }} />
+              {LEAD_INTENTS.map((i) => (
+                <Chip key={i} active={intents.includes(i)} onClick={() => { setIntents(toggle(intents, i)); setPage(1); }}>
+                  <IntentDot level={i} /> {i}
                 </Chip>
               ))}
             </FilterGroup>
+
+            <FilterGroup label="Country">
+              <select
+                value={country}
+                onChange={(e) => { setCountry(e.target.value); setPage(1); }}
+                className="h-9 w-full rounded-md border border-border bg-background/60 px-3 text-sm focus:border-foreground/40 focus:outline-none"
+              >
+                {LEAD_COUNTRIES.map((c) => (<option key={c} value={c}>{c}</option>))}
+              </select>
+            </FilterGroup>
+
+            <FilterGroup label="Status">
+              <AllChip active={qualifications.length === 0} onClick={() => { setQualifications([]); setPage(1); }} />
+              {LEAD_QUALIFICATIONS.map((q) => (
+                <Chip key={q} active={qualifications.includes(q)} onClick={() => { setQualifications(toggle(qualifications, q)); setPage(1); }}>
+                  <QualDot value={q} /> <span className="capitalize">{q}</span>
+                </Chip>
+              ))}
+            </FilterGroup>
+
             <FilterGroup label="Stage">
+              <AllChip active={stages.length === 0} onClick={() => { setStages([]); setPage(1); }} />
               {LEAD_STAGES.map((s) => (
                 <Chip key={s} active={stages.includes(s)} onClick={() => { setStages(toggle(stages, s)); setPage(1); }}>{s}</Chip>
               ))}
             </FilterGroup>
+
             <FilterGroup label="Owner">
+              <AllChip active={owners.length === 0} onClick={() => { setOwners([]); setPage(1); }} />
               {LEAD_OWNERS.map((o) => (
                 <Chip key={o} active={owners.includes(o)} onClick={() => { setOwners(toggle(owners, o)); setPage(1); }}>{o}</Chip>
               ))}
             </FilterGroup>
+
             <FilterGroup label={`Minimum score · ${minScore}`}>
               <input
                 type="range" min={0} max={100} step={5}
@@ -207,11 +258,20 @@ function LeadsPage() {
                 onChange={(e) => { setMinScore(Number(e.target.value)); setPage(1); }}
                 className="w-full accent-foreground"
               />
-              <div className="mt-1 flex justify-between text-[10px] text-muted-foreground"><span>0</span><span>50</span><span>100</span></div>
+              <div className="mt-1 flex w-full justify-between text-[10px] text-muted-foreground"><span>0</span><span>50</span><span>100</span></div>
+            </FilterGroup>
+
+            <FilterGroup label="Platform" full>
+              <AllChip active={platforms.length === 0} onClick={() => { setPlatforms([]); setPage(1); }} />
+              {LEAD_PLATFORMS.map((p) => (
+                <Chip key={p} active={platforms.includes(p)} onClick={() => { setPlatforms(toggle(platforms, p)); setPage(1); }}>
+                  <PlatformIcon p={p} /> <span className="capitalize">{p}</span>
+                </Chip>
+              ))}
             </FilterGroup>
           </div>
           <div className="flex items-center justify-between border-t border-border px-5 py-3">
-            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match</Mono>
+            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match · {activeFilterCount} filter{activeFilterCount === 1 ? "" : "s"} active</Mono>
             <button onClick={clearAll} className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
               <X className="h-3 w-3" /> Clear all
             </button>
