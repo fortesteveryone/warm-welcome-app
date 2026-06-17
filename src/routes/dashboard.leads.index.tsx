@@ -326,11 +326,17 @@ function NewLeadDialog({ open, onClose, onCreate }: { open: boolean; onClose: ()
           email: String(d.get("email") || ""),
           phone: String(d.get("phone") || ""),
           city: String(d.get("city") || ""),
+          country: String(d.get("country") || ""),
           website: String(d.get("website") || ""),
           tags: String(d.get("tags") || "").split(",").map((t) => t.trim()).filter(Boolean),
           about: String(d.get("about") || ""),
           dealValue: Number(d.get("dealValue") || 0),
           createdAt: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+          category: "Digital marketing",
+          intent: "Medium",
+          platform: ((d.get("source") as string) || "instagram") as Lead["platform"],
+          qualification: "unreviewed",
+          favourite: false,
         };
         onCreate(lead);
         f.reset();
