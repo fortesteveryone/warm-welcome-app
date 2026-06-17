@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[860px] px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
 }
 
 function Mono({ children, className = "" }: { children: ReactNode; className?: string }) {
