@@ -1066,7 +1066,7 @@ function Pricing() {
               To celebrate our launch, Grow By Lead is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Paid plans will be enabled in about 10–15 days. Early users keep launch pricing when billing goes live.
+              Paid plans will be enabled in about 10–15 days. Until then, every feature is free for everyone.
             </p>
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
               <a
