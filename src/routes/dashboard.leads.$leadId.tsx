@@ -26,7 +26,7 @@ export const Route = createFileRoute("/dashboard/leads/$leadId")({
     <div className="mx-auto max-w-2xl py-12 text-center text-sm text-muted-foreground">
       Lead not found.
       <div className="mt-3">
-        <Link to="/dashboard/leads" className="text-emerald-300 hover:underline">Back to all leads</Link>
+        <Link to="/dashboard/leads" className="text-foreground hover:underline">Back to all leads</Link>
       </div>
     </div>
   ),
@@ -255,7 +255,7 @@ function LeadDetailPage() {
                   {isLong && (
                     <button
                       onClick={() => setExpanded((e) => !e)}
-                      className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-300 hover:underline"
+                      className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-foreground hover:underline"
                     >
                       {expanded ? "See less" : "See more"}
                     </button>
@@ -299,7 +299,7 @@ function LeadDetailPage() {
       {/* ── Lead Details ── */}
       <Section
         title="Lead Details"
-        icon={<FileText className="h-4 w-4 text-emerald-400" />}
+        icon={<FileText className="h-4 w-4 text-foreground" />}
         open={openSections.details}
         onToggle={() => setOpenSections((s) => ({ ...s, details: !s.details }))}
       >
@@ -332,7 +332,7 @@ function LeadDetailPage() {
         <div className="lg:col-span-2">
           <Section
             title="Classification"
-            icon={<Gauge className="h-4 w-4 text-emerald-400" />}
+            icon={<Gauge className="h-4 w-4 text-foreground" />}
             open={openSections.classification}
             onToggle={() => setOpenSections((s) => ({ ...s, classification: !s.classification }))}
           >
@@ -357,13 +357,13 @@ function LeadDetailPage() {
 
         <aside className="rounded-2xl border border-border bg-card/40 p-4">
           <header className="flex items-center gap-2 border-b border-border pb-3">
-            <ListChecks className="h-4 w-4 text-emerald-400" />
+            <ListChecks className="h-4 w-4 text-foreground" />
             <h3 className="text-sm font-semibold tracking-tight">Qualification votes</h3>
           </header>
           <div className="mt-3 space-y-2">
             <VoteRow
               label="Qualified"
-              icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
+              icon={<CheckCircle2 className="h-4 w-4 text-foreground" />}
               count={vote === "qualified" ? 1 : 0}
               active={vote === "qualified"}
               onClick={() => setVote(vote === "qualified" ? null : "qualified")}
@@ -386,7 +386,7 @@ function LeadDetailPage() {
       <Section
         title="Outreach Drafts"
         badge={d.drafts.length}
-        icon={<Sparkles className="h-4 w-4 text-emerald-400" />}
+        icon={<Sparkles className="h-4 w-4 text-foreground" />}
         open={openSections.drafts}
         onToggle={() => setOpenSections((s) => ({ ...s, drafts: !s.drafts }))}
       >
@@ -482,14 +482,14 @@ function YesNoTile({
   icon, label, value, yesText, noText,
 }: { icon: React.ReactNode; label: string; value: boolean; yesText: string; noText: string }) {
   return (
-    <div className={`flex items-center gap-3 rounded-xl border p-3.5 ${value ? "border-emerald-500/30 bg-emerald-500/5" : "border-border bg-background/40"}`}>
-      <span className={`grid h-8 w-8 place-items-center rounded-md ${value ? "bg-emerald-500/15 text-emerald-300" : "bg-foreground/5 text-muted-foreground"}`}>{icon}</span>
+    <div className={`flex items-center gap-3 rounded-xl border p-3.5 ${value ? "border-foreground/30 bg-foreground/[0.04]" : "border-border bg-background/40"}`}>
+      <span className={`grid h-8 w-8 place-items-center rounded-md ${value ? "bg-foreground/10 text-foreground" : "bg-foreground/5 text-muted-foreground"}`}>{icon}</span>
       <div className="min-w-0 flex-1">
         <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
         <div className="text-sm font-medium text-foreground">{value ? yesText : noText}</div>
       </div>
       {value
-        ? <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+        ? <CheckCircle2 className="h-4 w-4 text-foreground" />
         : <XCircle className="h-4 w-4 text-muted-foreground/60" />}
     </div>
   );
@@ -561,7 +561,7 @@ function DraftCard({ index, draft }: { index: number; draft: { topic: string; su
           onClick={copy}
           className="inline-flex h-7 items-center gap-1.5 rounded-md border border-border bg-background px-2 text-xs text-muted-foreground hover:text-foreground"
         >
-          {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+          {copied ? <Check className="h-3 w-3 text-foreground" /> : <Copy className="h-3 w-3" />}
           {copied ? "Copied" : "Copy"}
         </button>
       </header>
