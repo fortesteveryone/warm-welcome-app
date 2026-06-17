@@ -1,11 +1,12 @@
 import type { ComponentType, SVGProps } from "react";
 import {
-  SiFacebook, SiLinkedin, SiInstagram, SiReddit, SiWhatsapp, SiX,
+  SiFacebook, SiInstagram, SiReddit, SiWhatsapp, SiX,
   SiYoutube, SiTiktok, SiTelegram, SiDiscord, SiSnapchat, SiPinterest,
   SiThreads, SiWechat, SiLine, SiQuora, SiMedium, SiGithub,
   SiBehance, SiDribbble, SiTwitch, SiMastodon,
 } from "react-icons/si";
-import { FaTwitter } from "react-icons/fa";
+import { FaTwitter, FaLinkedinIn } from "react-icons/fa";
+
 import { Globe } from "lucide-react";
 import type { LeadPlatform } from "@/lib/leads-data";
 
@@ -72,7 +73,7 @@ const make = (Icon: IconType, brand: string, label: string): PlatformVisual => (
 
 const PLATFORM: Record<LeadPlatform, PlatformVisual> = {
   facebook:  make(SiFacebook,  "#1877F2", "Facebook"),
-  linkedin:  make(SiLinkedin,  "#0A66C2", "LinkedIn"),
+  linkedin:  make(FaLinkedinIn, "#0A66C2", "LinkedIn"),
   instagram: make(SiInstagram, "#E4405F", "Instagram"),
   reddit:    make(SiReddit,    "#FF4500", "Reddit"),
   whatsapp:  make(SiWhatsapp,  "#25D366", "WhatsApp"),
