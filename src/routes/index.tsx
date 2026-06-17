@@ -634,7 +634,7 @@ const scoringFactors = [
   ["Budget signal", "Any mention of price, hourly rate, or budget range."],
   ["Competition", "Number of visible comments and replies at capture time."],
   ["Freshness", "How long ago the post was created — fresher leads convert better."],
-  ["Service fit", "Web, SEO, design, ads, dev — which category the request matches."],
+  ["Service fit", "Web design, development, CMS (WP / Webflow / Wix / Framer) or SEO — which one the request matches."],
 ];
 
 function Scoring() {
