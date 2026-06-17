@@ -366,7 +366,7 @@ const outOfScope = [
 function Scope() {
   return (
     <section className="section-edge section-surface-amber">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
           title={<>Built for <span className="text-muted-foreground">website &amp; digital marketing</span> service sellers.</>}
@@ -437,7 +437,7 @@ const afterLoginItems = [
 function AfterLogin() {
   return (
     <section className="section-edge section-surface-cyan">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
           title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
@@ -480,7 +480,7 @@ function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
     <section id="example" className="section-edge">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
@@ -603,7 +603,7 @@ const platforms: PlatformEntry[] = [
 function Platforms() {
   return (
     <section id="platforms" className="section-edge section-surface-blue">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => {
@@ -644,7 +644,7 @@ const scoringFactors = [
 function Scoring() {
   return (
     <section id="scoring" className="section-edge section-surface-violet">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
@@ -690,7 +690,7 @@ const dashFeatures = [
 function Dashboard() {
   return (
     <section className="section-edge section-surface-charcoal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <SectionTitle
@@ -749,7 +749,7 @@ const useCases = [
 function UseCases() {
   return (
     <section className="section-edge">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle kicker="Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map(([t, b]) => (
@@ -789,7 +789,7 @@ const countries = [
 function Coverage() {
   return (
     <section className="section-edge section-surface-amber">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
             kicker="Coverage"
@@ -825,7 +825,7 @@ function Concierge() {
   ];
   return (
     <section id="concierge" className="section-edge section-surface-signal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-3 py-1 text-xs text-[color:var(--signal)]">
@@ -928,7 +928,7 @@ function Pricing() {
   ];
   return (
     <section id="pricing" className="section-edge section-surface-charcoal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
@@ -1007,7 +1007,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section className="section-edge">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
           <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
           <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
@@ -1031,7 +1031,7 @@ function FAQ() {
 function FinalCTA() {
   return (
     <section className="section-edge section-surface-signal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
