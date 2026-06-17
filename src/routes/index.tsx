@@ -734,29 +734,32 @@ function Dashboard() {
 
 /* ---------- use cases ---------- */
 const useCases = [
-  ["Web design agencies", "Catch people asking for website design, redesign or portfolio sites — before they hit Upwork."],
-  ["SEO experts", "Posts about ranking help, local SEO and traffic recovery, surfaced as they happen."],
-  ["Social media managers", "Businesses asking for page management, content calendars and ad creatives."],
-  ["Freelancers", "Get to fresh service-request posts before the comments fill up."],
-  ["Outreach teams", "Structured lead data + drafts means faster, cleaner first contact."],
-  ["Lead-gen agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
+  "Web design agencies",
+  "Freelance web designers",
+  "Webflow / WordPress developers",
+  "Wix & Framer studios",
+  "SEO experts & consultants",
+  "Local SEO agencies",
+  "Lead-gen agencies",
+  "Outreach teams",
 ];
 
 function UseCases() {
   return (
     <section className="section-edge">
-      <Container className="py-16 md:py-20">
-        <SectionTitle kicker="Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {useCases.map(([t, b]) => (
-            <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
-              <h3 className="text-base font-semibold tracking-tight">{t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b}</p>
-              <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm text-foreground hover:gap-1.5 transition-all">
-                Learn more <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          ))}
+      <Container className="py-12 md:py-16">
+        <div className="flex flex-col items-center text-center">
+          <Mono className="text-muted-foreground">Who uses it</Mono>
+          <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
+            Built for people selling <span className="text-muted-foreground">website &amp; SEO</span> services.
+          </h3>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
+            {useCases.map((t) => (
+              <span key={t} className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-foreground/85">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
