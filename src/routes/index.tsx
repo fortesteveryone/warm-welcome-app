@@ -921,16 +921,17 @@ function Concierge() {
 
 /* ---------- pricing ---------- */
 function Pricing() {
+  const [showLaunchModal, setShowLaunchModal] = useState(false);
   const plans = [
     {
       name: "Day pass", price: "$10", cadence: "/ day", desc: "Try a full day of fresh leads — no subscription.",
       features: ["1 day of full lead access", "Facebook, LinkedIn, Reddit", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
-      cta: "Start day pass", featured: false,
+      cta: "Free during launch", featured: false,
     },
     {
       name: "Monthly", price: "$20", cadence: "/ month", desc: "For freelancers and small teams shipping outreach daily.",
       features: ["High-volume monthly lead access", "All live platforms", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
-      cta: "Get early access", featured: true,
+      cta: "Free during launch", featured: true,
     },
     {
       name: "VIP · Hot leads", price: "Soon", cadence: "", desc: "Hand-picked hot leads delivered to your Gmail in real time. Launching soon.",
@@ -940,7 +941,7 @@ function Pricing() {
     {
       name: "Agency", price: "Custom", cadence: "", desc: "For agencies running outreach for multiple clients.",
       features: ["Everything in Monthly", "Multiple workspaces", "Team seats", "API access (beta)", "Webhook delivery", "Onboarding session"],
-      cta: "Talk to us", featured: false,
+      cta: "Free during launch", featured: false,
     },
   ];
   return (
@@ -952,6 +953,10 @@ function Pricing() {
             Early access pricing <span className="text-muted-foreground">for launch users.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
+          <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
+            <Sparkles className="h-3.5 w-3.5" />
+            Launch offer — 100% free for everyone. Just create an account.
+          </div>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {plans.map((p) => (
@@ -977,8 +982,11 @@ function Pricing() {
               )}
               <Mono className="text-muted-foreground">{p.name}</Mono>
               <div className="mt-4 flex items-baseline gap-1.5">
-                <span className="text-5xl font-semibold tracking-[-0.03em]">{p.price}</span>
+                <span className={`text-5xl font-semibold tracking-[-0.03em] ${!((p as { soon?: boolean }).soon) ? "text-muted-foreground/60 line-through decoration-[color:var(--signal)]/60 decoration-2" : ""}`}>{p.price}</span>
                 <span className="text-sm text-muted-foreground">{p.cadence}</span>
+                {!((p as { soon?: boolean }).soon) && (
+                  <span className="ml-1 rounded-full bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">Free now</span>
+                )}
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
               <ul className="mt-6 space-y-2.5">
@@ -994,8 +1002,9 @@ function Pricing() {
                   {p.cta}
                 </span>
               ) : (
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchModal(true)}
                   className={`mt-8 inline-flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium transition ${
                     p.featured
                       ? "bg-foreground text-background hover:bg-foreground/90"
@@ -1003,12 +1012,57 @@ function Pricing() {
                   }`}
                 >
                   {p.cta} <ArrowRight className="h-3.5 w-3.5" />
-                </a>
+                </button>
               )}
             </div>
           ))}
         </div>
       </Container>
+      {showLaunchModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 px-4 backdrop-blur-sm"
+          onClick={() => setShowLaunchModal(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-2xl border border-border bg-card p-7 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setShowLaunchModal(false)}
+              className="absolute right-4 top-4 rounded-md p-1 text-muted-foreground hover:bg-background hover:text-foreground"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
+              <Sparkles className="h-3 w-3" /> Launch offer
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">No payment needed — yet.</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              To celebrate our launch, Grow By Lead is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Paid plans will be enabled in about 10–15 days. Early users keep launch pricing when billing goes live.
+            </p>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+              <a
+                href="#"
+                className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background hover:bg-foreground/90"
+              >
+                Create free account <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowLaunchModal(false)}
+                className="inline-flex items-center justify-center rounded-md border border-border bg-background px-4 py-2.5 text-sm font-medium hover:bg-card"
+              >
+                Maybe later
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
