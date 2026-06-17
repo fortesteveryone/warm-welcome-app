@@ -145,6 +145,47 @@ function InboxPage() {
           </div>
         </div>
       </Panel>
+
+      <FormDialog
+        open={composeOpen}
+        onClose={() => setComposeOpen(false)}
+        title="New conversation"
+        submitLabel="Start thread"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const name = String(d.get("name") || "").trim();
+          const preview = String(d.get("preview") || "").trim();
+          if (!name || !preview) return;
+          const id = Math.max(0, ...threads.map((x) => x.id)) + 1;
+          const th: Thread = {
+            id,
+            name,
+            company: String(d.get("company") || ""),
+            preview,
+            time: "now",
+            unread: true,
+            starred: false,
+            tone: (d.get("tone") as Thread["tone"]) || "warm",
+          };
+          setThreads((cur) => [th, ...cur]);
+          setActive(id);
+          setComposeOpen(false);
+          f.reset();
+        }}
+      >
+        <div className={gridCls}>
+          <Field label="To (name)"><input name="name" required className={fieldCls} /></Field>
+          <Field label="Company"><input name="company" className={fieldCls} /></Field>
+          <Field label="Tone">
+            <select name="tone" className={fieldCls} defaultValue="warm">
+              <option value="hot">hot</option><option value="warm">warm</option><option value="cold">cold</option>
+            </select>
+          </Field>
+        </div>
+        <Field label="Message"><textarea name="preview" required className={textareaCls} placeholder="Write your opening message…" /></Field>
+      </FormDialog>
     </div>
   );
 }
