@@ -272,7 +272,7 @@ function LogoStrip() {
 /* ---------- capture (bento) ---------- */
 function Capture() {
   return (
-    <section id="capture" className="section-edge">
+    <section id="capture" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle
           kicker="01 / What we capture"
@@ -461,7 +461,7 @@ function ExampleLead() {
 /* ---------- before / after ---------- */
 function BeforeAfter() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="03 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
@@ -546,7 +546,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge">
+    <section id="scoring" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -621,7 +621,7 @@ const dashFeatures = [
 
 function Dashboard() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
@@ -708,7 +708,7 @@ const reviewChecks = [
 
 function Review() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <SectionTitle
@@ -770,7 +770,7 @@ const categories = [
 
 function Categories() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="11 / Categories" title={<>Service categories <span className="text-muted-foreground">we classify.</span></>} />
         <div className="mt-10 flex flex-wrap gap-2">
@@ -850,7 +850,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge">
+    <section id="pricing" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="text-center">
           <Mono className="text-muted-foreground">13 / Pricing</Mono>
@@ -942,7 +942,7 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
