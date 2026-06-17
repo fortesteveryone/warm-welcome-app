@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
-  LayoutDashboard, Users, UserPlus, GitBranch, Send, BarChart3, Settings,
+  LayoutDashboard, Users, UserPlus, GitBranch, Send, Settings,
   Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
