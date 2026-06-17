@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Send, Paperclip, Star, Archive, Reply, Search } from "lucide-react";
+import { Send, Paperclip, Star, Archive, Reply, Search, PenSquare } from "lucide-react";
 import { PageHeader, Panel, Avatar, Badge, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
 
 export const Route = createFileRoute("/dashboard/inbox")({
   component: InboxPage,
