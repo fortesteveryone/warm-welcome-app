@@ -61,12 +61,12 @@ function LeadsPage() {
         case "score": cmp = a.score - b.score; break;
         case "stage": cmp = stageRank(a.stage) - stageRank(b.stage); break;
         case "owner": cmp = a.owner.localeCompare(b.owner); break;
-        case "updated": cmp = LEADS.indexOf(a) - LEADS.indexOf(b); break;
+        case "updated": cmp = leads.indexOf(a) - leads.indexOf(b); break;
       }
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [query, status, sources, stages, owners, minScore, sortKey, sortDir]);
+  }, [leads, query, status, sources, stages, owners, minScore, sortKey, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
