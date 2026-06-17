@@ -56,7 +56,7 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 function BlogDetail() {
-  const { post, related } = Route.useLoaderData();
+  const { post, related } = Route.useLoaderData() as { post: BlogPost; related: BlogPost[] };
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : `https://growbylead.com/blog/${post.slug}`;
   const enc = encodeURIComponent;
