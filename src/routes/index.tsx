@@ -933,9 +933,9 @@ function Pricing() {
       cta: "Get early access", featured: true,
     },
     {
-      name: "VIP · Hot leads", price: "$30", cadence: "/ month", desc: "Hand-picked hot leads delivered to your Gmail in real time.",
+      name: "VIP · Hot leads", price: "Soon", cadence: "", desc: "Hand-picked hot leads delivered to your Gmail in real time. Launching soon.",
       features: ["Manually filtered hot leads", "Real-time Gmail delivery", "Dedicated Hot Leads dashboard", "Priority over standard queue", "All Monthly features included", "Concierge support"],
-      cta: "Become VIP", featured: false, vip: true,
+      cta: "Coming soon", featured: false, vip: true, soon: true,
     },
     {
       name: "Agency", price: "Custom", cadence: "", desc: "For agencies running outreach for multiple clients.",
