@@ -133,7 +133,7 @@ function PipelinePage() {
                     </div>
                   </div>
                 ))}
-                <button className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-border py-2 text-xs text-muted-foreground hover:bg-card hover:text-foreground">
+                <button onClick={() => setAddOpen(stage)} className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-border py-2 text-xs text-muted-foreground hover:bg-card hover:text-foreground">
                   <Plus className="h-3.5 w-3.5" /> Add deal
                 </button>
               </div>
@@ -141,6 +141,57 @@ function PipelinePage() {
           );
         })}
       </div>
+
+      <FormDialog
+        open={!!addOpen}
+        onClose={() => setAddOpen(false)}
+        title={`New deal${addOpen ? ` · ${addOpen}` : ""}`}
+        submitLabel="Create deal"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const title = String(d.get("title") || "").trim();
+          if (!title) return;
+          const deal: Deal = {
+            stage: String(d.get("stage") || addOpen || "New"),
+            title,
+            company: String(d.get("company") || ""),
+            value: Number(d.get("value") || 0),
+            owner: String(d.get("owner") || OWNERS[0]),
+            due: String(d.get("due") || "—"),
+            tone: (d.get("tone") as Deal["tone"]) || undefined,
+          };
+          setDeals((cur) => [deal, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <Field label="Deal title"><input name="title" required className={fieldCls} placeholder="Brand revamp…" /></Field>
+        <div className={gridCls}>
+          <Field label="Company"><input name="company" className={fieldCls} /></Field>
+          <Field label="Value ($)"><input name="value" type="number" min={0} step={100} defaultValue={5000} className={fieldCls} /></Field>
+          <Field label="Stage">
+            <select name="stage" className={fieldCls} defaultValue={addOpen || "New"}>
+              {STAGES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </Field>
+          <Field label="Owner">
+            <select name="owner" className={fieldCls} defaultValue={OWNERS[0]}>
+              {OWNERS.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </Field>
+          <Field label="Due">
+            <input name="due" className={fieldCls} placeholder="Sep 12" />
+          </Field>
+          <Field label="Tone">
+            <select name="tone" className={fieldCls} defaultValue="">
+              <option value="">—</option>
+              <option value="hot">hot</option><option value="warm">warm</option><option value="cold">cold</option>
+            </select>
+          </Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }
