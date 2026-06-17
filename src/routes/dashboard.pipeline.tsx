@@ -34,18 +34,20 @@ const STAGES = Object.keys(STAGE_META);
 const OWNERS = ["Nasir", "Sara", "Mei"];
 
 function PipelinePage() {
+  const [deals, setDeals] = useState<Deal[]>(INITIAL_DEALS);
   const [query, setQuery] = useState("");
   const [owner, setOwner] = useState<string>("all");
   const [minValue, setMinValue] = useState(0);
+  const [addOpen, setAddOpen] = useState<false | string>(false); // stage name or false
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return ALL_DEALS.filter((d) =>
+    return deals.filter((d) =>
       (owner === "all" || d.owner === owner) &&
       d.value >= minValue &&
       (!q || d.title.toLowerCase().includes(q) || d.company.toLowerCase().includes(q))
     );
-  }, [query, owner, minValue]);
+  }, [deals, query, owner, minValue]);
 
   const total = filtered.reduce((a, d) => a + d.value, 0);
   const wonValue = filtered.filter((d) => d.stage === "Closed-Won").reduce((a, d) => a + d.value, 0);
@@ -59,7 +61,7 @@ function PipelinePage() {
         title="Deal pipeline"
         description="Drag-style kanban view (demo) — 5 stages across all active deals."
         actions={
-          <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+          <button onClick={() => setAddOpen("New")} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
             <Plus className="h-3.5 w-3.5" /> New deal
           </button>
         }
