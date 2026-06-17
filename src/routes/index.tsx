@@ -261,11 +261,11 @@ function Hero() {
 }
 
 const sampleLeads = [
-  { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot", service: "Web Dev", comp: "Low", ago: "12m" },
-  { title: "Looking for SEO expert — local plumbing business", platform: "Reddit", temp: "Warm", service: "SEO", comp: "Medium", ago: "38m" },
-  { title: "Need help managing our Instagram for restaurant", platform: "Facebook", temp: "Warm", service: "SMM", comp: "Low", ago: "1h" },
-  { title: "Shopify store redesign — budget $2k", platform: "LinkedIn", temp: "Hot", service: "E-com", comp: "Medium", ago: "2h" },
-  { title: "Anyone do landing pages for SaaS launch?", platform: "Reddit", temp: "Cold", service: "Landing", comp: "High", ago: "4h" },
+  { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
+  { title: "Looking for SEO expert — local plumbing business",   platform: "Reddit",   temp: "Warm", service: "SEO",     comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
+  { title: "Need help managing our Instagram for restaurant",    platform: "Instagram",temp: "Warm", service: "SMM",     comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
+  { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
+  { title: "Anyone do landing pages for SaaS launch?",           platform: "Twitter",  temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
 ] as const;
 
 function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
@@ -277,7 +277,9 @@ function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boole
         <Tag tone={toneByTemp[l.temp]}>{l.temp}</Tag>
       </div>
       <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
-        <span>{l.platform}</span><span>·</span><span>{l.service}</span><span>·</span><span>{l.comp} comp</span>
+        <PlatformBadge name={l.platform} className="h-3 w-3" />
+        <span>·</span>
+        <span className="inline-flex items-center gap-1"><span aria-hidden>{l.flag}</span>{l.country}</span>
         <span className="ml-auto font-mono">{l.ago}</span>
       </div>
     </div>
@@ -291,19 +293,35 @@ function PreviewDetail() {
         <Tag tone="hot">● Hot</Tag>
         <Tag tone="signal">High intent</Tag>
         <Tag>Low competition</Tag>
-        <Tag>Facebook</Tag>
+        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2 py-0.5 text-[11px] font-medium">
+          <span style={{ color: PLATFORM_META.Facebook.color }}><Facebook className="h-3 w-3" fill="currentColor" strokeWidth={0} /></span>
+          Facebook
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2 py-0.5 text-[11px]">
+          🇧🇩 Bangladesh
+        </span>
       </div>
       <h3 className="mt-3 text-base font-semibold leading-tight tracking-tight">Paid portfolio website developer needed for updates</h3>
       <p className="mt-1.5 text-sm text-muted-foreground">
         Khansa Maroof is looking for a developer to update a portfolio website and mentioned good payment.
       </p>
-      <div className="mt-3 grid grid-cols-2 gap-1.5 text-xs">
-        {[["Service", "Portfolio updates"], ["Channel", "Social DM"], ["Comments", "8 visible"], ["Posted", "12m ago"]].map(([k, v]) => (
-          <div key={k} className="rounded-md border border-border bg-card/40 px-2.5 py-1.5">
-            <Mono className="text-muted-foreground">{k}</Mono>
-            <div className="mt-0.5 text-foreground">{v}</div>
-          </div>
-        ))}
+      <div className="mt-3 grid grid-cols-3 gap-1.5 text-xs">
+        {[
+          ["Reactions", "6", Heart],
+          ["Comments", "8", MessageCircle],
+          ["Shares", "—", Share2],
+        ].map(([k, v, I]) => {
+          const Ico = I as React.ComponentType<{ className?: string }>;
+          return (
+            <div key={k as string} className="rounded-md border border-border bg-card/40 px-2.5 py-1.5">
+              <div className="flex items-center gap-1 text-muted-foreground">
+                <Ico className="h-3 w-3" />
+                <Mono>{k as string}</Mono>
+              </div>
+              <div className="mt-0.5 text-foreground">{v as string}</div>
+            </div>
+          );
+        })}
       </div>
       <div className="mt-3 rounded-md border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-3 text-xs">
         <Mono className="text-[color:var(--signal)]">Recommended action</Mono>
