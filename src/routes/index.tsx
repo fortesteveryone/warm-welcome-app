@@ -734,12 +734,12 @@ function Review() {
 
 /* ---------- use cases ---------- */
 const useCases = [
-  ["Web design agencies", "Find people asking for website design, redesign, portfolio sites and business websites — before they hit Upwork."],
-  ["SEO experts", "Surface posts asking for ranking help, local SEO, traffic recovery and Google visibility issues."],
-  ["Social media managers", "Catch businesses asking for page management, content calendars and ad creatives."],
-  ["Freelancers", "Get to fresh service-request posts before the comments fill up and competition spikes."],
-  ["Cold outreach teams", "Use structured lead data and outreach drafts to contact faster, with cleaner context."],
-  ["Lead generation agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
+  ["Web design agencies", "Catch people asking for website design, redesign or portfolio sites — before they hit Upwork."],
+  ["SEO experts", "Posts about ranking help, local SEO and traffic recovery, surfaced as they happen."],
+  ["Social media managers", "Businesses asking for page management, content calendars and ad creatives."],
+  ["Freelancers", "Get to fresh service-request posts before the comments fill up."],
+  ["Outreach teams", "Structured lead data + drafts means faster, cleaner first contact."],
+  ["Lead-gen agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
 ];
 
 function UseCases() {
