@@ -267,7 +267,7 @@ function Overview() {
               {TASKS.map((t) => (
                 <li key={t.text} className="flex items-start gap-3 px-5 py-3">
                   {t.done ? (
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-400" />
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-[color:var(--signal)]" />
                   ) : (
                     <span className="mt-0.5 h-4 w-4 rounded-full border border-border" />
                   )}
