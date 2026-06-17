@@ -1,12 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
 import {
-  ArrowLeft, Mail, Phone, MapPin, Globe, Building2, Calendar, User,
-  Instagram, Linkedin, Facebook, MessageSquare, PhoneCall, CalendarPlus,
-  Edit3, MoreHorizontal, CheckCircle2, Circle, Send, Paperclip,
-  TrendingUp, Tag,
+  ArrowLeft, Quote, Zap, MessageSquare, Heart, Share2, TrendingUp, Clock,
+  Star, ExternalLink, ChevronDown, ChevronUp, ClipboardList, AlertTriangle,
+  Sparkles, ListChecks, Smartphone, Globe2, FileText, Send,
+  Briefcase, FileSignature, Users, Gauge, Lightbulb, Copy, Check,
+  CheckCircle2, XCircle, Instagram, Linkedin, Facebook, Youtube, Twitter,
+  Github, MessageCircle, Send as SendIcon, Hash, ArrowLeftRight,
 } from "lucide-react";
-import { PageHeader, Panel, Badge, Avatar, Mono, Stat } from "@/components/dashboard/dash-ui";
-import { getLeadById, type LeadSource } from "@/lib/leads-data";
+import { getLeadById, type Lead, type LeadPlatform } from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads/$leadId")({
   loader: ({ params }) => {
@@ -21,257 +23,537 @@ export const Route = createFileRoute("/dashboard/leads/$leadId")({
     ],
   }),
   notFoundComponent: () => (
-    <div className="space-y-4">
-      <Link to="/dashboard/leads" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-3.5 w-3.5" /> Back to leads
-      </Link>
-      <Panel><div className="p-8 text-center text-sm text-muted-foreground">Lead not found.</div></Panel>
+    <div className="mx-auto max-w-2xl py-12 text-center text-sm text-muted-foreground">
+      Lead not found.
+      <div className="mt-3">
+        <Link to="/dashboard/leads" className="text-emerald-300 hover:underline">Back to all leads</Link>
+      </div>
     </div>
   ),
   errorComponent: ({ error, reset }) => (
-    <Panel><div className="p-8 text-center text-sm text-muted-foreground">
-      {String(error)}
-      <button onClick={reset} className="ml-2 underline">retry</button>
-    </div></Panel>
+    <div className="mx-auto max-w-2xl py-12 text-center text-sm text-muted-foreground">
+      {String(error)} <button onClick={reset} className="ml-2 underline">retry</button>
+    </div>
   ),
   component: LeadDetailPage,
 });
 
-const sourceIcon = (s: LeadSource) =>
-  s === "instagram" ? <Instagram className="h-3.5 w-3.5 text-rose-400" /> :
-  s === "linkedin" ? <Linkedin className="h-3.5 w-3.5 text-sky-400" /> :
-  <Facebook className="h-3.5 w-3.5 text-indigo-400" />;
+/* ─────────────────────── derive view-model from existing fields ─────────────────────── */
 
-const ACTIVITY = [
-  { type: "message", channel: "Instagram DM", title: "Reply received", body: "Sounds good — can we set up a call next week? Tuesday morning works.", at: "2m ago" },
-  { type: "email", channel: "Email", title: "Proposal sent", body: "Sent the customized proposal with the Growth plan tier and onboarding timeline.", at: "1d ago" },
-  { type: "call", channel: "Phone", title: "Discovery call · 28 min", body: "Walked through current outreach pain points. Lead confirmed ~$15K monthly ad spend across IG + LinkedIn.", at: "3d ago" },
-  { type: "stage", channel: "Pipeline", title: "Moved to Negotiation", body: "Stage changed from Proposal to Negotiation by Nasir.", at: "3d ago" },
-  { type: "note", channel: "Internal note", title: "Sara added a note", body: "Decision maker is the founder. Wants to launch before Q3.", at: "5d ago" },
-  { type: "source", channel: "Source", title: "Lead captured", body: "Captured from Instagram comment on @growbylead post.", at: "12d ago" },
-];
+const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe2>> = {
+  facebook: Facebook, linkedin: Linkedin, instagram: Instagram, twitter: Twitter,
+  x: Twitter, youtube: Youtube, github: Github, whatsapp: MessageCircle,
+  telegram: SendIcon, discord: MessageCircle, threads: Hash, reddit: MessageCircle,
+  other: Globe2,
+};
+function PlatformGlyph({ p, className = "h-3.5 w-3.5" }: { p: LeadPlatform; className?: string }) {
+  const I = PLATFORM_LUCIDE[p];
+  return I ? <I className={className} /> : <Globe2 className={className} />;
+}
 
-const TASKS = [
-  { title: "Send onboarding doc", due: "Today", done: false },
-  { title: "Follow up on proposal", due: "Tomorrow", done: false },
-  { title: "Schedule kickoff call", due: "Fri", done: false },
-  { title: "Send intro deck", due: "Yesterday", done: true },
-];
+type Derived = {
+  tempLabel: "Hot lead" | "Warm lead" | "Cold lead";
+  tempCls: string;
+  qualLabel: string;
+  qualCls: string;
+  urgency: "High" | "Medium" | "Low";
+  urgencyCls: string;
+  competition: "High" | "Medium" | "Low";
+  competitionCls: string;
+  competitionReason: string;
+  nextAction: string;
+  reactions: number;
+  shares: number;
+  locationConf: "High" | "Medium" | "Low";
+  postType: string;
+  channel: string;
+  portfolioReq: boolean;
+  proposalReq: boolean;
+  handle: string;
+  drafts: { topic: string; subject: string; message: string }[];
+};
 
-const DEALS = [
-  { name: "Growth plan · annual", value: "$12,500", stage: "Negotiation", prob: 70 },
-  { name: "Onboarding services", value: "$2,400", stage: "Proposal", prob: 50 },
-];
+function derive(lead: Lead): Derived {
+  const temp =
+    lead.status === "hot"  ? { tempLabel: "Hot lead"  as const, tempCls: "border-rose-500/40 bg-rose-500/10 text-rose-200" } :
+    lead.status === "warm" ? { tempLabel: "Warm lead" as const, tempCls: "border-amber-500/40 bg-amber-500/10 text-amber-200" } :
+                              { tempLabel: "Cold lead" as const, tempCls: "border-sky-500/40 bg-sky-500/10 text-sky-200" };
+
+  const qual = lead.qualification === "qualified"
+    ? { qualLabel: "Qualified", qualCls: "border-emerald-500/40 bg-emerald-500/10 text-emerald-200" }
+    : lead.qualification === "disqualified"
+    ? { qualLabel: "Disqualified", qualCls: "border-rose-500/40 bg-rose-500/10 text-rose-200" }
+    : { qualLabel: "Unreviewed", qualCls: "border-border bg-background/60 text-muted-foreground" };
+
+  const urgency = lead.intent;
+  const urgencyCls =
+    urgency === "High"   ? "border-rose-500/40 bg-rose-500/10 text-rose-200" :
+    urgency === "Medium" ? "border-amber-500/40 bg-amber-500/10 text-amber-200" :
+                            "border-sky-500/40 bg-sky-500/10 text-sky-200";
+
+  const competition: "High" | "Medium" | "Low" =
+    lead.comments >= 10 ? "High" : lead.comments >= 4 ? "Medium" : "Low";
+  const competitionCls =
+    competition === "High"   ? "border-rose-500/40 bg-rose-500/10 text-rose-200" :
+    competition === "Medium" ? "border-amber-500/40 bg-amber-500/10 text-amber-200" :
+                                "border-emerald-500/40 bg-emerald-500/10 text-emerald-200";
+  const competitionReason =
+    lead.comments === 0
+      ? "No replies on the original post yet — you'd likely be the first to reach out."
+      : `The post has ${lead.comments} visible comments, showing some active interest from other ${lead.category.toLowerCase()} providers.`;
+
+  const nextAction =
+    `Contact ${lead.name.split(" ")[0]} with relevant ${lead.category.toLowerCase()} experience, reference what they wrote in the post, and ask about budget, timeline and how they want to be contacted on ${lead.platform}.`;
+
+  const handle =
+    "@" + lead.name.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 14) +
+    String((lead.score * 7) % 999).padStart(3, "0");
+
+  const reactions = Math.max(0, Math.round(lead.score / 12) + (lead.favourite ? 4 : 0));
+  const shares = Math.max(0, Math.round(lead.score / 30));
+
+  const locationConf: "High" | "Medium" | "Low" =
+    lead.country === "All" || !lead.country ? "Low" : lead.city ? "High" : "Medium";
+
+  const postType =
+    lead.category === "SaaS" || lead.category === "E-commerce"
+      ? "Tooling / product request"
+      : "Service requirement post";
+
+  const channel =
+    lead.platform === "linkedin" ? "LinkedIn InMail" :
+    lead.platform === "instagram" ? "Instagram DM" :
+    lead.platform === "facebook"  ? "Facebook Messenger" :
+    lead.platform === "reddit"    ? "Reddit chat" :
+    lead.platform === "youtube"   ? "YouTube about-page email" :
+    lead.platform === "twitter" || lead.platform === "x" ? "X DM" :
+    "Social media message";
+
+  const portfolioReq = /portfolio|design|video|website|graphic/i.test(lead.category) || lead.score > 70;
+  const proposalReq  = lead.stage === "Proposal" || lead.stage === "Negotiation";
+
+  const first = lead.name.split(" ")[0];
+  const drafts = [
+    {
+      topic: `${lead.category} fit for ${lead.company}`,
+      subject: `${lead.category} support for ${lead.company}`,
+      message:
+        `Hi ${first}, I saw your post about looking for a ${lead.category.toLowerCase()} for ${lead.company}. ` +
+        `I work with ${lead.category.toLowerCase().includes("market") ? "founder-led teams" : "small teams"} on exactly this kind of project. ` +
+        `Could you share the timeline, the main goals for the first month, and how you'd prefer we keep in touch?`,
+    },
+    {
+      topic: "Long-term partnership angle",
+      subject: `Long-term ${lead.category.toLowerCase()} partner`,
+      message:
+        `Hi ${first}, I noticed you're looking for someone who can grow with ${lead.company} long-term. ` +
+        `I'd love to learn a bit more about the role, expected workload and what success looks like in 90 days — ` +
+        `happy to share a few relevant samples first if that's easier.`,
+    },
+    {
+      topic: `${lead.platform} audience focus`,
+      subject: `${lead.category} ideas for your ${lead.platform} audience`,
+      message:
+        `Hi ${first}, your ${lead.platform} presence stands out — I can help shape ${lead.category.toLowerCase()} ideas that fit how ${lead.company}'s audience already engages there. ` +
+        `Want me to send over 2–3 starter concepts and a short plan for the first two weeks?`,
+    },
+  ];
+
+  return {
+    ...temp, ...qual, urgency, urgencyCls, competition, competitionCls, competitionReason, nextAction,
+    reactions, shares, locationConf, postType, channel, portfolioReq, proposalReq, handle, drafts,
+  };
+}
+
+/* ─────────────────────── page ─────────────────────── */
 
 function LeadDetailPage() {
   const { lead } = Route.useLoaderData();
+  const d = derive(lead);
+  const [favourite, setFavourite] = useState<boolean>(lead.favourite);
+  const [vote, setVote] = useState<"qualified" | "disqualified" | null>(
+    lead.qualification === "qualified" ? "qualified" :
+    lead.qualification === "disqualified" ? "disqualified" : null,
+  );
+  const [expanded, setExpanded] = useState(false);
+  const [openSections, setOpenSections] = useState({ details: true, classification: true, drafts: true });
+  const fullText = `${lead.headline} ${lead.about}`;
+  const isLong = fullText.length > 220;
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-[1100px] space-y-5">
       <Link to="/dashboard/leads" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-3.5 w-3.5" /> Back to leads
+        <ArrowLeft className="h-3.5 w-3.5" /> All leads
       </Link>
 
-      <PageHeader
-        kicker="Lead"
-        title={lead.name}
-        description={`${lead.role} · ${lead.company}`}
-        actions={
-          <>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
-              <Edit3 className="h-3.5 w-3.5" /> Edit
+      {/* ── Hero quote card ── */}
+      <section className="rounded-2xl border border-border bg-card/40 p-5">
+        <header className="flex flex-wrap items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${d.tempCls}`}>
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+            {d.tempLabel}
+          </span>
+          <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] ${d.qualCls}`}>
+            <ArrowLeftRight className="h-3 w-3" /> {d.qualLabel}
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
+            <PlatformGlyph p={lead.platform} className="h-3 w-3" />
+            <span className="capitalize">{lead.platform}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
+            <Globe2 className="h-3 w-3" /> {lead.country}
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
+            <Briefcase className="h-3 w-3" /> {lead.category}
+            <span className="text-muted-foreground/60">›</span>
+            <span className="text-foreground/80">{lead.topic}</span>
+          </span>
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              onClick={() => setFavourite((f) => !f)}
+              className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <Star className={`h-3.5 w-3.5 ${favourite ? "fill-amber-400 text-amber-400" : ""}`} />
+              {favourite ? "Saved" : "Save"}
             </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
-              <PhoneCall className="h-3.5 w-3.5" /> Call
-            </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
-              <Send className="h-3.5 w-3.5" /> Message
-            </button>
-            <button className="grid h-9 w-9 place-items-center rounded-md border border-border bg-card/50 hover:bg-card" aria-label="More">
-              <MoreHorizontal className="h-4 w-4" />
-            </button>
-          </>
-        }
-      />
-
-      {/* Identity card */}
-      <Panel>
-        <div className="flex flex-wrap items-start gap-5 p-5">
-          <Avatar name={lead.name} className="h-16 w-16 text-base" />
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-lg font-semibold tracking-tight">{lead.name}</h2>
-              <Badge tone={lead.status}>{lead.status}</Badge>
-              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                {sourceIcon(lead.source)} <span className="capitalize">{lead.source}</span>
-              </span>
-            </div>
-            <p className="mt-1 text-sm text-muted-foreground">{lead.about}</p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {lead.tags.map((t: string) => (<Badge key={t} tone="muted"><Tag className="h-2.5 w-2.5" />{t}</Badge>))}
-            </div>
+            <a
+              href={`https://${lead.website}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <ExternalLink className="h-3.5 w-3.5" /> Source
+            </a>
           </div>
-          <div className="flex items-center gap-3 rounded-lg border border-border bg-card/50 px-4 py-3">
-            <div>
-              <Mono className="text-muted-foreground">Lead score</Mono>
-              <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-2xl font-semibold">{lead.score}</span>
-                <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
-              </div>
-            </div>
-            <div className="h-10 w-px bg-border" />
-            <div className="h-12 w-1.5 overflow-hidden rounded-full bg-card">
-              <div className={`h-full ${lead.score > 75 ? "bg-emerald-500" : lead.score > 50 ? "bg-amber-500" : "bg-sky-500"}`} style={{ width: "100%", height: `${lead.score}%` }} />
-            </div>
+        </header>
+
+        {/* Quote */}
+        <div className="mt-4 flex gap-3">
+          <Quote className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
+          <div className="min-w-0">
+            <p className={`text-[15px] leading-relaxed text-foreground/90 ${expanded || !isLong ? "" : "line-clamp-3"}`}>
+              {lead.headline}{lead.about ? ` ${lead.about}` : ""}
+            </p>
+            {isLong && (
+              <button
+                onClick={() => setExpanded((e) => !e)}
+                className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-300 hover:underline"
+              >
+                {expanded ? "See less" : "See more"}
+              </button>
+            )}
           </div>
         </div>
-      </Panel>
 
-      {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Deal value" value={`$${lead.dealValue.toLocaleString()}`} delta="+8% vs avg" />
-        <Stat label="Stage" value={lead.stage} delta={`Owner · ${lead.owner}`} trend="flat" />
-        <Stat label="Touchpoints" value="14" delta="6 in last 7d" />
-        <Stat label="Last activity" value={lead.updated} delta="Reply received" />
+        {/* Topic pill */}
+        <div className="mt-4">
+          <span className="inline-flex items-center gap-2 rounded-lg bg-background/60 px-3 py-2 text-sm ring-1 ring-border">
+            <Zap className="h-3.5 w-3.5 text-emerald-400" /> {lead.topic}
+          </span>
+        </div>
+
+        {/* Stat tiles */}
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <StatBlock icon={<MessageSquare className="h-4 w-4 text-sky-300" />} value={lead.comments} label="Comments" tone="sky" />
+          <StatBlock icon={<Heart className="h-4 w-4 text-rose-300" />} value={d.reactions} label="Reactions" tone="rose" />
+          <StatBlock icon={<Share2 className="h-4 w-4 text-indigo-300" />} value={d.shares} label="Shares" tone="indigo" />
+          <StatBlock icon={<TrendingUp className="h-4 w-4 text-emerald-300" />} value={lead.intent} label="Intent" tone="emerald" />
+        </div>
+
+        {/* Footer meta */}
+        <footer className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> {lead.postedAt}</span>
+          <span className="inline-flex items-center gap-1.5">
+            <span className="grid h-5 w-5 place-items-center rounded-full bg-foreground/10 text-[10px] font-semibold uppercase text-foreground">
+              {d.handle[1]}
+            </span>
+            {d.handle}
+          </span>
+          <span className="ml-auto inline-flex items-center gap-1.5">
+            Owner · <span className="text-foreground">{lead.owner}</span>
+          </span>
+        </footer>
+      </section>
+
+      {/* ── Lead Details ── */}
+      <Section
+        title="Lead Details"
+        icon={<FileText className="h-4 w-4 text-emerald-400" />}
+        open={openSections.details}
+        onToggle={() => setOpenSections((s) => ({ ...s, details: !s.details }))}
+      >
+        <div className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-4">
+          <FactTile icon={<Smartphone className="h-4 w-4 text-emerald-300" />} label="Platform preference" value={cap(lead.platform)} />
+          <FactTile icon={<Globe2 className="h-4 w-4 text-emerald-300" />} label="Location confidence" value={d.locationConf} sub={lead.city || lead.country} />
+          <FactTile icon={<FileText className="h-4 w-4 text-emerald-300" />} label="Post type" value={d.postType} />
+          <FactTile icon={<Send className="h-4 w-4 text-emerald-300" />} label="Best outreach channel" value={d.channel} />
+        </div>
+        <div className="grid gap-3 px-4 pb-4 sm:grid-cols-2">
+          <YesNoTile
+            icon={<Briefcase className="h-4 w-4" />}
+            label="Portfolio requested"
+            value={d.portfolioReq}
+            yesText="Portfolio expected"
+            noText="Not requested"
+          />
+          <YesNoTile
+            icon={<FileSignature className="h-4 w-4" />}
+            label="Proposal requested"
+            value={d.proposalReq}
+            yesText="Proposal expected"
+            noText="Not requested"
+          />
+        </div>
+      </Section>
+
+      {/* ── Classification + Qualification ── */}
+      <div className="grid gap-5 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <Section
+            title="Classification"
+            icon={<Gauge className="h-4 w-4 text-emerald-400" />}
+            open={openSections.classification}
+            onToggle={() => setOpenSections((s) => ({ ...s, classification: !s.classification }))}
+          >
+            <div className="grid gap-3 p-4 sm:grid-cols-2">
+              <KVRow label="Urgency" pill={<Pill cls={d.urgencyCls} icon={<AlertTriangle className="h-3 w-3" />}>{d.urgency}</Pill>} />
+              <KVRow label="Competition level" pill={<Pill cls={d.competitionCls} icon={<Users className="h-3 w-3" />}>{d.competition}</Pill>} />
+            </div>
+            <div className="space-y-3 p-4 pt-0">
+              <FactBlock
+                icon={<AlertTriangle className="h-3.5 w-3.5 text-amber-300" />}
+                label="Competition reason"
+                body={d.competitionReason}
+              />
+              <FactBlock
+                icon={<Lightbulb className="h-3.5 w-3.5 text-emerald-300" />}
+                label="Recommended next action"
+                body={d.nextAction}
+              />
+            </div>
+          </Section>
+        </div>
+
+        <aside className="rounded-2xl border border-border bg-card/40 p-4">
+          <header className="flex items-center gap-2 border-b border-border pb-3">
+            <ListChecks className="h-4 w-4 text-emerald-400" />
+            <h3 className="text-sm font-semibold tracking-tight">Qualification votes</h3>
+          </header>
+          <div className="mt-3 space-y-2">
+            <VoteRow
+              label="Qualified"
+              icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
+              count={vote === "qualified" ? 1 : 0}
+              active={vote === "qualified"}
+              onClick={() => setVote(vote === "qualified" ? null : "qualified")}
+            />
+            <VoteRow
+              label="Disqualified"
+              icon={<XCircle className="h-4 w-4 text-rose-400" />}
+              count={vote === "disqualified" ? 1 : 0}
+              active={vote === "disqualified"}
+              onClick={() => setVote(vote === "disqualified" ? null : "disqualified")}
+            />
+          </div>
+          <p className="mt-3 text-[11px] text-muted-foreground">
+            {vote ? "Your vote is in — others on the team can still weigh in." : "Click a status to cast your vote."}
+          </p>
+        </aside>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Activity timeline */}
-        <div className="space-y-6 lg:col-span-2">
-          <Panel title="Activity timeline" description="Every interaction with this lead — across channels.">
-            <ol className="relative px-5 py-4">
-              <span className="absolute left-[34px] top-4 bottom-4 w-px bg-border" aria-hidden />
-              {ACTIVITY.map((a, i) => (
-                <li key={i} className="relative flex gap-4 py-3">
-                  <span className="z-10 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border bg-background text-muted-foreground">
-                    {a.type === "message" ? <MessageSquare className="h-3.5 w-3.5" /> :
-                     a.type === "email" ? <Mail className="h-3.5 w-3.5" /> :
-                     a.type === "call" ? <PhoneCall className="h-3.5 w-3.5" /> :
-                     a.type === "stage" ? <TrendingUp className="h-3.5 w-3.5 text-emerald-400" /> :
-                     a.type === "source" ? <User className="h-3.5 w-3.5" /> :
-                     <Edit3 className="h-3.5 w-3.5" />}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-medium">{a.title}</span>
-                      <Mono className="text-muted-foreground">{a.channel}</Mono>
-                      <Mono className="ml-auto text-muted-foreground">{a.at}</Mono>
-                    </div>
-                    <p className="mt-1 text-sm text-muted-foreground">{a.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </Panel>
-
-          {/* Composer */}
-          <Panel title="Send a message" description="Reply via the lead's preferred channel.">
-            <div className="p-4">
-              <div className="mb-3 flex items-center gap-2">
-                {(["instagram", "linkedin", "facebook"] as LeadSource[]).map((s) => (
-                  <button key={s} className={`inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs capitalize ${s === lead.source ? "border-foreground/40 bg-foreground/10" : "border-border bg-card/50 text-muted-foreground"}`}>
-                    {sourceIcon(s)} {s}
-                  </button>
-                ))}
-              </div>
-              <textarea
-                rows={3}
-                placeholder={`Write a message to ${lead.name.split(" ")[0]}…`}
-                className="w-full resize-none rounded-md border border-border bg-card/50 p-3 text-sm placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none"
-              />
-              <div className="mt-3 flex items-center justify-between">
-                <button className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-card/50 px-2.5 text-xs text-muted-foreground hover:text-foreground">
-                  <Paperclip className="h-3.5 w-3.5" /> Attach
-                </button>
-                <button className="inline-flex h-8 items-center gap-1.5 rounded-md bg-foreground px-3 text-xs font-medium text-background hover:bg-foreground/90">
-                  <Send className="h-3 w-3" /> Send
-                </button>
-              </div>
-            </div>
-          </Panel>
-
-          {/* Deals */}
-          <Panel title="Open deals" description="Opportunities associated with this lead.">
-            <ul className="divide-y divide-border">
-              {DEALS.map((d) => (
-                <li key={d.name} className="flex items-center gap-4 px-5 py-3.5">
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-medium">{d.name}</div>
-                    <Mono className="text-muted-foreground">{d.stage} · {d.prob}% likely</Mono>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-semibold">{d.value}</div>
-                    <div className="mt-1 h-1 w-24 overflow-hidden rounded-full bg-card">
-                      <div className="h-full bg-emerald-500" style={{ width: `${d.prob}%` }} />
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Panel>
+      {/* ── Outreach Drafts ── */}
+      <Section
+        title="Outreach Drafts"
+        badge={d.drafts.length}
+        icon={<Sparkles className="h-4 w-4 text-emerald-400" />}
+        open={openSections.drafts}
+        onToggle={() => setOpenSections((s) => ({ ...s, drafts: !s.drafts }))}
+      >
+        <div className="space-y-3 p-4">
+          {d.drafts.map((dr, i) => (
+            <DraftCard key={i} index={i + 1} draft={dr} />
+          ))}
         </div>
+      </Section>
 
-        {/* Right column */}
-        <div className="space-y-6">
-          <Panel title="Contact details">
-            <ul className="divide-y divide-border text-sm">
-              <DetailRow icon={<Mail className="h-3.5 w-3.5" />} label="Email" value={<a className="hover:text-foreground" href={`mailto:${lead.email}`}>{lead.email}</a>} />
-              <DetailRow icon={<Phone className="h-3.5 w-3.5" />} label="Phone" value={lead.phone} />
-              <DetailRow icon={<Building2 className="h-3.5 w-3.5" />} label="Company" value={lead.company} />
-              <DetailRow icon={<Globe className="h-3.5 w-3.5" />} label="Website" value={<a className="hover:text-foreground" href={`https://${lead.website}`} target="_blank" rel="noreferrer">{lead.website}</a>} />
-              <DetailRow icon={<MapPin className="h-3.5 w-3.5" />} label="Location" value={lead.city} />
-              <DetailRow icon={<User className="h-3.5 w-3.5" />} label="Owner" value={lead.owner} />
-              <DetailRow icon={<Calendar className="h-3.5 w-3.5" />} label="Created" value={lead.createdAt} />
-            </ul>
-          </Panel>
-
-          <Panel
-            title="Tasks"
-            actions={
-              <button className="inline-flex h-7 items-center gap-1 rounded-md border border-border bg-card/50 px-2 text-xs text-muted-foreground hover:text-foreground">
-                <CalendarPlus className="h-3 w-3" /> Add
-              </button>
-            }
-          >
-            <ul className="divide-y divide-border">
-              {TASKS.map((t) => (
-                <li key={t.title} className="flex items-center gap-3 px-5 py-3 text-sm">
-                  {t.done
-                    ? <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    : <Circle className="h-4 w-4 text-muted-foreground" />}
-                  <span className={`flex-1 ${t.done ? "text-muted-foreground line-through" : ""}`}>{t.title}</span>
-                  <Mono className="text-muted-foreground">{t.due}</Mono>
-                </li>
-              ))}
-            </ul>
-          </Panel>
-
-          <Panel title="Internal notes">
-            <div className="space-y-3 p-4 text-sm">
-              <textarea
-                rows={3}
-                placeholder="Add a note for your team…"
-                className="w-full resize-none rounded-md border border-border bg-card/50 p-3 text-sm placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none"
-              />
-              <div className="flex justify-end">
-                <button className="inline-flex h-8 items-center gap-1.5 rounded-md bg-foreground px-3 text-xs font-medium text-background hover:bg-foreground/90">
-                  Save note
-                </button>
-              </div>
-            </div>
-          </Panel>
-        </div>
+      <div>
+        <Link to="/dashboard/leads" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to all leads
+        </Link>
       </div>
     </div>
   );
 }
 
-function DetailRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) {
+/* ─────────────────────── small components ─────────────────────── */
+
+function cap(s: string) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function Section({
+  title, icon, open, onToggle, badge, children,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  open: boolean;
+  onToggle: () => void;
+  badge?: number;
+  children: React.ReactNode;
+}) {
   return (
-    <li className="flex items-center gap-3 px-5 py-3">
-      <span className="text-muted-foreground">{icon}</span>
-      <span className="w-20 shrink-0 text-xs uppercase tracking-tight text-muted-foreground">{label}</span>
-      <span className="min-w-0 flex-1 truncate text-right text-sm text-foreground">{value}</span>
-    </li>
+    <section className="overflow-hidden rounded-2xl border border-border bg-card/30">
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between gap-3 border-b border-border px-4 py-3 text-left hover:bg-card/40"
+      >
+        <span className="flex items-center gap-2">
+          {icon}
+          <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
+          {typeof badge === "number" && (
+            <span className="rounded-md bg-foreground/10 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">{badge}</span>
+          )}
+        </span>
+        {open ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+      </button>
+      {open && children}
+    </section>
+  );
+}
+
+const tones = {
+  sky: "from-sky-500/15 to-sky-500/0 ring-sky-500/20",
+  rose: "from-rose-500/15 to-rose-500/0 ring-rose-500/20",
+  indigo: "from-indigo-500/15 to-indigo-500/0 ring-indigo-500/20",
+  emerald: "from-emerald-500/15 to-emerald-500/0 ring-emerald-500/20",
+} as const;
+
+function StatBlock({
+  icon, value, label, tone,
+}: { icon: React.ReactNode; value: number | string; label: string; tone: keyof typeof tones }) {
+  return (
+    <div className={`flex items-center gap-3 rounded-xl bg-gradient-to-br ${tones[tone]} p-4 ring-1`}>
+      <span className="grid h-9 w-9 place-items-center rounded-lg bg-background/40">{icon}</span>
+      <div>
+        <div className="text-xl font-semibold leading-tight">{value}</div>
+        <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
+      </div>
+    </div>
+  );
+}
+
+function FactTile({
+  icon, label, value, sub,
+}: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-background/40 p-3.5">
+      <div className="flex items-center gap-2">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-foreground/5">{icon}</span>
+        <div className="min-w-0">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
+          <div className="truncate text-sm font-medium text-foreground">{value}</div>
+        </div>
+      </div>
+      {sub && <div className="mt-1.5 truncate pl-10 text-[11px] text-muted-foreground">{sub}</div>}
+    </div>
+  );
+}
+
+function YesNoTile({
+  icon, label, value, yesText, noText,
+}: { icon: React.ReactNode; label: string; value: boolean; yesText: string; noText: string }) {
+  return (
+    <div className={`flex items-center gap-3 rounded-xl border p-3.5 ${value ? "border-emerald-500/30 bg-emerald-500/5" : "border-border bg-background/40"}`}>
+      <span className={`grid h-8 w-8 place-items-center rounded-md ${value ? "bg-emerald-500/15 text-emerald-300" : "bg-foreground/5 text-muted-foreground"}`}>{icon}</span>
+      <div className="min-w-0 flex-1">
+        <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
+        <div className="text-sm font-medium text-foreground">{value ? yesText : noText}</div>
+      </div>
+      {value
+        ? <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+        : <XCircle className="h-4 w-4 text-muted-foreground/60" />}
+    </div>
+  );
+}
+
+function KVRow({ label, pill }: { label: string; pill: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between rounded-xl border border-border bg-background/40 px-3.5 py-3">
+      <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
+      {pill}
+    </div>
+  );
+}
+
+function Pill({ cls, icon, children }: { cls: string; icon?: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <span className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium ${cls}`}>
+      {icon} {children}
+    </span>
+  );
+}
+
+function FactBlock({ icon, label, body }: { icon: React.ReactNode; label: string; body: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-background/40 p-3.5">
+      <div className="flex items-center gap-2">
+        {icon}
+        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
+      </div>
+      <p className="mt-1.5 text-sm leading-relaxed text-foreground/85">{body}</p>
+    </div>
+  );
+}
+
+function VoteRow({
+  label, icon, count, active, onClick,
+}: { label: string; icon: React.ReactNode; count: number; active: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition ${active ? "border-foreground/40 bg-foreground/10" : "border-border bg-background/40 hover:bg-background/70"}`}
+    >
+      <span className="inline-flex items-center gap-2">{icon}{label}</span>
+      <span className="font-mono text-[11px] text-muted-foreground">{count} vote{count === 1 ? "" : "s"}</span>
+    </button>
+  );
+}
+
+function DraftCard({ index, draft }: { index: number; draft: { topic: string; subject: string; message: string } }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(`${draft.subject}\n\n${draft.message}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch { /* noop */ }
+  };
+  return (
+    <article className="overflow-hidden rounded-xl border border-border bg-background/40">
+      <header className="flex items-center justify-between gap-3 border-b border-border bg-card/30 px-4 py-2.5">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span className="font-mono uppercase tracking-wider">Draft {index}</span>
+          <span>·</span>
+          <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] text-emerald-200">
+            <ClipboardList className="h-3 w-3" /> {draft.topic}
+          </span>
+        </div>
+        <button
+          onClick={copy}
+          className="inline-flex h-7 items-center gap-1.5 rounded-md border border-border bg-background px-2 text-xs text-muted-foreground hover:text-foreground"
+        >
+          {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </header>
+      <div className="space-y-3 px-4 py-4">
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Subject</div>
+          <div className="mt-0.5 text-sm font-semibold text-foreground">{draft.subject}</div>
+        </div>
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Message</div>
+          <p className="mt-0.5 whitespace-pre-line text-sm leading-relaxed text-foreground/85">{draft.message}</p>
+        </div>
+      </div>
+    </article>
   );
 }
