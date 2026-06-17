@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowRight, Search, X } from "lucide-react";
 import { BLOG_CATEGORIES, BLOG_POSTS, formatDate, type BlogCategory, type BlogPost } from "@/lib/blog-data";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
