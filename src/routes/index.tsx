@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, Twitter, X,
+  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
