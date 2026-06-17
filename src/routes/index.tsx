@@ -813,12 +813,14 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "Where do leads come from?", a: "Public posts on Facebook groups, LinkedIn and Reddit where people openly ask for a service. We only work with public buying signals — no private messages, no scraping private accounts." },
-  { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Every score ships with a short, human-readable reason." },
-  { q: "What if a field is missing from the post?", a: "We mark it as unknown. Grow By Lead never fabricates a country, budget or service type. Missing critical fields trigger our manual review flag." },
+  { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
+  { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
+  { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
+  { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
+  { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
+  { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Each score includes a short, human-readable reason." },
   { q: "Can I export leads to my own CRM?", a: "Yes. CSV and JSON export are available on all plans. API access and webhook delivery are in beta on the Agency plan." },
-  { q: "Is there a free trial?", a: "Yes — the $10 day pass gives you a full day of unlimited captures with no subscription. You can also reach out for a pre-launch demo." },
-  { q: "How fresh are the leads?", a: "Most leads land in your inbox within minutes of being posted. Each lead shows its post age so your team knows when to move fast." },
 ];
 
 function FAQ() {
