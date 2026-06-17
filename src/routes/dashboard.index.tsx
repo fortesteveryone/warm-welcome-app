@@ -97,7 +97,7 @@ function Overview() {
               <span className="text-2xl font-semibold">188</span>
               <span className="text-xs text-muted-foreground">leads opened</span>
             </div>
-            <div className="mt-2 text-xs text-emerald-300">▲ 24 vs last month</div>
+            <div className="mt-2 text-xs text-[color:var(--signal)]">▲ 24 vs last month</div>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -107,23 +107,16 @@ function Overview() {
             >
               <Inbox className="h-4 w-4" /> Browse leads
             </Link>
-            <button className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
+            <Link
+              to="/dashboard/settings"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card"
+            >
               <Zap className="h-4 w-4" /> Top up credits
-            </button>
+            </Link>
           </div>
         </div>
       </Panel>
 
-      {/* ── Credit packages ───────────────────────────────────────── */}
-      <Panel
-        title="Top up your credits"
-        description="One-time packs. The bigger the pack, the lower the cost per lead."
-        actions={<Badge tone="muted">No subscription</Badge>}
-      >
-        <div className="p-5">
-          <CreditPackages compact />
-        </div>
-      </Panel>
 
 
       {/* ── Stat grid ─────────────────────────────────────────────── */}
