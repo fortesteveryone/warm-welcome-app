@@ -5,7 +5,6 @@ import {
   Clock, ChevronDown, X, Flame, MapPin, ArrowUpRight, Inbox, Zap, TrendingUp,
 } from "lucide-react";
 import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
-import { CreditPackages } from "@/components/dashboard/credit-packages";
 
 
 export const Route = createFileRoute("/dashboard/")({
@@ -98,7 +97,7 @@ function Overview() {
               <span className="text-2xl font-semibold">188</span>
               <span className="text-xs text-muted-foreground">leads opened</span>
             </div>
-            <div className="mt-2 text-xs text-emerald-300">▲ 24 vs last month</div>
+            <div className="mt-2 text-xs text-[color:var(--signal)]">▲ 24 vs last month</div>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -108,23 +107,16 @@ function Overview() {
             >
               <Inbox className="h-4 w-4" /> Browse leads
             </Link>
-            <button className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
+            <Link
+              to="/dashboard/settings"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card"
+            >
               <Zap className="h-4 w-4" /> Top up credits
-            </button>
+            </Link>
           </div>
         </div>
       </Panel>
 
-      {/* ── Credit packages ───────────────────────────────────────── */}
-      <Panel
-        title="Top up your credits"
-        description="One-time packs. The bigger the pack, the lower the cost per lead."
-        actions={<Badge tone="muted">No subscription</Badge>}
-      >
-        <div className="p-5">
-          <CreditPackages compact />
-        </div>
-      </Panel>
 
 
       {/* ── Stat grid ─────────────────────────────────────────────── */}
@@ -170,7 +162,7 @@ function Overview() {
               { stage: "Saved",          v: 46,  w: 62,  c: "bg-indigo-500/70" },
               { stage: "Contacted",      v: 31,  w: 44,  c: "bg-amber-500/70" },
               { stage: "Replied",        v: 18,  w: 28,  c: "bg-orange-500/70" },
-              { stage: "Deal won",       v: 4,   w: 12,  c: "bg-emerald-500/70" },
+              { stage: "Deal won",       v: 4,   w: 12,  c: "bg-[color:var(--signal)]/70" },
             ].map((s) => (
               <div key={s.stage}>
                 <div className="flex items-center justify-between text-xs">
@@ -275,7 +267,7 @@ function Overview() {
               {TASKS.map((t) => (
                 <li key={t.text} className="flex items-start gap-3 px-5 py-3">
                   {t.done ? (
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-400" />
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-[color:var(--signal)]" />
                   ) : (
                     <span className="mt-0.5 h-4 w-4 rounded-full border border-border" />
                   )}
