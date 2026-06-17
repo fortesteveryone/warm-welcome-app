@@ -255,6 +255,17 @@ function Hero() {
             </div>
           </div>
         </div>
+
+        {/* coverage flag strip */}
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-[color:var(--signal)]" /> Live in</span>
+          {[
+            ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
+            ["🇧🇩", "Bangladesh"], ["🇮🇳", "India"], ["🇦🇪", "UAE"], ["🇸🇬", "Singapore"],
+          ].map(([f, n]) => (
+            <span key={n} className="inline-flex items-center gap-1.5"><span className="text-base leading-none" aria-hidden>{f}</span>{n}</span>
+          ))}
+        </div>
       </Container>
     </section>
   );
