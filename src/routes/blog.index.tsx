@@ -120,7 +120,7 @@ function BlogIndex() {
                           <img src={p.cover} alt="" className="h-12 w-16 shrink-0 rounded-md object-cover" />
                           <div className="min-w-0">
                             <p className="truncate text-sm font-medium">{p.title}</p>
-                            <p className="mt-0.5 text-xs text-muted-foreground">{p.category} · {p.readMinutes} min read</p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">{p.category}</p>
                           </div>
                         </Link>
                       </li>
