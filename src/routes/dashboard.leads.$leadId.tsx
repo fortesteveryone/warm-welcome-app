@@ -5,10 +5,10 @@ import {
   Star, ExternalLink, ChevronDown, ChevronUp, ClipboardList, AlertTriangle,
   Sparkles, ListChecks, Smartphone, Globe2, FileText, Send,
   Briefcase, FileSignature, Users, Gauge, Lightbulb, Copy, Check,
-  CheckCircle2, XCircle, Instagram, Linkedin, Facebook, Youtube, Twitter,
-  Github, MessageCircle, Send as SendIcon, Hash, ArrowLeftRight,
+  CheckCircle2, XCircle, ArrowLeftRight,
 } from "lucide-react";
-import { getLeadById, type Lead, type LeadPlatform } from "@/lib/leads-data";
+import { getLeadById, type Lead } from "@/lib/leads-data";
+import { SocialTile, SocialPill, countryFlag, platformVisual } from "@/lib/lead-visuals";
 
 export const Route = createFileRoute("/dashboard/leads/$leadId")({
   loader: ({ params }) => {
@@ -39,17 +39,6 @@ export const Route = createFileRoute("/dashboard/leads/$leadId")({
 });
 
 /* ─────────────────────── derive view-model from existing fields ─────────────────────── */
-
-const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe2>> = {
-  facebook: Facebook, linkedin: Linkedin, instagram: Instagram, twitter: Twitter,
-  x: Twitter, youtube: Youtube, github: Github, whatsapp: MessageCircle,
-  telegram: SendIcon, discord: MessageCircle, threads: Hash, reddit: MessageCircle,
-  other: Globe2,
-};
-function PlatformGlyph({ p, className = "h-3.5 w-3.5" }: { p: LeadPlatform; className?: string }) {
-  const I = PLATFORM_LUCIDE[p];
-  return I ? <I className={className} /> : <Globe2 className={className} />;
-}
 
 type Derived = {
   tempLabel: "Hot lead" | "Warm lead" | "Cold lead";
