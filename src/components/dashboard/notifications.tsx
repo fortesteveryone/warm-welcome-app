@@ -23,21 +23,21 @@ const now = Date.now();
 const m = (mins: number) => now - mins * 60_000;
 
 const SEED: Notification[] = [
-  { id: "n1", type: "message", actor: "Aisha Rahman", title: "Aisha Rahman replied", body: "Looks great — can we hop on a call Thursday?", time: m(2), read: false, href: "/dashboard/inbox" },
+  { id: "n1", type: "message", actor: "Aisha Rahman", title: "Aisha Rahman replied", body: "Looks great — can we hop on a call Thursday?", time: m(2), read: false, href: "/dashboard" },
   { id: "n2", type: "lead", actor: "Marcus Lin", title: "New hot lead scored 92", body: "Northwave Studio · LinkedIn · Proposal stage", time: m(14), read: false, href: "/dashboard/leads/marcus-lin" },
   { id: "n3", type: "deal", title: "Deal moved to Negotiation", body: "Velvet & Co. · 12-month retainer · $24,000", time: m(38), read: false, href: "/dashboard/pipeline" },
-  { id: "n4", type: "meeting", title: "Meeting in 1 hour", body: "Discovery call with Priya Devi (Saffron Kitchen)", time: m(55), read: true, href: "/dashboard/inbox" },
+  { id: "n4", type: "meeting", title: "Meeting in 1 hour", body: "Discovery call with Priya Devi (Saffron Kitchen)", time: m(55), read: true, href: "/dashboard" },
   { id: "n5", type: "campaign", title: "Q3 SaaS founders sequence completed step 3", body: "1,240 sent · 42% open · 8.4% reply", time: m(180), read: true, href: "/dashboard/campaigns" },
   { id: "n6", type: "system", title: "Instagram integration reconnected", body: "Token refreshed automatically. No data loss.", time: m(60 * 6), read: true, href: "/dashboard/settings" },
   { id: "n7", type: "deal", title: "Closed-Won 🎉", body: "Atlas Logistics · Brand identity · $12,000", time: m(60 * 22), read: true, href: "/dashboard/pipeline" },
 ];
 
 const LIVE_FEED: Omit<Notification, "id" | "time" | "read">[] = [
-  { type: "message", actor: "Yuki Tanaka", title: "Yuki Tanaka sent a DM", body: "Let's plan that launch sprint — what's a good week?", href: "/dashboard/inbox" },
+  { type: "message", actor: "Yuki Tanaka", title: "Yuki Tanaka sent a DM", body: "Let's plan that launch sprint — what's a good week?", href: "/dashboard" },
   { type: "lead", actor: "Felix Brandt", title: "New warm lead from LinkedIn", body: "Brandt Audio · CEO · score 73", href: "/dashboard/leads/felix-brandt" },
   { type: "deal", title: "Proposal viewed 3 times", body: "Northwave Studio opened your proposal — high intent signal.", href: "/dashboard/pipeline" },
   { type: "campaign", title: "Reply rate jump", body: "LinkedIn agency owners hit 14.2% reply rate today.", href: "/dashboard/campaigns" },
-  { type: "meeting", title: "Call starting soon", body: "Mei Wong · Lotus Travel · 15 min", href: "/dashboard/inbox" },
+  { type: "meeting", title: "Call starting soon", body: "Mei Wong · Lotus Travel · 15 min", href: "/dashboard" },
   { type: "system", title: "Weekly digest ready", body: "65 meetings booked, 9 deals advanced.", href: "/dashboard/analytics" },
 ];
 
