@@ -5,7 +5,6 @@ import {
   Clock, ChevronDown, X, Flame, MapPin, ArrowUpRight, Inbox, Zap, TrendingUp,
 } from "lucide-react";
 import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
-import { CreditPackages } from "@/components/dashboard/credit-packages";
 
 
 export const Route = createFileRoute("/dashboard/")({
