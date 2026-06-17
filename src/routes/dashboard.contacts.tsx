@@ -12,6 +12,8 @@ export const Route = createFileRoute("/dashboard/contacts")({
 
 const CONTACTS = [
   { name: "Aisha Rahman", role: "Founder", company: "Velvet & Co.", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", tags: ["VIP", "Apparel"] },
+const INITIAL_CONTACTS: Contact[] = [
+  { name: "Aisha Rahman", role: "Founder", company: "Velvet & Co.", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", tags: ["VIP", "Apparel"] },
   { name: "Marcus Lin", role: "CMO", company: "Northwave Studio", email: "marcus@northwave.io", phone: "+1 415 555 0144", city: "San Francisco, US", tags: ["Agency"] },
   { name: "Priya Devi", role: "Owner", company: "Saffron Kitchen", email: "priya@saffron.kitchen", phone: "+91 98765 43210", city: "Mumbai, IN", tags: ["F&B", "Local"] },
   { name: "Jonas Weber", role: "Ops Lead", company: "Atlas Logistics", email: "j.weber@atlas-log.de", phone: "+49 30 9876543", city: "Berlin, DE", tags: ["Enterprise"] },
