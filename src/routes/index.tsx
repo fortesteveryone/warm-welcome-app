@@ -494,7 +494,7 @@ function Scoring() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
-              kicker="05 / Scoring"
+              kicker="04 / Scoring"
               title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
               lede="Each score ships with a short reason — your team trusts the priority order, and can challenge it."
             />
