@@ -194,6 +194,7 @@ function BlogIndex() {
           )}
         </Container>
       </section>
+      <SiteFooter />
     </div>
   );
 }
