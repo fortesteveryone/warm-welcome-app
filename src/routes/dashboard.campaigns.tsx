@@ -33,27 +33,29 @@ const STATUS_TABS: ("all" | Status)[] = ["all", "active", "paused", "draft", "co
 const CHANNEL_TABS: ("all" | Channel)[] = ["all", "email", "linkedin", "dm"];
 
 function CampaignsPage() {
+  const [campaigns, setCampaigns] = useState<Campaign[]>(INITIAL_CAMPAIGNS);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"all" | Status>("all");
   const [channel, setChannel] = useState<"all" | Channel>("all");
   const [sortKey, setSortKey] = useState<"booked" | "reply" | "sent" | "open">("booked");
+  const [addOpen, setAddOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = CAMPAIGNS.filter((c) =>
+    let list = campaigns.filter((c) =>
       (status === "all" || c.status === status) &&
       (channel === "all" || c.channel === channel) &&
       (!q || c.name.toLowerCase().includes(q))
     );
     list = [...list].sort((a, b) => b[sortKey] - a[sortKey]);
     return list;
-  }, [query, status, channel, sortKey]);
+  }, [campaigns, query, status, channel, sortKey]);
 
   const counts = useMemo(() => {
-    const m: Record<string, number> = { all: CAMPAIGNS.length };
-    for (const s of ["active", "paused", "draft", "completed"] as Status[]) m[s] = CAMPAIGNS.filter((c) => c.status === s).length;
+    const m: Record<string, number> = { all: campaigns.length };
+    for (const s of ["active", "paused", "draft", "completed"] as Status[]) m[s] = campaigns.filter((c) => c.status === s).length;
     return m;
-  }, []);
+  }, [campaigns]);
 
   return (
     <div className="space-y-6">
@@ -62,7 +64,7 @@ function CampaignsPage() {
         title="Outreach campaigns"
         description="Multi-channel sequences across email, LinkedIn, and DMs."
         actions={
-          <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+          <button onClick={() => setAddOpen(true)} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
             <Plus className="h-3.5 w-3.5" /> New campaign
           </button>
         }
