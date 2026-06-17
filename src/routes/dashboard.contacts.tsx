@@ -132,6 +132,42 @@ function ContactsPage() {
           </ul>
         </Panel>
       )}
+
+      <FormDialog
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        title="Add contact"
+        submitLabel="Add contact"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const name = String(d.get("name") || "").trim();
+          if (!name) return;
+          const c: Contact = {
+            name,
+            role: String(d.get("role") || ""),
+            company: String(d.get("company") || ""),
+            email: String(d.get("email") || ""),
+            phone: String(d.get("phone") || ""),
+            city: String(d.get("city") || ""),
+            tags: String(d.get("tags") || "").split(",").map((t) => t.trim()).filter(Boolean),
+          };
+          setContacts((cur) => [c, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <div className={gridCls}>
+          <Field label="Name"><input name="name" required className={fieldCls} /></Field>
+          <Field label="Role"><input name="role" className={fieldCls} /></Field>
+          <Field label="Company"><input name="company" className={fieldCls} /></Field>
+          <Field label="Email"><input name="email" type="email" className={fieldCls} /></Field>
+          <Field label="Phone"><input name="phone" className={fieldCls} /></Field>
+          <Field label="City"><input name="city" className={fieldCls} placeholder="City, Country" /></Field>
+          <Field label="Tags (comma separated)" span={2}><input name="tags" className={fieldCls} placeholder="VIP, Agency" /></Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }
