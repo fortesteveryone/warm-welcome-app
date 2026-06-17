@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { User, CreditCard, Bell, Plug, Shield, Users as UsersIcon, Check, Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
+import { CreditPackages } from "@/components/dashboard/credit-packages";
+
 
 export const Route = createFileRoute("/dashboard/settings")({
   component: SettingsPage,
@@ -144,7 +146,16 @@ function BillingPanel() {
           ))}
         </div>
       </Panel>
+      <Panel
+        title="Credit packages"
+        description="Buy credits in packs — never expires on the Agency pack. 1 credit unlocks 1 lead."
+      >
+        <div className="p-5">
+          <CreditPackages />
+        </div>
+      </Panel>
       <Panel title="Payment method">
+
         <div className="flex items-center justify-between p-5">
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-14 place-items-center rounded-md bg-gradient-to-br from-indigo-500 to-sky-500 text-xs font-bold text-white">VISA</span>

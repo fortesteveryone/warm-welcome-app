@@ -5,6 +5,8 @@ import {
   Clock, ChevronDown, X, Flame, MapPin, ArrowUpRight, Inbox, Zap, TrendingUp,
 } from "lucide-react";
 import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
+import { CreditPackages } from "@/components/dashboard/credit-packages";
+
 
 export const Route = createFileRoute("/dashboard/")({
   component: Overview,
@@ -112,6 +114,18 @@ function Overview() {
           </div>
         </div>
       </Panel>
+
+      {/* ── Credit packages ───────────────────────────────────────── */}
+      <Panel
+        title="Top up your credits"
+        description="One-time packs. The bigger the pack, the lower the cost per lead."
+        actions={<Badge tone="muted">No subscription</Badge>}
+      >
+        <div className="p-5">
+          <CreditPackages compact />
+        </div>
+      </Panel>
+
 
       {/* ── Stat grid ─────────────────────────────────────────────── */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
