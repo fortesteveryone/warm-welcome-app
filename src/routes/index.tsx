@@ -104,6 +104,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
+      <Scope />
       <AfterLogin />
       <ExampleLead />
       <Platforms />
