@@ -11,7 +11,9 @@ export const Route = createFileRoute("/dashboard/campaigns")({
 type Channel = "email" | "linkedin" | "dm";
 type Status = "active" | "paused" | "draft" | "completed";
 
-const CAMPAIGNS: { name: string; channel: Channel; status: Status; sent: number; open: number; reply: number; booked: number; started: string }[] = [
+type Campaign = { name: string; channel: Channel; status: Status; sent: number; open: number; reply: number; booked: number; started: string };
+
+const INITIAL_CAMPAIGNS: Campaign[] = [
   { name: "Q3 SaaS founders", channel: "email", status: "active", sent: 1240, open: 42, reply: 8.4, booked: 18, started: "Aug 12" },
   { name: "LinkedIn agency owners", channel: "linkedin", status: "active", sent: 612, open: 58, reply: 14.2, booked: 26, started: "Aug 18" },
   { name: "Instagram boutique brands", channel: "dm", status: "paused", sent: 380, open: 71, reply: 11.6, booked: 12, started: "Aug 22" },
