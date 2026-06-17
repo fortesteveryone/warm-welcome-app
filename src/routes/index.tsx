@@ -94,8 +94,8 @@ function Home() {
 /* ---------- top bar ---------- */
 function TopBar() {
   const links: [string, string][] = [
-    ["Product", "#capture"],
     ["Example", "#example"],
+    ["Platforms", "#platforms"],
     ["Scoring", "#scoring"],
     ["Pricing", "#pricing"],
     ["Docs", "#"],
