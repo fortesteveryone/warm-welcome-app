@@ -75,12 +75,44 @@ function RedditIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function XIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M18.244 2H21l-6.49 7.41L22 22h-6.81l-4.78-6.26L4.8 22H2l6.94-7.93L2 2h6.94l4.32 5.72L18.244 2Zm-2.39 18h1.88L7.27 4H5.29l10.564 16Z"/>
+    </svg>
+  );
+}
+
+function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M19.5 7.6a6.7 6.7 0 0 1-4-1.3v8.3a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3a2.9 2.9 0 1 0 2 2.8V2h2.9a4.6 4.6 0 0 0 4.1 4.1v3.5Z"/>
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2ZM9.8 15.5v-7l5.9 3.5-5.9 3.5Z"/>
+    </svg>
+  );
+}
+
+function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12.2 2C6.6 2 3 5.6 3 11.9c0 6.4 3.5 10.1 9 10.1 5 0 8.4-2.6 8.9-6.7.4-3-.9-5.4-3.6-6.5-.4-2.6-2.2-4.1-5-4.1-2.1 0-3.8.8-4.7 2.3l1.7 1.1c.5-.9 1.5-1.4 2.9-1.4 1.7 0 2.7.7 3.1 2-3.5-.2-6.4 1.2-6.5 4 0 2.2 1.9 3.7 4.2 3.7 2.6 0 4.3-1.6 4.7-4.4 1.1.7 1.7 1.9 1.5 3.5-.4 2.9-2.7 4.5-6.2 4.5-4.4 0-7-2.9-7-8.2C5 6.9 7.5 4 12.2 4c3.2 0 5.5 1.3 6.6 3.8l1.8-.8C19.2 3.8 16.3 2 12.2 2Zm.4 11.7c-1.3 0-2.2-.7-2.2-1.7 0-1.3 1.6-2.1 4.1-2 0 .1 0 .2.1.3-.2 2.2-1.1 3.4-2 3.4Z"/>
+    </svg>
+  );
+}
+
 const PLATFORM_META: Record<string, { Icon: React.ComponentType<{ className?: string }>; color: string; label: string }> = {
   Facebook:  { Icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", label: "Facebook" },
   LinkedIn:  { Icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", label: "LinkedIn" },
   Reddit:    { Icon: RedditIcon, color: "#FF4500", label: "Reddit" },
   Instagram: { Icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />, color: "#E1306C", label: "Instagram" },
-  Twitter:   { Icon: ({ className }) => <Twitter   className={className} fill="currentColor" strokeWidth={0} />, color: "#1DA1F2", label: "Twitter" },
+  X:         { Icon: XIcon, color: "#FFFFFF", label: "X" },
 };
 
 function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; className?: string }) {
