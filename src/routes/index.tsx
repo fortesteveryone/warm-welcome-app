@@ -6,6 +6,7 @@ import {
   MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   head: () => ({
