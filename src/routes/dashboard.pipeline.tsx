@@ -10,7 +10,7 @@ export const Route = createFileRoute("/dashboard/pipeline")({
 
 type Deal = { title: string; company: string; value: number; owner: string; due: string; tone?: "hot" | "warm" | "cold"; stage: string };
 
-const ALL_DEALS: Deal[] = [
+const INITIAL_DEALS: Deal[] = [
   { stage: "New", title: "Brand revamp", company: "Lumen Health", value: 4200, owner: "Nasir", due: "Aug 28" },
   { stage: "New", title: "Lead generation pilot", company: "Hearth Realty", value: 1800, owner: "Mei", due: "Aug 30" },
   { stage: "New", title: "Social audit", company: "Wave Mobility", value: 900, owner: "Sara", due: "Sep 02", tone: "cold" },
