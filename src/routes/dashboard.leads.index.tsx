@@ -3,11 +3,17 @@ import { useMemo, useState } from "react";
 import {
   Filter, Download, Plus, Search, MoreHorizontal, Instagram, Linkedin, Facebook,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, Star, Flame, Snowflake, Twitter, Youtube, Github,
+  MessageCircle, Globe, Send as SendIcon, Hash,
 } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
-import { LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, type Lead, type LeadSource, type LeadStatus } from "@/lib/leads-data";
+import {
+  LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, LEAD_CATEGORIES, LEAD_INTENTS,
+  LEAD_PLATFORMS, LEAD_COUNTRIES, LEAD_QUALIFICATIONS,
+  type Lead, type LeadSource, type LeadStatus, type LeadIntent, type LeadPlatform,
+  type LeadCategory, type LeadQualification,
+} from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads/")({
   component: LeadsPage,
@@ -28,8 +34,14 @@ function LeadsPage() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<(typeof STATUS_TABS)[number]>("All");
   const [view, setView] = useState<"table" | "grid">("table");
-  const [showFilters, setShowFilters] = useState(false);
-  const [sources, setSources] = useState<LeadSource[]>([]);
+  const [showFilters, setShowFilters] = useState(true);
+  const [favOnly, setFavOnly] = useState(false);
+  const [categories, setCategories] = useState<LeadCategory[]>([]);
+  const [temperatures, setTemperatures] = useState<LeadStatus[]>([]);
+  const [intents, setIntents] = useState<LeadIntent[]>([]);
+  const [country, setCountry] = useState<string>("All");
+  const [platforms, setPlatforms] = useState<LeadPlatform[]>([]);
+  const [qualifications, setQualifications] = useState<LeadQualification[]>([]);
   const [stages, setStages] = useState<string[]>([]);
   const [owners, setOwners] = useState<string[]>([]);
   const [minScore, setMinScore] = useState(0);
@@ -45,8 +57,14 @@ function LeadsPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     let list = leads.filter((l) => {
+      if (favOnly && !l.favourite) return false;
       if (status !== "All" && l.status !== status.toLowerCase()) return false;
-      if (sources.length && !sources.includes(l.source)) return false;
+      if (categories.length && !categories.includes(l.category)) return false;
+      if (temperatures.length && !temperatures.includes(l.status)) return false;
+      if (intents.length && !intents.includes(l.intent)) return false;
+      if (country !== "All" && l.country !== country) return false;
+      if (platforms.length && !platforms.includes(l.platform)) return false;
+      if (qualifications.length && !qualifications.includes(l.qualification)) return false;
       if (stages.length && !stages.includes(l.stage)) return false;
       if (owners.length && !owners.includes(l.owner)) return false;
       if (l.score < minScore) return false;
@@ -66,13 +84,16 @@ function LeadsPage() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [leads, query, status, sources, stages, owners, minScore, sortKey, sortDir]);
+  }, [leads, query, status, favOnly, categories, temperatures, intents, country, platforms, qualifications, stages, owners, minScore, sortKey, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
-  const activeFilterCount = sources.length + stages.length + owners.length + (minScore > 0 ? 1 : 0);
+  const activeFilterCount =
+    (favOnly ? 1 : 0) + categories.length + temperatures.length + intents.length +
+    (country !== "All" ? 1 : 0) + platforms.length + qualifications.length +
+    stages.length + owners.length + (minScore > 0 ? 1 : 0);
   const allOnPageSelected = paged.length > 0 && paged.every((l) => selected.has(l.id));
 
   const onSort = (k: SortKey) => {
@@ -83,7 +104,11 @@ function LeadsPage() {
     sortKey !== k ? <ArrowUpDown className="h-3 w-3 opacity-40" /> :
     sortDir === "asc" ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />;
 
-  const clearAll = () => { setSources([]); setStages([]); setOwners([]); setMinScore(0); setQuery(""); setStatus("All"); setPage(1); };
+  const clearAll = () => {
+    setFavOnly(false); setCategories([]); setTemperatures([]); setIntents([]);
+    setCountry("All"); setPlatforms([]); setQualifications([]);
+    setStages([]); setOwners([]); setMinScore(0); setQuery(""); setStatus("All"); setPage(1);
+  };
 
   const toggleSelectAll = () => {
     const next = new Set(selected);
@@ -157,24 +182,75 @@ function LeadsPage() {
       {/* Filter panel */}
       {showFilters && (
         <Panel>
-          <div className="grid gap-5 p-5 md:grid-cols-4">
-            <FilterGroup label="Source">
-              {LEAD_SOURCES.map((s) => (
-                <Chip key={s} active={sources.includes(s)} onClick={() => { setSources(toggle(sources, s)); setPage(1); }}>
-                  {sourceIcon(s)} <span className="capitalize">{s}</span>
+          <div className="grid gap-6 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <FilterGroup label="Saved">
+              <Chip active={favOnly} onClick={() => { setFavOnly((f) => !f); setPage(1); }}>
+                <Star className={`h-3.5 w-3.5 ${favOnly ? "fill-amber-400 text-amber-400" : ""}`} /> Favourites only
+              </Chip>
+            </FilterGroup>
+
+            <FilterGroup label="Category">
+              <AllChip active={categories.length === 0} onClick={() => { setCategories([]); setPage(1); }} />
+              {LEAD_CATEGORIES.map((c) => (
+                <Chip key={c} active={categories.includes(c)} onClick={() => { setCategories(toggle(categories, c)); setPage(1); }}>{c}</Chip>
+              ))}
+            </FilterGroup>
+
+            <FilterGroup label="Temperature">
+              <AllChip active={temperatures.length === 0} onClick={() => { setTemperatures([]); setPage(1); }} />
+              <Chip active={temperatures.includes("hot")} onClick={() => { setTemperatures(toggle(temperatures, "hot" as LeadStatus)); setPage(1); }}>
+                <Flame className="h-3.5 w-3.5 text-[color:var(--hot,oklch(0.7_0.22_25))]" /> Hot
+              </Chip>
+              <Chip active={temperatures.includes("warm")} onClick={() => { setTemperatures(toggle(temperatures, "warm" as LeadStatus)); setPage(1); }}>
+                <span className="h-2 w-2 rounded-full bg-amber-400" /> Warm
+              </Chip>
+              <Chip active={temperatures.includes("cold")} onClick={() => { setTemperatures(toggle(temperatures, "cold" as LeadStatus)); setPage(1); }}>
+                <Snowflake className="h-3.5 w-3.5 text-sky-400" /> Cold
+              </Chip>
+            </FilterGroup>
+
+            <FilterGroup label="Intent level">
+              <AllChip active={intents.length === 0} onClick={() => { setIntents([]); setPage(1); }} />
+              {LEAD_INTENTS.map((i) => (
+                <Chip key={i} active={intents.includes(i)} onClick={() => { setIntents(toggle(intents, i)); setPage(1); }}>
+                  <IntentDot level={i} /> {i}
                 </Chip>
               ))}
             </FilterGroup>
+
+            <FilterGroup label="Country">
+              <select
+                value={country}
+                onChange={(e) => { setCountry(e.target.value); setPage(1); }}
+                className="h-9 w-full rounded-md border border-border bg-background/60 px-3 text-sm focus:border-foreground/40 focus:outline-none"
+              >
+                {LEAD_COUNTRIES.map((c) => (<option key={c} value={c}>{c}</option>))}
+              </select>
+            </FilterGroup>
+
+            <FilterGroup label="Status">
+              <AllChip active={qualifications.length === 0} onClick={() => { setQualifications([]); setPage(1); }} />
+              {LEAD_QUALIFICATIONS.map((q) => (
+                <Chip key={q} active={qualifications.includes(q)} onClick={() => { setQualifications(toggle(qualifications, q)); setPage(1); }}>
+                  <QualDot value={q} /> <span className="capitalize">{q}</span>
+                </Chip>
+              ))}
+            </FilterGroup>
+
             <FilterGroup label="Stage">
+              <AllChip active={stages.length === 0} onClick={() => { setStages([]); setPage(1); }} />
               {LEAD_STAGES.map((s) => (
                 <Chip key={s} active={stages.includes(s)} onClick={() => { setStages(toggle(stages, s)); setPage(1); }}>{s}</Chip>
               ))}
             </FilterGroup>
+
             <FilterGroup label="Owner">
+              <AllChip active={owners.length === 0} onClick={() => { setOwners([]); setPage(1); }} />
               {LEAD_OWNERS.map((o) => (
                 <Chip key={o} active={owners.includes(o)} onClick={() => { setOwners(toggle(owners, o)); setPage(1); }}>{o}</Chip>
               ))}
             </FilterGroup>
+
             <FilterGroup label={`Minimum score · ${minScore}`}>
               <input
                 type="range" min={0} max={100} step={5}
@@ -182,11 +258,20 @@ function LeadsPage() {
                 onChange={(e) => { setMinScore(Number(e.target.value)); setPage(1); }}
                 className="w-full accent-foreground"
               />
-              <div className="mt-1 flex justify-between text-[10px] text-muted-foreground"><span>0</span><span>50</span><span>100</span></div>
+              <div className="mt-1 flex w-full justify-between text-[10px] text-muted-foreground"><span>0</span><span>50</span><span>100</span></div>
+            </FilterGroup>
+
+            <FilterGroup label="Platform" full>
+              <AllChip active={platforms.length === 0} onClick={() => { setPlatforms([]); setPage(1); }} />
+              {LEAD_PLATFORMS.map((p) => (
+                <Chip key={p} active={platforms.includes(p)} onClick={() => { setPlatforms(toggle(platforms, p)); setPage(1); }}>
+                  <PlatformIcon p={p} /> <span className="capitalize">{p}</span>
+                </Chip>
+              ))}
             </FilterGroup>
           </div>
           <div className="flex items-center justify-between border-t border-border px-5 py-3">
-            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match</Mono>
+            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match · {activeFilterCount} filter{activeFilterCount === 1 ? "" : "s"} active</Mono>
             <button onClick={clearAll} className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
               <X className="h-3 w-3" /> Clear all
             </button>
@@ -326,11 +411,17 @@ function NewLeadDialog({ open, onClose, onCreate }: { open: boolean; onClose: ()
           email: String(d.get("email") || ""),
           phone: String(d.get("phone") || ""),
           city: String(d.get("city") || ""),
+          country: String(d.get("country") || ""),
           website: String(d.get("website") || ""),
           tags: String(d.get("tags") || "").split(",").map((t) => t.trim()).filter(Boolean),
           about: String(d.get("about") || ""),
           dealValue: Number(d.get("dealValue") || 0),
           createdAt: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+          category: "Digital marketing",
+          intent: "Medium",
+          platform: ((d.get("source") as string) || "instagram") as Lead["platform"],
+          qualification: "unreviewed",
+          favourite: false,
         };
         onCreate(lead);
         f.reset();
@@ -383,9 +474,9 @@ function SortableTh({ label, k, onSort, icon }: { label: string; k: SortKey; onS
   );
 }
 
-function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
+function FilterGroup({ label, children, full = false }: { label: string; children: React.ReactNode; full?: boolean }) {
   return (
-    <div>
+    <div className={full ? "md:col-span-2 lg:col-span-3 xl:col-span-4" : ""}>
       <Mono className="text-muted-foreground">{label}</Mono>
       <div className="mt-2 flex flex-wrap gap-1.5">{children}</div>
     </div>
@@ -400,6 +491,53 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     >
       {children}
     </button>
+  );
+}
+
+function AllChip({ active, onClick }: { active: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+    >
+      All
+    </button>
+  );
+}
+
+function IntentDot({ level }: { level: LeadIntent }) {
+  const color = level === "High" ? "bg-emerald-400" : level === "Medium" ? "bg-amber-400" : "bg-sky-400";
+  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+}
+
+function QualDot({ value }: { value: LeadQualification }) {
+  const color = value === "qualified" ? "bg-emerald-400" : value === "disqualified" ? "bg-rose-400" : "bg-muted-foreground/60";
+  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+}
+
+const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe>> = {
+  facebook: Facebook,
+  linkedin: Linkedin,
+  instagram: Instagram,
+  twitter: Twitter,
+  x: Twitter,
+  youtube: Youtube,
+  github: Github,
+  whatsapp: MessageCircle,
+  telegram: SendIcon,
+  discord: MessageCircle,
+  threads: Hash,
+  reddit: MessageCircle,
+  other: Globe,
+};
+
+function PlatformIcon({ p }: { p: LeadPlatform }) {
+  const Icon = PLATFORM_LUCIDE[p];
+  if (Icon) return <Icon className="h-3.5 w-3.5" />;
+  return (
+    <span className="grid h-3.5 w-3.5 place-items-center rounded-sm bg-foreground/15 text-[8px] font-semibold uppercase">
+      {p[0]}
+    </span>
   );
 }
 
