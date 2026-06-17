@@ -936,14 +936,16 @@ function Pricing() {
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
         </div>
-        <div className="mt-14 grid gap-3 md:grid-cols-3">
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {plans.map((p) => (
             <div
               key={p.name}
               className={`relative flex flex-col rounded-xl border p-6 md:p-7 ${
                 p.featured
                   ? "border-foreground/30 bg-card shadow-[0_0_0_1px_oklch(1_0_0/0.06),0_30px_80px_-30px_oklch(0.72_0.19_145/0.3)]"
-                  : "border-border bg-card/50"
+                  : (p as { vip?: boolean }).vip
+                    ? "border-[color:var(--signal)]/40 bg-card"
+                    : "border-border bg-card/50"
               }`}
             >
               {p.featured && (
