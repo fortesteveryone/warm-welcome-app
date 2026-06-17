@@ -162,7 +162,7 @@ function Overview() {
               { stage: "Saved",          v: 46,  w: 62,  c: "bg-indigo-500/70" },
               { stage: "Contacted",      v: 31,  w: 44,  c: "bg-amber-500/70" },
               { stage: "Replied",        v: 18,  w: 28,  c: "bg-orange-500/70" },
-              { stage: "Deal won",       v: 4,   w: 12,  c: "bg-emerald-500/70" },
+              { stage: "Deal won",       v: 4,   w: 12,  c: "bg-[color:var(--signal)]/70" },
             ].map((s) => (
               <div key={s.stage}>
                 <div className="flex items-center justify-between text-xs">
