@@ -4,6 +4,7 @@ import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, ExternalLink, Facebook,
   Linkedin, MessageSquare, Minus, Plus, Sparkles,
 } from "lucide-react";
+import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
