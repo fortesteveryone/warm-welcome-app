@@ -222,15 +222,15 @@ function Hero() {
             sales-ready leads.
           </span>
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-balance text-base text-muted-foreground md:text-lg">
-          We read buying signals on Facebook, LinkedIn and Reddit — and ship structured leads with intent, urgency, competition and outreach drafts.
+        <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
+          Grow By Lead turns public buying-intent posts from Facebook, LinkedIn and Reddit into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-            Start for free <ArrowRight className="h-4 w-4" />
+            Get early access <ArrowRight className="h-4 w-4" />
           </a>
           <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
-            See example lead
+            View sample lead
           </a>
         </div>
 
