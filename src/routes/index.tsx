@@ -135,7 +135,7 @@ function Home() {
       <Testimonials />
       <FAQ />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
