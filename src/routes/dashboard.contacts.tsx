@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, Mail, Phone, MapPin, Building2, Search, Download, LayoutGrid, List, X } from "lucide-react";
 import { PageHeader, Panel, Avatar, Badge, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
+
+type Contact = { name: string; role: string; company: string; email: string; phone: string; city: string; tags: string[] };
 
 export const Route = createFileRoute("/dashboard/contacts")({
   component: ContactsPage,
