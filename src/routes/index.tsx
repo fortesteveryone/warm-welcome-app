@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, Twitter, X,
+  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
@@ -75,12 +75,44 @@ function RedditIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function XIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M18.244 2H21l-6.49 7.41L22 22h-6.81l-4.78-6.26L4.8 22H2l6.94-7.93L2 2h6.94l4.32 5.72L18.244 2Zm-2.39 18h1.88L7.27 4H5.29l10.564 16Z"/>
+    </svg>
+  );
+}
+
+function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M19.5 7.6a6.7 6.7 0 0 1-4-1.3v8.3a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3a2.9 2.9 0 1 0 2 2.8V2h2.9a4.6 4.6 0 0 0 4.1 4.1v3.5Z"/>
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2ZM9.8 15.5v-7l5.9 3.5-5.9 3.5Z"/>
+    </svg>
+  );
+}
+
+function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12.2 2C6.6 2 3 5.6 3 11.9c0 6.4 3.5 10.1 9 10.1 5 0 8.4-2.6 8.9-6.7.4-3-.9-5.4-3.6-6.5-.4-2.6-2.2-4.1-5-4.1-2.1 0-3.8.8-4.7 2.3l1.7 1.1c.5-.9 1.5-1.4 2.9-1.4 1.7 0 2.7.7 3.1 2-3.5-.2-6.4 1.2-6.5 4 0 2.2 1.9 3.7 4.2 3.7 2.6 0 4.3-1.6 4.7-4.4 1.1.7 1.7 1.9 1.5 3.5-.4 2.9-2.7 4.5-6.2 4.5-4.4 0-7-2.9-7-8.2C5 6.9 7.5 4 12.2 4c3.2 0 5.5 1.3 6.6 3.8l1.8-.8C19.2 3.8 16.3 2 12.2 2Zm.4 11.7c-1.3 0-2.2-.7-2.2-1.7 0-1.3 1.6-2.1 4.1-2 0 .1 0 .2.1.3-.2 2.2-1.1 3.4-2 3.4Z"/>
+    </svg>
+  );
+}
+
 const PLATFORM_META: Record<string, { Icon: React.ComponentType<{ className?: string }>; color: string; label: string }> = {
   Facebook:  { Icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", label: "Facebook" },
   LinkedIn:  { Icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", label: "LinkedIn" },
   Reddit:    { Icon: RedditIcon, color: "#FF4500", label: "Reddit" },
   Instagram: { Icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />, color: "#E1306C", label: "Instagram" },
-  Twitter:   { Icon: ({ className }) => <Twitter   className={className} fill="currentColor" strokeWidth={0} />, color: "#1DA1F2", label: "Twitter" },
+  X:         { Icon: XIcon, color: "#FFFFFF", label: "X" },
 };
 
 function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; className?: string }) {
@@ -278,7 +310,7 @@ const sampleLeads = [
   { title: "Looking for SEO expert — local plumbing business",   platform: "Reddit",   temp: "Warm", service: "SEO",     comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
   { title: "Need help managing our Instagram for restaurant",    platform: "Instagram",temp: "Warm", service: "SMM",     comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
   { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
-  { title: "Anyone do landing pages for SaaS launch?",           platform: "Twitter",  temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
+  { title: "Anyone do landing pages for SaaS launch?",           platform: "X",        temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
 ] as const;
 
 function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
@@ -590,10 +622,12 @@ type PlatformEntry = {
 const platforms: PlatformEntry[] = [
   { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Service-request posts and business asks across public groups and pages." },
   { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
-  { icon: RedditIcon, color: "#FF4500", name: "Reddit", state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
-  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "soon", note: "Captions and pinned comments from creator and business accounts." },
-  { icon: ({ className }) => <Twitter   className={className} fill="currentColor" strokeWidth={0} />, color: "#1DA1F2", name: "Twitter",   state: "soon", note: "Public tweets with service requests, RFPs and intent keywords." },
-  { icon: ArrowUpRight, color: "#16a34a", name: "Manual link import", state: "live", note: "Paste any post URL or screenshot text — we structure it the same way." },
+  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and pinned comments from creator and business accounts." },
+  { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
+  { icon: XIcon,       color: "#FFFFFF", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
+  { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
+  { icon: TikTokIcon,  color: "#FFFFFF", name: "TikTok",      state: "soon", note: "Captions and comments where buyers ask for website and SEO help." },
+  { icon: YouTubeIcon, color: "#FF0000", name: "YouTube",     state: "soon", note: "Community posts and comments under business and creator channels." },
 ];
 
 function Platforms() {
@@ -993,7 +1027,7 @@ function Pricing() {
 const faqs = [
   { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter), Threads, TikTok and YouTube are coming soon." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
   { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
