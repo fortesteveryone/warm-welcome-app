@@ -111,7 +111,6 @@ function TopBar() {
         <div className="flex items-center gap-7">
           <a href="#" className="flex items-center gap-2">
             <Logo />
-            <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
           </a>
           <nav className="hidden items-center gap-6 md:flex">
             {links.map(([l, h]) => (
@@ -130,12 +129,8 @@ function TopBar() {
   );
 }
 
-function Logo() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-      <path d="M12 2 L22 20 L2 20 Z" />
-    </svg>
-  );
+function Logo({ className = "h-7 w-auto" }: { className?: string }) {
+  return <img src={logoAsset.url} alt="Grow By Lead" className={className} />;
 }
 
 /* ---------- hero ---------- */
