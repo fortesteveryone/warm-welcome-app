@@ -127,7 +127,7 @@ function Home() {
       <ExampleLead />
       <Platforms />
       <Scoring />
-      <Dashboard />
+      
       
       <Coverage />
       <Concierge />
