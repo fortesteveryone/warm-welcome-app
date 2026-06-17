@@ -37,6 +37,8 @@ function LeadsPage() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
+  const [leads, setLeads] = useState<Lead[]>(LEADS);
+  const [addOpen, setAddOpen] = useState(false);
 
   const toggle = <T,>(arr: T[], v: T) => arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v];
 
