@@ -406,7 +406,7 @@ function BeforeAfter() {
   return (
     <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="03 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
+        <SectionTitle kicker="02 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
             <Mono className="text-muted-foreground">Before — raw Facebook post</Mono>
