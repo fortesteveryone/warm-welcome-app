@@ -760,8 +760,9 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
-            Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
+            Early access pricing <span className="text-muted-foreground">for launch users.</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
           {plans.map((p) => (
