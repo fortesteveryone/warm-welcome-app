@@ -42,12 +42,12 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ kicker, title, lede }: { kicker: string; title: React.ReactNode; lede?: string }) {
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-4xl">
       <Mono className="text-muted-foreground">{kicker}</Mono>
-      <h2 className="mt-3 text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-5xl">
+      <h2 className="mt-3 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-5xl">
         {title}
       </h2>
-      {lede && <p className="mt-4 text-base text-muted-foreground md:text-lg">{lede}</p>}
+      {lede && <p className="mt-4 max-w-4xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{lede}</p>}
     </div>
   );
 }
