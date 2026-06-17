@@ -24,8 +24,6 @@ const INITIAL_CONTACTS: Contact[] = [
   { name: "Aaliyah Khan", role: "Partner", company: "Khan Legal", email: "aaliyah@khanlegal.ae", phone: "+971 4 123 4567", city: "Dubai, AE", tags: ["Legal"] },
 ];
 
-const ALL_TAGS = Array.from(new Set(CONTACTS.flatMap((c) => c.tags))).sort();
-
 function ContactsPage() {
   const [query, setQuery] = useState("");
   const [tags, setTags] = useState<string[]>([]);
