@@ -788,23 +788,41 @@ function Categories() {
 }
 
 /* ---------- coverage ---------- */
-const countries = ["USA", "Canada", "UK", "Australia", "Bangladesh", "India", "UAE", "Global"];
+const countries = [
+  { flag: "🇺🇸", name: "United States", live: true },
+  { flag: "🇨🇦", name: "Canada", live: true },
+  { flag: "🇬🇧", name: "United Kingdom", live: true },
+  { flag: "🇦🇺", name: "Australia", live: true },
+  { flag: "🇧🇩", name: "Bangladesh", live: true },
+  { flag: "🇮🇳", name: "India", live: true },
+  { flag: "🇦🇪", name: "UAE", live: true },
+  { flag: "🇸🇬", name: "Singapore", live: true },
+  { flag: "🇩🇪", name: "Germany", live: false },
+  { flag: "🇫🇷", name: "France", live: false },
+  { flag: "🇧🇷", name: "Brazil", live: false },
+  { flag: "🌍", name: "Global pool", live: true },
+];
 
 function Coverage() {
   return (
     <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
             kicker="12 / Coverage"
             title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
-            lede="Country, city and confidence are shown clearly when available — and left blank when they're not certain."
+            lede="Country and city show only when confident — left blank when not. We don't guess geography."
           />
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 md:grid-cols-4">
             {countries.map((c) => (
-              <div key={c} className="flex items-center justify-between bg-card px-4 py-4">
-                <span className="text-sm font-medium">{c}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+              <div key={c.name} className="flex items-center justify-between gap-2 bg-card px-4 py-3.5">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span className="text-lg leading-none" aria-hidden>{c.flag}</span>
+                  <span className="truncate text-sm font-medium">{c.name}</span>
+                </div>
+                {c.live
+                  ? <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--signal)] shadow-[0_0_6px_var(--signal)]" />
+                  : <Mono className="shrink-0 text-muted-foreground">soon</Mono>}
               </div>
             ))}
           </div>
