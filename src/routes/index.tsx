@@ -981,7 +981,7 @@ function Pricing() {
             Launch offer — 100% free for everyone. Just create an account.
           </div>
         </div>
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-3 md:grid-cols-3">
           {plans.map((p) => (
             <div
               key={p.name}
