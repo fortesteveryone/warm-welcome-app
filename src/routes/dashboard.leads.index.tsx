@@ -169,13 +169,13 @@ function LeadsPage() {
         <StatTile label="Cost per open" value="1 credit" hint={`$10 ≈ ${10 * CREDITS_PER_USD} leads`} tone="muted" />
         <button
           onClick={() => { setUnopenedOnly((u) => !u); setPage(1); }}
-          className={`group flex items-center justify-between rounded-xl border px-4 py-3 text-left transition ${unopenedOnly ? "border-emerald-500/40 bg-emerald-500/10" : "border-border bg-card/40 hover:bg-card/60"}`}
+          className={`group flex items-center justify-between rounded-xl border px-4 py-3 text-left transition ${unopenedOnly ? "border-foreground/30 bg-foreground/[0.07]" : "border-border bg-card/40 hover:bg-card/60"}`}
         >
           <div>
             <Mono className="text-muted-foreground">Quick filter</Mono>
             <div className="mt-1 text-sm font-medium">{unopenedOnly ? "Showing only unopened" : "Show only unopened"}</div>
           </div>
-          <span className={`grid h-8 w-8 place-items-center rounded-full border ${unopenedOnly ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-300" : "border-border bg-background/40 text-muted-foreground"}`}>
+          <span className={`grid h-8 w-8 place-items-center rounded-full border ${unopenedOnly ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-background/40 text-muted-foreground"}`}>
             <Eye className="h-4 w-4" />
           </span>
         </button>
@@ -463,10 +463,10 @@ function LeadPostCard({
                 {lead.category}
               </span>
               {!isOpened && (
-                <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-300">
+                <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-foreground">
                   <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-foreground" />
                   </span>
                   NEW
                 </span>
@@ -517,7 +517,7 @@ function LeadPostCard({
             className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold transition ${
               isOpened
                 ? "border border-border bg-background/60 text-foreground hover:bg-card"
-                : "bg-emerald-500 text-emerald-950 hover:bg-emerald-400"
+                : "bg-foreground text-background hover:bg-foreground/90"
             }`}
           >
             {isOpened ? "View details" : "Open · 1 credit"} <ArrowRight className="h-3 w-3" />
@@ -533,7 +533,7 @@ function LeadPostCard({
 function StatTile({ label, value, hint, tone }: { label: string; value: number | string; hint?: string; tone: "opened" | "unopened" | "muted" }) {
   const accent =
     tone === "opened"   ? "text-muted-foreground" :
-    tone === "unopened" ? "text-emerald-300" :
+    tone === "unopened" ? "text-foreground" :
                           "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-card/40 px-4 py-3">
@@ -595,7 +595,7 @@ function AllChip({ active, onClick }: { active: boolean; onClick: () => void }) 
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
     >
       All
     </button>
