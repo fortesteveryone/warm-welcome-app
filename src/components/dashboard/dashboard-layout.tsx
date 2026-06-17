@@ -163,10 +163,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             <button className="hidden items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90 sm:inline-flex">
               <Plus className="h-3.5 w-3.5" /> New lead
             </button>
-            <button className="relative grid h-9 w-9 place-items-center rounded-md border border-border hover:bg-card" aria-label="Notifications">
-              <Bell className="h-4 w-4" />
-              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-[color:var(--signal,oklch(0.72_0.19_145))]" />
-            </button>
+            <NotificationsBell />
             <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[12px] font-semibold ring-1 ring-border">
               NS
             </span>
