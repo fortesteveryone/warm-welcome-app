@@ -119,7 +119,7 @@ function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; clas
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <TopBar />
+      <SiteHeader />
       <Hero />
       <Scope />
       <AfterLogin />
