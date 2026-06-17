@@ -1024,6 +1024,57 @@ function Pricing() {
   );
 }
 
+/* ---------- testimonials (auto-marquee, no controls) ---------- */
+const testimonials: { name: string; role: string; avatar: string; quote: string }[] = [
+  { name: "Arif Chowdhury", role: "Founder · Pixelhaus (Webflow studio)", avatar: "https://i.pravatar.cc/120?img=11", quote: "We replaced two cold-call VAs with Grow By Lead. Within 3 weeks we booked 11 discovery calls — all from Facebook group posts we'd never have seen." },
+  { name: "Nadia Rahman", role: "SEO consultant", avatar: "https://i.pravatar.cc/120?img=32", quote: "The scoring is the best part. I skip the cold ones and only reply to warm/hot leads — my reply rate is 4× what it was last quarter." },
+  { name: "Lucas Pereira", role: "Co-founder · Pereira Studios", avatar: "https://i.pravatar.cc/120?img=15", quote: "Outreach drafts saved my Mondays. I used to spend 2 hours writing first messages — now I tweak the draft and send in 5 minutes." },
+  { name: "Maya Chen", role: "Local SEO agency owner", avatar: "https://i.pravatar.cc/120?img=20", quote: "Finally a tool that understands my niche. Every lead is a real local business asking for SEO — not a random 'need a website' post." },
+  { name: "Tanvir Hasan", role: "Senior web developer · Freelance", avatar: "https://i.pravatar.cc/120?img=12", quote: "The country + platform filters alone are worth the subscription. I only work with US/CA/UK clients and the inbox respects that." },
+  { name: "Priya Shah", role: "Outreach lead · 4-person agency", avatar: "https://i.pravatar.cc/120?img=23", quote: "Our team shares one inbox now. We assign leads, mark contacted, and stop double-replying. It feels like a CRM built for cold posts." },
+  { name: "Eitan Gold", role: "Design lead · Goldhaus", avatar: "https://i.pravatar.cc/120?img=7", quote: "The hot-leads Gmail add-on closes deals for us. I get the alert, reply within 10 minutes, and clients are visibly impressed by the speed." },
+  { name: "Sara Lindqvist", role: "Freelance web designer", avatar: "https://i.pravatar.cc/120?img=38", quote: "I was about to quit freelancing. Grow By Lead gave me 3 paying clients in my first month — I'm fully booked through next quarter." },
+  { name: "Noah Whitman", role: "Founder · Whitman & Co", avatar: "https://i.pravatar.cc/120?img=60", quote: "Honest review: the data quality is good, not perfect. But it's still 10× better than scraping Reddit manually like I used to." },
+  { name: "Jordan Ali", role: "Technical SEO", avatar: "https://i.pravatar.cc/120?img=53", quote: "I export the daily leads to my own CRM and run my own outreach cadence on top. The structured data makes that 1-click easy." },
+];
+
+function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
+  return (
+    <figure className="flex w-[340px] shrink-0 flex-col justify-between rounded-2xl border border-border bg-card/60 p-6 shadow-[0_1px_0_oklch(1_0_0/0.04)_inset]">
+      <blockquote className="text-[15px] leading-relaxed text-foreground/90">
+        <span aria-hidden className="mr-1 text-[color:var(--signal)]">“</span>
+        {t.quote}
+      </blockquote>
+      <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
+        <img src={t.avatar} alt={t.name} className="h-10 w-10 rounded-full object-cover" />
+        <div className="min-w-0 text-sm leading-tight">
+          <p className="truncate font-medium">{t.name}</p>
+          <p className="truncate text-xs text-muted-foreground">{t.role}</p>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
+
+function Testimonials() {
+  const row = [...testimonials, ...testimonials]; // duplicate for seamless loop
+  return (
+    <section id="testimonials" className="section-edge section-surface-violet">
+      <Container className="py-16 md:py-20">
+        <SectionTitle
+          kicker="Loved by"
+          title={<>Agencies, freelancers and SEO teams <span className="text-muted-foreground">already using it daily.</span></>}
+        />
+      </Container>
+      <div className="marquee-mask relative overflow-hidden pb-16 md:pb-20">
+        <div className="animate-marquee-rtl flex w-max gap-5 will-change-transform">
+          {row.map((t, i) => <TestimonialCard key={i} t={t} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- FAQ ---------- */
 const faqs = [
   { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
