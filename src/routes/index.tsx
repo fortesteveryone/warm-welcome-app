@@ -627,8 +627,6 @@ const platforms: PlatformEntry[] = [
   { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
   { icon: XIcon,       color: "#FFFFFF", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
   { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
-  { icon: TikTokIcon,  color: "#FFFFFF", name: "TikTok",      state: "soon", note: "Captions and comments where buyers ask for website and SEO help." },
-  { icon: YouTubeIcon, color: "#FF0000", name: "YouTube",     state: "soon", note: "Community posts and comments under business and creator channels." },
 ];
 
 function Platforms() {
