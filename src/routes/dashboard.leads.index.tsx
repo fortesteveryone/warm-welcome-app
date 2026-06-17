@@ -1,14 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import {
-  Filter, Download, Plus, Search, Instagram, Linkedin, Facebook,
+  Filter, Download, Plus, Search,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
-  ChevronLeft, ChevronRight, Star, Flame, Snowflake, Twitter, Youtube, Github,
-  MessageCircle, Globe, Send as SendIcon, Hash, MessageSquare, FileText, ArrowRight,
-  Eye, Lock,
+  ChevronLeft, ChevronRight, Star, Flame, Snowflake,
+  MessageSquare, FileText, ArrowRight, Eye, Lock,
 } from "lucide-react";
 import { PageHeader, Panel, Mono } from "@/components/dashboard/dash-ui";
 import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
+import { SocialTile, countryFlag, platformVisual } from "@/lib/lead-visuals";
 import {
   LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, LEAD_CATEGORIES, LEAD_INTENTS,
   LEAD_PLATFORMS, LEAD_COUNTRIES, LEAD_QUALIFICATIONS,
@@ -392,7 +392,7 @@ function LeadsPage() {
   );
 }
 
-/* ─────────────────────────── post-style lead card ─────────────────────────── */
+/* ─────────────────────────── lead card (own design) ─────────────────────────── */
 
 function LeadPostCard({
   lead, isOpened, selected, onToggleSelect, onOpen, compact = false,
@@ -404,102 +404,125 @@ function LeadPostCard({
   onOpen: () => void;
   compact?: boolean;
 }) {
-  const tone =
-    lead.status === "hot"  ? { label: "Hot",  cls: "border-rose-500/40 bg-rose-500/10 text-rose-200",   icon: <Flame className="h-3 w-3" /> } :
-    lead.status === "warm" ? { label: "Warm", cls: "border-amber-500/40 bg-amber-500/10 text-amber-200", icon: <span className="h-1.5 w-1.5 rounded-full bg-amber-400" /> } :
-                              { label: "Cold", cls: "border-sky-500/40 bg-sky-500/10 text-sky-200",       icon: <Snowflake className="h-3 w-3" /> };
+  const v = platformVisual(lead.platform);
 
-  const intentTone =
-    lead.intent === "High"   ? "text-emerald-300" :
-    lead.intent === "Medium" ? "text-amber-300" :
-                               "text-sky-300";
+  const tempBar =
+    lead.status === "hot"  ? "from-rose-500 to-orange-500" :
+    lead.status === "warm" ? "from-amber-500 to-yellow-500" :
+                              "from-sky-500 to-indigo-500";
+  const tempBadge =
+    lead.status === "hot"  ? { cls: "bg-rose-500/15 text-rose-200 ring-rose-500/30",  icon: <Flame className="h-3 w-3" />, label: "Hot" } :
+    lead.status === "warm" ? { cls: "bg-amber-500/15 text-amber-200 ring-amber-500/30", icon: <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />, label: "Warm" } :
+                              { cls: "bg-sky-500/15 text-sky-200 ring-sky-500/30",       icon: <Snowflake className="h-3 w-3" />, label: "Cold" };
+
   const intentDot =
     lead.intent === "High"   ? "bg-emerald-400" :
     lead.intent === "Medium" ? "bg-amber-400" :
-                               "bg-sky-400";
+                                "bg-sky-400";
 
   return (
     <article
       className={[
-        "group relative flex flex-col rounded-xl border p-4 transition",
+        "group relative isolate flex overflow-hidden rounded-2xl border bg-card/40 backdrop-blur-sm transition",
         isOpened
-          ? "border-border bg-card/30 opacity-80 hover:opacity-100"
-          : "border-emerald-500/20 bg-card/60 hover:border-emerald-500/40 hover:bg-card",
-        selected ? "ring-1 ring-foreground/40" : "",
+          ? "border-border opacity-85 hover:opacity-100"
+          : "border-border hover:border-foreground/30 hover:bg-card/70",
+        selected ? "ring-2 ring-foreground/40" : "",
       ].join(" ")}
     >
-      {/* select checkbox */}
-      <input
-        type="checkbox"
-        checked={selected}
-        onChange={onToggleSelect}
-        className="absolute left-3 top-3 h-3.5 w-3.5 accent-foreground opacity-0 transition group-hover:opacity-100"
-        aria-label="Select lead"
-      />
+      {/* brand-color left rail */}
+      <div className={`w-1.5 shrink-0 bg-gradient-to-b ${tempBar}`} />
 
-      {/* top row */}
-      <div className="flex items-start justify-between gap-2 pl-5">
-        <div className="flex flex-wrap items-center gap-1.5 text-xs">
-          {!isOpened ? (
-            <span className="relative flex h-2 w-2" aria-label="Unopened">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-          ) : (
-            <Lock className="h-3 w-3 text-muted-foreground" aria-label="Opened" />
-          )}
-          <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] ${tone.cls}`}>
-            {tone.icon} {tone.label}
-          </span>
-          <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground">
-            <PlatformIcon p={lead.platform} /> <span className="capitalize">{lead.platform}</span>
-          </span>
-          {!compact && (
-            <>
-              <span className="text-[11px] text-muted-foreground">{lead.country}</span>
+      <div className="flex min-w-0 flex-1 flex-col p-4">
+        {/* select checkbox */}
+        <input
+          type="checkbox"
+          checked={selected}
+          onChange={onToggleSelect}
+          className="absolute right-3 top-3 h-3.5 w-3.5 accent-foreground opacity-0 transition group-hover:opacity-100 peer-focus:opacity-100"
+          aria-label="Select lead"
+        />
+
+        {/* header: social tile + flag + status */}
+        <header className="flex items-start gap-3">
+          <SocialTile platform={lead.platform} size={compact ? 36 : 42} />
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className={`text-xs font-semibold uppercase tracking-wide ${v.color}`}>{v.label}</span>
               <span className="text-[11px] text-muted-foreground">·</span>
-              <span className="text-[11px] text-muted-foreground">{lead.category}</span>
-            </>
-          )}
+              <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+                <span className="text-sm leading-none">{countryFlag(lead.country)}</span>
+                <span className="truncate">{lead.country}</span>
+              </span>
+            </div>
+            <div className="mt-1 flex flex-wrap items-center gap-1.5">
+              <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ring-1 ${tempBadge.cls}`}>
+                {tempBadge.icon} {tempBadge.label}
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 text-[10px] text-muted-foreground ring-1 ring-border">
+                {lead.category}
+              </span>
+              {!isOpened && (
+                <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-300">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  </span>
+                  NEW
+                </span>
+              )}
+            </div>
+          </div>
+          <Star className={`h-4 w-4 shrink-0 ${lead.favourite ? "fill-amber-400 text-amber-400" : "text-muted-foreground/50"}`} />
+        </header>
+
+        {/* headline */}
+        <p className={`mt-3 ${compact ? "text-sm" : "text-[15px]"} ${isOpened ? "font-normal text-muted-foreground" : "font-semibold text-foreground"} leading-snug line-clamp-3`}>
+          {lead.headline}
+        </p>
+
+        {/* topic */}
+        <div className="mt-3">
+          <span className={`inline-flex max-w-full items-center gap-1.5 truncate rounded-md px-2.5 py-1 text-xs ring-1 ${v.bg} ${v.ring} ${v.color}`}>
+            <span className="truncate">{lead.topic}</span>
+          </span>
         </div>
-        <Star className={`h-4 w-4 shrink-0 ${lead.favourite ? "fill-amber-400 text-amber-400" : "text-muted-foreground/60"}`} />
-      </div>
 
-      {/* headline */}
-      <p className={`mt-3 pl-5 ${compact ? "text-sm" : "text-[15px]"} ${isOpened ? "font-normal text-muted-foreground" : "font-semibold text-foreground"} leading-snug line-clamp-3`}>
-        {lead.headline}
-      </p>
+        {/* meta row + score */}
+        <div className="mt-3 flex items-center gap-3 text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1"><MessageSquare className="h-3 w-3" /> {lead.comments}</span>
+          <span className="inline-flex items-center gap-1"><FileText className="h-3 w-3" /> {lead.drafts}</span>
+          <span className="inline-flex items-center gap-1">
+            <span className={`h-1.5 w-1.5 rounded-full ${intentDot}`} /> {lead.intent.toLowerCase()}
+          </span>
+          <span className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-foreground/5 px-1.5 py-0.5 font-mono text-[10px] text-foreground/80 ring-1 ring-border">
+            <span className="opacity-60">SCR</span>
+            <span className="font-semibold">{lead.score}</span>
+          </span>
+        </div>
 
-      {/* topic pill */}
-      <div className="mt-3 pl-5">
-        <span className="inline-flex max-w-full items-center truncate rounded-md bg-background/60 px-2.5 py-1 text-xs text-foreground/80 ring-1 ring-border">
-          {lead.topic.length > 38 ? lead.topic.slice(0, 36) + "…" : lead.topic}
-        </span>
-      </div>
-
-      {/* meta row */}
-      <div className="mt-3 flex items-center gap-3 pl-5 text-[11px] text-muted-foreground">
-        <span className="inline-flex items-center gap-1"><MessageSquare className="h-3 w-3" /> {lead.comments}</span>
-        <span className="inline-flex items-center gap-1"><FileText className="h-3 w-3" /> {lead.drafts} drafts</span>
-        <span className={`inline-flex items-center gap-1 ${intentTone}`}>
-          <span className={`h-1.5 w-1.5 rounded-full ${intentDot}`} /> {lead.intent.toLowerCase()} intent
-        </span>
-        <span className="ml-auto font-mono">{lead.postedAt}</span>
-      </div>
-
-      {/* footer / CTA */}
-      <div className="mt-4 flex items-center justify-between border-t border-border pt-3 pl-5">
-        <span className={`text-xs font-medium ${isOpened ? "text-muted-foreground" : "text-emerald-300"}`}>
-          {isOpened ? "Opened" : "New · 1 credit"}
-        </span>
-        <Link
-          to="/dashboard/leads/$leadId"
-          params={{ leadId: lead.id }}
-          onClick={onOpen}
-          className="inline-flex items-center gap-1 text-xs font-medium text-foreground hover:underline"
-        >
-          {isOpened ? "View details" : "Open lead"} <ArrowRight className="h-3 w-3" />
-        </Link>
+        {/* footer */}
+        <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+            {isOpened ? (
+              <><Lock className="h-3 w-3" /> <span>Opened · {lead.postedAt}</span></>
+            ) : (
+              <span className="font-mono">{lead.postedAt}</span>
+            )}
+          </div>
+          <Link
+            to="/dashboard/leads/$leadId"
+            params={{ leadId: lead.id }}
+            onClick={onOpen}
+            className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold transition ${
+              isOpened
+                ? "border border-border bg-background/60 text-foreground hover:bg-card"
+                : "bg-emerald-500 text-emerald-950 hover:bg-emerald-400"
+            }`}
+          >
+            {isOpened ? "View details" : "Open · 1 credit"} <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
       </div>
     </article>
   );
@@ -589,30 +612,9 @@ function QualDot({ value }: { value: LeadQualification }) {
   return <span className={`h-2 w-2 rounded-full ${color}`} />;
 }
 
-const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe>> = {
-  facebook: Facebook,
-  linkedin: Linkedin,
-  instagram: Instagram,
-  twitter: Twitter,
-  x: Twitter,
-  youtube: Youtube,
-  github: Github,
-  whatsapp: MessageCircle,
-  telegram: SendIcon,
-  discord: MessageCircle,
-  threads: Hash,
-  reddit: MessageCircle,
-  other: Globe,
-};
-
 function PlatformIcon({ p }: { p: LeadPlatform }) {
-  const Icon = PLATFORM_LUCIDE[p];
-  if (Icon) return <Icon className="h-3.5 w-3.5" />;
-  return (
-    <span className="grid h-3.5 w-3.5 place-items-center rounded-sm bg-foreground/15 text-[8px] font-semibold uppercase">
-      {p[0]}
-    </span>
-  );
+  const v = platformVisual(p);
+  return <v.Icon className={`h-3.5 w-3.5 ${v.color}`} />;
 }
 
 function Pagination({ page, total, totalPages, onPage }: { page: number; total: number; totalPages: number; onPage: (p: number) => void }) {

@@ -5,10 +5,10 @@ import {
   Star, ExternalLink, ChevronDown, ChevronUp, ClipboardList, AlertTriangle,
   Sparkles, ListChecks, Smartphone, Globe2, FileText, Send,
   Briefcase, FileSignature, Users, Gauge, Lightbulb, Copy, Check,
-  CheckCircle2, XCircle, Instagram, Linkedin, Facebook, Youtube, Twitter,
-  Github, MessageCircle, Send as SendIcon, Hash, ArrowLeftRight,
+  CheckCircle2, XCircle, ArrowLeftRight,
 } from "lucide-react";
-import { getLeadById, type Lead, type LeadPlatform } from "@/lib/leads-data";
+import { getLeadById, type Lead } from "@/lib/leads-data";
+import { SocialTile, SocialPill, countryFlag, platformVisual } from "@/lib/lead-visuals";
 
 export const Route = createFileRoute("/dashboard/leads/$leadId")({
   loader: ({ params }) => {
@@ -39,17 +39,6 @@ export const Route = createFileRoute("/dashboard/leads/$leadId")({
 });
 
 /* ─────────────────────── derive view-model from existing fields ─────────────────────── */
-
-const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe2>> = {
-  facebook: Facebook, linkedin: Linkedin, instagram: Instagram, twitter: Twitter,
-  x: Twitter, youtube: Youtube, github: Github, whatsapp: MessageCircle,
-  telegram: SendIcon, discord: MessageCircle, threads: Hash, reddit: MessageCircle,
-  other: Globe2,
-};
-function PlatformGlyph({ p, className = "h-3.5 w-3.5" }: { p: LeadPlatform; className?: string }) {
-  const I = PLATFORM_LUCIDE[p];
-  return I ? <I className={className} /> : <Globe2 className={className} />;
-}
 
 type Derived = {
   tempLabel: "Hot lead" | "Warm lead" | "Cold lead";
@@ -186,94 +175,126 @@ function LeadDetailPage() {
         <ArrowLeft className="h-3.5 w-3.5" /> All leads
       </Link>
 
-      {/* ── Hero quote card ── */}
-      <section className="rounded-2xl border border-border bg-card/40 p-5">
-        <header className="flex flex-wrap items-center gap-2">
-          <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${d.tempCls}`}>
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
-            {d.tempLabel}
-          </span>
-          <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] ${d.qualCls}`}>
-            <ArrowLeftRight className="h-3 w-3" /> {d.qualLabel}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
-            <PlatformGlyph p={lead.platform} className="h-3 w-3" />
-            <span className="capitalize">{lead.platform}</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
-            <Globe2 className="h-3 w-3" /> {lead.country}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11px] text-muted-foreground">
-            <Briefcase className="h-3 w-3" /> {lead.category}
-            <span className="text-muted-foreground/60">›</span>
-            <span className="text-foreground/80">{lead.topic}</span>
-          </span>
-          <div className="ml-auto flex items-center gap-2">
-            <button
-              onClick={() => setFavourite((f) => !f)}
-              className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs text-muted-foreground hover:text-foreground"
-            >
-              <Star className={`h-3.5 w-3.5 ${favourite ? "fill-amber-400 text-amber-400" : ""}`} />
-              {favourite ? "Saved" : "Save"}
-            </button>
-            <a
-              href={`https://${lead.website}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs text-muted-foreground hover:text-foreground"
-            >
-              <ExternalLink className="h-3.5 w-3.5" /> Source
-            </a>
-          </div>
-        </header>
+      {/* ── Hero: brand-color banner, big social tile + flag ── */}
+      {(() => {
+        const v = platformVisual(lead.platform);
+        return (
+          <section className="relative overflow-hidden rounded-2xl border border-border bg-card/40">
+            {/* brand color top banner */}
+            <div className={`h-20 ${v.bg}`}>
+              <div className="h-full w-full bg-gradient-to-br from-transparent via-transparent to-background/40" />
+            </div>
 
-        {/* Quote */}
-        <div className="mt-4 flex gap-3">
-          <Quote className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
-          <div className="min-w-0">
-            <p className={`text-[15px] leading-relaxed text-foreground/90 ${expanded || !isLong ? "" : "line-clamp-3"}`}>
-              {lead.headline}{lead.about ? ` ${lead.about}` : ""}
-            </p>
-            {isLong && (
-              <button
-                onClick={() => setExpanded((e) => !e)}
-                className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-300 hover:underline"
-              >
-                {expanded ? "See less" : "See more"}
-              </button>
-            )}
-          </div>
-        </div>
+            <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+              {/* identity row: social tile overlapping banner + name + flag */}
+              <div className="-mt-9 flex flex-wrap items-end gap-4">
+                <div className="relative">
+                  <SocialTile platform={lead.platform} size={72} className="ring-4 ring-card" />
+                  <span
+                    aria-label={`${lead.country} flag`}
+                    className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-card text-base ring-2 ring-card shadow"
+                  >
+                    {countryFlag(lead.country)}
+                  </span>
+                </div>
 
-        {/* Topic pill */}
-        <div className="mt-4">
-          <span className="inline-flex items-center gap-2 rounded-lg bg-background/60 px-3 py-2 text-sm ring-1 ring-border">
-            <Zap className="h-3.5 w-3.5 text-emerald-400" /> {lead.topic}
-          </span>
-        </div>
+                <div className="min-w-0 flex-1 pt-9">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${d.tempCls}`}>
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+                      {d.tempLabel}
+                    </span>
+                    <SocialPill platform={lead.platform} />
+                    <span className="inline-flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 text-[11px] text-foreground/80 ring-1 ring-border">
+                      <span className="text-sm leading-none">{countryFlag(lead.country)}</span>
+                      {lead.country}
+                    </span>
+                    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] ${d.qualCls}`}>
+                      <ArrowLeftRight className="h-3 w-3" /> {d.qualLabel}
+                    </span>
+                  </div>
+                  <h1 className="mt-2 text-xl font-semibold tracking-tight text-foreground">{lead.name}</h1>
+                  <div className="mt-0.5 text-xs text-muted-foreground">
+                    {lead.role} · {lead.company} · {lead.city || lead.country}
+                  </div>
+                </div>
 
-        {/* Stat tiles */}
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <StatBlock icon={<MessageSquare className="h-4 w-4 text-sky-300" />} value={lead.comments} label="Comments" tone="sky" />
-          <StatBlock icon={<Heart className="h-4 w-4 text-rose-300" />} value={d.reactions} label="Reactions" tone="rose" />
-          <StatBlock icon={<Share2 className="h-4 w-4 text-indigo-300" />} value={d.shares} label="Shares" tone="indigo" />
-          <StatBlock icon={<TrendingUp className="h-4 w-4 text-emerald-300" />} value={lead.intent} label="Intent" tone="emerald" />
-        </div>
+                <div className="flex shrink-0 items-center gap-2 pt-9">
+                  <button
+                    onClick={() => setFavourite((f) => !f)}
+                    className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    <Star className={`h-3.5 w-3.5 ${favourite ? "fill-amber-400 text-amber-400" : ""}`} />
+                    {favourite ? "Saved" : "Save"}
+                  </button>
+                  <a
+                    href={`https://${lead.website}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium ring-1 ${v.bg} ${v.ring} ${v.color} hover:brightness-110`}
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" /> Open source
+                  </a>
+                </div>
+              </div>
 
-        {/* Footer meta */}
-        <footer className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> {lead.postedAt}</span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="grid h-5 w-5 place-items-center rounded-full bg-foreground/10 text-[10px] font-semibold uppercase text-foreground">
-              {d.handle[1]}
-            </span>
-            {d.handle}
-          </span>
-          <span className="ml-auto inline-flex items-center gap-1.5">
-            Owner · <span className="text-foreground">{lead.owner}</span>
-          </span>
-        </footer>
-      </section>
+              {/* category breadcrumb */}
+              <div className="mt-5 flex flex-wrap items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Briefcase className="h-3 w-3" /> {lead.category}
+                <span className="text-muted-foreground/60">›</span>
+                <span className="text-foreground/80">{lead.topic}</span>
+              </div>
+
+              {/* Quote */}
+              <div className="mt-4 flex gap-3 rounded-xl border border-border bg-background/40 p-4">
+                <Quote className={`mt-1 h-4 w-4 shrink-0 ${v.color}`} />
+                <div className="min-w-0">
+                  <p className={`text-[15px] leading-relaxed text-foreground/90 ${expanded || !isLong ? "" : "line-clamp-3"}`}>
+                    {lead.headline}{lead.about ? ` ${lead.about}` : ""}
+                  </p>
+                  {isLong && (
+                    <button
+                      onClick={() => setExpanded((e) => !e)}
+                      className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-300 hover:underline"
+                    >
+                      {expanded ? "See less" : "See more"}
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Topic pill */}
+              <div className="mt-4">
+                <span className={`inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm ring-1 ${v.bg} ${v.ring} ${v.color}`}>
+                  <Zap className="h-3.5 w-3.5" /> {lead.topic}
+                </span>
+              </div>
+
+              {/* Stat tiles */}
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <StatBlock icon={<MessageSquare className="h-4 w-4 text-sky-300" />} value={lead.comments} label="Comments" tone="sky" />
+                <StatBlock icon={<Heart className="h-4 w-4 text-rose-300" />} value={d.reactions} label="Reactions" tone="rose" />
+                <StatBlock icon={<Share2 className="h-4 w-4 text-indigo-300" />} value={d.shares} label="Shares" tone="indigo" />
+                <StatBlock icon={<TrendingUp className="h-4 w-4 text-emerald-300" />} value={lead.intent} label="Intent" tone="emerald" />
+              </div>
+
+              {/* Footer meta */}
+              <footer className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> {lead.postedAt}</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className={`grid h-5 w-5 place-items-center rounded-full text-[10px] font-semibold uppercase ${v.bg} ${v.color}`}>
+                    {d.handle[1]}
+                  </span>
+                  {d.handle}
+                </span>
+                <span className="ml-auto inline-flex items-center gap-1.5">
+                  Owner · <span className="text-foreground">{lead.owner}</span>
+                </span>
+              </footer>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── Lead Details ── */}
       <Section
