@@ -24,7 +24,7 @@ type SortKey = "name" | "score" | "stage" | "owner" | "updated";
 type SortDir = "asc" | "desc";
 
 const STATUS_TABS = ["All", "Hot", "Warm", "Cold"] as const;
-const PAGE_SIZE = 8;
+const PAGE_SIZE_OPTIONS = [8, 16, 32, 50, 100] as const;
 const OPENED_KEY = "leads:opened";
 const CREDIT_COST = 1;
 const CREDITS_PER_USD = 50; // $10 → 500 opens
@@ -55,6 +55,8 @@ function LeadsPage() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState<number>(8);
+
   const [leads, setLeads] = useState<Lead[]>(LEADS);
   const [addOpen, setAddOpen] = useState(false);
 
@@ -106,9 +108,10 @@ function LeadsPage() {
     return list;
   }, [leads, opened, query, status, favOnly, unopenedOnly, categories, temperatures, intents, country, platforms, qualifications, stages, owners, minScore, sortKey, sortDir]);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, totalPages);
-  const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
+
 
   const activeFilterCount =
     (favOnly ? 1 : 0) + (unopenedOnly ? 1 : 0) + categories.length + temperatures.length + intents.length +
