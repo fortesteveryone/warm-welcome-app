@@ -119,9 +119,11 @@ function TopBar() {
           </nav>
         </div>
         <div className="flex items-center gap-2">
-          <a href="#" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">Sign in</a>
-          <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-            Get started <ArrowRight className="h-3.5 w-3.5" />
+          <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
+            Sign in
+          </a>
+          <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card">
+            Get started
           </a>
         </div>
       </Container>
