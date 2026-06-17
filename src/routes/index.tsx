@@ -67,6 +67,34 @@ function Tag({ children, tone = "default" }: { children: React.ReactNode; tone?:
   );
 }
 
+function RedditIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm5.7 12.3a1.5 1.5 0 0 1-.1 2.1c-1.5 1.4-4 2.3-5.6 2.3s-4.1-.9-5.6-2.3a1.5 1.5 0 0 1 2-2.2c.8.8 2.3 1.5 3.6 1.5s2.8-.7 3.6-1.5a1.5 1.5 0 0 1 2.1.1Zm-7.8-2.1a1.6 1.6 0 1 1-3.1 0 1.6 1.6 0 0 1 3.1 0Zm7.3 0a1.6 1.6 0 1 1-3.1 0 1.6 1.6 0 0 1 3.1 0ZM18.8 6a1.8 1.8 0 0 0-1.3.6c-1.1-.7-2.5-1.1-4-1.2l.8-3.5 2.5.6a1.5 1.5 0 1 0 .2-1l-3-.7a.5.5 0 0 0-.6.4l-.9 4.2c-1.6.1-3 .5-4.2 1.2A1.8 1.8 0 1 0 6 9.4a3 3 0 0 0 0 .8c0 2.7 3 4.9 6.6 4.9s6.6-2.2 6.6-4.9a3 3 0 0 0 0-.8A1.8 1.8 0 0 0 18.8 6Z"/>
+    </svg>
+  );
+}
+
+const PLATFORM_META: Record<string, { Icon: React.ComponentType<{ className?: string }>; color: string; label: string }> = {
+  Facebook:  { Icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", label: "Facebook" },
+  LinkedIn:  { Icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", label: "LinkedIn" },
+  Reddit:    { Icon: RedditIcon, color: "#FF4500", label: "Reddit" },
+  Instagram: { Icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />, color: "#E1306C", label: "Instagram" },
+  Twitter:   { Icon: ({ className }) => <Twitter   className={className} fill="currentColor" strokeWidth={0} />, color: "#1DA1F2", label: "Twitter" },
+};
+
+function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; className?: string }) {
+  const m = PLATFORM_META[name];
+  if (!m) return <span className="text-xs">{name}</span>;
+  const { Icon } = m;
+  return (
+    <span className="inline-flex items-center gap-1.5 text-xs">
+      <span style={{ color: m.color }} className="inline-flex"><Icon className={className} /></span>
+      <span>{m.label}</span>
+    </span>
+  );
+}
+
 /* ============================================================
    Page
    ============================================================ */
@@ -78,7 +106,6 @@ function Home() {
       <Hero />
       <LogoStrip />
       <ExampleLead />
-      <BeforeAfter />
       <Platforms />
       <Scoring />
       <Dashboard />
