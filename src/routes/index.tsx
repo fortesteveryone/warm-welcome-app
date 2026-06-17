@@ -966,11 +966,6 @@ function Pricing() {
       features: ["Manually filtered hot leads", "Real-time Gmail delivery", "Dedicated Hot Leads dashboard", "Priority over standard queue", "All Monthly features included", "Concierge support"],
       cta: "Coming soon", featured: false, vip: true, soon: true,
     },
-    {
-      name: "Agency", price: "Custom", cadence: "", desc: "For agencies running outreach for multiple clients.",
-      features: ["Everything in Monthly", "Multiple workspaces", "Team seats", "API access (beta)", "Webhook delivery", "Onboarding session"],
-      cta: "Free during launch", featured: false,
-    },
   ];
   return (
     <section id="pricing" className="section-edge section-surface-charcoal">
