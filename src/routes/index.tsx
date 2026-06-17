@@ -158,12 +158,12 @@ function Hero() {
         </div>
         <h1 className="mx-auto mt-7 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[88px]">
           Social posts to{" "}
-          <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-br from-[color:var(--signal)] to-foreground/60 bg-clip-text text-transparent">
             sales-ready leads.
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead reads buying signals on Facebook, LinkedIn and Reddit — and ships structured leads with intent, urgency, competition and outreach drafts.
+          We read buying signals on Facebook, LinkedIn and Reddit — and ship structured leads with intent, urgency, competition and outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
@@ -255,15 +255,15 @@ function PreviewDetail() {
   );
 }
 
-/* ---------- logo / values strip ---------- */
+/* ---------- value strip ---------- */
 function LogoStrip() {
-  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts included", "Manual review flags", "CSV / JSON export"];
+  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts", "Manual review", "CSV / JSON"];
   return (
     <div className="border-b border-border">
-      <Container className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-6">
+      <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5">
         {items.map((t) => (
-          <span key={t} className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Check className="h-3.5 w-3.5 text-foreground/60" /> {t}
+          <span key={t} className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Check className="h-3 w-3 text-[color:var(--signal)]/80" /> {t}
           </span>
         ))}
       </Container>
@@ -734,12 +734,12 @@ function Review() {
 
 /* ---------- use cases ---------- */
 const useCases = [
-  ["Web design agencies", "Find people asking for website design, redesign, portfolio sites and business websites — before they hit Upwork."],
-  ["SEO experts", "Surface posts asking for ranking help, local SEO, traffic recovery and Google visibility issues."],
-  ["Social media managers", "Catch businesses asking for page management, content calendars and ad creatives."],
-  ["Freelancers", "Get to fresh service-request posts before the comments fill up and competition spikes."],
-  ["Cold outreach teams", "Use structured lead data and outreach drafts to contact faster, with cleaner context."],
-  ["Lead generation agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
+  ["Web design agencies", "Catch people asking for website design, redesign or portfolio sites — before they hit Upwork."],
+  ["SEO experts", "Posts about ranking help, local SEO and traffic recovery, surfaced as they happen."],
+  ["Social media managers", "Businesses asking for page management, content calendars and ad creatives."],
+  ["Freelancers", "Get to fresh service-request posts before the comments fill up."],
+  ["Outreach teams", "Structured lead data + drafts means faster, cleaner first contact."],
+  ["Lead-gen agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
 ];
 
 function UseCases() {
@@ -788,23 +788,41 @@ function Categories() {
 }
 
 /* ---------- coverage ---------- */
-const countries = ["USA", "Canada", "UK", "Australia", "Bangladesh", "India", "UAE", "Global"];
+const countries = [
+  { flag: "🇺🇸", name: "United States", live: true },
+  { flag: "🇨🇦", name: "Canada", live: true },
+  { flag: "🇬🇧", name: "United Kingdom", live: true },
+  { flag: "🇦🇺", name: "Australia", live: true },
+  { flag: "🇧🇩", name: "Bangladesh", live: true },
+  { flag: "🇮🇳", name: "India", live: true },
+  { flag: "🇦🇪", name: "UAE", live: true },
+  { flag: "🇸🇬", name: "Singapore", live: true },
+  { flag: "🇩🇪", name: "Germany", live: false },
+  { flag: "🇫🇷", name: "France", live: false },
+  { flag: "🇧🇷", name: "Brazil", live: false },
+  { flag: "🌍", name: "Global pool", live: true },
+];
 
 function Coverage() {
   return (
     <section className="border-b border-border">
       <Container className="py-24 md:py-32">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
             kicker="12 / Coverage"
             title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
-            lede="Country, city and confidence are shown clearly when available — and left blank when they're not certain."
+            lede="Country and city show only when confident — left blank when not. We don't guess geography."
           />
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 md:grid-cols-4">
             {countries.map((c) => (
-              <div key={c} className="flex items-center justify-between bg-card px-4 py-4">
-                <span className="text-sm font-medium">{c}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+              <div key={c.name} className="flex items-center justify-between gap-2 bg-card px-4 py-3.5">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span className="text-lg leading-none" aria-hidden>{c.flag}</span>
+                  <span className="truncate text-sm font-medium">{c.name}</span>
+                </div>
+                {c.live
+                  ? <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--signal)] shadow-[0_0_6px_var(--signal)]" />
+                  : <Mono className="shrink-0 text-muted-foreground">soon</Mono>}
               </div>
             ))}
           </div>
