@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, ExternalLink, Facebook,
-  Filter, Flame, Heart, Inbox, Instagram, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Send, Share2, Shield, Sparkles, Target, Twitter, X,
+  ArrowRight, ArrowUpRight, BarChart3, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
+  Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Megaphone, Menu, MessageCircle,
+  MessageSquare, Minus, PenTool, Plus, Search, Send, Share2, Shield, ShoppingBag, Sparkles, Target, Twitter, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
@@ -104,6 +104,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
+      <Scope />
       <AfterLogin />
       <ExampleLead />
       <Platforms />
@@ -223,7 +224,7 @@ function Hero() {
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead turns public buying-intent posts from Facebook, LinkedIn and Reddit into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
+          Grow By Lead turns public posts asking for <span className="text-foreground">website, CMS, e-commerce, SEO, ads and digital marketing</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
@@ -341,6 +342,84 @@ function PreviewDetail() {
         </p>
       </div>
     </div>
+  );
+}
+
+/* ---------- scope (what we cover) ---------- */
+const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
+  { Icon: Code2,       title: "Website design & development", tags: ["Business sites", "Portfolios", "Landing pages", "Custom builds"] },
+  { Icon: Layers,      title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer", "Squarespace"] },
+  { Icon: ShoppingBag, title: "E-commerce",                   tags: ["Shopify", "WooCommerce", "BigCommerce", "Store redesign"] },
+  { Icon: Search,      title: "SEO",                          tags: ["Local SEO", "Technical SEO", "On-page", "Link building"] },
+  { Icon: Megaphone,   title: "Digital marketing",            tags: ["Paid ads", "Meta / Google Ads", "Content marketing", "Email"] },
+  { Icon: PenTool,     title: "Design & branding",            tags: ["UI / UX", "Logo", "Brand identity", "Graphic design"] },
+  { Icon: Globe,       title: "Social media management",      tags: ["Page management", "Content calendars", "Creatives"] },
+  { Icon: BarChart3,   title: "Analytics & CRO",              tags: ["GA4 setup", "Tracking", "A / B testing", "Conversion fixes"] },
+];
+
+const outOfScope = [
+  "Real estate", "Legal", "Healthcare leads", "Recruiting",
+  "Physical products", "Local trades", "B2C consumer apps", "Financial services",
+];
+
+function Scope() {
+  return (
+    <section className="section-edge section-surface-amber">
+      <Container className="py-24 md:py-32">
+        <SectionTitle
+          kicker="What we cover"
+          title={<>Built for <span className="text-muted-foreground">website &amp; digital marketing</span> service sellers.</>}
+          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work, CMS builds, e-commerce, SEO, ads, design or social media help — so every lead in your inbox actually matches what you sell."
+        />
+
+        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {scopeCategories.map(({ Icon, title, tags }) => (
+            <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
+              <div className="flex items-center gap-3">
+                <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {tags.map((t) => (
+                  <span key={t} className="rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">{t}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-3 md:grid-cols-2">
+          <div className="rounded-xl border border-[color:var(--signal)]/25 bg-[color:var(--signal)]/[0.06] p-5">
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-[color:var(--signal)]" />
+              <Mono className="text-[color:var(--signal)]">In scope</Mono>
+            </div>
+            <p className="mt-2 text-sm text-foreground/90">
+              Anything a website agency, freelancer, SEO expert, ad buyer or social media manager could sell. If a post asks for help building, ranking, designing, marketing or growing a website or online presence — it lands in your inbox.
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-card/50 p-5">
+            <div className="flex items-center gap-2">
+              <X className="h-4 w-4 text-muted-foreground" />
+              <Mono className="text-muted-foreground">Not in scope (today)</Mono>
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">
+              We don't capture leads for general industries like:
+            </p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {outOfScope.map((t) => (
+                <span key={t} className="rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">{t}</span>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              If your business doesn't sell website or digital marketing services, Grow By Lead probably isn't the right fit — and we'd rather you know now.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 }
 
@@ -813,6 +892,7 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
+  { q: "What kind of leads will I get?", a: "Only website and digital marketing service requests — web design, development, CMS work (WordPress, Webflow, Wix, Framer), e-commerce (Shopify, WooCommerce), SEO, paid ads, social media management, branding and analytics. We do not capture leads for real estate, legal, healthcare, recruiting, physical products or other unrelated industries." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
