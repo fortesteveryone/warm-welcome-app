@@ -108,7 +108,7 @@ function LeadDetailPage() {
             </div>
             <p className="mt-1 text-sm text-muted-foreground">{lead.about}</p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {lead.tags.map((t) => (<Badge key={t} tone="muted"><Tag className="h-2.5 w-2.5" />{t}</Badge>))}
+              {lead.tags.map((t: string) => (<Badge key={t} tone="muted"><Tag className="h-2.5 w-2.5" />{t}</Badge>))}
             </div>
           </div>
           <div className="flex items-center gap-3 rounded-lg border border-border bg-card/50 px-4 py-3">
