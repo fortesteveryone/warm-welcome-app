@@ -23,33 +23,44 @@ const FILTERS = ["all", "unread", "starred", "hot"] as const;
 type FilterKey = (typeof FILTERS)[number];
 
 function InboxPage() {
+  const [threads, setThreads] = useState<Thread[]>(INITIAL_THREADS);
   const [active, setActive] = useState(1);
   const [filter, setFilter] = useState<FilterKey>("all");
   const [query, setQuery] = useState("");
+  const [composeOpen, setComposeOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return THREADS.filter((t) => {
+    return threads.filter((t) => {
       if (filter === "unread" && !t.unread) return false;
       if (filter === "starred" && !t.starred) return false;
       if (filter === "hot" && t.tone !== "hot") return false;
       if (q && !(t.name.toLowerCase().includes(q) || t.company.toLowerCase().includes(q) || t.preview.toLowerCase().includes(q))) return false;
       return true;
     });
-  }, [filter, query]);
+  }, [threads, filter, query]);
 
   const counts = {
-    all: THREADS.length,
-    unread: THREADS.filter((t) => t.unread).length,
-    starred: THREADS.filter((t) => t.starred).length,
-    hot: THREADS.filter((t) => t.tone === "hot").length,
+    all: threads.length,
+    unread: threads.filter((t) => t.unread).length,
+    starred: threads.filter((t) => t.starred).length,
+    hot: threads.filter((t) => t.tone === "hot").length,
   };
 
-  const t = THREADS.find((x) => x.id === active) ?? THREADS[0];
+  const t = threads.find((x) => x.id === active) ?? threads[0];
 
   return (
     <div className="space-y-6">
-      <PageHeader kicker="Inbox" title="Conversations" description="Unified replies from your campaigns and outreach." />
+      <PageHeader
+        kicker="Inbox"
+        title="Conversations"
+        description="Unified replies from your campaigns and outreach."
+        actions={
+          <button onClick={() => setComposeOpen(true)} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+            <PenSquare className="h-3.5 w-3.5" /> Compose
+          </button>
+        }
+      />
 
       <Panel className="overflow-hidden">
         <div className="grid lg:grid-cols-[340px_1fr]">
