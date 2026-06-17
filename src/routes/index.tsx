@@ -158,12 +158,12 @@ function Hero() {
         </div>
         <h1 className="mx-auto mt-7 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[88px]">
           Social posts to{" "}
-          <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-br from-[color:var(--signal)] to-foreground/60 bg-clip-text text-transparent">
             sales-ready leads.
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead reads buying signals on Facebook, LinkedIn and Reddit — and ships structured leads with intent, urgency, competition and outreach drafts.
+          We read buying signals on Facebook, LinkedIn and Reddit — and ship structured leads with intent, urgency, competition and outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
