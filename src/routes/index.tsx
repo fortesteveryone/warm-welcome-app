@@ -684,7 +684,7 @@ function Pricing() {
     <section id="pricing" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="text-center">
-          <Mono className="text-muted-foreground">13 / Pricing</Mono>
+          <Mono className="text-muted-foreground">08 / Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
             Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
           </h2>
