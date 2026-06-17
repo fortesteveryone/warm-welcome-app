@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, BarChart3, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
-  Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Megaphone, Menu, MessageCircle,
-  MessageSquare, Minus, PenTool, Plus, Search, Send, Share2, Shield, ShoppingBag, Sparkles, Target, Twitter, X,
+  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
+  Filter, Flame, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
+  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, Twitter, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
@@ -225,7 +225,7 @@ function Hero() {
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead turns public posts asking for <span className="text-foreground">website, CMS, e-commerce, SEO, ads and digital marketing</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
+          Grow By Lead turns public posts asking for <span className="text-foreground">website design, development, CMS (WordPress, Webflow, Wix, Framer) and SEO</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
@@ -348,32 +348,28 @@ function PreviewDetail() {
 
 /* ---------- scope (what we cover) ---------- */
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
-  { Icon: Code2,       title: "Website design & development", tags: ["Business sites", "Portfolios", "Landing pages", "Custom builds"] },
-  { Icon: Layers,      title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer", "Squarespace"] },
-  { Icon: ShoppingBag, title: "E-commerce",                   tags: ["Shopify", "WooCommerce", "BigCommerce", "Store redesign"] },
-  { Icon: Search,      title: "SEO",                          tags: ["Local SEO", "Technical SEO", "On-page", "Link building"] },
-  { Icon: Megaphone,   title: "Digital marketing",            tags: ["Paid ads", "Meta / Google Ads", "Content marketing", "Email"] },
-  { Icon: PenTool,     title: "Design & branding",            tags: ["UI / UX", "Logo", "Brand identity", "Graphic design"] },
-  { Icon: Globe,       title: "Social media management",      tags: ["Page management", "Content calendars", "Creatives"] },
-  { Icon: BarChart3,   title: "Analytics & CRO",              tags: ["GA4 setup", "Tracking", "A / B testing", "Conversion fixes"] },
+  { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
+  { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
+  { Icon: Search,  title: "Digital marketing — SEO only", tags: ["Local SEO", "Technical SEO", "On-page SEO", "Off-page / link building", "SEO audits"] },
 ];
 
 const outOfScope = [
-  "Real estate", "Legal", "Healthcare leads", "Recruiting",
-  "Physical products", "Local trades", "B2C consumer apps", "Financial services",
+  "E-commerce stores", "Paid ads (Meta / Google)", "Design & branding", "Logo / graphic design",
+  "Social media management", "Analytics / GTM / CRO", "Real estate", "Legal", "Healthcare",
+  "Recruiting", "Physical products", "Financial services",
 ];
 
 function Scope() {
   return (
     <section className="section-edge section-surface-amber">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Built for <span className="text-muted-foreground">website &amp; digital marketing</span> service sellers.</>}
-          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work, CMS builds, e-commerce, SEO, ads, design or social media help — so every lead in your inbox actually matches what you sell."
+          title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
+          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
         />
 
-        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-3 md:grid-cols-3">
           {scopeCategories.map(({ Icon, title, tags }) => (
             <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
               <div className="flex items-center gap-3">
@@ -398,7 +394,7 @@ function Scope() {
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
             <p className="mt-2 text-sm text-foreground/90">
-              Anything a website agency, freelancer, SEO expert, ad buyer or social media manager could sell. If a post asks for help building, ranking, designing, marketing or growing a website or online presence — it lands in your inbox.
+              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer — or SEO services. If a post asks for that kind of help, it lands in your inbox.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card/50 p-5">
@@ -415,7 +411,7 @@ function Scope() {
               ))}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              If your business doesn't sell website or digital marketing services, Grow By Lead probably isn't the right fit — and we'd rather you know now.
+              We focus only on website + SEO leads. If you sell something else, Grow By Lead probably isn't the right fit.
             </p>
           </div>
         </div>
@@ -437,7 +433,7 @@ const afterLoginItems = [
 function AfterLogin() {
   return (
     <section className="section-edge section-surface-cyan">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
           title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
@@ -480,7 +476,7 @@ function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
     <section id="example" className="section-edge">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
@@ -603,7 +599,7 @@ const platforms: PlatformEntry[] = [
 function Platforms() {
   return (
     <section id="platforms" className="section-edge section-surface-blue">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => {
@@ -638,13 +634,13 @@ const scoringFactors = [
   ["Budget signal", "Any mention of price, hourly rate, or budget range."],
   ["Competition", "Number of visible comments and replies at capture time."],
   ["Freshness", "How long ago the post was created — fresher leads convert better."],
-  ["Service fit", "Web, SEO, design, ads, dev — which category the request matches."],
+  ["Service fit", "Web design, development, CMS (WP / Webflow / Wix / Framer) or SEO — which one the request matches."],
 ];
 
 function Scoring() {
   return (
     <section id="scoring" className="section-edge section-surface-violet">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
@@ -690,7 +686,7 @@ const dashFeatures = [
 function Dashboard() {
   return (
     <section className="section-edge section-surface-charcoal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <SectionTitle
@@ -738,29 +734,32 @@ function Dashboard() {
 
 /* ---------- use cases ---------- */
 const useCases = [
-  ["Web design agencies", "Catch people asking for website design, redesign or portfolio sites — before they hit Upwork."],
-  ["SEO experts", "Posts about ranking help, local SEO and traffic recovery, surfaced as they happen."],
-  ["Social media managers", "Businesses asking for page management, content calendars and ad creatives."],
-  ["Freelancers", "Get to fresh service-request posts before the comments fill up."],
-  ["Outreach teams", "Structured lead data + drafts means faster, cleaner first contact."],
-  ["Lead-gen agencies", "Build daily lead packs for clients, filtered by category, country and platform."],
+  "Web design agencies",
+  "Freelance web designers",
+  "Webflow / WordPress developers",
+  "Wix & Framer studios",
+  "SEO experts & consultants",
+  "Local SEO agencies",
+  "Lead-gen agencies",
+  "Outreach teams",
 ];
 
 function UseCases() {
   return (
     <section className="section-edge">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {useCases.map(([t, b]) => (
-            <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
-              <h3 className="text-base font-semibold tracking-tight">{t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b}</p>
-              <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm text-foreground hover:gap-1.5 transition-all">
-                Learn more <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          ))}
+      <Container className="py-12 md:py-16">
+        <div className="flex flex-col items-center text-center">
+          <Mono className="text-muted-foreground">Who uses it</Mono>
+          <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
+            Built for people selling <span className="text-muted-foreground">website &amp; SEO</span> services.
+          </h3>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
+            {useCases.map((t) => (
+              <span key={t} className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-foreground/85">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
@@ -789,7 +788,7 @@ const countries = [
 function Coverage() {
   return (
     <section className="section-edge section-surface-amber">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
             kicker="Coverage"
@@ -825,7 +824,7 @@ function Concierge() {
   ];
   return (
     <section id="concierge" className="section-edge section-surface-signal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-3 py-1 text-xs text-[color:var(--signal)]">
@@ -835,7 +834,7 @@ function Concierge() {
               Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              Upgrade to VIP and we manually filter the day's hottest website &amp; digital-marketing leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+              Upgrade to VIP and we manually filter the day's hottest website &amp; SEO leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
@@ -928,7 +927,7 @@ function Pricing() {
   ];
   return (
     <section id="pricing" className="section-edge section-surface-charcoal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
@@ -992,7 +991,7 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "Only website and digital marketing service requests — web design, development, CMS work (WordPress, Webflow, Wix, Framer), e-commerce (Shopify, WooCommerce), SEO, paid ads, social media management, branding and analytics. We do not capture leads for real estate, legal, healthcare, recruiting, physical products or other unrelated industries." },
+  { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
@@ -1007,7 +1006,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section className="section-edge">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
           <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
           <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
@@ -1031,7 +1030,7 @@ function FAQ() {
 function FinalCTA() {
   return (
     <section className="section-edge section-surface-signal">
-      <Container className="py-24 md:py-32">
+      <Container className="py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
