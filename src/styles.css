@@ -134,6 +134,21 @@
   }
   .font-mono { font-family: "Geist Mono", ui-monospace, monospace; letter-spacing: 0; }
   ::selection { background: oklch(1 0 0 / 0.15); color: var(--color-foreground); }
+
+  /* Pointer cursor on all interactive controls (skip disabled). */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href],
+  summary,
+  label[for],
+  select:not(:disabled),
+  input[type="button"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @utility text-balance { text-wrap: balance; }
