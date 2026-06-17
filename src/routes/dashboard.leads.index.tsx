@@ -589,30 +589,9 @@ function QualDot({ value }: { value: LeadQualification }) {
   return <span className={`h-2 w-2 rounded-full ${color}`} />;
 }
 
-const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe>> = {
-  facebook: Facebook,
-  linkedin: Linkedin,
-  instagram: Instagram,
-  twitter: Twitter,
-  x: Twitter,
-  youtube: Youtube,
-  github: Github,
-  whatsapp: MessageCircle,
-  telegram: SendIcon,
-  discord: MessageCircle,
-  threads: Hash,
-  reddit: MessageCircle,
-  other: Globe,
-};
-
 function PlatformIcon({ p }: { p: LeadPlatform }) {
-  const Icon = PLATFORM_LUCIDE[p];
-  if (Icon) return <Icon className="h-3.5 w-3.5" />;
-  return (
-    <span className="grid h-3.5 w-3.5 place-items-center rounded-sm bg-foreground/15 text-[8px] font-semibold uppercase">
-      {p[0]}
-    </span>
-  );
+  const v = platformVisual(p);
+  return <v.Icon className={`h-3.5 w-3.5 ${v.color}`} />;
 }
 
 function Pagination({ page, total, totalPages, onPage }: { page: number; total: number; totalPages: number; onPage: (p: number) => void }) {
