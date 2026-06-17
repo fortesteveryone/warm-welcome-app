@@ -10,8 +10,6 @@ export const Route = createFileRoute("/dashboard/contacts")({
   component: ContactsPage,
 });
 
-const CONTACTS = [
-  { name: "Aisha Rahman", role: "Founder", company: "Velvet & Co.", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", tags: ["VIP", "Apparel"] },
 const INITIAL_CONTACTS: Contact[] = [
   { name: "Aisha Rahman", role: "Founder", company: "Velvet & Co.", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", tags: ["VIP", "Apparel"] },
   { name: "Marcus Lin", role: "CMO", company: "Northwave Studio", email: "marcus@northwave.io", phone: "+1 415 555 0144", city: "San Francisco, US", tags: ["Agency"] },
