@@ -52,32 +52,39 @@ type PlatformVisual = {
   label: string;
 };
 
+const MONO = {
+  color: "text-foreground",
+  bg: "bg-foreground/[0.06]",
+  ring: "ring-foreground/15",
+} as const;
+
 const PLATFORM: Record<LeadPlatform, PlatformVisual> = {
-  facebook:  { Icon: Facebook,       color: "text-[#1877F2]", bg: "bg-[#1877F2]/12", ring: "ring-[#1877F2]/35", label: "Facebook" },
-  linkedin:  { Icon: Linkedin,       color: "text-[#0A66C2]", bg: "bg-[#0A66C2]/12", ring: "ring-[#0A66C2]/35", label: "LinkedIn" },
-  instagram: { Icon: Instagram,      color: "text-[#E1306C]", bg: "bg-[#E1306C]/12", ring: "ring-[#E1306C]/35", label: "Instagram" },
-  reddit:    { Icon: MessageCircle,  color: "text-[#FF4500]", bg: "bg-[#FF4500]/12", ring: "ring-[#FF4500]/35", label: "Reddit" },
-  whatsapp:  { Icon: MessageCircle,  color: "text-[#25D366]", bg: "bg-[#25D366]/12", ring: "ring-[#25D366]/35", label: "WhatsApp" },
-  twitter:   { Icon: Twitter,        color: "text-[#1DA1F2]", bg: "bg-[#1DA1F2]/12", ring: "ring-[#1DA1F2]/35", label: "Twitter" },
-  x:         { Icon: Twitter,        color: "text-foreground", bg: "bg-foreground/10", ring: "ring-foreground/30", label: "X" },
-  youtube:   { Icon: Youtube,        color: "text-[#FF0000]", bg: "bg-[#FF0000]/12", ring: "ring-[#FF0000]/35", label: "YouTube" },
-  tiktok:    { Icon: Hash,           color: "text-[#FE2C55]", bg: "bg-[#FE2C55]/12", ring: "ring-[#FE2C55]/35", label: "TikTok" },
-  telegram:  { Icon: SendIcon,       color: "text-[#229ED9]", bg: "bg-[#229ED9]/12", ring: "ring-[#229ED9]/35", label: "Telegram" },
-  discord:   { Icon: MessageCircle,  color: "text-[#5865F2]", bg: "bg-[#5865F2]/12", ring: "ring-[#5865F2]/35", label: "Discord" },
-  snapchat:  { Icon: Hash,           color: "text-[#FFC700]", bg: "bg-[#FFC700]/12", ring: "ring-[#FFC700]/35", label: "Snapchat" },
-  pinterest: { Icon: Hash,           color: "text-[#E60023]", bg: "bg-[#E60023]/12", ring: "ring-[#E60023]/35", label: "Pinterest" },
-  threads:   { Icon: Hash,           color: "text-foreground", bg: "bg-foreground/10", ring: "ring-foreground/30", label: "Threads" },
-  wechat:    { Icon: MessageCircle,  color: "text-[#07C160]", bg: "bg-[#07C160]/12", ring: "ring-[#07C160]/35", label: "WeChat" },
-  line:      { Icon: MessageCircle,  color: "text-[#06C755]", bg: "bg-[#06C755]/12", ring: "ring-[#06C755]/35", label: "LINE" },
-  quora:     { Icon: Globe,          color: "text-[#B92B27]", bg: "bg-[#B92B27]/12", ring: "ring-[#B92B27]/35", label: "Quora" },
-  medium:    { Icon: Globe,          color: "text-foreground", bg: "bg-foreground/10", ring: "ring-foreground/30", label: "Medium" },
-  github:    { Icon: Github,         color: "text-[#A371F7]", bg: "bg-[#A371F7]/12", ring: "ring-[#A371F7]/35", label: "GitHub" },
-  behance:   { Icon: Globe,          color: "text-[#1769FF]", bg: "bg-[#1769FF]/12", ring: "ring-[#1769FF]/35", label: "Behance" },
-  dribbble:  { Icon: Globe,          color: "text-[#EA4C89]", bg: "bg-[#EA4C89]/12", ring: "ring-[#EA4C89]/35", label: "Dribbble" },
-  twitch:    { Icon: Globe,          color: "text-[#9146FF]", bg: "bg-[#9146FF]/12", ring: "ring-[#9146FF]/35", label: "Twitch" },
-  mastodon:  { Icon: Globe,          color: "text-[#6364FF]", bg: "bg-[#6364FF]/12", ring: "ring-[#6364FF]/35", label: "Mastodon" },
-  other:     { Icon: Globe,          color: "text-muted-foreground", bg: "bg-foreground/5", ring: "ring-border", label: "Other" },
+  facebook:  { Icon: Facebook,      ...MONO, label: "Facebook" },
+  linkedin:  { Icon: Linkedin,      ...MONO, label: "LinkedIn" },
+  instagram: { Icon: Instagram,     ...MONO, label: "Instagram" },
+  reddit:    { Icon: MessageCircle, ...MONO, label: "Reddit" },
+  whatsapp:  { Icon: MessageCircle, ...MONO, label: "WhatsApp" },
+  twitter:   { Icon: Twitter,       ...MONO, label: "Twitter" },
+  x:         { Icon: Twitter,       ...MONO, label: "X" },
+  youtube:   { Icon: Youtube,       ...MONO, label: "YouTube" },
+  tiktok:    { Icon: Hash,          ...MONO, label: "TikTok" },
+  telegram:  { Icon: SendIcon,      ...MONO, label: "Telegram" },
+  discord:   { Icon: MessageCircle, ...MONO, label: "Discord" },
+  snapchat:  { Icon: Hash,          ...MONO, label: "Snapchat" },
+  pinterest: { Icon: Hash,          ...MONO, label: "Pinterest" },
+  threads:   { Icon: Hash,          ...MONO, label: "Threads" },
+  wechat:    { Icon: MessageCircle, ...MONO, label: "WeChat" },
+  line:      { Icon: MessageCircle, ...MONO, label: "LINE" },
+  quora:     { Icon: Globe,         ...MONO, label: "Quora" },
+  medium:    { Icon: Globe,         ...MONO, label: "Medium" },
+  github:    { Icon: Github,        ...MONO, label: "GitHub" },
+  behance:   { Icon: Globe,         ...MONO, label: "Behance" },
+  dribbble:  { Icon: Globe,         ...MONO, label: "Dribbble" },
+  twitch:    { Icon: Globe,         ...MONO, label: "Twitch" },
+  mastodon:  { Icon: Globe,         ...MONO, label: "Mastodon" },
+  other:     { Icon: Globe,         ...MONO, label: "Other" },
 };
+
 
 export function platformVisual(p: LeadPlatform): PlatformVisual {
   return PLATFORM[p] ?? PLATFORM.other;
