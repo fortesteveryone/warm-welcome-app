@@ -255,15 +255,15 @@ function PreviewDetail() {
   );
 }
 
-/* ---------- logo / values strip ---------- */
+/* ---------- value strip ---------- */
 function LogoStrip() {
-  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts included", "Manual review flags", "CSV / JSON export"];
+  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts", "Manual review", "CSV / JSON"];
   return (
     <div className="border-b border-border">
-      <Container className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-6">
+      <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5">
         {items.map((t) => (
-          <span key={t} className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Check className="h-3.5 w-3.5 text-foreground/60" /> {t}
+          <span key={t} className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Check className="h-3 w-3 text-[color:var(--signal)]/80" /> {t}
           </span>
         ))}
       </Container>
