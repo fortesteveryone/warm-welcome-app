@@ -319,7 +319,7 @@ function ExampleLead() {
     <section id="example" className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle
-          kicker="01 / Example"
+          kicker="Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
         />
         <div className="mt-14 grid gap-3 lg:grid-cols-[1.1fr_1fr]">
@@ -406,7 +406,7 @@ function BeforeAfter() {
   return (
     <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="02 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
+        <SectionTitle kicker="Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
             <Mono className="text-muted-foreground">Before — raw Facebook post</Mono>
@@ -457,7 +457,7 @@ function Platforms() {
   return (
     <section id="platforms" className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="03 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
+        <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => (
             <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
@@ -494,7 +494,7 @@ function Scoring() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
-              kicker="04 / Scoring"
+              kicker="Scoring"
               title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
               lede="Each score ships with a short reason — your team trusts the priority order, and can challenge it."
             />
@@ -540,7 +540,7 @@ function Dashboard() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <SectionTitle
-              kicker="05 / Dashboard"
+              kicker="Dashboard"
               title={<>An inbox for social leads — <span className="text-muted-foreground">not a spreadsheet.</span></>}
               lede="Triage by temperature, filter by service or platform, assign to a teammate and export anywhere."
             />
@@ -596,7 +596,7 @@ function UseCases() {
   return (
     <section className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="06 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
+        <SectionTitle kicker="Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map(([t, b]) => (
             <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
@@ -638,7 +638,7 @@ function Coverage() {
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
-            kicker="07 / Coverage"
+            kicker="Coverage"
             title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
             lede="Country and city show only when confident — left blank when not. We don't guess geography."
           />
@@ -684,7 +684,7 @@ function Pricing() {
     <section id="pricing" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="text-center">
-          <Mono className="text-muted-foreground">08 / Pricing</Mono>
+          <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
             Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
           </h2>
@@ -752,7 +752,7 @@ function FAQ() {
     <section className="section-edge">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
-          <SectionTitle kicker="09 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+          <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
           <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
             {faqs.map((f, i) => (
               <div key={i}>
