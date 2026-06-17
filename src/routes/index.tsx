@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, ExternalLink, Facebook,
-  Flame, Heart, Instagram, Linkedin, Link2, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Share2, Sparkles, Twitter, X,
+  Filter, Flame, Heart, Inbox, Instagram, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
+  MessageSquare, Minus, Plus, Send, Share2, Shield, Sparkles, Target, Twitter, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
@@ -104,7 +104,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
-      <LogoStrip />
+      <AfterLogin />
       <ExampleLead />
       <Platforms />
       <Scoring />
@@ -222,15 +222,15 @@ function Hero() {
             sales-ready leads.
           </span>
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-balance text-base text-muted-foreground md:text-lg">
-          We read buying signals on Facebook, LinkedIn and Reddit — and ship structured leads with intent, urgency, competition and outreach drafts.
+        <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
+          Grow By Lead turns public buying-intent posts from Facebook, LinkedIn and Reddit into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-            Start for free <ArrowRight className="h-4 w-4" />
+            Get early access <ArrowRight className="h-4 w-4" />
           </a>
           <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
-            See example lead
+            View sample lead
           </a>
         </div>
 
@@ -344,19 +344,45 @@ function PreviewDetail() {
   );
 }
 
-/* ---------- value strip ---------- */
-function LogoStrip() {
-  const items = ["Structured", "Scored", "Sales-ready", "Outreach drafts", "Manual review", "CSV / JSON"];
+/* ---------- after login (what you get) ---------- */
+const afterLoginItems = [
+  { Icon: Inbox,      title: "Fresh lead feed",        body: "Newly captured service-request posts from Facebook, LinkedIn, Reddit and manual imports — sorted by freshness." },
+  { Icon: ListChecks, title: "Structured lead profile", body: "Each post becomes a clean profile: title, summary, service need, project type, budget signal and source platform." },
+  { Icon: Target,     title: "Lead scoring with reasons", body: "Intent, temperature, urgency and competition level — each score ships with a short, human reason." },
+  { Icon: Link2,      title: "Original post proof",     body: "Open the source post, see the author, post time, reactions, comments and platform — verify before you reach out." },
+  { Icon: Send,       title: "Outreach drafts",        body: "Multiple ready-to-send message angles per lead — copy, tweak, send. No blank-page outreach." },
+  { Icon: Filter,     title: "Inbox actions & filters", body: "Save, filter, assign, contact, export, or flag for manual review. Built like an inbox, not a spreadsheet." },
+];
+
+function AfterLogin() {
   return (
-    <div className="section-edge">
-      <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5">
-        {items.map((t) => (
-          <span key={t} className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Check className="h-3 w-3 text-[color:var(--signal)]/80" /> {t}
-          </span>
-        ))}
+    <section className="section-edge section-tint">
+      <Container className="py-24 md:py-32">
+        <SectionTitle
+          kicker="After login"
+          title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
+          lede="No mystery box. Here's what lands in your dashboard the moment you sign in."
+        />
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {afterLoginItems.map(({ Icon, title, body }, i) => (
+            <div key={title} className="group relative rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
+              <div className="flex items-center justify-between">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <Mono className="text-muted-foreground">0{i + 1}</Mono>
+              </div>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
+          <Shield className="h-3.5 w-3.5 text-[color:var(--signal)]" />
+          <span>If a field is missing from the post, we mark it as <span className="text-foreground">unknown</span> — we never guess country, budget or service type.</span>
+        </div>
       </Container>
-    </div>
+    </section>
   );
 }
 
@@ -714,13 +740,13 @@ function Pricing() {
   const plans = [
     {
       name: "Day pass", price: "$10", cadence: "/ day", desc: "Try a full day of fresh leads — no subscription.",
-      features: ["1 day of unlimited captures", "All platforms supported", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
+      features: ["1 day of full lead access", "Facebook, LinkedIn, Reddit", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
       cta: "Start day pass", featured: false,
     },
     {
       name: "Monthly", price: "$20", cadence: "/ month", desc: "For freelancers and small teams shipping outreach daily.",
-      features: ["Unlimited captures", "All platforms supported", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
-      cta: "Get Monthly", featured: true,
+      features: ["High-volume monthly lead access", "All live platforms", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
+      cta: "Get early access", featured: true,
     },
     {
       name: "Agency", price: "Custom", cadence: "", desc: "For agencies running outreach for multiple clients.",
@@ -734,8 +760,9 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
-            Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
+            Early access pricing <span className="text-muted-foreground">for launch users.</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground">Lock in launch pricing today. Plans can change after general availability.</p>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
           {plans.map((p) => (
@@ -786,12 +813,14 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "Where do leads come from?", a: "Public posts on Facebook groups, LinkedIn and Reddit where people openly ask for a service. We only work with public buying signals — no private messages, no scraping private accounts." },
-  { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Every score ships with a short, human-readable reason." },
-  { q: "What if a field is missing from the post?", a: "We mark it as unknown. Grow By Lead never fabricates a country, budget or service type. Missing critical fields trigger our manual review flag." },
+  { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
+  { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
+  { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
+  { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
+  { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
+  { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Each score includes a short, human-readable reason." },
   { q: "Can I export leads to my own CRM?", a: "Yes. CSV and JSON export are available on all plans. API access and webhook delivery are in beta on the Agency plan." },
-  { q: "Is there a free trial?", a: "Yes — the $10 day pass gives you a full day of unlimited captures with no subscription. You can also reach out for a pre-launch demo." },
-  { q: "How fresh are the leads?", a: "Most leads land in your inbox within minutes of being posted. Each lead shows its post age so your team knows when to move fast." },
 ];
 
 function FAQ() {
@@ -851,12 +880,12 @@ function FinalCTA() {
 
 /* ---------- footer ---------- */
 function Footer() {
-  const cols = [
-    { title: "Product", links: ["Features", "Dashboard", "Lead examples", "Pricing", "Changelog"] },
-    { title: "Solutions", links: ["Agencies", "Freelancers", "SEO teams", "Developers", "Outreach"] },
-    { title: "Resources", links: ["Blog", "Guides", "Docs", "API reference", "Support"] },
-    { title: "Company", links: ["About", "Contact", "Careers", "Press"] },
-    { title: "Legal", links: ["Privacy", "Terms", "Data usage", "Refund", "GDPR"] },
+  const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
+    { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
+    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "SEO teams" }, { label: "Developers" }, { label: "Outreach" }] },
+    { title: "Resources", links: [{ label: "Blog", soon: true }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
+    { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
+    { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
   ];
   return (
     <footer className="bg-background">
@@ -880,8 +909,11 @@ function Footer() {
               <Mono className="text-foreground">{c.title}</Mono>
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
+                  <li key={l.label}>
+                    <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
+                      {l.label}
+                      {l.soon && <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
+                    </a>
                   </li>
                 ))}
               </ul>
