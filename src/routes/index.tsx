@@ -6,6 +6,7 @@ import {
   MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,7 +120,7 @@ function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; clas
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <TopBar />
+      <SiteHeader />
       <Hero />
       <Scope />
       <AfterLogin />
@@ -134,7 +135,7 @@ function Home() {
       <Testimonials />
       <FAQ />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }

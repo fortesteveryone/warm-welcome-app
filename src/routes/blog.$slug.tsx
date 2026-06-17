@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Facebook, Linkedin, Link2, Send } from "lucide-react";
 import { useState } from "react";
 import { BLOG_POSTS, formatDate, getPostBySlug, getRelatedPosts, type BlogPost } from "@/lib/blog-data";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -80,15 +81,8 @@ function BlogDetail() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
-        <Container className="flex h-14 items-center justify-between">
-          <Link to="/" className="text-sm font-semibold tracking-tight">Grow By Lead</Link>
-          <nav className="flex items-center gap-5 text-sm">
-            <Link to="/" className="text-muted-foreground hover:text-foreground">Home</Link>
-            <Link to="/blog" className="text-foreground">Blog</Link>
-          </nav>
-        </Container>
-      </header>
+      <SiteHeader />
+
 
       <article>
         <Container className="pt-10 md:pt-16">
@@ -200,12 +194,7 @@ function BlogDetail() {
         </section>
       )}
 
-      <footer className="border-t border-border">
-        <Container className="flex flex-col items-center gap-2 py-10 text-center text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Grow By Lead</p>
-          <p>Suggestion or topic request? <a className="text-foreground hover:underline" href="mailto:hello@growbylead.com">Email the team</a>.</p>
-        </Container>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
