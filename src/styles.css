@@ -175,22 +175,11 @@
     );
     filter: drop-shadow(0 0 6px oklch(0.72 0.19 145 / 0.18));
   }
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -3.5px;
-    width: 7px;
-    height: 7px;
-    transform: translateX(-50%) rotate(45deg);
-    background: var(--color-background);
-    border: 1px solid oklch(0.78 0.16 70 / 0.45);
-    box-shadow:
-      0 0 8px oklch(0.78 0.16 70 / 0.35),
-      0 0 14px oklch(0.72 0.19 145 / 0.22);
-    z-index: 1;
-  }
 }
+
+
+
+
 
 /* Dark section surfaces — each uses a different deep hue so adjacent
    sections read as separate without ever drifting toward light mode. */
