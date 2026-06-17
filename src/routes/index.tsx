@@ -613,29 +613,8 @@ function UseCases() {
   );
 }
 
-/* ---------- categories ---------- */
-const categories = [
-  "Website Development", "Website Redesign", "Portfolio Website", "E-commerce Website",
-  "SEO", "Social Media Management", "Graphic Design", "Paid Ads",
-  "Branding", "Business Automation", "Landing Pages", "Local Business Marketing",
-];
+/* (Categories chip list removed — trimming page length) */
 
-function Categories() {
-  return (
-    <section className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="11 / Categories" title={<>Service categories <span className="text-muted-foreground">we classify.</span></>} />
-        <div className="mt-10 flex flex-wrap gap-2">
-          {categories.map((c) => (
-            <span key={c} className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-sm transition hover:border-foreground/30 hover:bg-card">
-              {c}
-            </span>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- coverage ---------- */
 const countries = [
