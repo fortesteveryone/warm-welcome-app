@@ -76,17 +76,12 @@ function Home() {
       <TopBar />
       <Hero />
       <LogoStrip />
-      <Capture />
       <ExampleLead />
       <BeforeAfter />
       <Platforms />
       <Scoring />
-      <Outreach />
       <Dashboard />
-      <Profile />
-      <Review />
       <UseCases />
-      <Categories />
       <Coverage />
       <Pricing />
       <FAQ />
@@ -99,8 +94,8 @@ function Home() {
 /* ---------- top bar ---------- */
 function TopBar() {
   const links: [string, string][] = [
-    ["Product", "#capture"],
     ["Example", "#example"],
+    ["Platforms", "#platforms"],
     ["Scoring", "#scoring"],
     ["Pricing", "#pricing"],
     ["Docs", "#"],
@@ -308,99 +303,8 @@ function LogoStrip() {
   );
 }
 
-/* ---------- capture (bento) ---------- */
-function Capture() {
-  return (
-    <section id="capture" className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <SectionTitle
-          kicker="01 / What we capture"
-          title={<>From messy social posts <span className="text-muted-foreground">to clean leads.</span></>}
-          lede="Every captured post is parsed into the same structured shape — one consistent surface, not screenshots and bookmarks."
-        />
-        <div className="mt-14 grid grid-cols-1 gap-3 md:grid-cols-6 md:grid-rows-2">
-          <BentoCard className="md:col-span-3 md:row-span-2" title="Lead summary" body="Clean title, one-line summary, service needed, website type and budget signal when mentioned.">
-            <SummaryGraphic />
-          </BentoCard>
-          <BentoCard className="md:col-span-3" title="Intent & temperature" body="Hot / warm / cold from urgency words, specificity and how directly the person asks.">
-            <TempGraphic />
-          </BentoCard>
-          <BentoCard className="md:col-span-2" title="Competition" body="Comments and replies are read at capture time to flag low, medium or high.">
-            <CompGraphic />
-          </BentoCard>
-          <BentoCard className="md:col-span-1" title="Outreach drafts" body="Three angles, ready to copy.">
-            <Mono className="text-muted-foreground">03 / lead</Mono>
-          </BentoCard>
-        </div>
-        <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
-          <BentoCard title="Source details" body="Platform, post URL, author name, post type and capture time — every lead is traceable." />
-          <BentoCard title="Recommended action" body="A specific next step — what to send, what to ask, and how fast to move." />
-          <BentoCard title="Manual review" body="Critical fields uncertain? Lead is flagged before you contact anyone." />
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* (Capture / BentoCard / SummaryGraphic / TempGraphic / CompGraphic removed — redundant internal detail) */
 
-function BentoCard({ title, body, children, className = "" }: { title: string; body: string; children?: React.ReactNode; className?: string }) {
-  return (
-    <div className={`group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card ${className}`}>
-      {children && <div className="mb-6">{children}</div>}
-      <h3 className="text-base font-semibold tracking-tight">{title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
-    </div>
-  );
-}
-
-function SummaryGraphic() {
-  return (
-    <div className="rounded-lg border border-border bg-background/60 p-4 font-mono text-[12px] leading-relaxed">
-      <div className="text-muted-foreground">{`{`}</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"title"</span>: <span className="text-foreground">"Paid portfolio website developer needed"</span>,</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"service"</span>: <span className="text-[color:var(--signal)]">"portfolio_updates"</span>,</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"intent"</span>: <span className="text-[color:var(--signal)]">"high"</span>,</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"temperature"</span>: <span className="text-[color:var(--hot)]">"hot"</span>,</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"competition"</span>: <span className="text-foreground">"low"</span>,</div>
-      <div className="pl-3"><span className="text-[color:var(--cold)]">"drafts"</span>: <span className="text-foreground">[ 3 ]</span></div>
-      <div className="text-muted-foreground">{`}`}</div>
-    </div>
-  );
-}
-
-function TempGraphic() {
-  return (
-    <div className="flex gap-2">
-      {[
-        { l: "Hot", c: "var(--hot)", n: "12" },
-        { l: "Warm", c: "var(--warm)", n: "34" },
-        { l: "Cold", c: "var(--cold)", n: "08" },
-      ].map((t) => (
-        <div key={t.l} className="flex-1 rounded-lg border border-border bg-background/40 p-3">
-          <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: `oklch(${t.c})` }} />
-            <Mono className="text-muted-foreground">{t.l}</Mono>
-          </div>
-          <div className="mt-2 font-mono text-2xl tracking-tight" style={{ color: `oklch(${t.c})` }}>{t.n}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function CompGraphic() {
-  return (
-    <div className="space-y-2">
-      {[["Low", 90, "var(--signal)"], ["Medium", 55, "var(--warm)"], ["High", 25, "var(--hot)"]].map(([l, w, c]) => (
-        <div key={l as string} className="flex items-center gap-3">
-          <Mono className="w-16 text-muted-foreground">{l}</Mono>
-          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-border">
-            <div className="h-full rounded-full" style={{ width: `${w}%`, background: `oklch(${c})` }} />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 /* ---------- example lead ---------- */
 const drafts = [
@@ -415,7 +319,7 @@ function ExampleLead() {
     <section id="example" className="section-edge">
       <Container className="py-24 md:py-32">
         <SectionTitle
-          kicker="02 / Example"
+          kicker="01 / Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
         />
         <div className="mt-14 grid gap-3 lg:grid-cols-[1.1fr_1fr]">
@@ -502,7 +406,7 @@ function BeforeAfter() {
   return (
     <section className="section-edge section-tint">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="03 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
+        <SectionTitle kicker="02 / Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
             <Mono className="text-muted-foreground">Before — raw Facebook post</Mono>
@@ -553,7 +457,7 @@ function Platforms() {
   return (
     <section id="platforms" className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="04 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
+        <SectionTitle kicker="03 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => (
             <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
@@ -590,7 +494,7 @@ function Scoring() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
-              kicker="05 / Scoring"
+              kicker="04 / Scoring"
               title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
               lede="Each score ships with a short reason — your team trusts the priority order, and can challenge it."
             />
@@ -619,37 +523,8 @@ function Scoring() {
   );
 }
 
-/* ---------- outreach ---------- */
-function Outreach() {
-  const items = [
-    { angle: "Portfolio update support", excerpt: "Saw your post about needing updates to your portfolio site. Could you share the current link and the specific changes…" },
-    { angle: "Fast turnaround offer", excerpt: "If you're looking to wrap the updates this week I can usually turn small changes around in 24–48 hours…" },
-    { angle: "Clear scope & payment", excerpt: "To give you an honest quote I'd love to see the current site and the exact updates needed. I work on milestone-based…" },
-  ];
-  return (
-    <section className="section-edge">
-      <Container className="py-24 md:py-32">
-        <SectionTitle
-          kicker="06 / Outreach"
-          title={<>Not just leads — <span className="text-muted-foreground">ready-to-send angles.</span></>}
-          lede="Every lead ships with three short, human-sounding drafts. Pick the angle that fits, tweak the name, and send."
-        />
-        <div className="mt-14 grid gap-3 md:grid-cols-3">
-          {items.map((d, i) => (
-            <div key={i} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
-              <div className="flex items-center justify-between">
-                <Tag tone="signal">Angle 0{i + 1}</Tag>
-                <Copy className="h-3.5 w-3.5 text-muted-foreground" />
-              </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{d.angle}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">“{d.excerpt}”</p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* (Outreach standalone section removed — drafts already shown in ExampleLead) */
+
 
 /* ---------- dashboard ---------- */
 const dashFeatures = [
@@ -665,7 +540,7 @@ function Dashboard() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
           <div>
             <SectionTitle
-              kicker="07 / Dashboard"
+              kicker="05 / Dashboard"
               title={<>An inbox for social leads — <span className="text-muted-foreground">not a spreadsheet.</span></>}
               lede="Triage by temperature, filter by service or platform, assign to a teammate and export anywhere."
             />
@@ -704,70 +579,8 @@ function Dashboard() {
   );
 }
 
-/* ---------- profile ---------- */
-const profileSections = [
-  ["Source", "Platform, author, post URL, post type, timing."],
-  ["Location", "Country, city and confidence — marked unknown when unclear."],
-  ["Engagement", "Reactions, comments and shares at capture time."],
-  ["Lead score", "Intent, temperature, urgency, competition with reasoning."],
-  ["Recommended action", "A specific next step tailored to the post."],
-  ["Outreach drafts", "Three angle-tested message drafts you can copy."],
-  ["Manual review", "Clear flag if any critical field is uncertain."],
-  ["History", "Status, assignments and notes from your team."],
-];
+/* (Lead profile + Data quality sections removed — internal detail, not user-facing) */
 
-function Profile() {
-  return (
-    <section className="section-edge">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="08 / Lead profile" title={<>Eight sections, <span className="text-muted-foreground">one consistent shape.</span></>} />
-        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {profileSections.map(([t, b], i) => (
-            <div key={t} className="rounded-xl border border-border bg-card/50 p-5">
-              <Mono className="text-[color:var(--signal)]">0{i + 1}</Mono>
-              <h3 className="mt-3 text-sm font-semibold tracking-tight">{t}</h3>
-              <p className="mt-1.5 text-xs text-muted-foreground">{b}</p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* ---------- review ---------- */
-const reviewChecks = [
-  "Missing country → marked unknown, never guessed",
-  "Low-confidence location → flagged for review",
-  "Unclear service request → manual review queue",
-  "Spam-looking post → review required before contact",
-  "Duplicate post → deduplicated against existing leads",
-  "Missing budget → left empty instead of fabricated",
-];
-
-function Review() {
-  return (
-    <section className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
-          <SectionTitle
-            kicker="09 / Data quality"
-            title={<>We do not <span className="text-muted-foreground">guess critical data.</span></>}
-            lede="If something is unknown, we mark it clearly — so your team never sends a message based on a fabricated detail."
-          />
-          <ul className="divide-y divide-border rounded-xl border border-border bg-card/50">
-            {reviewChecks.map((c, i) => (
-              <li key={c} className="flex items-start gap-4 px-5 py-4">
-                <Mono className="mt-0.5 text-muted-foreground">Q.0{i + 1}</Mono>
-                <span className="text-sm">{c}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- use cases ---------- */
 const useCases = [
@@ -783,7 +596,7 @@ function UseCases() {
   return (
     <section className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="10 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
+        <SectionTitle kicker="06 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map(([t, b]) => (
             <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
@@ -800,29 +613,8 @@ function UseCases() {
   );
 }
 
-/* ---------- categories ---------- */
-const categories = [
-  "Website Development", "Website Redesign", "Portfolio Website", "E-commerce Website",
-  "SEO", "Social Media Management", "Graphic Design", "Paid Ads",
-  "Branding", "Business Automation", "Landing Pages", "Local Business Marketing",
-];
+/* (Categories chip list removed — trimming page length) */
 
-function Categories() {
-  return (
-    <section className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="11 / Categories" title={<>Service categories <span className="text-muted-foreground">we classify.</span></>} />
-        <div className="mt-10 flex flex-wrap gap-2">
-          {categories.map((c) => (
-            <span key={c} className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-sm transition hover:border-foreground/30 hover:bg-card">
-              {c}
-            </span>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- coverage ---------- */
 const countries = [
@@ -846,7 +638,7 @@ function Coverage() {
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
-            kicker="12 / Coverage"
+            kicker="07 / Coverage"
             title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
             lede="Country and city show only when confident — left blank when not. We don't guess geography."
           />
@@ -892,7 +684,7 @@ function Pricing() {
     <section id="pricing" className="section-edge section-tint">
       <Container className="py-24 md:py-32">
         <div className="text-center">
-          <Mono className="text-muted-foreground">13 / Pricing</Mono>
+          <Mono className="text-muted-foreground">08 / Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
             Simple pricing <span className="text-muted-foreground">while we're in pre-launch.</span>
           </h2>
@@ -960,7 +752,7 @@ function FAQ() {
     <section className="section-edge">
       <Container className="py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.5fr]">
-          <SectionTitle kicker="14 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+          <SectionTitle kicker="09 / FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
           <div className="divide-y divide-border rounded-xl border border-border bg-card/50">
             {faqs.map((f, i) => (
               <div key={i}>
