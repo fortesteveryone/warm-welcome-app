@@ -596,7 +596,7 @@ function UseCases() {
   return (
     <section className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="10 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
+        <SectionTitle kicker="06 / Use cases" title={<>Built for teams that <span className="text-muted-foreground">sell digital services.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map(([t, b]) => (
             <div key={t} className="rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
