@@ -34,8 +34,14 @@ function LeadsPage() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<(typeof STATUS_TABS)[number]>("All");
   const [view, setView] = useState<"table" | "grid">("table");
-  const [showFilters, setShowFilters] = useState(false);
-  const [sources, setSources] = useState<LeadSource[]>([]);
+  const [showFilters, setShowFilters] = useState(true);
+  const [favOnly, setFavOnly] = useState(false);
+  const [categories, setCategories] = useState<LeadCategory[]>([]);
+  const [temperatures, setTemperatures] = useState<LeadStatus[]>([]);
+  const [intents, setIntents] = useState<LeadIntent[]>([]);
+  const [country, setCountry] = useState<string>("All");
+  const [platforms, setPlatforms] = useState<LeadPlatform[]>([]);
+  const [qualifications, setQualifications] = useState<LeadQualification[]>([]);
   const [stages, setStages] = useState<string[]>([]);
   const [owners, setOwners] = useState<string[]>([]);
   const [minScore, setMinScore] = useState(0);
@@ -51,8 +57,14 @@ function LeadsPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     let list = leads.filter((l) => {
+      if (favOnly && !l.favourite) return false;
       if (status !== "All" && l.status !== status.toLowerCase()) return false;
-      if (sources.length && !sources.includes(l.source)) return false;
+      if (categories.length && !categories.includes(l.category)) return false;
+      if (temperatures.length && !temperatures.includes(l.status)) return false;
+      if (intents.length && !intents.includes(l.intent)) return false;
+      if (country !== "All" && l.country !== country) return false;
+      if (platforms.length && !platforms.includes(l.platform)) return false;
+      if (qualifications.length && !qualifications.includes(l.qualification)) return false;
       if (stages.length && !stages.includes(l.stage)) return false;
       if (owners.length && !owners.includes(l.owner)) return false;
       if (l.score < minScore) return false;
@@ -72,13 +84,16 @@ function LeadsPage() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [leads, query, status, sources, stages, owners, minScore, sortKey, sortDir]);
+  }, [leads, query, status, favOnly, categories, temperatures, intents, country, platforms, qualifications, stages, owners, minScore, sortKey, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
-  const activeFilterCount = sources.length + stages.length + owners.length + (minScore > 0 ? 1 : 0);
+  const activeFilterCount =
+    (favOnly ? 1 : 0) + categories.length + temperatures.length + intents.length +
+    (country !== "All" ? 1 : 0) + platforms.length + qualifications.length +
+    stages.length + owners.length + (minScore > 0 ? 1 : 0);
   const allOnPageSelected = paged.length > 0 && paged.every((l) => selected.has(l.id));
 
   const onSort = (k: SortKey) => {
@@ -89,7 +104,11 @@ function LeadsPage() {
     sortKey !== k ? <ArrowUpDown className="h-3 w-3 opacity-40" /> :
     sortDir === "asc" ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />;
 
-  const clearAll = () => { setSources([]); setStages([]); setOwners([]); setMinScore(0); setQuery(""); setStatus("All"); setPage(1); };
+  const clearAll = () => {
+    setFavOnly(false); setCategories([]); setTemperatures([]); setIntents([]);
+    setCountry("All"); setPlatforms([]); setQualifications([]);
+    setStages([]); setOwners([]); setMinScore(0); setQuery(""); setStatus("All"); setPage(1);
+  };
 
   const toggleSelectAll = () => {
     const next = new Set(selected);
