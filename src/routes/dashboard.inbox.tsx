@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Send, Paperclip, Star, Archive, Reply } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Send, Paperclip, Star, Archive, Reply, Search } from "lucide-react";
 import { PageHeader, Panel, Avatar, Badge, Mono } from "@/components/dashboard/dash-ui";
 
 export const Route = createFileRoute("/dashboard/inbox")({
@@ -8,29 +8,70 @@ export const Route = createFileRoute("/dashboard/inbox")({
 });
 
 const THREADS = [
-  { id: 1, name: "Aisha Rahman", company: "Velvet & Co.", preview: "Looks great — can we hop on a call Thursday?", time: "2m", unread: true, tone: "hot" as const },
-  { id: 2, name: "Marcus Lin", company: "Northwave Studio", preview: "Sending over the budget approval now…", time: "1h", unread: true, tone: "hot" as const },
-  { id: 3, name: "Priya Devi", company: "Saffron Kitchen", preview: "Thanks! Will review and revert tomorrow.", time: "3h", unread: false, tone: "warm" as const },
-  { id: 4, name: "Jonas Weber", company: "Atlas Logistics", preview: "Could you share a case study?", time: "Yesterday", unread: false, tone: "warm" as const },
-  { id: 5, name: "Camila Reyes", company: "Lumen Health", preview: "Not the right time, please follow up Q4.", time: "2d", unread: false, tone: "cold" as const },
+  { id: 1, name: "Aisha Rahman", company: "Velvet & Co.", preview: "Looks great — can we hop on a call Thursday?", time: "2m", unread: true, tone: "hot" as const, starred: true },
+  { id: 2, name: "Marcus Lin", company: "Northwave Studio", preview: "Sending over the budget approval now…", time: "1h", unread: true, tone: "hot" as const, starred: false },
+  { id: 3, name: "Priya Devi", company: "Saffron Kitchen", preview: "Thanks! Will review and revert tomorrow.", time: "3h", unread: false, tone: "warm" as const, starred: true },
+  { id: 4, name: "Jonas Weber", company: "Atlas Logistics", preview: "Could you share a case study?", time: "Yesterday", unread: false, tone: "warm" as const, starred: false },
+  { id: 5, name: "Camila Reyes", company: "Lumen Health", preview: "Not the right time, please follow up Q4.", time: "2d", unread: false, tone: "cold" as const, starred: false },
+  { id: 6, name: "Yuki Tanaka", company: "Mori Apparel", preview: "Let's plan a launch sprint for Sept.", time: "3d", unread: false, tone: "hot" as const, starred: false },
 ];
+
+const FILTERS = ["all", "unread", "starred", "hot"] as const;
+type FilterKey = (typeof FILTERS)[number];
 
 function InboxPage() {
   const [active, setActive] = useState(1);
-  const t = THREADS.find((x) => x.id === active)!;
+  const [filter, setFilter] = useState<FilterKey>("all");
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return THREADS.filter((t) => {
+      if (filter === "unread" && !t.unread) return false;
+      if (filter === "starred" && !t.starred) return false;
+      if (filter === "hot" && t.tone !== "hot") return false;
+      if (q && !(t.name.toLowerCase().includes(q) || t.company.toLowerCase().includes(q) || t.preview.toLowerCase().includes(q))) return false;
+      return true;
+    });
+  }, [filter, query]);
+
+  const counts = {
+    all: THREADS.length,
+    unread: THREADS.filter((t) => t.unread).length,
+    starred: THREADS.filter((t) => t.starred).length,
+    hot: THREADS.filter((t) => t.tone === "hot").length,
+  };
+
+  const t = THREADS.find((x) => x.id === active) ?? THREADS[0];
 
   return (
     <div className="space-y-6">
       <PageHeader kicker="Inbox" title="Conversations" description="Unified replies from your campaigns and outreach." />
 
       <Panel className="overflow-hidden">
-        <div className="grid lg:grid-cols-[320px_1fr]">
+        <div className="grid lg:grid-cols-[340px_1fr]">
           <div className="border-b border-border lg:border-b-0 lg:border-r">
-            <div className="border-b border-border px-4 py-3">
-              <input placeholder="Search inbox…" className="h-8 w-full rounded-md border border-border bg-background px-3 text-sm focus:border-foreground/40 focus:outline-none" />
+            <div className="space-y-2 border-b border-border px-3 py-3">
+              <div className="relative">
+                <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search inbox…" className="h-8 w-full rounded-md border border-border bg-background pl-8 pr-3 text-sm focus:border-foreground/40 focus:outline-none" />
+              </div>
+              <div className="flex items-center gap-1">
+                {FILTERS.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    className={`inline-flex h-7 items-center gap-1.5 rounded-md px-2 text-[11px] capitalize transition ${filter === f ? "bg-foreground text-background" : "text-muted-foreground hover:bg-card hover:text-foreground"}`}
+                  >
+                    {f} <span className="opacity-70">{counts[f]}</span>
+                  </button>
+                ))}
+              </div>
             </div>
             <ul className="max-h-[640px] overflow-y-auto">
-              {THREADS.map((th) => (
+              {filtered.length === 0 ? (
+                <li className="px-4 py-10 text-center text-xs text-muted-foreground">No conversations.</li>
+              ) : filtered.map((th) => (
                 <li key={th.id}>
                   <button
                     onClick={() => setActive(th.id)}
@@ -45,7 +86,10 @@ function InboxPage() {
                       <div className="truncate text-xs text-muted-foreground">{th.company}</div>
                       <div className={`mt-1 line-clamp-1 text-xs ${th.unread ? "text-foreground" : "text-muted-foreground"}`}>{th.preview}</div>
                     </div>
-                    {th.unread && <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[color:var(--signal,oklch(0.72_0.19_145))]" />}
+                    <div className="flex flex-col items-center gap-1">
+                      {th.starred && <Star className="h-3 w-3 fill-amber-400 text-amber-400" />}
+                      {th.unread && <span className="h-2 w-2 rounded-full bg-[color:var(--signal,oklch(0.72_0.19_145))]" />}
+                    </div>
                   </button>
                 </li>
               ))}
@@ -75,11 +119,7 @@ function InboxPage() {
             </div>
             <div className="border-t border-border p-3">
               <div className="rounded-lg border border-border bg-card/40 p-3">
-                <textarea
-                  placeholder="Write a reply…"
-                  rows={3}
-                  className="w-full resize-none bg-transparent text-sm focus:outline-none"
-                />
+                <textarea placeholder="Write a reply…" rows={3} className="w-full resize-none bg-transparent text-sm focus:outline-none" />
                 <div className="mt-2 flex items-center justify-between">
                   <button className="grid h-8 w-8 place-items-center rounded-md text-muted-foreground hover:bg-background hover:text-foreground"><Paperclip className="h-4 w-4" /></button>
                   <button className="inline-flex h-8 items-center gap-1.5 rounded-md bg-foreground px-3 text-xs font-medium text-background hover:bg-foreground/90">
