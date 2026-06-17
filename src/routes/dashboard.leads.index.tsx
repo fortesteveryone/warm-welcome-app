@@ -474,9 +474,9 @@ function SortableTh({ label, k, onSort, icon }: { label: string; k: SortKey; onS
   );
 }
 
-function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
+function FilterGroup({ label, children, full = false }: { label: string; children: React.ReactNode; full?: boolean }) {
   return (
-    <div>
+    <div className={full ? "md:col-span-2 lg:col-span-3 xl:col-span-4" : ""}>
       <Mono className="text-muted-foreground">{label}</Mono>
       <div className="mt-2 flex flex-wrap gap-1.5">{children}</div>
     </div>
@@ -491,6 +491,53 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     >
       {children}
     </button>
+  );
+}
+
+function AllChip({ active, onClick }: { active: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+    >
+      All
+    </button>
+  );
+}
+
+function IntentDot({ level }: { level: LeadIntent }) {
+  const color = level === "High" ? "bg-emerald-400" : level === "Medium" ? "bg-amber-400" : "bg-sky-400";
+  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+}
+
+function QualDot({ value }: { value: LeadQualification }) {
+  const color = value === "qualified" ? "bg-emerald-400" : value === "disqualified" ? "bg-rose-400" : "bg-muted-foreground/60";
+  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+}
+
+const PLATFORM_LUCIDE: Partial<Record<LeadPlatform, typeof Globe>> = {
+  facebook: Facebook,
+  linkedin: Linkedin,
+  instagram: Instagram,
+  twitter: Twitter,
+  x: Twitter,
+  youtube: Youtube,
+  github: Github,
+  whatsapp: MessageCircle,
+  telegram: SendIcon,
+  discord: MessageCircle,
+  threads: Hash,
+  reddit: MessageCircle,
+  other: Globe,
+};
+
+function PlatformIcon({ p }: { p: LeadPlatform }) {
+  const Icon = PLATFORM_LUCIDE[p];
+  if (Icon) return <Icon className="h-3.5 w-3.5" />;
+  return (
+    <span className="grid h-3.5 w-3.5 place-items-center rounded-sm bg-foreground/15 text-[8px] font-semibold uppercase">
+      {p[0]}
+    </span>
   );
 }
 
