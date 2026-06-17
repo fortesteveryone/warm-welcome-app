@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, UserPlus, Target, Flame, DollarSign, MessageSquare, CheckCircle2, Clock } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { CalendarRange, UserPlus, Target, Flame, DollarSign, MessageSquare, CheckCircle2, Clock, ChevronDown, X } from "lucide-react";
 import { PageHeader, Stat, Panel, Badge, Avatar, Sparkline, Mono } from "@/components/dashboard/dash-ui";
 
 export const Route = createFileRoute("/dashboard/")({
@@ -36,19 +37,9 @@ function Overview() {
         kicker="Overview"
         title="Welcome back, Nasir"
         description="Here's what's happening across your pipeline today."
-        actions={
-          <>
-            <select className="h-9 rounded-md border border-border bg-card/50 px-3 text-sm">
-              <option>Last 7 days</option>
-              <option>Last 30 days</option>
-              <option>This quarter</option>
-            </select>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
-              Export <ArrowUpRight className="h-3.5 w-3.5" />
-            </button>
-          </>
-        }
+        actions={<DateRangeFilter />}
       />
+
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="New leads" value="1,284" delta="▲ 12.4% vs last week" trend="up" icon={<UserPlus className="h-4 w-4" />} />
