@@ -476,56 +476,22 @@ function ExampleLead() {
   );
 }
 
-/* ---------- before / after ---------- */
-function BeforeAfter() {
-  return (
-    <section className="section-edge section-tint">
-      <Container className="py-24 md:py-32">
-        <SectionTitle kicker="Before vs after" title={<>The same post, <span className="text-muted-foreground">transformed.</span></>} />
-        <div className="mt-14 grid gap-3 md:grid-cols-2">
-          <div className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
-            <Mono className="text-muted-foreground">Before — raw Facebook post</Mono>
-            <div className="mt-5 rounded-lg border border-dashed border-border bg-background/40 p-4 text-sm">
-              <p className="text-foreground/80">“Need a developer for portfolio website. Good payment. DM me please 🙏”</p>
-              <Mono className="mt-3 inline-block text-muted-foreground">12 comments · 4 reactions · Web Designers BD</Mono>
-            </div>
-            <p className="mt-5 text-sm text-muted-foreground">
-              Messy. No clear scope, no budget, no signal of freshness or competition. You scroll past it — or burn an hour writing context yourself.
-            </p>
-          </div>
-          <div className="relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-card p-6 md:p-8">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)] to-transparent" />
-            <Mono className="text-[color:var(--signal)]">After — structured, scored lead</Mono>
-            <ul className="mt-5 divide-y divide-border rounded-lg border border-border bg-background/40">
-              {[
-                ["Service", "Portfolio website update"],
-                ["Intent", "High"],
-                ["Temperature", "Hot"],
-                ["Competition", "Low · 8 visible comments"],
-                ["Action", "Contact within 30 minutes"],
-                ["Outreach", "3 ready-to-send drafts"],
-              ].map(([k, v]) => (
-                <li key={k} className="grid grid-cols-3 items-center gap-3 px-4 py-3 text-sm">
-                  <Mono className="text-muted-foreground">{k}</Mono>
-                  <span className="col-span-2 text-right">{v}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
 /* ---------- platforms ---------- */
-const platforms = [
-  { icon: Facebook, name: "Facebook groups", state: "live", note: "Service-request posts, business asks." },
-  { icon: Linkedin, name: "LinkedIn posts", state: "live", note: "Hiring asks, agency searches, ICP signals." },
-  { icon: MessageSquare, name: "Reddit threads", state: "live", note: "Niche subs, freelance asks, vendor recs." },
-  { icon: ArrowUpRight, name: "Manual link import", state: "live", note: "Paste any post URL or screenshot text." },
-  { icon: MessageSquare, name: "Instagram captions", state: "soon", note: "Captions and pinned comments only." },
-  { icon: MessageSquare, name: "WhatsApp shared", state: "soon", note: "Forward leads from your team groups." },
+type PlatformEntry = {
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  name: string;
+  state: "live" | "soon";
+  note: string;
+};
+
+const platforms: PlatformEntry[] = [
+  { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Service-request posts and business asks across public groups and pages." },
+  { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
+  { icon: RedditIcon, color: "#FF4500", name: "Reddit", state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
+  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "soon", note: "Captions and pinned comments from creator and business accounts." },
+  { icon: ({ className }) => <Twitter   className={className} fill="currentColor" strokeWidth={0} />, color: "#1DA1F2", name: "Twitter",   state: "soon", note: "Public tweets with service requests, RFPs and intent keywords." },
+  { icon: ArrowUpRight, color: "#16a34a", name: "Manual link import", state: "live", note: "Paste any post URL or screenshot text — we structure it the same way." },
 ];
 
 function Platforms() {
@@ -534,23 +500,30 @@ function Platforms() {
       <Container className="py-24 md:py-32">
         <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {platforms.map((p) => (
-            <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
-              <div className="flex items-center justify-between">
-                <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background">
-                  <p.icon className="h-4 w-4" strokeWidth={1.75} />
+          {platforms.map((p) => {
+            const Icon = p.icon;
+            return (
+              <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
+                <div className="flex items-center justify-between">
+                  <div
+                    className="grid h-10 w-10 place-items-center rounded-lg border border-border"
+                    style={{ background: `color-mix(in oklab, ${p.color} 14%, transparent)`, color: p.color }}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  {p.state === "live" ? <Tag tone="signal">● Live</Tag> : <Tag>○ Soon</Tag>}
                 </div>
-                {p.state === "live" ? <Tag tone="signal">● Live</Tag> : <Tag>○ Soon</Tag>}
+                <h3 className="mt-4 text-base font-semibold tracking-tight">{p.name}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{p.note}</p>
               </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{p.name}</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">{p.note}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
   );
 }
+
 
 /* ---------- scoring ---------- */
 const scoringFactors = [
