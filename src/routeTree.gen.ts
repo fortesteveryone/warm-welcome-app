@@ -29,6 +29,7 @@ import { Route as DashboardContactsRouteImport } from './routes/dashboard.contac
 import { Route as DashboardCampaignsRouteImport } from './routes/dashboard.campaigns'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as DashboardLeadsIndexRouteImport } from './routes/dashboard.leads.index'
 import { Route as DashboardLeadsLeadIdRouteImport } from './routes/dashboard.leads.$leadId'
 
 const TermsRoute = TermsRouteImport.update({
@@ -131,6 +132,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardLeadsIndexRoute = DashboardLeadsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardLeadsRoute,
+} as any)
 const DashboardLeadsLeadIdRoute = DashboardLeadsLeadIdRouteImport.update({
   id: '/$leadId',
   path: '/$leadId',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads/': typeof DashboardLeadsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -175,12 +182,12 @@ export interface FileRoutesByTo {
   '/dashboard/campaigns': typeof DashboardCampaignsRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
-  '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/dashboard/pipeline': typeof DashboardPipelineRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/blog': typeof BlogIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads': typeof DashboardLeadsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -205,6 +212,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
+  '/dashboard/leads/': typeof DashboardLeadsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -230,6 +238,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -246,12 +255,12 @@ export interface FileRouteTypes {
     | '/dashboard/campaigns'
     | '/dashboard/contacts'
     | '/dashboard/inbox'
-    | '/dashboard/leads'
     | '/dashboard/pipeline'
     | '/dashboard/settings'
     | '/blog'
     | '/dashboard'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads'
   id:
     | '__root__'
     | '/'
@@ -275,6 +284,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
+    | '/dashboard/leads/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -434,6 +444,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/leads/': {
+      id: '/dashboard/leads/'
+      path: '/'
+      fullPath: '/dashboard/leads/'
+      preLoaderRoute: typeof DashboardLeadsIndexRouteImport
+      parentRoute: typeof DashboardLeadsRoute
+    }
     '/dashboard/leads/$leadId': {
       id: '/dashboard/leads/$leadId'
       path: '/$leadId'
@@ -446,10 +463,12 @@ declare module '@tanstack/react-router' {
 
 interface DashboardLeadsRouteChildren {
   DashboardLeadsLeadIdRoute: typeof DashboardLeadsLeadIdRoute
+  DashboardLeadsIndexRoute: typeof DashboardLeadsIndexRoute
 }
 
 const DashboardLeadsRouteChildren: DashboardLeadsRouteChildren = {
   DashboardLeadsLeadIdRoute: DashboardLeadsLeadIdRoute,
+  DashboardLeadsIndexRoute: DashboardLeadsIndexRoute,
 }
 
 const DashboardLeadsRouteWithChildren = DashboardLeadsRoute._addFileChildren(
