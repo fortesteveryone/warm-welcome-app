@@ -194,12 +194,7 @@ function BlogDetail() {
         </section>
       )}
 
-      <footer className="border-t border-border">
-        <Container className="flex flex-col items-center gap-2 py-10 text-center text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Grow By Lead</p>
-          <p>Suggestion or topic request? <a className="text-foreground hover:underline" href="mailto:hello@growbylead.com">Email the team</a>.</p>
-        </Container>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
