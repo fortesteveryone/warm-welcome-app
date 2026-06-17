@@ -983,8 +983,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(5,1fr)]">
           <div>
             <div className="flex items-center gap-2">
-              <Logo />
-              <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
+              <Logo className="h-8 w-auto" />
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
