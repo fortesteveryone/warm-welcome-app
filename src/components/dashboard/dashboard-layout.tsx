@@ -16,7 +16,7 @@ const NAV: NavItem[] = [
   { label: "Pipeline", to: "/dashboard/pipeline", icon: GitBranch },
   { label: "Campaigns", to: "/dashboard/campaigns", icon: Send },
   
-  { label: "Analytics", to: "/dashboard/analytics", icon: BarChart3 },
+  
   { label: "Settings", to: "/dashboard/settings", icon: Settings },
 ];
 
