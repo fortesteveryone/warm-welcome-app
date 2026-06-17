@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, MoreHorizontal, DollarSign, Calendar, Search, Filter, X } from "lucide-react";
 import { PageHeader, Mono, Avatar, Badge, Stat } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, gridCls } from "@/components/dashboard/form-dialog";
 
 export const Route = createFileRoute("/dashboard/pipeline")({
   component: PipelinePage,
