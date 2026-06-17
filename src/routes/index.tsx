@@ -815,6 +815,93 @@ function Coverage() {
   );
 }
 
+/* ---------- concierge (VIP hot-leads) ---------- */
+function Concierge() {
+  const perks = [
+    { Icon: Flame,       title: "Hot leads only",          body: "We hand-pick the highest-intent posts of the day — no cold or maybe-leads in the mix." },
+    { Icon: Shield,      title: "Human-filtered",          body: "Every lead is manually reviewed by our team before it reaches your inbox." },
+    { Icon: Send,        title: "Delivered to Gmail",      body: "Hot leads are sent straight to your Gmail the moment they're approved — no need to refresh the dashboard." },
+    { Icon: Inbox,       title: "Dedicated VIP inbox",     body: "A separate \"Hot Leads\" section unlocks in your dashboard so you can act on the best opportunities first." },
+  ];
+  return (
+    <section id="concierge" className="section-edge section-surface-signal">
+      <Container className="py-24 md:py-32">
+        <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-3 py-1 text-xs text-[color:var(--signal)]">
+              <Flame className="h-3 w-3" /> VIP add-on · $30 / month
+            </div>
+            <h2 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
+              Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
+            </h2>
+            <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
+              Upgrade to VIP and we manually filter the day's hottest website &amp; digital-marketing leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
+                Become a VIP member <ArrowRight className="h-4 w-4" />
+              </a>
+              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Cancel anytime · No contract
+              </span>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card/70 p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)] backdrop-blur">
+            {/* mock Gmail message */}
+            <div className="flex items-center justify-between border-b border-border px-4 py-2">
+              <div className="flex items-center gap-2">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-[#EA4335]/15 text-[#EA4335]">
+                  <MessageSquare className="h-3.5 w-3.5" />
+                </span>
+                <Mono className="text-muted-foreground">gmail · inbox</Mono>
+              </div>
+              <Mono className="text-muted-foreground">Just now</Mono>
+            </div>
+            <div className="space-y-3 p-5">
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-medium">Grow By Lead · VIP</div>
+                <Tag tone="hot"><Flame className="h-3 w-3" /> Hot lead</Tag>
+              </div>
+              <div className="text-base font-semibold tracking-tight">
+                New hot lead — Shopify store redesign, $2k budget
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5">
+                  <span style={{ color: PLATFORM_META.LinkedIn.color }}><Linkedin className="h-3 w-3" fill="currentColor" strokeWidth={0} /></span>
+                  LinkedIn
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5">🇨🇦 Canada</span>
+                <Tag tone="signal">High intent</Tag>
+                <Tag>Low competition</Tag>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Manually reviewed at 09:14 — author mentioned a clear budget, 2-week timeline and is actively replying to comments. Recommended: contact within the hour.
+              </p>
+              <div className="flex items-center justify-between rounded-md border border-border bg-background/40 px-3 py-2 text-xs">
+                <span className="inline-flex items-center gap-1.5"><Link2 className="h-3 w-3 text-muted-foreground" /> Open lead in dashboard</span>
+                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {perks.map(({ Icon, title, body }) => (
+            <div key={title} className="rounded-xl border border-border bg-card/60 p-5">
+              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              </div>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 /* ---------- pricing ---------- */
 function Pricing() {
   const plans = [
