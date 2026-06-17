@@ -614,12 +614,39 @@ const platforms: PlatformEntry[] = [
   { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
 ];
 
+const dailyVolumeStats = [
+  { value: "500+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
+  { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
+  { value: "200+", label: "SEO requests", hint: "Local, technical, on-page and link building help." },
+  { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
+];
+
 function Platforms() {
   return (
     <section id="platforms" className="section-edge section-surface-blue">
       <Container className="py-16 md:py-20">
-        <SectionTitle kicker="Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <SectionTitle
+          kicker="Platforms"
+          title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
+          lede="At least 500 fresh website &amp; SEO leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+        />
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {dailyVolumeStats.map((s) => (
+            <div key={s.label} className="rounded-xl border border-border bg-card/60 p-5">
+              <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
+              <div className="mt-1 text-sm font-medium">{s.label}</div>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.hint}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <Tag tone="signal">● Daily minimum</Tag>
+          <span>500+ total · 400+ web design &amp; development · 200+ SEO · from any country.</span>
+        </div>
+
+        <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => {
             const Icon = p.icon;
             return (
@@ -1123,6 +1150,8 @@ const faqs = [
   { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
+  { q: "How many leads will I get per day?", a: "At least 500 fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, 400+ are website design & development requests (WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild) and 200+ are SEO requests (local, technical, on-page and link building). You'll never run out of work to reach out to." },
+  { q: "Which countries do the leads come from?", a: "Any country. Grow By Lead captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
   { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
