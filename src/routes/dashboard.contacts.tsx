@@ -2,12 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, Mail, Phone, MapPin, Building2, Search, Download, LayoutGrid, List, X } from "lucide-react";
 import { PageHeader, Panel, Avatar, Badge, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
+
+type Contact = { name: string; role: string; company: string; email: string; phone: string; city: string; tags: string[] };
 
 export const Route = createFileRoute("/dashboard/contacts")({
   component: ContactsPage,
 });
 
-const CONTACTS = [
+const INITIAL_CONTACTS: Contact[] = [
   { name: "Aisha Rahman", role: "Founder", company: "Velvet & Co.", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", tags: ["VIP", "Apparel"] },
   { name: "Marcus Lin", role: "CMO", company: "Northwave Studio", email: "marcus@northwave.io", phone: "+1 415 555 0144", city: "San Francisco, US", tags: ["Agency"] },
   { name: "Priya Devi", role: "Owner", company: "Saffron Kitchen", email: "priya@saffron.kitchen", phone: "+91 98765 43210", city: "Mumbai, IN", tags: ["F&B", "Local"] },
@@ -19,21 +22,23 @@ const CONTACTS = [
   { name: "Aaliyah Khan", role: "Partner", company: "Khan Legal", email: "aaliyah@khanlegal.ae", phone: "+971 4 123 4567", city: "Dubai, AE", tags: ["Legal"] },
 ];
 
-const ALL_TAGS = Array.from(new Set(CONTACTS.flatMap((c) => c.tags))).sort();
-
 function ContactsPage() {
+  const [contacts, setContacts] = useState<Contact[]>(INITIAL_CONTACTS);
   const [query, setQuery] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [view, setView] = useState<"grid" | "list">("grid");
+  const [addOpen, setAddOpen] = useState(false);
+
+  const allTags = useMemo(() => Array.from(new Set(contacts.flatMap((c) => c.tags))).sort(), [contacts]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return CONTACTS.filter((c) => {
+    return contacts.filter((c) => {
       if (tags.length && !tags.every((t) => c.tags.includes(t))) return false;
       if (!q) return true;
       return c.name.toLowerCase().includes(q) || c.company.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || c.city.toLowerCase().includes(q);
     });
-  }, [query, tags]);
+  }, [contacts, query, tags]);
 
   const toggleTag = (t: string) => setTags((cur) => cur.includes(t) ? cur.filter((x) => x !== t) : [...cur, t]);
 
@@ -48,7 +53,7 @@ function ContactsPage() {
             <button className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
               <Download className="h-3.5 w-3.5" /> Export
             </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+            <button onClick={() => setAddOpen(true)} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
               <Plus className="h-3.5 w-3.5" /> Add contact
             </button>
           </>
@@ -68,7 +73,7 @@ function ContactsPage() {
 
       <div className="flex flex-wrap items-center gap-2">
         <Mono className="text-muted-foreground">Filter by tag:</Mono>
-        {ALL_TAGS.map((t) => (
+        {allTags.map((t) => (
           <button
             key={t}
             onClick={() => toggleTag(t)}
@@ -80,7 +85,7 @@ function ContactsPage() {
             <X className="h-3 w-3" /> Clear
           </button>
         )}
-        <Mono className="ml-auto text-muted-foreground">{filtered.length} of {CONTACTS.length}</Mono>
+        <Mono className="ml-auto text-muted-foreground">{filtered.length} of {contacts.length}</Mono>
       </div>
 
       {filtered.length === 0 ? (
@@ -127,6 +132,42 @@ function ContactsPage() {
           </ul>
         </Panel>
       )}
+
+      <FormDialog
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        title="Add contact"
+        submitLabel="Add contact"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const name = String(d.get("name") || "").trim();
+          if (!name) return;
+          const c: Contact = {
+            name,
+            role: String(d.get("role") || ""),
+            company: String(d.get("company") || ""),
+            email: String(d.get("email") || ""),
+            phone: String(d.get("phone") || ""),
+            city: String(d.get("city") || ""),
+            tags: String(d.get("tags") || "").split(",").map((t) => t.trim()).filter(Boolean),
+          };
+          setContacts((cur) => [c, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <div className={gridCls}>
+          <Field label="Name"><input name="name" required className={fieldCls} /></Field>
+          <Field label="Role"><input name="role" className={fieldCls} /></Field>
+          <Field label="Company"><input name="company" className={fieldCls} /></Field>
+          <Field label="Email"><input name="email" type="email" className={fieldCls} /></Field>
+          <Field label="Phone"><input name="phone" className={fieldCls} /></Field>
+          <Field label="City"><input name="city" className={fieldCls} placeholder="City, Country" /></Field>
+          <Field label="Tags (comma separated)" span={2}><input name="tags" className={fieldCls} placeholder="VIP, Agency" /></Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }

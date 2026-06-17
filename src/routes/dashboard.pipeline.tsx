@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, MoreHorizontal, DollarSign, Calendar, Search, Filter, X } from "lucide-react";
 import { PageHeader, Mono, Avatar, Badge, Stat } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, gridCls } from "@/components/dashboard/form-dialog";
 
 export const Route = createFileRoute("/dashboard/pipeline")({
   component: PipelinePage,
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/dashboard/pipeline")({
 
 type Deal = { title: string; company: string; value: number; owner: string; due: string; tone?: "hot" | "warm" | "cold"; stage: string };
 
-const ALL_DEALS: Deal[] = [
+const INITIAL_DEALS: Deal[] = [
   { stage: "New", title: "Brand revamp", company: "Lumen Health", value: 4200, owner: "Nasir", due: "Aug 28" },
   { stage: "New", title: "Lead generation pilot", company: "Hearth Realty", value: 1800, owner: "Mei", due: "Aug 30" },
   { stage: "New", title: "Social audit", company: "Wave Mobility", value: 900, owner: "Sara", due: "Sep 02", tone: "cold" },
@@ -33,18 +34,20 @@ const STAGES = Object.keys(STAGE_META);
 const OWNERS = ["Nasir", "Sara", "Mei"];
 
 function PipelinePage() {
+  const [deals, setDeals] = useState<Deal[]>(INITIAL_DEALS);
   const [query, setQuery] = useState("");
   const [owner, setOwner] = useState<string>("all");
   const [minValue, setMinValue] = useState(0);
+  const [addOpen, setAddOpen] = useState<false | string>(false); // stage name or false
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return ALL_DEALS.filter((d) =>
+    return deals.filter((d) =>
       (owner === "all" || d.owner === owner) &&
       d.value >= minValue &&
       (!q || d.title.toLowerCase().includes(q) || d.company.toLowerCase().includes(q))
     );
-  }, [query, owner, minValue]);
+  }, [deals, query, owner, minValue]);
 
   const total = filtered.reduce((a, d) => a + d.value, 0);
   const wonValue = filtered.filter((d) => d.stage === "Closed-Won").reduce((a, d) => a + d.value, 0);
@@ -58,7 +61,7 @@ function PipelinePage() {
         title="Deal pipeline"
         description="Drag-style kanban view (demo) — 5 stages across all active deals."
         actions={
-          <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+          <button onClick={() => setAddOpen("New")} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
             <Plus className="h-3.5 w-3.5" /> New deal
           </button>
         }
@@ -130,7 +133,7 @@ function PipelinePage() {
                     </div>
                   </div>
                 ))}
-                <button className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-border py-2 text-xs text-muted-foreground hover:bg-card hover:text-foreground">
+                <button onClick={() => setAddOpen(stage)} className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-border py-2 text-xs text-muted-foreground hover:bg-card hover:text-foreground">
                   <Plus className="h-3.5 w-3.5" /> Add deal
                 </button>
               </div>
@@ -138,6 +141,57 @@ function PipelinePage() {
           );
         })}
       </div>
+
+      <FormDialog
+        open={!!addOpen}
+        onClose={() => setAddOpen(false)}
+        title={`New deal${addOpen ? ` · ${addOpen}` : ""}`}
+        submitLabel="Create deal"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const title = String(d.get("title") || "").trim();
+          if (!title) return;
+          const deal: Deal = {
+            stage: String(d.get("stage") || addOpen || "New"),
+            title,
+            company: String(d.get("company") || ""),
+            value: Number(d.get("value") || 0),
+            owner: String(d.get("owner") || OWNERS[0]),
+            due: String(d.get("due") || "—"),
+            tone: (d.get("tone") as Deal["tone"]) || undefined,
+          };
+          setDeals((cur) => [deal, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <Field label="Deal title"><input name="title" required className={fieldCls} placeholder="Brand revamp…" /></Field>
+        <div className={gridCls}>
+          <Field label="Company"><input name="company" className={fieldCls} /></Field>
+          <Field label="Value ($)"><input name="value" type="number" min={0} step={100} defaultValue={5000} className={fieldCls} /></Field>
+          <Field label="Stage">
+            <select name="stage" className={fieldCls} defaultValue={addOpen || "New"}>
+              {STAGES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </Field>
+          <Field label="Owner">
+            <select name="owner" className={fieldCls} defaultValue={OWNERS[0]}>
+              {OWNERS.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </Field>
+          <Field label="Due">
+            <input name="due" className={fieldCls} placeholder="Sep 12" />
+          </Field>
+          <Field label="Tone">
+            <select name="tone" className={fieldCls} defaultValue="">
+              <option value="">—</option>
+              <option value="hot">hot</option><option value="warm">warm</option><option value="cold">cold</option>
+            </select>
+          </Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }

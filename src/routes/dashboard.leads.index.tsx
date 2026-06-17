@@ -6,6 +6,7 @@ import {
   ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, textareaCls, gridCls } from "@/components/dashboard/form-dialog";
 import { LEADS, LEAD_OWNERS, LEAD_SOURCES, LEAD_STAGES, type Lead, type LeadSource, type LeadStatus } from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads/")({
@@ -36,12 +37,14 @@ function LeadsPage() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
+  const [leads, setLeads] = useState<Lead[]>(LEADS);
+  const [addOpen, setAddOpen] = useState(false);
 
   const toggle = <T,>(arr: T[], v: T) => arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v];
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = LEADS.filter((l) => {
+    let list = leads.filter((l) => {
       if (status !== "All" && l.status !== status.toLowerCase()) return false;
       if (sources.length && !sources.includes(l.source)) return false;
       if (stages.length && !stages.includes(l.stage)) return false;
@@ -58,12 +61,12 @@ function LeadsPage() {
         case "score": cmp = a.score - b.score; break;
         case "stage": cmp = stageRank(a.stage) - stageRank(b.stage); break;
         case "owner": cmp = a.owner.localeCompare(b.owner); break;
-        case "updated": cmp = LEADS.indexOf(a) - LEADS.indexOf(b); break;
+        case "updated": cmp = leads.indexOf(a) - leads.indexOf(b); break;
       }
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [query, status, sources, stages, owners, minScore, sortKey, sortDir]);
+  }, [leads, query, status, sources, stages, owners, minScore, sortKey, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -105,7 +108,7 @@ function LeadsPage() {
             <button className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card/50 px-3 text-sm hover:bg-card">
               <Download className="h-3.5 w-3.5" /> Export
             </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+            <button onClick={() => setAddOpen(true)} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
               <Plus className="h-3.5 w-3.5" /> New lead
             </button>
           </>
@@ -183,7 +186,7 @@ function LeadsPage() {
             </FilterGroup>
           </div>
           <div className="flex items-center justify-between border-t border-border px-5 py-3">
-            <Mono className="text-muted-foreground">{filtered.length} of {LEADS.length} leads match</Mono>
+            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match</Mono>
             <button onClick={clearAll} className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
               <X className="h-3 w-3" /> Clear all
             </button>
@@ -284,7 +287,89 @@ function LeadsPage() {
           <Panel><Pagination page={safePage} total={filtered.length} totalPages={totalPages} onPage={setPage} /></Panel>
         </>
       )}
+
+      <NewLeadDialog
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        onCreate={(lead) => { setLeads((cur) => [lead, ...cur]); setAddOpen(false); setPage(1); }}
+      />
     </div>
+  );
+}
+
+function NewLeadDialog({ open, onClose, onCreate }: { open: boolean; onClose: () => void; onCreate: (l: Lead) => void }) {
+  return (
+    <FormDialog
+      open={open}
+      onClose={onClose}
+      title="New lead"
+      description="Add a lead manually. It will appear at the top of the list."
+      submitLabel="Create lead"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const f = e.currentTarget as HTMLFormElement;
+        const d = new FormData(f);
+        const name = String(d.get("name") || "").trim();
+        if (!name) return;
+        const score = Number(d.get("score") || 50);
+        const lead: Lead = {
+          id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`,
+          name,
+          company: String(d.get("company") || ""),
+          role: String(d.get("role") || ""),
+          source: (d.get("source") as LeadSource) || "instagram",
+          score,
+          status: (d.get("status") as LeadStatus) || (score > 75 ? "hot" : score > 50 ? "warm" : "cold"),
+          stage: String(d.get("stage") || "New"),
+          owner: String(d.get("owner") || LEAD_OWNERS[0]),
+          updated: "just now",
+          email: String(d.get("email") || ""),
+          phone: String(d.get("phone") || ""),
+          city: String(d.get("city") || ""),
+          website: String(d.get("website") || ""),
+          tags: String(d.get("tags") || "").split(",").map((t) => t.trim()).filter(Boolean),
+          about: String(d.get("about") || ""),
+          dealValue: Number(d.get("dealValue") || 0),
+          createdAt: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+        };
+        onCreate(lead);
+        f.reset();
+      }}
+    >
+      <div className={gridCls}>
+        <Field label="Name"><input name="name" required className={fieldCls} placeholder="Full name" /></Field>
+        <Field label="Company"><input name="company" className={fieldCls} placeholder="Acme Inc." /></Field>
+        <Field label="Role"><input name="role" className={fieldCls} placeholder="Founder, CMO…" /></Field>
+        <Field label="Source">
+          <select name="source" className={fieldCls} defaultValue="instagram">
+            {LEAD_SOURCES.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </Field>
+        <Field label="Stage">
+          <select name="stage" className={fieldCls} defaultValue="New">
+            {LEAD_STAGES.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </Field>
+        <Field label="Owner">
+          <select name="owner" className={fieldCls} defaultValue={LEAD_OWNERS[0]}>
+            {LEAD_OWNERS.map((o) => <option key={o} value={o}>{o}</option>)}
+          </select>
+        </Field>
+        <Field label="Status">
+          <select name="status" className={fieldCls} defaultValue="warm">
+            <option value="hot">hot</option><option value="warm">warm</option><option value="cold">cold</option>
+          </select>
+        </Field>
+        <Field label="Score (0–100)"><input name="score" type="number" min={0} max={100} defaultValue={60} className={fieldCls} /></Field>
+        <Field label="Email"><input name="email" type="email" className={fieldCls} placeholder="name@company.com" /></Field>
+        <Field label="Phone"><input name="phone" className={fieldCls} placeholder="+1 555…" /></Field>
+        <Field label="City"><input name="city" className={fieldCls} placeholder="City, Country" /></Field>
+        <Field label="Website"><input name="website" className={fieldCls} placeholder="company.com" /></Field>
+        <Field label="Deal value ($)"><input name="dealValue" type="number" min={0} step={100} defaultValue={0} className={fieldCls} /></Field>
+        <Field label="Tags (comma separated)"><input name="tags" className={fieldCls} placeholder="VIP, SaaS" /></Field>
+        <Field label="About / notes" span={2}><textarea name="about" className={textareaCls} placeholder="Short context about this lead…" /></Field>
+      </div>
+    </FormDialog>
   );
 }
 

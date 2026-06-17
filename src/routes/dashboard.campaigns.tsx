@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, Send, Mail, Linkedin, MessageSquare, Play, Pause, Search } from "lucide-react";
 import { PageHeader, Panel, Badge, Stat, Mono } from "@/components/dashboard/dash-ui";
+import { FormDialog, Field, fieldCls, gridCls } from "@/components/dashboard/form-dialog";
 
 export const Route = createFileRoute("/dashboard/campaigns")({
   component: CampaignsPage,
@@ -10,7 +11,9 @@ export const Route = createFileRoute("/dashboard/campaigns")({
 type Channel = "email" | "linkedin" | "dm";
 type Status = "active" | "paused" | "draft" | "completed";
 
-const CAMPAIGNS: { name: string; channel: Channel; status: Status; sent: number; open: number; reply: number; booked: number; started: string }[] = [
+type Campaign = { name: string; channel: Channel; status: Status; sent: number; open: number; reply: number; booked: number; started: string };
+
+const INITIAL_CAMPAIGNS: Campaign[] = [
   { name: "Q3 SaaS founders", channel: "email", status: "active", sent: 1240, open: 42, reply: 8.4, booked: 18, started: "Aug 12" },
   { name: "LinkedIn agency owners", channel: "linkedin", status: "active", sent: 612, open: 58, reply: 14.2, booked: 26, started: "Aug 18" },
   { name: "Instagram boutique brands", channel: "dm", status: "paused", sent: 380, open: 71, reply: 11.6, booked: 12, started: "Aug 22" },
@@ -30,27 +33,29 @@ const STATUS_TABS: ("all" | Status)[] = ["all", "active", "paused", "draft", "co
 const CHANNEL_TABS: ("all" | Channel)[] = ["all", "email", "linkedin", "dm"];
 
 function CampaignsPage() {
+  const [campaigns, setCampaigns] = useState<Campaign[]>(INITIAL_CAMPAIGNS);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"all" | Status>("all");
   const [channel, setChannel] = useState<"all" | Channel>("all");
   const [sortKey, setSortKey] = useState<"booked" | "reply" | "sent" | "open">("booked");
+  const [addOpen, setAddOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = CAMPAIGNS.filter((c) =>
+    let list = campaigns.filter((c) =>
       (status === "all" || c.status === status) &&
       (channel === "all" || c.channel === channel) &&
       (!q || c.name.toLowerCase().includes(q))
     );
     list = [...list].sort((a, b) => b[sortKey] - a[sortKey]);
     return list;
-  }, [query, status, channel, sortKey]);
+  }, [campaigns, query, status, channel, sortKey]);
 
   const counts = useMemo(() => {
-    const m: Record<string, number> = { all: CAMPAIGNS.length };
-    for (const s of ["active", "paused", "draft", "completed"] as Status[]) m[s] = CAMPAIGNS.filter((c) => c.status === s).length;
+    const m: Record<string, number> = { all: campaigns.length };
+    for (const s of ["active", "paused", "draft", "completed"] as Status[]) m[s] = campaigns.filter((c) => c.status === s).length;
     return m;
-  }, []);
+  }, [campaigns]);
 
   return (
     <div className="space-y-6">
@@ -59,7 +64,7 @@ function CampaignsPage() {
         title="Outreach campaigns"
         description="Multi-channel sequences across email, LinkedIn, and DMs."
         actions={
-          <button className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
+          <button onClick={() => setAddOpen(true)} className="inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90">
             <Plus className="h-3.5 w-3.5" /> New campaign
           </button>
         }
@@ -142,6 +147,49 @@ function CampaignsPage() {
           </div>
         )}
       </Panel>
+
+      <FormDialog
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        title="New campaign"
+        submitLabel="Create campaign"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const name = String(d.get("name") || "").trim();
+          if (!name) return;
+          const c: Campaign = {
+            name,
+            channel: (d.get("channel") as Channel) || "email",
+            status: (d.get("status") as Status) || "draft",
+            sent: 0, open: 0, reply: 0, booked: 0,
+            started: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit" }),
+          };
+          setCampaigns((cur) => [c, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <Field label="Campaign name"><input name="name" required className={fieldCls} placeholder="Q4 SaaS outreach…" /></Field>
+        <div className={gridCls}>
+          <Field label="Channel">
+            <select name="channel" className={fieldCls} defaultValue="email">
+              <option value="email">Email</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="dm">DM</option>
+            </select>
+          </Field>
+          <Field label="Status">
+            <select name="status" className={fieldCls} defaultValue="draft">
+              <option value="draft">Draft</option>
+              <option value="active">Active</option>
+              <option value="paused">Paused</option>
+              <option value="completed">Completed</option>
+            </select>
+          </Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }
