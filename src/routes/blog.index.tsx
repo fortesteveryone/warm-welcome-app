@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { ArrowRight, Search, X } from "lucide-react";
 import { BLOG_CATEGORIES, BLOG_POSTS, formatDate, type BlogCategory, type BlogPost } from "@/lib/blog-data";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Grow By Lead" },
