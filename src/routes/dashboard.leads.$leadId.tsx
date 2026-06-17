@@ -275,7 +275,7 @@ function LeadDetailPage() {
                 <StatBlock icon={<MessageSquare className="h-4 w-4 text-sky-300" />} value={lead.comments} label="Comments" tone="sky" />
                 <StatBlock icon={<Heart className="h-4 w-4 text-rose-300" />} value={d.reactions} label="Reactions" tone="rose" />
                 <StatBlock icon={<Share2 className="h-4 w-4 text-indigo-300" />} value={d.shares} label="Shares" tone="indigo" />
-                <StatBlock icon={<TrendingUp className="h-4 w-4 text-emerald-300" />} value={lead.intent} label="Intent" tone="emerald" />
+                <StatBlock icon={<TrendingUp className="h-4 w-4 text-foreground/80" />} value={lead.intent} label="Intent" tone="emerald" />
               </div>
 
               {/* Footer meta */}
@@ -304,10 +304,10 @@ function LeadDetailPage() {
         onToggle={() => setOpenSections((s) => ({ ...s, details: !s.details }))}
       >
         <div className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-4">
-          <FactTile icon={<Smartphone className="h-4 w-4 text-emerald-300" />} label="Platform preference" value={cap(lead.platform)} />
-          <FactTile icon={<Globe2 className="h-4 w-4 text-emerald-300" />} label="Location confidence" value={d.locationConf} sub={lead.city || lead.country} />
-          <FactTile icon={<FileText className="h-4 w-4 text-emerald-300" />} label="Post type" value={d.postType} />
-          <FactTile icon={<Send className="h-4 w-4 text-emerald-300" />} label="Best outreach channel" value={d.channel} />
+          <FactTile icon={<Smartphone className="h-4 w-4 text-foreground/80" />} label="Platform preference" value={cap(lead.platform)} />
+          <FactTile icon={<Globe2 className="h-4 w-4 text-foreground/80" />} label="Location confidence" value={d.locationConf} sub={lead.city || lead.country} />
+          <FactTile icon={<FileText className="h-4 w-4 text-foreground/80" />} label="Post type" value={d.postType} />
+          <FactTile icon={<Send className="h-4 w-4 text-foreground/80" />} label="Best outreach channel" value={d.channel} />
         </div>
         <div className="grid gap-3 px-4 pb-4 sm:grid-cols-2">
           <YesNoTile
@@ -347,7 +347,7 @@ function LeadDetailPage() {
                 body={d.competitionReason}
               />
               <FactBlock
-                icon={<Lightbulb className="h-3.5 w-3.5 text-emerald-300" />}
+                icon={<Lightbulb className="h-3.5 w-3.5 text-foreground/80" />}
                 label="Recommended next action"
                 body={d.nextAction}
               />
@@ -444,7 +444,7 @@ const tones = {
   sky: "from-sky-500/15 to-sky-500/0 ring-sky-500/20",
   rose: "from-rose-500/15 to-rose-500/0 ring-rose-500/20",
   indigo: "from-indigo-500/15 to-indigo-500/0 ring-indigo-500/20",
-  emerald: "from-emerald-500/15 to-emerald-500/0 ring-emerald-500/20",
+  emerald: "from-foreground/10 to-foreground/0 ring-foreground/20",
 } as const;
 
 function StatBlock({
@@ -553,7 +553,7 @@ function DraftCard({ index, draft }: { index: number; draft: { topic: string; su
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <span className="font-mono uppercase tracking-wider">Draft {index}</span>
           <span>·</span>
-          <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] text-emerald-200">
+          <span className="inline-flex items-center gap-1 rounded-md border border-foreground/30 bg-foreground/10 px-2 py-0.5 text-[11px] text-foreground">
             <ClipboardList className="h-3 w-3" /> {draft.topic}
           </span>
         </div>
