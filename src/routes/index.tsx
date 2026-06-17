@@ -394,7 +394,7 @@ function Scope() {
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
             <p className="mt-2 text-sm text-foreground/90">
-              Anything a website agency, freelancer, SEO expert, ad buyer or social media manager could sell. If a post asks for help building, ranking, designing, marketing or growing a website or online presence — it lands in your inbox.
+              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer — or SEO services. If a post asks for that kind of help, it lands in your inbox.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card/50 p-5">
