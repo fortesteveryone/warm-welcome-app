@@ -138,6 +138,48 @@
 
 @utility text-balance { text-wrap: balance; }
 
+/* Section divider — gradient hairline + centered green pulse marker.
+   Apply to any block to draw a refined bottom edge. */
+@utility section-edge {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(1 0 0 / 0.04) 20%,
+      oklch(1 0 0 / 0.14) 50%,
+      oklch(1 0 0 / 0.04) 80%,
+      transparent 100%
+    );
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3.5px;
+    width: 7px;
+    height: 7px;
+    transform: translateX(-50%) rotate(45deg);
+    background: var(--color-background);
+    border: 1px solid oklch(1 0 0 / 0.18);
+    z-index: 1;
+  }
+}
+
+/* Subtle alternating section tint — barely visible, just enough to break rhythm. */
+@utility section-tint {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.72 0.19 145 / 0.025), transparent 70%),
+    oklch(0.04 0 0);
+}
+
+
 
 
 
