@@ -147,6 +147,49 @@ function CampaignsPage() {
           </div>
         )}
       </Panel>
+
+      <FormDialog
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        title="New campaign"
+        submitLabel="Create campaign"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const f = e.currentTarget as HTMLFormElement;
+          const d = new FormData(f);
+          const name = String(d.get("name") || "").trim();
+          if (!name) return;
+          const c: Campaign = {
+            name,
+            channel: (d.get("channel") as Channel) || "email",
+            status: (d.get("status") as Status) || "draft",
+            sent: 0, open: 0, reply: 0, booked: 0,
+            started: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit" }),
+          };
+          setCampaigns((cur) => [c, ...cur]);
+          setAddOpen(false);
+          f.reset();
+        }}
+      >
+        <Field label="Campaign name"><input name="name" required className={fieldCls} placeholder="Q4 SaaS outreach…" /></Field>
+        <div className={gridCls}>
+          <Field label="Channel">
+            <select name="channel" className={fieldCls} defaultValue="email">
+              <option value="email">Email</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="dm">DM</option>
+            </select>
+          </Field>
+          <Field label="Status">
+            <select name="status" className={fieldCls} defaultValue="draft">
+              <option value="draft">Draft</option>
+              <option value="active">Active</option>
+              <option value="paused">Paused</option>
+              <option value="completed">Completed</option>
+            </select>
+          </Field>
+        </div>
+      </FormDialog>
     </div>
   );
 }
