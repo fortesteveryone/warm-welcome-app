@@ -991,7 +991,7 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "Only website and digital marketing service requests — web design, development, CMS work (WordPress, Webflow, Wix, Framer), e-commerce (Shopify, WooCommerce), SEO, paid ads, social media management, branding and analytics. We do not capture leads for real estate, legal, healthcare, recruiting, physical products or other unrelated industries." },
+  { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Reddit and manual post/link import are live. Instagram, X/Twitter and WhatsApp shared-lead import are coming soon." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
