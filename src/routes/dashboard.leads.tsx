@@ -1,21 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Filter, Download, Plus, Search, MoreHorizontal, Instagram, Linkedin, Facebook } from "lucide-react";
 import { PageHeader, Panel, Badge, Avatar, Mono } from "@/components/dashboard/dash-ui";
+import { LEADS } from "@/lib/leads-data";
 
 export const Route = createFileRoute("/dashboard/leads")({
   component: LeadsPage,
 });
 
-const LEADS = [
-  { name: "Aisha Rahman", company: "Velvet & Co.", role: "Founder", source: "instagram", score: 92, status: "hot", stage: "Negotiation", owner: "Nasir", updated: "2m ago" },
-  { name: "Marcus Lin", company: "Northwave Studio", role: "CMO", source: "linkedin", score: 88, status: "hot", stage: "Proposal", owner: "Nasir", updated: "14m ago" },
-  { name: "Priya Devi", company: "Saffron Kitchen", role: "Owner", source: "facebook", score: 74, status: "warm", stage: "Qualified", owner: "Sara", updated: "1h ago" },
-  { name: "Jonas Weber", company: "Atlas Logistics", role: "Ops Lead", source: "linkedin", score: 67, status: "warm", stage: "Qualified", owner: "Sara", updated: "3h ago" },
-  { name: "Camila Reyes", company: "Lumen Health", role: "Marketing", source: "instagram", score: 51, status: "cold", stage: "New", owner: "Nasir", updated: "5h ago" },
-  { name: "David O'Connor", company: "Hearth Realty", role: "Broker", source: "facebook", score: 48, status: "cold", stage: "New", owner: "Mei", updated: "8h ago" },
-  { name: "Yuki Tanaka", company: "Mori Apparel", role: "Founder", source: "instagram", score: 83, status: "hot", stage: "Proposal", owner: "Mei", updated: "1d ago" },
-  { name: "Ravi Shah", company: "Bluepeak SaaS", role: "Growth", source: "linkedin", score: 71, status: "warm", stage: "Qualified", owner: "Nasir", updated: "1d ago" },
-];
 
 const sourceIcon = (s: string) =>
   s === "instagram" ? <Instagram className="h-3.5 w-3.5 text-rose-400" /> :
@@ -68,15 +59,15 @@ function LeadsPage() {
             </thead>
             <tbody>
               {LEADS.map((l) => (
-                <tr key={l.name} className="border-b border-border last:border-0 hover:bg-card/30">
+                <tr key={l.id} className="border-b border-border last:border-0 hover:bg-card/30">
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
+                    <Link to="/dashboard/leads/$leadId" params={{ leadId: l.id }} className="flex items-center gap-3 group">
                       <Avatar name={l.name} />
                       <div className="min-w-0">
-                        <div className="truncate font-medium">{l.name}</div>
+                        <div className="truncate font-medium group-hover:underline">{l.name}</div>
                         <div className="truncate text-xs text-muted-foreground">{l.role} · {l.company}</div>
                       </div>
-                    </div>
+                    </Link>
                   </td>
                   <td className="px-4 py-3">
                     <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
