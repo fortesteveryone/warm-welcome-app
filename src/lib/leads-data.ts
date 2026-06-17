@@ -1,0 +1,40 @@
+export type LeadStatus = "hot" | "warm" | "cold";
+export type LeadSource = "instagram" | "linkedin" | "facebook";
+
+export type Lead = {
+  id: string;
+  name: string;
+  company: string;
+  role: string;
+  source: LeadSource;
+  score: number;
+  status: LeadStatus;
+  stage: string;
+  owner: string;
+  updated: string;
+  email: string;
+  phone: string;
+  city: string;
+  website: string;
+  tags: string[];
+  about: string;
+  dealValue: number;
+  createdAt: string;
+};
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const RAW: Omit<Lead, "id">[] = [
+  { name: "Aisha Rahman", company: "Velvet & Co.", role: "Founder", source: "instagram", score: 92, status: "hot", stage: "Negotiation", owner: "Nasir", updated: "2m ago", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", website: "velvet.co", tags: ["VIP", "Apparel"], about: "Founder of a fast-growing premium apparel label, building direct-to-consumer channels across South Asia and the Gulf.", dealValue: 12500, createdAt: "Mar 02, 2026" },
+  { name: "Marcus Lin", company: "Northwave Studio", role: "CMO", source: "linkedin", score: 88, status: "hot", stage: "Proposal", owner: "Nasir", updated: "14m ago", email: "marcus@northwave.io", phone: "+1 415 555 0144", city: "San Francisco, US", website: "northwave.io", tags: ["Agency"], about: "Marketing lead at a boutique brand studio serving SaaS and consumer startups.", dealValue: 24800, createdAt: "Feb 18, 2026" },
+  { name: "Priya Devi", company: "Saffron Kitchen", role: "Owner", source: "facebook", score: 74, status: "warm", stage: "Qualified", owner: "Sara", updated: "1h ago", email: "priya@saffron.kitchen", phone: "+91 98765 43210", city: "Mumbai, IN", website: "saffron.kitchen", tags: ["F&B", "Local"], about: "Owner of a popular regional cloud kitchen network expanding to tier-1 cities.", dealValue: 4800, createdAt: "Apr 11, 2026" },
+  { name: "Jonas Weber", company: "Atlas Logistics", role: "Ops Lead", source: "linkedin", score: 67, status: "warm", stage: "Qualified", owner: "Sara", updated: "3h ago", email: "j.weber@atlas-log.de", phone: "+49 30 9876543", city: "Berlin, DE", website: "atlas-log.de", tags: ["Enterprise"], about: "Heads ground operations for a mid-market EU logistics provider.", dealValue: 38200, createdAt: "Jan 30, 2026" },
+  { name: "Camila Reyes", company: "Lumen Health", role: "Marketing", source: "instagram", score: 51, status: "cold", stage: "New", owner: "Nasir", updated: "5h ago", email: "camila@lumenhealth.io", phone: "+34 612 345 678", city: "Madrid, ES", website: "lumenhealth.io", tags: ["Healthcare"], about: "Runs paid social for a women's health subscription brand in EU + LATAM.", dealValue: 6200, createdAt: "May 04, 2026" },
+  { name: "David O'Connor", company: "Hearth Realty", role: "Broker", source: "facebook", score: 48, status: "cold", stage: "New", owner: "Mei", updated: "8h ago", email: "david@hearthrealty.com", phone: "+353 1 555 0199", city: "Dublin, IE", website: "hearthrealty.com", tags: ["Real Estate"], about: "Independent broker focused on luxury residential listings.", dealValue: 9100, createdAt: "May 22, 2026" },
+  { name: "Yuki Tanaka", company: "Mori Apparel", role: "Founder", source: "instagram", score: 83, status: "hot", stage: "Proposal", owner: "Mei", updated: "1d ago", email: "yuki@moriapparel.jp", phone: "+81 80 1234 5678", city: "Tokyo, JP", website: "moriapparel.jp", tags: ["Apparel", "VIP"], about: "Founder of a heritage-minded apparel brand exporting to North America.", dealValue: 18900, createdAt: "Feb 09, 2026" },
+  { name: "Ravi Shah", company: "Bluepeak SaaS", role: "Growth", source: "linkedin", score: 71, status: "warm", stage: "Qualified", owner: "Nasir", updated: "1d ago", email: "ravi@bluepeak.io", phone: "+1 646 555 0123", city: "New York, US", website: "bluepeak.io", tags: ["SaaS"], about: "Growth lead at a vertical SaaS company in the property-management space.", dealValue: 15400, createdAt: "Mar 21, 2026" },
+];
+
+export const LEADS: Lead[] = RAW.map((l) => ({ ...l, id: slug(l.name) }));
+
+export const getLeadById = (id: string): Lead | undefined => LEADS.find((l) => l.id === id);
