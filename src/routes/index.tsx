@@ -457,7 +457,7 @@ function Platforms() {
   return (
     <section id="platforms" className="section-edge">
       <Container className="py-24 md:py-32">
-        <SectionTitle kicker="04 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
+        <SectionTitle kicker="03 / Platforms" title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>} />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => (
             <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
