@@ -101,7 +101,7 @@ function enrich(l: Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts
 const slug = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-type RawLead = Omit<Lead, "id">;
+type RawLead = Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts" | "postedAt">;
 
 const RAW: RawLead[] = [
   { name: "Aisha Rahman", company: "Velvet & Co.", role: "Founder", source: "instagram", score: 92, status: "hot", stage: "Negotiation", owner: "Nasir", updated: "2m ago", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", country: "Bangladesh", website: "velvet.co", tags: ["VIP", "Apparel"], about: "Founder of a fast-growing premium apparel label, building direct-to-consumer channels across South Asia and the Gulf.", dealValue: 12500, createdAt: "Mar 02, 2026", category: "E-commerce", intent: "High", platform: "instagram", qualification: "qualified", favourite: true },
@@ -121,7 +121,7 @@ const RAW: RawLead[] = [
   { name: "Aaliyah Khan", company: "Khan Legal", role: "Partner", source: "linkedin", score: 60, status: "warm", stage: "Qualified", owner: "Sara", updated: "1w ago", email: "aaliyah@khanlegal.ae", phone: "+971 4 123 4567", city: "Dubai, AE", country: "United Arab Emirates", website: "khanlegal.ae", tags: ["Legal"], about: "Boutique law firm focused on cross-border corporate work.", dealValue: 8200, createdAt: "Apr 22, 2026", category: "Graphic design", intent: "Medium", platform: "linkedin", qualification: "unreviewed", favourite: false },
 ];
 
-export const LEADS: Lead[] = RAW.map((l) => ({ ...l, id: slug(l.name) }));
+export const LEADS: Lead[] = RAW.map((l, i) => enrich(l, i));
 
 export const getLeadById = (id: string): Lead | undefined =>
   LEADS.find((l) => l.id === id);
