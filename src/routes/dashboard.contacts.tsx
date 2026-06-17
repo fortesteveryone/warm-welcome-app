@@ -23,18 +23,22 @@ const INITIAL_CONTACTS: Contact[] = [
 ];
 
 function ContactsPage() {
+  const [contacts, setContacts] = useState<Contact[]>(INITIAL_CONTACTS);
   const [query, setQuery] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [view, setView] = useState<"grid" | "list">("grid");
+  const [addOpen, setAddOpen] = useState(false);
+
+  const allTags = useMemo(() => Array.from(new Set(contacts.flatMap((c) => c.tags))).sort(), [contacts]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return CONTACTS.filter((c) => {
+    return contacts.filter((c) => {
       if (tags.length && !tags.every((t) => c.tags.includes(t))) return false;
       if (!q) return true;
       return c.name.toLowerCase().includes(q) || c.company.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || c.city.toLowerCase().includes(q);
     });
-  }, [query, tags]);
+  }, [contacts, query, tags]);
 
   const toggleTag = (t: string) => setTags((cur) => cur.includes(t) ? cur.filter((x) => x !== t) : [...cur, t]);
 
