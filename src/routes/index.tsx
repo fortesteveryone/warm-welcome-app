@@ -989,16 +989,22 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className={`mt-8 inline-flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium transition ${
-                  p.featured
-                    ? "bg-foreground text-background hover:bg-foreground/90"
-                    : "border border-border bg-background hover:bg-card"
-                }`}
-              >
-                {p.cta} <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+              {(p as { soon?: boolean }).soon ? (
+                <span className="mt-8 inline-flex w-full cursor-not-allowed items-center justify-center gap-1.5 rounded-md border border-border bg-card/40 px-4 py-2.5 text-sm font-medium text-muted-foreground">
+                  {p.cta}
+                </span>
+              ) : (
+                <a
+                  href="#"
+                  className={`mt-8 inline-flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium transition ${
+                    p.featured
+                      ? "bg-foreground text-background hover:bg-foreground/90"
+                      : "border border-border bg-background hover:bg-card"
+                  }`}
+                >
+                  {p.cta} <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
           ))}
         </div>
