@@ -186,7 +186,7 @@ function LeadsPage() {
             </FilterGroup>
           </div>
           <div className="flex items-center justify-between border-t border-border px-5 py-3">
-            <Mono className="text-muted-foreground">{filtered.length} of {LEADS.length} leads match</Mono>
+            <Mono className="text-muted-foreground">{filtered.length} of {leads.length} leads match</Mono>
             <button onClick={clearAll} className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
               <X className="h-3 w-3" /> Clear all
             </button>
