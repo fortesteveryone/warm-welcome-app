@@ -6,7 +6,8 @@ import {
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 
-const NAV = [
+type NavItem = { label: string; to: string; icon: typeof LayoutDashboard; exact?: boolean };
+const NAV: NavItem[] = [
   { label: "Overview", to: "/dashboard", icon: LayoutDashboard, exact: true },
   { label: "Leads", to: "/dashboard/leads", icon: UserPlus },
   { label: "Contacts", to: "/dashboard/contacts", icon: Users },
@@ -15,7 +16,7 @@ const NAV = [
   { label: "Inbox", to: "/dashboard/inbox", icon: Inbox },
   { label: "Analytics", to: "/dashboard/analytics", icon: BarChart3 },
   { label: "Settings", to: "/dashboard/settings", icon: Settings },
-] as const;
+];
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
