@@ -274,11 +274,11 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(closest-side, oklch(0.72 0.19 145 / 0.10), transparent 70%) 12% 18% / 38vw 38vw no-repeat,
-    radial-gradient(closest-side, oklch(0.7 0.16 230 / 0.09),  transparent 70%) 88% 72% / 44vw 44vw no-repeat,
-    radial-gradient(closest-side, oklch(0.78 0.16 70 / 0.07),  transparent 70%) 70% 12% / 32vw 32vw no-repeat,
-    radial-gradient(closest-side, oklch(0.65 0.2 295 / 0.07),  transparent 70%) 20% 85% / 36vw 36vw no-repeat;
-  filter: blur(40px) saturate(115%);
+    radial-gradient(closest-side, oklch(0.62 0.17 148 / 0.10), transparent 70%) 12% 18% / 38vw 38vw no-repeat,
+    radial-gradient(closest-side, oklch(0.7 0.16 230 / 0.06),  transparent 70%) 88% 72% / 44vw 44vw no-repeat,
+    radial-gradient(closest-side, oklch(0.78 0.16 70 / 0.05),  transparent 70%) 70% 12% / 32vw 32vw no-repeat,
+    radial-gradient(closest-side, oklch(0.62 0.17 148 / 0.07), transparent 70%) 20% 85% / 36vw 36vw no-repeat;
+  filter: blur(60px) saturate(110%);
   animation:
     orb-drift-a 22s ease-in-out infinite,
     orb-drift-b 28s ease-in-out infinite,
