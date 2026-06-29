@@ -200,6 +200,24 @@
   color: oklch(0.98 0 0);
 }
 
+/* Dashboard-only theme overrides — green + black + white combo (reference look).
+   Scoped to .dash-scope so the marketing site stays pure B&W. */
+.dash-scope {
+  --signal: oklch(0.68 0.18 148);                  /* brand green */
+  --sidebar: oklch(0.16 0 0);                      /* near-black */
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.72 0.19 148);         /* green active */
+  --sidebar-primary-foreground: oklch(0.14 0 0);
+  --sidebar-accent: oklch(0.24 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.72 0.19 148 / 50%);
+  --ring: oklch(0.68 0.18 148 / 45%);
+}
+.dash-scope .dash-accent { color: var(--signal); }
+.dash-scope .dash-bg-accent { background: var(--signal); color: oklch(0.14 0 0); }
+.dash-scope .dash-bg-accent-soft { background: color-mix(in oklab, var(--signal) 14%, transparent); color: var(--signal); }
+
 
 
 
