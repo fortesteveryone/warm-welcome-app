@@ -163,8 +163,7 @@
 
 @utility text-balance { text-wrap: balance; }
 
-/* Section divider — iridescent hairline + centered diamond marker.
-   Warm-to-cool aurora tint so adjacent sections feel intentionally separated. */
+/* Section divider — subtle monochrome hairline. */
 @utility section-edge {
   position: relative;
   &::after {
@@ -177,50 +176,30 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(0.78 0.16 70 / 0.22) 18%,
-      oklch(0.72 0.19 145 / 0.32) 42%,
-      oklch(0.7 0.16 230 / 0.32) 58%,
-      oklch(0.65 0.2 295 / 0.22) 82%,
+      oklch(0 0 0 / 0.10) 20%,
+      oklch(0 0 0 / 0.18) 50%,
+      oklch(0 0 0 / 0.10) 80%,
       transparent 100%
     );
-    filter: drop-shadow(0 0 6px oklch(0.72 0.19 145 / 0.18));
   }
 }
 
-
-
-
-
-/* Unified light surfaces — globee-style. Only two real tones:
-   pure white and a soft off-white/green-tinted neutral. Plus one dark band
-   (charcoal) for high-contrast feature sections. All surfaces share the same
-   subtle brand-green wash so adjacent sections feel cohesive, not rainbow. */
-@utility section-tint {
-  background: oklch(0.985 0.006 150);
-}
-@utility section-surface-cyan {
-  background: oklch(1 0 0);
-}
-@utility section-surface-blue {
-  background: oklch(0.985 0.006 150);
-}
-@utility section-surface-violet {
-  background: oklch(1 0 0);
-}
-@utility section-surface-amber {
-  background: oklch(0.985 0.006 150);
-}
+/* Unified black & white surfaces. Alternate white and soft off-white only.
+   Charcoal/signal stay dark for high-contrast feature bands. */
+@utility section-tint { background: oklch(0.975 0 0); }
+@utility section-surface-cyan { background: oklch(1 0 0); }
+@utility section-surface-blue { background: oklch(0.975 0 0); }
+@utility section-surface-violet { background: oklch(1 0 0); }
+@utility section-surface-amber { background: oklch(0.975 0 0); }
 @utility section-surface-charcoal {
-  background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(0.62 0.17 148 / 0.10), transparent 70%),
-    oklch(0.16 0.005 150);
+  background: oklch(0.14 0 0);
   color: oklch(0.98 0 0);
 }
 @utility section-surface-signal {
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 30%, oklch(0.62 0.17 148 / 0.10), transparent 70%),
-    oklch(0.97 0.02 148);
+  background: oklch(0.14 0 0);
+  color: oklch(0.98 0 0);
 }
+
 
 
 
