@@ -190,45 +190,37 @@
 
 
 
-/* Light section surfaces — subtle tinted whites/creams so adjacent sections
-   read as separated while keeping an overall light theme. The charcoal/signal
-   variants stay dark on purpose for high-contrast bands. */
+/* Unified light surfaces — globee-style. Only two real tones:
+   pure white and a soft off-white/green-tinted neutral. Plus one dark band
+   (charcoal) for high-contrast feature sections. All surfaces share the same
+   subtle brand-green wash so adjacent sections feel cohesive, not rainbow. */
 @utility section-tint {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.62 0.17 148 / 0.06), transparent 70%),
-    oklch(0.985 0.005 150);
+  background: oklch(0.985 0.006 150);
 }
 @utility section-surface-cyan {
-  background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(0.7 0.14 210 / 0.07), transparent 70%),
-    oklch(0.98 0.008 220);
+  background: oklch(1 0 0);
 }
 @utility section-surface-blue {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.6 0.18 255 / 0.06), transparent 70%),
-    oklch(0.98 0.01 255);
+  background: oklch(0.985 0.006 150);
 }
 @utility section-surface-violet {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.65 0.2 295 / 0.06), transparent 70%),
-    oklch(0.98 0.01 295);
+  background: oklch(1 0 0);
 }
 @utility section-surface-amber {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.78 0.16 70 / 0.07), transparent 70%),
-    oklch(0.985 0.012 80);
+  background: oklch(0.985 0.006 150);
 }
 @utility section-surface-charcoal {
   background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(1 0 0 / 0.04), transparent 70%),
+    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(0.62 0.17 148 / 0.10), transparent 70%),
     oklch(0.16 0.005 150);
   color: oklch(0.98 0 0);
 }
 @utility section-surface-signal {
   background:
-    radial-gradient(ellipse 70% 50% at 50% 30%, oklch(0.62 0.17 148 / 0.18), transparent 70%),
-    oklch(0.96 0.04 148);
+    radial-gradient(ellipse 70% 50% at 50% 30%, oklch(0.62 0.17 148 / 0.10), transparent 70%),
+    oklch(0.97 0.02 148);
 }
+
 
 
 
