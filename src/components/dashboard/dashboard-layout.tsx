@@ -101,17 +101,17 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Sidebar — mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden" onClick={() => setMobileOpen(false)}>
-          <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" />
           <aside
-            className="absolute left-0 top-0 flex h-full w-[260px] flex-col border-r border-border bg-background"
+            className="absolute left-0 top-0 flex h-full w-[260px] flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex h-16 items-center justify-between border-b border-border px-4">
+            <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
               <Link to="/" className="flex items-center gap-2">
-                <img src={logoAsset.url} alt="" className="h-8 w-auto" />
+                <span className="grid h-8 w-8 place-items-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground text-sm font-bold">G</span>
                 <span className="text-sm font-semibold tracking-tight">Grow By Lead</span>
               </Link>
-              <button onClick={() => setMobileOpen(false)} className="grid h-8 w-8 place-items-center rounded-md hover:bg-card" aria-label="Close">
+              <button onClick={() => setMobileOpen(false)} className="grid h-8 w-8 place-items-center rounded-md hover:bg-sidebar-accent" aria-label="Close">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -125,7 +125,9 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
                     to={item.to}
                     onClick={() => setMobileOpen(false)}
                     className={`flex items-center gap-3 rounded-md px-2.5 py-2.5 text-sm ${
-                      isActive ? "bg-foreground/10 text-foreground" : "text-muted-foreground hover:bg-card"
+                      isActive
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium"
+                        : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
