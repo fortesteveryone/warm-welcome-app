@@ -61,58 +61,57 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Grow By Lead — pure black & white light theme */
+/* Grow By Lead — Vercel-style dark */
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(1 0 0);                    /* pure white */
-  --foreground: oklch(0.15 0 0);                 /* near-black ink */
+  --background: oklch(0.995 0.003 145);          /* near-white with faint green */
+  --foreground: oklch(0.18 0.01 150);            /* deep ink */
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card-foreground: oklch(0.18 0.01 150);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.18 0.01 150);
 
-  --primary: oklch(0.15 0 0);                    /* black */
-  --primary-foreground: oklch(1 0 0);
+  --primary: oklch(0.62 0.17 148);               /* brand green */
+  --primary-foreground: oklch(0.995 0 0);
 
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.96 0.01 150);
+  --secondary-foreground: oklch(0.2 0.01 150);
 
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.45 0 0);
+  --muted: oklch(0.96 0.005 150);
+  --muted-foreground: oklch(0.48 0.01 150);
 
-  --accent: oklch(0.94 0 0);
-  --accent-foreground: oklch(0.15 0 0);
+  --accent: oklch(0.94 0.04 148);                /* soft green tint */
+  --accent-foreground: oklch(0.25 0.08 148);
 
   --destructive: oklch(0.62 0.21 28);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive-foreground: oklch(0.995 0 0);
 
-  --border: oklch(0 0 0 / 10%);
-  --input: oklch(0 0 0 / 14%);
-  --ring: oklch(0 0 0 / 40%);
+  --border: oklch(0.18 0.01 150 / 10%);
+  --input: oklch(0.18 0.01 150 / 14%);
+  --ring: oklch(0.62 0.17 148 / 40%);
 
   --hot: oklch(0.62 0.2 25);
   --warm: oklch(0.7 0.16 70);
   --cold: oklch(0.6 0.16 230);
-  --signal: oklch(0.15 0 0);                     /* black (was brand green) */
+  --signal: oklch(0.58 0.18 148);                /* brand green */
 
-  --chart-1: oklch(0.2 0 0);
-  --chart-2: oklch(0.45 0 0);
-  --chart-3: oklch(0.65 0 0);
-  --chart-4: oklch(0.8 0 0);
-  --chart-5: oklch(0.3 0 0);
+  --chart-1: oklch(0.6 0.16 230);
+  --chart-2: oklch(0.58 0.18 148);
+  --chart-3: oklch(0.7 0.16 70);
+  --chart-4: oklch(0.62 0.2 25);
+  --chart-5: oklch(0.6 0.18 300);
 
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.15 0 0);
-  --sidebar-primary: oklch(0.15 0 0);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.94 0 0);
-  --sidebar-accent-foreground: oklch(0.15 0 0);
-  --sidebar-border: oklch(0 0 0 / 10%);
-  --sidebar-ring: oklch(0 0 0 / 40%);
+  --sidebar: oklch(0.985 0.005 150);
+  --sidebar-foreground: oklch(0.2 0.01 150);
+  --sidebar-primary: oklch(0.62 0.17 148);
+  --sidebar-primary-foreground: oklch(0.995 0 0);
+  --sidebar-accent: oklch(0.94 0.03 148);
+  --sidebar-accent-foreground: oklch(0.25 0.08 148);
+  --sidebar-border: oklch(0.18 0.01 150 / 10%);
+  --sidebar-ring: oklch(0.62 0.17 148 / 40%);
 }
-
 
 @theme inline {
   --color-hot: var(--hot);
@@ -143,7 +142,7 @@
     letter-spacing: -0.011em;
   }
   .font-mono { font-family: "Twemoji Country Flags", "Geist Mono", ui-monospace, monospace; letter-spacing: 0; }
-  ::selection { background: oklch(0 0 0 / 0.12); color: var(--color-foreground); }
+  ::selection { background: oklch(0.62 0.17 148 / 0.22); color: var(--color-foreground); }
 
   /* Pointer cursor on all interactive controls (skip disabled). */
   button:not(:disabled),
@@ -163,7 +162,8 @@
 
 @utility text-balance { text-wrap: balance; }
 
-/* Section divider — subtle monochrome hairline. */
+/* Section divider — iridescent hairline + centered diamond marker.
+   Warm-to-cool aurora tint so adjacent sections feel intentionally separated. */
 @utility section-edge {
   position: relative;
   &::after {
@@ -176,76 +176,59 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(0 0 0 / 0.10) 20%,
-      oklch(0 0 0 / 0.18) 50%,
-      oklch(0 0 0 / 0.10) 80%,
+      oklch(0.78 0.16 70 / 0.22) 18%,
+      oklch(0.72 0.19 145 / 0.32) 42%,
+      oklch(0.7 0.16 230 / 0.32) 58%,
+      oklch(0.65 0.2 295 / 0.22) 82%,
       transparent 100%
     );
+    filter: drop-shadow(0 0 6px oklch(0.72 0.19 145 / 0.18));
   }
 }
 
-/* Unified black & white surfaces. Alternate white and soft off-white only.
-   Charcoal/signal stay dark for high-contrast feature bands. */
-@utility section-tint { background: oklch(0.975 0 0); }
-@utility section-surface-cyan { background: oklch(1 0 0); }
-@utility section-surface-blue { background: oklch(0.975 0 0); }
-@utility section-surface-violet { background: oklch(1 0 0); }
-@utility section-surface-amber { background: oklch(0.975 0 0); }
+
+
+
+
+/* Light section surfaces — subtle tinted whites/creams so adjacent sections
+   read as separated while keeping an overall light theme. The charcoal/signal
+   variants stay dark on purpose for high-contrast bands. */
+@utility section-tint {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.62 0.17 148 / 0.06), transparent 70%),
+    oklch(0.985 0.005 150);
+}
+@utility section-surface-cyan {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(0.7 0.14 210 / 0.07), transparent 70%),
+    oklch(0.98 0.008 220);
+}
+@utility section-surface-blue {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.6 0.18 255 / 0.06), transparent 70%),
+    oklch(0.98 0.01 255);
+}
+@utility section-surface-violet {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.65 0.2 295 / 0.06), transparent 70%),
+    oklch(0.98 0.01 295);
+}
+@utility section-surface-amber {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, oklch(0.78 0.16 70 / 0.07), transparent 70%),
+    oklch(0.985 0.012 80);
+}
 @utility section-surface-charcoal {
-  background: oklch(0.14 0 0);
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, oklch(1 0 0 / 0.04), transparent 70%),
+    oklch(0.16 0.005 150);
   color: oklch(0.98 0 0);
 }
 @utility section-surface-signal {
-  background: oklch(0.14 0 0);
-  color: oklch(0.98 0 0);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, oklch(0.62 0.17 148 / 0.18), transparent 70%),
+    oklch(0.96 0.04 148);
 }
-
-/* Dashboard-only theme overrides — green + black + white combo (reference look).
-   Scoped to .dash-scope so the marketing site stays pure B&W. */
-.dash-scope {
-  --signal: oklch(0.68 0.18 148);                  /* brand green */
-  --sidebar: oklch(0.16 0 0);                      /* near-black */
-  --sidebar-foreground: oklch(0.96 0 0);
-  --sidebar-primary: oklch(0.72 0.19 148);         /* green active */
-  --sidebar-primary-foreground: oklch(0.14 0 0);
-  --sidebar-accent: oklch(0.24 0 0);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.19 148 / 50%);
-  --ring: oklch(0.68 0.18 148 / 45%);
-
-  /* Subtle green tint across dashboard content surfaces */
-  --background: oklch(0.992 0.012 148);
-  --card: oklch(1 0 0);
-  --muted: oklch(0.965 0.018 148);
-  --accent: oklch(0.955 0.028 148);
-  --accent-foreground: oklch(0.28 0.08 148);
-  --border: oklch(0.9 0.03 148);
-  --input: oklch(0.9 0.03 148);
-  --primary: oklch(0.62 0.16 148);
-  --primary-foreground: oklch(0.99 0 0);
-}
-.dash-scope .dash-accent { color: var(--signal); }
-.dash-scope .dash-bg-accent { background: var(--signal); color: oklch(0.14 0 0); }
-.dash-scope .dash-bg-accent-soft { background: color-mix(in oklab, var(--signal) 14%, transparent); color: var(--signal); }
-
-/* Gentle green wash on dashboard panels & cards (very low intensity) */
-.dash-scope [data-slot="card"],
-.dash-scope .dash-panel {
-  background: linear-gradient(180deg, oklch(0.995 0.008 148) 0%, oklch(1 0 0) 100%);
-  border-color: oklch(0.9 0.025 148);
-}
-.dash-scope [data-slot="card"]:hover {
-  border-color: color-mix(in oklab, var(--signal) 35%, oklch(0.9 0.02 148));
-}
-/* Tint table headers, dividers, and focus rings */
-.dash-scope thead { background: color-mix(in oklab, var(--signal) 6%, white); }
-.dash-scope hr, .dash-scope [role="separator"] {
-  border-color: color-mix(in oklab, var(--signal) 18%, oklch(0.92 0 0));
-}
-.dash-scope a:hover { color: var(--signal); }
-
-
 
 
 
@@ -291,12 +274,11 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(closest-side, oklch(0 0 0 / 0.05), transparent 70%) 12% 18% / 38vw 38vw no-repeat,
-    radial-gradient(closest-side, oklch(0 0 0 / 0.04), transparent 70%) 88% 72% / 44vw 44vw no-repeat,
-    radial-gradient(closest-side, oklch(0 0 0 / 0.03), transparent 70%) 70% 12% / 32vw 32vw no-repeat,
-    radial-gradient(closest-side, oklch(0 0 0 / 0.04), transparent 70%) 20% 85% / 36vw 36vw no-repeat;
-  filter: blur(60px);
-
+    radial-gradient(closest-side, oklch(0.62 0.17 148 / 0.10), transparent 70%) 12% 18% / 38vw 38vw no-repeat,
+    radial-gradient(closest-side, oklch(0.7 0.16 230 / 0.06),  transparent 70%) 88% 72% / 44vw 44vw no-repeat,
+    radial-gradient(closest-side, oklch(0.78 0.16 70 / 0.05),  transparent 70%) 70% 12% / 32vw 32vw no-repeat,
+    radial-gradient(closest-side, oklch(0.62 0.17 148 / 0.07), transparent 70%) 20% 85% / 36vw 36vw no-repeat;
+  filter: blur(60px) saturate(110%);
   animation:
     orb-drift-a 22s ease-in-out infinite,
     orb-drift-b 28s ease-in-out infinite,
