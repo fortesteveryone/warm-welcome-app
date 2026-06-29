@@ -163,12 +163,12 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="hidden items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90 sm:inline-flex">
+            <button className="hidden items-center gap-1.5 rounded-md dash-bg-accent px-3 py-1.5 text-sm font-semibold hover:opacity-90 sm:inline-flex">
               <Plus className="h-3.5 w-3.5" /> New lead
             </button>
             <ComplaintBoxButton />
             <NotificationsBell />
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[12px] font-semibold ring-1 ring-border">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background text-[12px] font-semibold ring-2 ring-[color:var(--signal)]/50">
               NS
             </span>
           </div>
