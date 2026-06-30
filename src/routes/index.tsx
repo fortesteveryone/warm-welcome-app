@@ -941,8 +941,8 @@ function Pricing() {
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
               <ul className="mt-6 space-y-2.5">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
+                {p.features.map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--signal)]" />
                     <span className="text-foreground/90">{f}</span>
                   </li>
