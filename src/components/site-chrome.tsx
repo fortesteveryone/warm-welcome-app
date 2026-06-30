@@ -17,6 +17,7 @@ export function Logo({ className = "h-9 w-auto" }: { className?: string }) {
 
 /* Cross-route nav links. In-page anchors use `/#id` so they work from any route. */
 const NAV_LINKS: { label: string; href: string }[] = [
+  { label: "Home", href: "/" },
   { label: "Example", href: "/#example" },
   { label: "Platforms", href: "/#platforms" },
   { label: "Scoring", href: "/#scoring" },
