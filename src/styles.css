@@ -96,13 +96,13 @@
   --hot: oklch(0.7 0.2 25);
   --warm: oklch(0.78 0.16 70);
   --cold: oklch(0.7 0.16 230);
-  --signal: oklch(0.985 0 0);
+  --signal: oklch(0.72 0.19 145);
 
   --chart-1: oklch(0.985 0 0);
-  --chart-2: oklch(0.62 0 0);
-  --chart-3: oklch(0.42 0 0);
-  --chart-4: oklch(0.78 0 0);
-  --chart-5: oklch(0.25 0 0);
+  --chart-2: oklch(0.7 0 0);
+  --chart-3: oklch(0.5 0 0);
+  --chart-4: oklch(0.35 0 0);
+  --chart-5: oklch(0.22 0 0);
 
   --sidebar: oklch(0.04 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
