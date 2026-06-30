@@ -839,7 +839,7 @@ function Concierge() {
 
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {perks.map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-border bg-card/60 p-5">
+            <div key={title} className="rounded-xl border border-black/10 bg-white p-5 shadow-sm">
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
