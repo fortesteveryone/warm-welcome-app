@@ -308,3 +308,40 @@
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
+
+/* Hero "screen recording" feed — leads scroll up forever */
+@keyframes reel-scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.reel-feed {
+  animation: reel-scroll 14s linear infinite;
+  will-change: transform;
+}
+
+/* Ticking counter — uses a CSS counter cycling 482 → 528 */
+@keyframes reel-count {
+  0%   { --n: 482; }
+  100% { --n: 528; }
+}
+@property --n {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 482;
+}
+.reel-counter {
+  animation: reel-count 8s steps(46) infinite;
+  counter-reset: n var(--n);
+}
+.reel-counter::after { content: counter(n); }
+
+/* Sparkline draw loop */
+@keyframes reel-spark-draw {
+  0%   { stroke-dasharray: 0 400; }
+  60%  { stroke-dasharray: 400 0; }
+  100% { stroke-dasharray: 400 0; opacity: 0.4; }
+}
+.reel-spark {
+  stroke-dasharray: 0 400;
+  animation: reel-spark-draw 6s ease-in-out infinite;
+}
