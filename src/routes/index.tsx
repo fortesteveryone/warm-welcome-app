@@ -488,9 +488,15 @@ function Scope() {
               We don't capture leads for general industries like:
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {outOfScope.map((t) => (
-                <span key={t} className="rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">{t}</span>
-              ))}
+              {outOfScope.map((t) => {
+                const brand = tagBrand[t];
+                return (
+                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">
+                    {brand ? <brand.Icon className="h-3 w-3 no-underline" style={{ color: brand.color }} /> : null}
+                    {t}
+                  </span>
+                );
+              })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               We focus only on website + SEO leads. If you sell something else, Grow By Lead probably isn't the right fit.
