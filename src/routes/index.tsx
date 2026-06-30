@@ -245,65 +245,65 @@ const TRUSTED_LOGOS = [
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden text-white">
-      {/* solid black hero, fading to background only at the very bottom */}
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,#000_0%,#000_72%,#0a0a0a_88%,hsl(var(--background))_100%)]" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(34,197,94,0.18),transparent_60%)]" />
+    <section className="relative overflow-hidden section-edge text-white">
+      {/* gradient background: black at top → white at bottom */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,#000_0%,#000_35%,#111_55%,#3a3a3a_75%,#cfcfcf_90%,#ffffff_100%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-60 bg-[radial-gradient(ellipse_at_50%_0%,rgba(34,197,94,0.18),transparent_55%)]" />
 
-      <Container className="relative pt-16 pb-20 md:pt-24 md:pb-28">
-        {/* Centered copy */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/75 backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
-              <span>Early access open</span>
-              <span className="text-white/40">→</span>
-              <span className="text-white">40% lifetime discount</span>
+      <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
+        <div className="grid items-center gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
+          {/* Left: copy */}
+          <div className="min-w-0 text-center lg:text-left">
+            <div className="flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/75 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+                <span>Early access open</span>
+                <span className="text-white/40">→</span>
+                <span className="text-white">40% lifetime discount</span>
+              </div>
+            </div>
+
+            <h1 className="mt-6 text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
+              Social posts to{" "}
+              <span className="text-white/55">sales-ready leads.</span>
+            </h1>
+
+            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-white/70 md:text-lg lg:mx-0">
+              Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
+            </p>
+
+            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-sm">
+              <Sparkles className="h-3.5 w-3.5 text-white" />
+              <span className="text-white/80">Every day we surface <span className="font-semibold text-white">500+ fresh leads</span></span>
+              <span className="text-white/30">·</span>
+              <span className="inline-flex items-center gap-1 text-white/80"><MapPin className="h-3.5 w-3.5 text-white" /> Global coverage</span>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black shadow-[0_8px_30px_rgba(255,255,255,0.18)] transition hover:bg-white/90">
+                Early access — 40% lifetime off <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10">
+                Start now
+              </a>
             </div>
           </div>
 
-          <h1 className="mt-6 text-balance text-[2.5rem] font-semibold leading-[1.03] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[72px]">
-            Social posts to{" "}
-            <span className="text-white/55">sales-ready leads.</span>
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-xl text-balance text-base text-white/70 md:text-lg">
-            Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
-          </p>
-
-          <div className="mx-auto mt-6 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-sm">
-            <Sparkles className="h-3.5 w-3.5 text-white" />
-            <span className="text-white/80">Every day we surface <span className="font-semibold text-white">500+ fresh leads</span></span>
-            <span className="text-white/30">·</span>
-            <span className="inline-flex items-center gap-1 text-white/80"><MapPin className="h-3.5 w-3.5 text-white" /> Global coverage</span>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black shadow-[0_8px_30px_rgba(255,255,255,0.18)] transition hover:bg-white/90">
-              Early access — 40% lifetime off <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10">
-              Start now
-            </a>
+          <div className="relative min-w-0">
+            <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10">
+              <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/15 blur-[80px]" />
+              <span className="orbital-halo" />
+            </div>
+            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/40 to-[color:var(--signal)]/0 blur-2xl opacity-50" />
+            <HeroReel />
           </div>
         </div>
 
-        {/* Centered dashboard reel with green glow */}
-        <div className="relative mx-auto mt-14 max-w-5xl min-w-0 md:mt-20">
-          <div aria-hidden className="pointer-events-none absolute -inset-x-10 -bottom-10 top-10 -z-10">
-            <div className="absolute inset-x-0 bottom-0 h-48 rounded-[50%] bg-[color:var(--signal)]/30 blur-[90px]" />
-          </div>
-          <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/30 to-[color:var(--signal)]/0 blur-2xl opacity-60" />
-          <HeroReel />
-        </div>
-      </Container>
-
-      {/* trust strip on background tone */}
-      <Container className="relative pb-16">
-        <div className="marquee-mask w-full overflow-hidden">
+        {/* monochrome logo marquee */}
+        <div className="marquee-mask mt-12 w-full overflow-hidden">
           <div className="animate-marquee-rtl flex w-max items-center gap-10 will-change-transform">
             {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
-              <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5 text-foreground/60">
+              <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5 text-black/60">
                 <logo.Icon className="h-6 w-6 shrink-0" />
                 <span className="text-sm font-semibold tracking-tight">{logo.name}</span>
               </span>
@@ -311,8 +311,9 @@ function Hero() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-foreground" /> Live in</span>
+        {/* coverage flag strip */}
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-black/65">
+          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-black" /> Live in</span>
           {[
             ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
             ["🇧🇩", "Bangladesh"], ["🇮🇳", "India"], ["🇦🇪", "UAE"], ["🇸🇬", "Singapore"],
@@ -324,7 +325,6 @@ function Hero() {
     </section>
   );
 }
-
 
 const sampleLeads = [
   { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
