@@ -642,7 +642,7 @@ function Platforms() {
           {platforms.map((p) => {
             const Icon = p.icon;
             return (
-              <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
+              <div key={p.name} className="group rounded-xl border border-border bg-white p-5 transition hover:shadow-sm">
                 <div className="flex items-center justify-between">
                   <div
                     className="grid h-10 w-10 place-items-center rounded-lg border border-border"
