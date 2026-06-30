@@ -217,66 +217,109 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
+const TRUSTED_LOGOS = ["Shopify", "HubSpot", "Webflow", "Notion", "Framer", "Linear", "Vercel", "Stripe"];
+
 function Hero() {
   return (
     <section className="relative overflow-hidden section-edge">
-      {/* gradient mesh */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-[-200px] h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
         <div className="absolute right-[-200px] top-[100px] h-[500px] w-[700px] rounded-full bg-[radial-gradient(circle_at_center,oklch(0.7_0.16_230/0.15),transparent_60%)] blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
-      <Container className="relative pt-24 pb-20 text-center md:pt-32 md:pb-28">
-        <div className="flex justify-center">
-          <Eyebrow>
-            <span>Now in pre-launch</span>
-            <span className="text-foreground/40">→</span>
-            <span className="text-foreground">Read the changelog</span>
-          </Eyebrow>
-        </div>
-        <h1 className="mx-auto mt-7 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[88px]">
-          Social posts to{" "}
-          <span className="bg-gradient-to-br from-[color:var(--signal)] to-foreground/60 bg-clip-text text-transparent">
-            sales-ready leads.
-          </span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
-          Grow By Lead turns public posts asking for <span className="text-foreground">website design, development, CMS (WordPress, Webflow, Wix, Framer) and SEO</span> help into structured lead profiles — with summaries, intent scores, competition signals and ready-to-send outreach drafts.
-        </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-            Get started free <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href="#example" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
-            View sample lead
-          </a>
-        </div>
-
-        {/* preview window */}
-        <div className="relative mx-auto mt-20 max-w-5xl">
-          <div className="absolute -inset-x-20 -top-10 -bottom-10 rounded-[40px] bg-gradient-to-b from-foreground/5 to-transparent blur-2xl" />
-          <div className="relative rounded-xl border border-border bg-card/80 p-1 shadow-[0_30px_120px_-20px_oklch(0.72_0.19_145/0.25),0_0_0_1px_oklch(1_0_0/0.04)] backdrop-blur">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2">
-              <div className="flex items-center gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.2_25)]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.78_0.16_70)]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.72_0.19_145)]" />
-              </div>
-              <Mono className="text-muted-foreground">growbylead.app / inbox</Mono>
-              <Mono className="text-muted-foreground">17 new today</Mono>
+      <Container className="relative pt-20 pb-16 md:pt-28 md:pb-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
+          {/* Left: copy */}
+          <div className="text-center lg:text-left">
+            <div className="flex justify-center lg:justify-start">
+              <Eyebrow>
+                <span>Early access open</span>
+                <span className="text-foreground/40">→</span>
+                <span className="text-foreground">40% lifetime discount</span>
+              </Eyebrow>
             </div>
-            <div className="grid gap-3 p-3 text-left md:grid-cols-[1fr_1.15fr]">
-              <div className="space-y-1.5">
-                {sampleLeads.map((l, i) => <InboxRow key={i} l={l} active={i === 0} />)}
+
+            <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[68px]">
+              Social posts to{" "}
+              <span className="bg-gradient-to-br from-[color:var(--signal)] to-foreground/60 bg-clip-text text-transparent">
+                sales-ready leads.
+              </span>
+            </h1>
+
+            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-muted-foreground md:text-lg lg:mx-0">
+              Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
+            </p>
+
+            {/* highlight strip */}
+            <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-4 py-1.5 text-sm">
+              <Sparkles className="h-3.5 w-3.5 text-[color:var(--signal)]" />
+              <span className="text-foreground">Every day we surface <span className="font-semibold text-[color:var(--signal)]">500+ fresh leads</span></span>
+              <span className="text-foreground/40">·</span>
+              <span className="inline-flex items-center gap-1 text-foreground"><MapPin className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Global coverage</span>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)] px-5 py-2.5 text-sm font-semibold text-background transition hover:opacity-90">
+                Early access — 40% lifetime off <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
+                Start now
+              </a>
+            </div>
+
+            <p className="mt-6 text-xs text-muted-foreground">
+              Trusted by <span className="font-semibold text-foreground">2M+</span> sales professionals worldwide
+            </p>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 opacity-70 lg:justify-start">
+              {TRUSTED_LOGOS.map((name) => (
+                <span key={name} className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: animated demo */}
+          <div className="relative">
+            <div aria-hidden className="absolute -inset-6 rounded-[32px] bg-gradient-to-b from-[color:var(--signal)]/10 to-transparent blur-2xl" />
+            <div className="relative rounded-xl border border-border bg-card/80 p-1 shadow-[0_30px_120px_-20px_oklch(0.72_0.19_145/0.25),0_0_0_1px_oklch(1_0_0/0.04)] backdrop-blur">
+              <div className="flex items-center justify-between border-b border-border px-4 py-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.2_25)]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.78_0.16_70)]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.72_0.19_145)]" />
+                </div>
+                <Mono className="text-muted-foreground">growbylead.app / live</Mono>
+                <span className="inline-flex items-center gap-1.5 text-[11px] text-[color:var(--signal)]">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+                  <Mono className="text-[color:var(--signal)]">LIVE</Mono>
+                </span>
               </div>
-              <PreviewDetail />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-background/40">
+                <img
+                  src="https://media.giphy.com/media/3o7TKsQ8gqVrxZw4AU/giphy.gif"
+                  alt="Grow By Lead dashboard streaming new leads in real time"
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-x-3 bottom-3 rounded-lg border border-border bg-background/85 p-3 backdrop-blur">
+                  <div className="flex items-center gap-2">
+                    <Tag tone="hot">● Hot</Tag>
+                    <Tag tone="signal">High intent</Tag>
+                    <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+                      <span aria-hidden>🇧🇩</span> Bangladesh · 12m ago
+                    </span>
+                  </div>
+                  <p className="mt-2 line-clamp-1 text-sm font-medium">Paid portfolio website developer needed for updates</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* coverage flag strip */}
-        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+        <div className="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-[color:var(--signal)]" /> Live in</span>
           {[
             ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
