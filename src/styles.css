@@ -358,3 +358,13 @@
   animation: social-drift var(--dur, 12s) ease-in-out infinite;
   will-change: transform;
 }
+
+/* Slow fade-in/fade-out for ambient social logos in CTA */
+@keyframes social-fade {
+  0%, 100% { opacity: 0; transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.95); }
+  45%, 55% { opacity: var(--peak, 0.28); transform: translate(0, 0) scale(1); }
+}
+.social-fade {
+  animation: social-fade var(--dur, 9s) ease-in-out infinite;
+  will-change: opacity, transform;
+}
