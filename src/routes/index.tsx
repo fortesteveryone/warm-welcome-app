@@ -128,7 +128,7 @@ function Home() {
       <Scope />
       <FeatureBento />
       <AfterLogin />
-      <ExampleLead />
+      
       <StatsStrip />
       <Platforms />
       <Scoring />
@@ -146,7 +146,7 @@ function Home() {
 /* ---------- top bar ---------- */
 function TopBar() {
   const links: [string, string][] = [
-    ["Example", "#example"],
+    
     ["Platforms", "#platforms"],
     ["Scoring", "#scoring"],
     ["Pricing", "#pricing"],
