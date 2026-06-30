@@ -314,16 +314,6 @@ function Hero() {
                   className="h-full w-full object-cover"
                   loading="eager"
                 />
-                <div className="absolute inset-x-3 bottom-3 rounded-lg border border-border bg-background/85 p-3 backdrop-blur">
-                  <div className="flex items-center gap-2">
-                    <Tag tone="hot">● Hot</Tag>
-                    <Tag tone="signal">High intent</Tag>
-                    <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-muted-foreground">
-                      <span aria-hidden>🇧🇩</span> Bangladesh · 12m ago
-                    </span>
-                  </div>
-                  <p className="mt-2 line-clamp-1 text-sm font-medium">Paid portfolio website developer needed for updates</p>
-                </div>
               </div>
             </div>
           </div>
