@@ -658,16 +658,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden">
-      {/* Single ambient AI glyph in the background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        <BrainCircuit
-          className="absolute right-[6%] top-[14%] h-40 w-40 text-[color:var(--signal)] opacity-[0.07] blur-[1.5px] animate-[social-float_14s_ease-in-out_infinite]"
-          strokeWidth={1.1}
-        />
-        <div className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/8 blur-[120px]" />
-      </div>
-
+    <section id="scoring" className="section-edge relative overflow-hidden bg-white">
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -676,7 +667,7 @@ function Scoring() {
               title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
               lede="Our AI reads every public post, weighs six signals, and ships a short human reason with each score — so your team trusts the priority order."
             />
-            <div className="mt-6 rounded-xl border border-border bg-white/80 p-5 backdrop-blur-md shadow-sm">
+            <div className="mt-6 rounded-xl border border-black/10 bg-white p-5 shadow-sm">
               <div className="flex items-center justify-between">
                 <Mono className="text-muted-foreground">AI reasoning</Mono>
                 <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
@@ -688,8 +679,7 @@ function Scoring() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {scoringFactors.map(([t, b], i) => (
-              <div key={t} className="group relative overflow-hidden rounded-xl border border-border bg-white/70 p-5 backdrop-blur-md shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
-                <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[color:var(--signal)]/10 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
+              <div key={t} className="group relative overflow-hidden rounded-xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
                 <div className="flex items-center justify-between">
                   <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
                   <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
@@ -702,6 +692,7 @@ function Scoring() {
         </div>
       </Container>
     </section>
+
   );
 }
 
