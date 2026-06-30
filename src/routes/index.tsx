@@ -933,9 +933,9 @@ function Pricing() {
               )}
               <Mono className="text-muted-foreground">{p.name}</Mono>
               <div className="mt-4 flex items-baseline gap-1.5">
-                <span className={`text-5xl font-semibold tracking-[-0.03em] ${!((p as { soon?: boolean }).soon) ? "text-muted-foreground/60 line-through decoration-[color:var(--signal)]/60 decoration-2" : ""}`}>{p.price}</span>
+                <span className={`text-5xl font-semibold tracking-[-0.03em] ${p.featured && !((p as { soon?: boolean }).soon) ? "text-muted-foreground/60 line-through decoration-[color:var(--signal)]/60 decoration-2" : ""}`}>{p.price}</span>
                 <span className="text-sm text-muted-foreground">{p.cadence}</span>
-                {!((p as { soon?: boolean }).soon) && (
+                {p.featured && !((p as { soon?: boolean }).soon) && (
                   <span className="ml-1 rounded-full bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">Free now</span>
                 )}
               </div>
