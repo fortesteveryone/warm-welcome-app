@@ -226,10 +226,10 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      {/* Oversized brand wordmark — clipped at the bottom */}
-      <div aria-hidden className="relative select-none">
+      {/* Oversized brand wordmark — scrolls right→left, clipped at the bottom */}
+      <div aria-hidden className="relative select-none overflow-hidden">
         <div
-          className="pointer-events-none mx-auto max-w-[1600px] px-4 text-center font-semibold leading-[0.8] tracking-tighter"
+          className="wordmark-marquee pointer-events-none flex whitespace-nowrap font-semibold leading-[0.8] tracking-tighter"
           style={{
             fontSize: "clamp(96px, 22vw, 320px)",
             background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(34,197,94,0.18) 55%, rgba(34,197,94,0) 100%)",
@@ -239,9 +239,11 @@ export function SiteFooter() {
             transform: "translateY(18%)",
           }}
         >
-          GrowByLead
+          <span className="pr-[0.25em]">GrowByLead&nbsp;·&nbsp;GrowByLead&nbsp;·&nbsp;</span>
+          <span className="pr-[0.25em]">GrowByLead&nbsp;·&nbsp;GrowByLead&nbsp;·&nbsp;</span>
         </div>
       </div>
+
     </footer>
   );
 }
