@@ -860,12 +860,12 @@ function Pricing() {
     {
       name: "Free", price: "$0", cadence: "/ month", desc: "Get a daily taste of fresh leads — no card, no commitment.",
       features: [
-        "100 Facebook hot leads / day",
-        "50 Reddit hot leads / day",
+        <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> <strong className="font-semibold text-foreground">100 Facebook</strong> hot leads / day</span>,
+        <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <strong className="font-semibold text-foreground">50 Reddit</strong> hot leads / day</span>,
         "150 leads total, refreshed every 24h",
         "Save leads for up to 24 hours",
         "Support available (24–48h response)",
-      ],
+      ] as React.ReactNode[],
       cta: "Start free", featured: false, free: true,
     },
     {
