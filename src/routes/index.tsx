@@ -625,7 +625,7 @@ function Platforms() {
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {dailyVolumeStats.map((s) => (
-            <div key={s.label} className="rounded-xl border border-border bg-card/60 p-5">
+            <div key={s.label} className="rounded-xl border border-border bg-white p-5">
               <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
               <div className="mt-1 text-sm font-medium">{s.label}</div>
               <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.hint}</p>
