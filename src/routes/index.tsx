@@ -677,9 +677,9 @@ const scoringFactors = [
 function Scoring() {
   const floatIcons = [
     { Icon: SiFacebook, color: "#1877F2", style: "top-[8%] left-[4%] h-24 w-24 animate-[social-float_11s_ease-in-out_infinite]" },
-    { Icon: SiLinkedin, color: "#0A66C2", style: "top-[18%] right-[6%] h-28 w-28 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
+    { Icon: SiLinkedIn, color: "#0A66C2", style: "top-[18%] right-[6%] h-28 w-28 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
     { Icon: SiReddit, color: "#FF4500", style: "bottom-[12%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
-    { Icon: SiInstagram, color: "#E4405F", style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
+    { Icon: SiMeta, color: "#0668E1", style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
     { Icon: SiX, color: "#000000", style: "top-[45%] left-[48%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
   ];
   return (
