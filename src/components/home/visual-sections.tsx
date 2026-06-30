@@ -284,11 +284,13 @@ export function FeatureBento() {
 
 /* ---------- Stats strip with 3D visual ---------- */
 export function StatsStrip() {
-  const stats = [
-    { k: "500+", v: "Fresh leads daily" },
-    { k: "30+", v: "Countries covered" },
-    { k: "5", v: "Platforms parsed" },
-    { k: "<60s", v: "Avg time to reply" },
+export function StatsStrip() {
+  const flags = ["🇺🇸", "🇬🇧", "🇮🇳", "🇧🇩", "🇦🇪"];
+  const platforms = [
+    { Icon: Facebook, color: "#1877F2" },
+    { Icon: Linkedin, color: "#0A66C2" },
+    { Icon: RedditMark, color: "#FF4500" },
+    { Icon: XMark, color: "#FFFFFF" },
   ];
   return (
     <section className="section-edge section-light">
@@ -310,22 +312,44 @@ export function StatsStrip() {
               Built to scale with how fast you can reply.
             </h2>
             <div className="mt-8 grid grid-cols-2 gap-4">
-              {stats.map((s, i) => (
-                <div
-                  key={s.v}
-                  className={`relative overflow-hidden rounded-xl p-5 ${
-                    i % 2 === 0
-                      ? "card-noir border"
-                      : "border border-border bg-card"
-                  }`}
-                >
-                  {i % 2 === 0 && (
-                    <Flame className="absolute right-3 top-3 h-4 w-4 text-[color:var(--signal)]" />
-                  )}
-                  <div className={`text-3xl font-semibold tracking-tight ${i % 2 === 0 ? "text-white" : "text-foreground"}`}>{s.k}</div>
-                  <div className={`mt-1 text-xs ${i % 2 === 0 ? "text-white/55" : "text-muted-foreground"}`}>{s.v}</div>
+              {/* Fresh leads */}
+              <div className="card-noir relative overflow-hidden rounded-xl border p-5">
+                <Flame className="absolute right-3 top-3 h-4 w-4 text-orange-400" />
+                <div className="text-3xl font-semibold tracking-tight text-white">365+</div>
+                <div className="mt-1 text-xs text-white/55">Fresh leads daily</div>
+              </div>
+
+              {/* Countries */}
+              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+                <Globe className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+                <div className="text-3xl font-semibold tracking-tight text-foreground">30+</div>
+                <div className="mt-1 text-xs text-muted-foreground">Countries covered</div>
+                <div className="mt-3 flex items-center gap-1 text-sm leading-none">
+                  {flags.map((f) => <span key={f} aria-hidden>{f}</span>)}
+                  <span className="ml-1 text-[10px] text-muted-foreground">+more</span>
                 </div>
-              ))}
+              </div>
+
+              {/* Platforms */}
+              <div className="card-noir relative overflow-hidden rounded-xl border p-5">
+                <div className="text-3xl font-semibold tracking-tight text-white">5</div>
+                <div className="mt-1 text-xs text-white/55">Platforms parsed</div>
+                <div className="mt-3 flex items-center gap-2">
+                  {platforms.map(({ Icon, color }, i) => (
+                    <span key={i} style={{ color }} className="inline-flex h-5 w-5 items-center justify-center">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                  ))}
+                  <span className="ml-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-white/20 px-1.5 text-[10px] font-medium text-white/70">+</span>
+                </div>
+              </div>
+
+              {/* Auto-structured */}
+              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+                <Sparkles className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+                <div className="text-3xl font-semibold tracking-tight text-foreground">Auto</div>
+                <div className="mt-1 text-xs text-muted-foreground">Structured & scored</div>
+              </div>
             </div>
           </div>
         </div>
