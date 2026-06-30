@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
-  Filter, Flame, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
+  Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
   MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
@@ -287,17 +287,6 @@ function Hero() {
             <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-foreground/20 bg-foreground/[0.04] px-4 py-1.5 text-sm">
               <Sparkles className="h-3.5 w-3.5 text-foreground" />
               <span className="text-foreground/80">Every day we surface <span className="font-semibold text-foreground">365+ fresh leads</span></span>
-              <span className="text-foreground/30">·</span>
-              <span className="inline-flex items-center gap-1 text-foreground/80">
-                <span className="inline-flex items-center -space-x-1" aria-hidden>
-                  <span className="text-sm leading-none">🇺🇸</span>
-                  <span className="text-sm leading-none">🇬🇧</span>
-                  <span className="text-sm leading-none">🇨🇦</span>
-                  <span className="text-sm leading-none">🇦🇺</span>
-                  <span className="text-sm leading-none">🇧🇩</span>
-                </span>
-                Global coverage
-              </span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
@@ -341,6 +330,9 @@ function Hero() {
           ].map(([f, n]) => (
             <span key={n} className="inline-flex items-center gap-1.5"><span className="text-base leading-none" aria-hidden>{f}</span>{n}</span>
           ))}
+          <span className="inline-flex items-center gap-1.5 font-medium text-foreground/80">
+            <Globe className="h-3.5 w-3.5 text-foreground" /> Global coverage
+          </span>
         </div>
       </Container>
     </section>
