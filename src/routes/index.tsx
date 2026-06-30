@@ -285,29 +285,45 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: animated demo */}
+          {/* Right: B&W lead inbox mock */}
           <div className="relative min-w-0">
-            <div className="relative overflow-hidden rounded-xl border border-foreground/15 bg-foreground/[0.03] p-1 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+            <div className="relative overflow-hidden rounded-xl border border-foreground/15 bg-foreground/[0.03] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
               <div className="flex items-center justify-between gap-3 border-b border-foreground/10 px-3 py-2 sm:px-4">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-foreground/30" />
                   <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
                   <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
                 </div>
-                <Mono className="truncate text-foreground/50">growbylead.app / live</Mono>
+                <Mono className="truncate text-foreground/50">growbylead.app / inbox</Mono>
                 <span className="inline-flex shrink-0 items-center gap-1.5 text-[11px] text-foreground">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-foreground" />
-                  <Mono className="text-foreground">LIVE</Mono>
+                  <Mono>LIVE</Mono>
                 </span>
               </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-foreground/[0.04]">
-                <img
-                  src="https://media.giphy.com/media/3o7TKsQ8gqVrxZw4AU/giphy.gif"
-                  alt="Grow By Lead dashboard streaming new leads in real time"
-                  className="h-full w-full object-cover opacity-90 contrast-110 grayscale"
-                  loading="eager"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="space-y-2 p-3 sm:p-4">
+                {sampleLeads.slice(0, 4).map((l, i) => (
+                  <div
+                    key={l.title}
+                    className={`rounded-lg border px-3 py-2.5 ${i === 0 ? "border-foreground/30 bg-foreground/[0.06]" : "border-foreground/10 bg-foreground/[0.02]"}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="line-clamp-1 text-sm font-medium text-foreground">{l.title}</p>
+                      <span className="shrink-0 rounded-full border border-foreground/25 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-foreground/80">{l.temp}</span>
+                    </div>
+                    <div className="mt-1.5 flex items-center gap-2 text-[11px] text-foreground/55">
+                      <span aria-hidden>{l.flag}</span>
+                      <span>{l.country}</span>
+                      <span>·</span>
+                      <span>{l.platform}</span>
+                      <span>·</span>
+                      <span>{l.ago} ago</span>
+                    </div>
+                  </div>
+                ))}
+                <div className="flex items-center justify-between pt-1 text-[11px] text-foreground/50">
+                  <span>+ 496 new today</span>
+                  <span className="inline-flex items-center gap-1"><span className="h-1 w-1 animate-pulse rounded-full bg-foreground" /> streaming</span>
+                </div>
               </div>
             </div>
           </div>
