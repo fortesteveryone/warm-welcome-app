@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Cpu, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
