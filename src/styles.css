@@ -193,14 +193,33 @@
   --muted-foreground: oklch(0.42 0 0);
   --border: oklch(0 0 0 / 10%);
   background-color: oklch(0.952 0.025 150);
-  background-image: url('/src/assets/section-3d-decor.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-blend-mode: multiply;
   color: oklch(0.16 0 0);
   position: relative;
+  isolation: isolate;
 }
+
+@utility section-dark {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('/src/assets/section-3d-decor.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.12;
+    filter: blur(6px) saturate(120%);
+  }
+}
+
+@utility section-no-decor {
+  &::before {
+    display: none;
+  }
+}
+
 
 
 @utility section-light {
