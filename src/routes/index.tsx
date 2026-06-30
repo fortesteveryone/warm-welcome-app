@@ -479,10 +479,10 @@ function Scope() {
               Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer — or SEO services. If a post asks for that kind of help, it lands in your inbox.
             </p>
           </div>
-          <div className="rounded-xl border border-border bg-card/50 p-5">
+          <div className="rounded-xl border border-red-500/30 bg-red-500/[0.05] p-5">
             <div className="flex items-center gap-2">
-              <X className="h-4 w-4 text-muted-foreground" />
-              <Mono className="text-muted-foreground">Not in scope (today)</Mono>
+              <X className="h-4 w-4 text-red-500" />
+              <Mono className="text-red-500">Not in scope (today)</Mono>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">
               We don't capture leads for general industries like:
@@ -491,7 +491,7 @@ function Scope() {
               {outOfScope.map((t) => {
                 const brand = tagBrand[t];
                 return (
-                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">
+                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-red-500/25 bg-red-500/[0.04] px-2 py-0.5 text-[11px] text-red-500/80 line-through decoration-red-500/40">
                     {brand ? <brand.Icon className="h-3 w-3 no-underline" style={{ color: brand.color }} /> : null}
                     {t}
                   </span>
