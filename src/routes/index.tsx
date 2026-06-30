@@ -673,22 +673,23 @@ const scoringFactors = [
 ];
 
 function Scoring() {
-  const floatIcons = [
-    { Icon: SiFacebook, color: "#1877F2", style: "top-[8%] left-[4%] h-24 w-24 animate-[social-float_11s_ease-in-out_infinite]" },
-    { Icon: SiLinkedIn, color: "#0A66C2", style: "top-[18%] right-[6%] h-28 w-28 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
-    { Icon: SiReddit, color: "#FF4500", style: "bottom-[12%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
-    { Icon: SiMeta, color: "#0668E1", style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
-    { Icon: SiX, color: "#000000", style: "top-[45%] left-[48%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
+  const aiFloats = [
+    { Icon: BrainCircuit, style: "top-[8%] left-[4%] h-28 w-28 animate-[social-float_11s_ease-in-out_infinite]" },
+    { Icon: Cpu,          style: "top-[18%] right-[6%] h-24 w-24 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
+    { Icon: Sparkles,     style: "bottom-[14%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
+    { Icon: Network,      style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
+    { Icon: Waypoints,    style: "top-[46%] left-[46%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
+    { Icon: Zap,          style: "top-[60%] left-[20%] h-14 w-14 animate-[social-float_14s_ease-in-out_infinite_-5s]" },
   ];
   return (
     <section id="scoring" className="section-edge section-light relative overflow-hidden">
-      {/* Floating glassy social icons — AI signal vibe */}
+      {/* Floating AI-themed glyphs — signal engine vibe */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        {floatIcons.map(({ Icon, color, style }, i) => (
+        {aiFloats.map(({ Icon, style }, i) => (
           <Icon
             key={i}
-            className={`absolute opacity-[0.07] blur-[2px] ${style}`}
-            style={{ color }}
+            className={`absolute text-[color:var(--signal)] opacity-[0.10] blur-[1.5px] ${style}`}
+            strokeWidth={1.25}
           />
         ))}
         <div className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/8 blur-[120px]" />
