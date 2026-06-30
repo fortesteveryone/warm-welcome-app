@@ -906,7 +906,7 @@ function Pricing() {
           </p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
-            Launch offer — 100% free for everyone. Just create an account.
+            Apply for early access — unlock Pro free for 1 month.
           </div>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
@@ -922,7 +922,7 @@ function Pricing() {
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-2.5 left-6 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/15 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
+                <span className="absolute -top-2.5 left-6 rounded-full bg-[#0f5132] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm">
                   Most popular
                 </span>
               )}
