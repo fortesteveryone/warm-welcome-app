@@ -267,7 +267,7 @@ function Hero() {
               <span className="text-foreground/55">sales-ready leads.</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
               Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
             </p>
 
