@@ -595,8 +595,16 @@ const drafts = [
 function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="example" className="section-edge section-light">
-      <Container className="py-16 md:py-20">
+    <section id="example" className="section-edge section-light relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <span
+          className="social-float absolute right-3 top-12 opacity-[0.07] blur-[2px]"
+          style={{ ["--dur" as never]: "18s", ["--dx" as never]: "-16px", ["--dy" as never]: "14px", ["--r" as never]: "5deg" } as React.CSSProperties}
+        >
+          <RedditIcon className="h-24 w-24 text-[#FF4500]" />
+        </span>
+      </div>
+      <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="Example"
           title={<>One captured post, <span className="text-muted-foreground">fully structured.</span></>}
