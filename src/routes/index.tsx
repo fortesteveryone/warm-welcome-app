@@ -908,6 +908,13 @@ function Pricing() {
             <Sparkles className="h-3.5 w-3.5" />
             Apply for early access — unlock Pro free for 1 month.
           </div>
+          <div className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            <span className="font-mono uppercase tracking-[0.18em] text-[10px]">Live on</span>
+            <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> <span className="text-foreground/80">Facebook</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> <span className="text-foreground/80">LinkedIn</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <span className="text-foreground/80">Reddit</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> <span className="text-foreground/80">Instagram</span></span>
+          </div>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
           {plans.map((p) => (
