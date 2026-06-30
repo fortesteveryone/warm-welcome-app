@@ -1156,7 +1156,7 @@ function FloatingSocials() {
 
 function FinalCTA() {
   return (
-    <section className="relative section-edge section-light overflow-hidden">
+    <section className="relative section-edge section-dark overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <FloatingSocials />
