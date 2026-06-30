@@ -287,17 +287,6 @@ function Hero() {
             <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-foreground/20 bg-foreground/[0.04] px-4 py-1.5 text-sm">
               <Sparkles className="h-3.5 w-3.5 text-foreground" />
               <span className="text-foreground/80">Every day we surface <span className="font-semibold text-foreground">365+ fresh leads</span></span>
-              <span className="text-foreground/30">·</span>
-              <span className="inline-flex items-center gap-1 text-foreground/80">
-                <span className="inline-flex items-center -space-x-1" aria-hidden>
-                  <span className="text-sm leading-none">🇺🇸</span>
-                  <span className="text-sm leading-none">🇬🇧</span>
-                  <span className="text-sm leading-none">🇨🇦</span>
-                  <span className="text-sm leading-none">🇦🇺</span>
-                  <span className="text-sm leading-none">🇧🇩</span>
-                </span>
-                Global coverage
-              </span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
