@@ -798,7 +798,7 @@ function Concierge() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card/70 p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)] backdrop-blur">
+          <div className="rounded-2xl border border-black/10 bg-white p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)]">
             {/* mock Gmail message */}
             <div className="flex items-center justify-between border-b border-border px-4 py-2">
               <div className="flex items-center gap-2">
@@ -839,7 +839,7 @@ function Concierge() {
 
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {perks.map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-border bg-card/60 p-5">
+            <div key={title} className="rounded-xl border border-black/10 bg-white p-5 shadow-sm">
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
@@ -897,12 +897,11 @@ function Pricing() {
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
-          <h2 className="mx-auto mt-3 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
+          <h2 className="mx-auto mt-3 max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] md:text-4xl">
             Simple, honest pricing <span className="text-muted-foreground">— and free during our launch window.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-[15px]">
-            Pick the plan that matches how you sell — a single day pass to test the water, or a monthly seat for teams shipping outreach every day.
-            Every paid plan is 100% free while we're launching, with no card required and no auto-charge when the offer ends. Cancel or switch anytime from your dashboard.
+          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+            Pick the plan that matches how you sell. Every paid plan is 100% free while we're launching — no card required, no auto-charge when the offer ends. Cancel anytime.
           </p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
