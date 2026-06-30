@@ -658,15 +658,8 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden">
-      {/* Single ambient AI glyph in the background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        <BrainCircuit
-          className="absolute right-[6%] top-[14%] h-40 w-40 text-[color:var(--signal)] opacity-[0.07] blur-[1.5px] animate-[social-float_14s_ease-in-out_infinite]"
-          strokeWidth={1.1}
-        />
-        <div className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/8 blur-[120px]" />
-      </div>
+    <section id="scoring" className="section-edge section-light relative overflow-hidden bg-white">
+
 
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
