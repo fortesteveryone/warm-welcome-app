@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Cpu, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
@@ -250,23 +250,7 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
-        {/* Ambient floating brand logos — spread to outer edges so they peek past the content column on any device */}
-        <SiFacebook
-          className="social-float absolute left-[1%] top-[12%] h-14 w-14 opacity-[0.14] blur-[2px] sm:h-20 sm:w-20"
-          style={{ color: "#1877F2", ["--dur" as never]: "11s", ["--dx" as never]: "14px", ["--dy" as never]: "-22px", ["--r" as never]: "-8deg" } as React.CSSProperties}
-        />
-        <SiLinkedIn
-          className="social-float absolute right-[1.5%] top-[18%] h-14 w-14 opacity-[0.14] blur-[2px] sm:h-20 sm:w-20"
-          style={{ color: "#0A66C2", ["--dur" as never]: "13s", ["--dx" as never]: "-12px", ["--dy" as never]: "20px", ["--r" as never]: "6deg" } as React.CSSProperties}
-        />
-        <SiReddit
-          className="social-float absolute left-[3%] bottom-[14%] h-14 w-14 opacity-[0.13] blur-[2px] sm:h-20 sm:w-20"
-          style={{ color: "#FF4500", ["--dur" as never]: "15s", ["--dx" as never]: "18px", ["--dy" as never]: "-14px", ["--r" as never]: "-4deg" } as React.CSSProperties}
-        />
-        <SiX
-          className="social-float absolute right-[6%] bottom-[10%] h-10 w-10 opacity-[0.12] blur-[2px] sm:h-14 sm:w-14"
-          style={{ color: "#0F0F0F", ["--dur" as never]: "17s", ["--dx" as never]: "-10px", ["--dy" as never]: "-16px", ["--r" as never]: "5deg" } as React.CSSProperties}
-        />
+        <HeroFloatingSocials />
       </div>
 
       <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
@@ -1113,6 +1097,70 @@ function FAQ() {
 }
 
 /* ---------- final CTA ---------- */
+function HeroFloatingSocials() {
+  // Hero-only: at most 1–2 logos visible at a time, fading in/out
+  // at random positions across the hero. Each "slot" cycles independently.
+  const ICONS = [
+    { Icon: SiFacebook,  color: "#1877F2" },
+    { Icon: SiLinkedIn,  color: "#0A66C2" },
+    { Icon: SiReddit,    color: "#FF4500" },
+    { Icon: SiX,         color: "#0F0F0F" },
+    { Icon: SiInstagram, color: "#E4405F" },
+  ];
+  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
+  const pick = <T,>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
+  type Slot = { id: number; iconIdx: number; top: number; left: number; size: number; dur: number };
+  const next = (id: number): Slot => ({
+    id,
+    iconIdx: Math.floor(Math.random() * ICONS.length),
+    top: rand(8, 78),
+    left: rand(2, 92),
+    size: pick([56, 64, 72, 80]),
+    dur: rand(6, 8.5),
+  });
+  const [slots, setSlots] = React.useState<[Slot, Slot]>(() => [next(1), next(2)]);
+  React.useEffect(() => {
+    let counter = 100;
+    // Stagger the two slots so only one is mid-peak at a time.
+    const t1 = setInterval(() => setSlots(([_, b]) => [next(++counter), b]), 7200);
+    const t2 = setTimeout(() => {
+      const t2b = setInterval(() => setSlots(([a, _]) => [a, next(++counter)]), 7200);
+      (t2 as any)._inner = t2b;
+    }, 3600);
+    return () => {
+      clearInterval(t1);
+      clearTimeout(t2);
+      if ((t2 as any)._inner) clearInterval((t2 as any)._inner);
+    };
+  }, []);
+  return (
+    <>
+      {slots.map((s) => {
+        const { Icon, color } = ICONS[s.iconIdx];
+        return (
+          <div
+            key={s.id}
+            className="social-fade absolute blur-[1.5px]"
+            style={{
+              top: `${s.top}%`,
+              left: `${s.left}%`,
+              width: s.size,
+              height: s.size,
+              color,
+              ['--dur' as any]: `${s.dur}s`,
+              ['--peak' as any]: '0.32',
+              ['--fx' as any]: `${rand(-14, 14)}px`,
+              ['--fy' as any]: `${rand(-14, 14)}px`,
+            }}
+          >
+            <Icon size={s.size} />
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 function FloatingSocials() {
   // Ambient social logos that softly fade in and out around the CTA card.
   // Only 2-3 visible at any time — staggered across a shared 18s loop in 3 pairs.
