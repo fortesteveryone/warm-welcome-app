@@ -210,8 +210,8 @@ export function FeatureBento() {
           <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-6 text-white">
             <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)]/20 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
-                  <Target className="h-3 w-3" /> Signal engine
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-[#0a0a0a]">
+                  <Target className="h-3 w-3 text-[color:var(--signal)]" /> Signal engine
                 </span>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight">
                   We listen to the open web — you reply to the ones that matter.
