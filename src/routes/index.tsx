@@ -8,6 +8,7 @@ import {
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductShowcase, FeatureBento, StatsStrip } from "@/components/home/visual-sections";
+import { HeroReel } from "@/components/home/hero-reel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -288,75 +289,17 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: lead inbox mock with Signal Darkroom backdrop */}
           <div className="relative min-w-0">
-            {/* 3D orbital halo backdrop */}
             <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10">
               <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/15 blur-[80px]" />
               <span className="orbital-halo" />
-              <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--signal)] shadow-[0_0_30px_8px_var(--signal-glow)]" />
             </div>
-            {/* glow ring around card */}
             <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/40 to-[color:var(--signal)]/0 blur-2xl opacity-50" />
-
-            <div className="relative overflow-hidden rounded-xl border border-foreground/15 bg-[color:var(--background)]/80 backdrop-blur-xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
-              <div className="flex items-center justify-between gap-3 border-b border-foreground/10 px-3 py-2 sm:px-4">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/30" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-                </div>
-                <Mono className="truncate text-foreground/50">growbylead.app / inbox</Mono>
-                <span className="inline-flex shrink-0 items-center gap-1.5 text-[11px] text-[color:var(--signal)]">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
-                  <Mono>LIVE</Mono>
-                </span>
-              </div>
-              <div className="space-y-2 p-3 sm:p-4">
-                {sampleLeads.slice(0, 4).map((l, i) => (
-                  <div
-                    key={l.title}
-                    className={`rounded-lg border px-3 py-2.5 transition ${i === 0 ? "border-[color:var(--signal)]/40 bg-[color:var(--signal)]/[0.06]" : "border-foreground/10 bg-foreground/[0.02]"}`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="line-clamp-1 text-sm font-medium text-foreground">{l.title}</p>
-                      <span className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${i === 0 ? "border-[color:var(--signal)]/50 bg-[color:var(--signal)]/15 text-[color:var(--signal)]" : "border-foreground/25 text-foreground/80"}`}>{l.temp}</span>
-                    </div>
-                    <div className="mt-1.5 flex items-center gap-2 text-[11px] text-foreground/55">
-                      <span aria-hidden>{l.flag}</span>
-                      <span>{l.country}</span>
-                      <span>·</span>
-                      <span>{l.platform}</span>
-                      <span>·</span>
-                      <span>{l.ago} ago</span>
-                    </div>
-                  </div>
-                ))}
-                {/* sparkline strip */}
-                <div className="mt-2 rounded-lg border border-foreground/10 bg-foreground/[0.02] p-3">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-foreground/45">
-                    <span>Signal score · 24h</span>
-                    <span className="text-[color:var(--signal)]">+18.4%</span>
-                  </div>
-                  <svg viewBox="0 0 200 50" className="mt-2 h-10 w-full">
-                    <defs>
-                      <linearGradient id="heroSpark" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="oklch(0.74 0.19 145)" stopOpacity="0.45" />
-                        <stop offset="100%" stopColor="oklch(0.74 0.19 145)" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M0 40 Q 30 30 50 25 T 100 14 T 150 18 T 200 6 V50 H0 Z" fill="url(#heroSpark)" />
-                    <path d="M0 40 Q 30 30 50 25 T 100 14 T 150 18 T 200 6" fill="none" stroke="oklch(0.74 0.19 145)" strokeWidth="1.75" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div className="flex items-center justify-between pt-1 text-[11px] text-foreground/50">
-                  <span>+ 496 new today</span>
-                  <span className="inline-flex items-center gap-1"><span className="h-1 w-1 animate-pulse rounded-full bg-[color:var(--signal)]" /> streaming</span>
-                </div>
-              </div>
-            </div>
+            <HeroReel />
           </div>
         </div>
+
+
 
         {/* monochrome logo marquee */}
         <div className="marquee-mask mt-12 w-full overflow-hidden">
