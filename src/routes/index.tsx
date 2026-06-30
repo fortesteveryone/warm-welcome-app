@@ -1116,15 +1116,14 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FloatingSocials() {
   // Ambient social logos that softly fade in and out around the CTA card.
+  // Only 2-3 visible at any time — staggered across a shared 18s loop in 3 pairs.
   const items = [
-    { Icon: SiFacebook, color: "#1877F2", top: "14%", left: "5%",   size: 72, dur: "9s",  delay: "0s",   peak: "0.28", fx: "-18px", fy: "8px",   blur: "blur-md" },
-    { Icon: SiLinkedIn, color: "#0A66C2", top: "64%", left: "8%",   size: 64, dur: "11s", delay: "2.4s", peak: "0.30", fx: "-14px", fy: "-12px", blur: "blur-md" },
-    { Icon: SiReddit,   color: "#FF4500", top: "78%", left: "16%",  size: 48, dur: "8s",  delay: "4.2s", peak: "0.28", fx: "12px",  fy: "10px",  blur: "blur-sm" },
-    { Icon: SiX,        color: "#0F0F0F", top: "20%", left: "18%",  size: 44, dur: "10s", delay: "5.6s", peak: "0.22", fx: "10px",  fy: "-10px", blur: "blur-sm" },
-    { Icon: SiX,        color: "#0F0F0F", top: "16%", right: "6%",  size: 60, dur: "10s", delay: "1.2s", peak: "0.26", fx: "16px",  fy: "12px",  blur: "blur-md" },
-    { Icon: SiFacebook, color: "#1877F2", top: "60%", right: "5%",  size: 80, dur: "12s", delay: "3.4s", peak: "0.26", fx: "18px",  fy: "-10px", blur: "blur-lg" },
-    { Icon: SiLinkedIn, color: "#0A66C2", top: "12%", right: "18%", size: 44, dur: "9s",  delay: "6.0s", peak: "0.28", fx: "-12px", fy: "10px",  blur: "blur-sm" },
-    { Icon: SiReddit,   color: "#FF4500", top: "76%", right: "14%", size: 52, dur: "11s", delay: "7.4s", peak: "0.28", fx: "-10px", fy: "-12px", blur: "blur-md" },
+    { Icon: SiFacebook, color: "#1877F2", top: "14%", left: "5%",   size: 72, dur: "18s", delay: "0s",  peak: "0.55", fx: "-18px", fy: "8px",   blur: "blur-md" },
+    { Icon: SiReddit,   color: "#FF4500", top: "70%", right: "8%",  size: 56, dur: "18s", delay: "0s",  peak: "0.55", fx: "12px",  fy: "-10px", blur: "blur-sm" },
+    { Icon: SiLinkedIn, color: "#0A66C2", top: "68%", left: "9%",   size: 64, dur: "18s", delay: "6s",  peak: "0.55", fx: "-14px", fy: "-12px", blur: "blur-md" },
+    { Icon: SiX,        color: "#0F0F0F", top: "16%", right: "6%",  size: 56, dur: "18s", delay: "6s",  peak: "0.5",  fx: "16px",  fy: "12px",  blur: "blur-sm" },
+    { Icon: SiInstagram,color: "#E4405F", top: "20%", left: "44%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "-12px", blur: "blur-sm" },
+    { Icon: SiFacebook, color: "#1877F2", top: "74%", left: "46%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "12px",  blur: "blur-sm" },
   ];
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
