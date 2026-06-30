@@ -315,14 +315,14 @@ export function StatsStrip() {
             </h2>
             <div className="mt-8 grid grid-cols-2 gap-4">
               {/* Fresh leads */}
-              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+              <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white p-5">
                 <Flame className="absolute right-3 top-3 h-4 w-4 text-orange-500" />
                 <div className="text-3xl font-semibold tracking-tight text-foreground">365+</div>
                 <div className="mt-1 text-xs text-muted-foreground">Fresh leads daily</div>
               </div>
 
               {/* Countries */}
-              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+              <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white p-5">
                 <Globe className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
                 <div className="text-3xl font-semibold tracking-tight text-foreground">30+</div>
                 <div className="mt-1 text-xs text-muted-foreground">Countries covered</div>
@@ -333,7 +333,7 @@ export function StatsStrip() {
               </div>
 
               {/* Platforms */}
-              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+              <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white p-5">
                 <div className="text-3xl font-semibold tracking-tight text-foreground">5</div>
                 <div className="mt-1 text-xs text-muted-foreground">Platforms parsed</div>
                 <div className="mt-3 flex items-center gap-1.5">
@@ -350,7 +350,7 @@ export function StatsStrip() {
               </div>
 
               {/* Auto-structured */}
-              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+              <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white p-5">
                 <Sparkles className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
                 <div className="text-3xl font-semibold tracking-tight text-foreground">Auto</div>
                 <div className="mt-1 text-xs text-muted-foreground">Structured & scored</div>
