@@ -284,7 +284,6 @@ export function FeatureBento() {
 
 /* ---------- Stats strip with 3D visual ---------- */
 export function StatsStrip() {
-export function StatsStrip() {
   const flags = ["🇺🇸", "🇬🇧", "🇮🇳", "🇧🇩", "🇦🇪"];
   const platforms = [
     { Icon: Facebook, color: "#1877F2" },
