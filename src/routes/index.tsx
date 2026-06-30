@@ -334,7 +334,6 @@ function Hero() {
 
         {/* coverage flag strip */}
         <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-foreground/60">
-          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-foreground" /> Live in</span>
           {[
             ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
             ["🇧🇩", "Bangladesh"], ["🇮🇳", "India"], ["🇦🇪", "UAE"], ["🇸🇬", "Singapore"],
