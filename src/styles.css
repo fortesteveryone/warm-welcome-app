@@ -96,12 +96,14 @@
   --hot: oklch(0.7 0.2 25);
   --warm: oklch(0.78 0.16 70);
   --cold: oklch(0.7 0.16 230);
-  --signal: oklch(0.985 0 0);
+  /* Brand signal green (#22C55E) — used for accents, glows, indicators. */
+  --signal: oklch(0.74 0.19 145);
+  --signal-glow: oklch(0.74 0.19 145 / 0.35);
 
-  --chart-1: oklch(0.985 0 0);
-  --chart-2: oklch(0.7 0 0);
-  --chart-3: oklch(0.5 0 0);
-  --chart-4: oklch(0.35 0 0);
+  --chart-1: var(--signal);
+  --chart-2: oklch(0.85 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.4 0 0);
   --chart-5: oklch(0.22 0 0);
 
   --sidebar: oklch(0.04 0 0);
@@ -201,9 +203,59 @@
   --border: oklch(0 0 0 / 12%);
   --input: oklch(0 0 0 / 14%);
   --ring: oklch(0 0 0 / 30%);
-  --signal: oklch(0 0 0);
+  /* Keep brand signal green on light sections too. */
+  --signal: oklch(0.58 0.18 145);
   background-color: oklch(1 0 0);
   color: oklch(0 0 0);
+}
+
+/* Signal Darkroom ambient effects — top horizon glow + faint dot grid.
+   Compose on any .section-dark for the flagship product-page feel. */
+@utility section-glow {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 420px;
+    background:
+      radial-gradient(60% 100% at 50% 0%, var(--signal-glow), transparent 70%);
+    opacity: 0.55;
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, oklch(1 0 0 / 0.06) 1px, transparent 0);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  & > * { position: relative; z-index: 1; }
+}
+
+/* Soft orbital halo: three concentric rings + a glowing core.
+   Use inside a relatively-positioned wrapper as decorative chrome. */
+@utility orbital-halo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in oklch, var(--signal) 35%, transparent);
+  }
+  &::before { width: 70%; aspect-ratio: 1; transform: rotate(20deg); opacity: 0.5; }
+  &::after  { width: 45%; aspect-ratio: 1; transform: rotate(-15deg); opacity: 0.7; }
 }
 
 /* Legacy colored utilities aliased to the B&W system so any older
