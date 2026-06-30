@@ -897,12 +897,11 @@ function Pricing() {
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
-          <h2 className="mx-auto mt-3 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
+          <h2 className="mx-auto mt-3 max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] md:text-4xl">
             Simple, honest pricing <span className="text-muted-foreground">— and free during our launch window.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-[15px]">
-            Pick the plan that matches how you sell — a single day pass to test the water, or a monthly seat for teams shipping outreach every day.
-            Every paid plan is 100% free while we're launching, with no card required and no auto-charge when the offer ends. Cancel or switch anytime from your dashboard.
+          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+            Pick the plan that matches how you sell. Every paid plan is 100% free while we're launching — no card required, no auto-charge when the offer ends. Cancel anytime.
           </p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
