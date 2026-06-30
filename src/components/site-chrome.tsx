@@ -30,19 +30,18 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
-      <Container className="flex h-16 items-center justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-7">
-          <Link to="/" className="flex shrink-0 items-center gap-2">
-            <Logo className="h-9 w-auto" />
-          </Link>
-          <nav className="hidden items-center gap-6 md:flex">
-            {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-muted-foreground transition hover:text-foreground">
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        </div>
+      <Container className="relative flex h-16 items-center justify-between gap-3">
+        <Link to="/" className="flex shrink-0 items-center gap-2">
+          <Logo className="h-9 w-auto" />
+        </Link>
+        <nav className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className="pointer-events-auto text-sm text-muted-foreground transition hover:text-foreground">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
         <div className="flex shrink-0 items-center gap-2">
           <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
             Sign in
