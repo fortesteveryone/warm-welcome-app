@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { ProductShowcase, FeatureBento, StatsStrip } from "@/components/home/visual-sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -122,9 +123,12 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
+      <ProductShowcase />
       <Scope />
+      <FeatureBento />
       <AfterLogin />
       <ExampleLead />
+      <StatsStrip />
       <Platforms />
       <Scoring />
       <Coverage />
