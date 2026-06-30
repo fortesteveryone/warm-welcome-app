@@ -206,7 +206,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    opacity: 0.28;
+    opacity: 0.16;
     filter: blur(4px) saturate(130%);
   }
 }
