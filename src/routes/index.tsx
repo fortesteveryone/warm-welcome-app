@@ -1041,7 +1041,7 @@ const testimonials: { name: string; role: string; avatar: string; quote: string 
 
 function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
   return (
-    <figure className="flex w-[340px] shrink-0 flex-col justify-between rounded-2xl border border-border bg-card/60 p-6 shadow-[0_1px_0_oklch(1_0_0/0.04)_inset]">
+    <figure className="flex w-[340px] shrink-0 flex-col justify-between rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
       <blockquote className="text-[15px] leading-relaxed text-foreground/90">
         <span aria-hidden className="mr-1 text-[color:var(--signal)]">“</span>
         {t.quote}
