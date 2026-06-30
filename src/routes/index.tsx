@@ -858,18 +858,37 @@ function Pricing() {
   const [showLaunchModal, setShowLaunchModal] = useState(false);
   const plans = [
     {
-      name: "Day pass", price: "$10", cadence: "/ day", desc: "Try a full day of fresh leads — no subscription.",
-      features: ["1 day of full lead access", "Facebook, LinkedIn, Reddit", "3 outreach drafts per lead", "CSV / JSON export", "Email support"],
-      cta: "Free during launch", featured: false,
+      name: "Free", price: "$0", cadence: "/ month", desc: "Get a daily taste of fresh leads — no card, no commitment.",
+      features: [
+        "100 Facebook hot leads / day",
+        "50 Reddit hot leads / day",
+        "150 leads total, refreshed every 24h",
+        "Save leads for up to 24 hours",
+        "Support available (24–48h response)",
+      ],
+      cta: "Start free", featured: false, free: true,
     },
     {
-      name: "Monthly", price: "$20", cadence: "/ month", desc: "For freelancers and small teams shipping outreach daily.",
-      features: ["High-volume monthly lead access", "All live platforms", "Saved filters & views", "Outreach drafts library", "Manual review queue", "Priority support"],
+      name: "Pro", price: "$10", cadence: "/ month", desc: "For sellers shipping outreach every day across every channel.",
+      features: [
+        "Unlimited leads across all platforms",
+        "Save leads for up to 1 month (auto-delete after)",
+        "Hot lead notifications in real time",
+        "Email support within 12 hours",
+        "Everything in Free",
+      ],
       cta: "Free during launch", featured: true,
     },
     {
       name: "VIP · Hot leads", price: "Soon", cadence: "", desc: "Hand-picked hot leads delivered to your Gmail in real time. Launching soon.",
-      features: ["Manually filtered hot leads", "Real-time Gmail delivery", "Dedicated Hot Leads dashboard", "Priority over standard queue", "All Monthly features included", "Concierge support"],
+      features: [
+        "Everything in Pro",
+        "Manually filtered hot leads",
+        "Real-time Gmail delivery",
+        "Dedicated Hot Leads dashboard",
+        "Priority over standard queue",
+        "Concierge support",
+      ],
       cta: "Coming soon", featured: false, vip: true, soon: true,
     },
   ];
