@@ -248,6 +248,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden section-edge section-dark section-glow">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
       </div>
 
