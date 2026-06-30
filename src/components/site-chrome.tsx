@@ -29,7 +29,7 @@ const NAV_LINKS: { label: string; href: string }[] = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/90 text-white backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-7">
           <Link to="/" className="flex shrink-0 items-center gap-2">
@@ -37,17 +37,17 @@ export function SiteHeader() {
           </Link>
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-muted-foreground transition hover:text-foreground">
+              <a key={l.href} href={l.href} className="text-sm text-white/70 transition hover:text-white">
                 {l.label}
               </a>
             ))}
           </nav>
         </div>
         <div className="flex shrink-0 items-center gap-2">
-          <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
+          <a href="#" className="hidden rounded-md border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10 sm:inline-flex">
             Sign in
           </a>
-          <a href="/#pricing" className="hidden items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90 sm:inline-flex">
+          <a href="/#pricing" className="hidden items-center gap-1.5 rounded-md bg-white px-3.5 py-1.5 text-sm font-medium text-black transition hover:bg-white/90 sm:inline-flex">
             Get started <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <button
@@ -55,7 +55,7 @@ export function SiteHeader() {
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="grid h-9 w-9 place-items-center rounded-md border border-border bg-card/60 text-foreground transition hover:bg-card md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-md border border-white/15 bg-white/5 text-white transition hover:bg-white/10 md:hidden"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -63,7 +63,7 @@ export function SiteHeader() {
       </Container>
 
       <div
-        className={`absolute left-0 right-0 top-full overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
+        className={`absolute left-0 right-0 top-full overflow-hidden border-t border-white/10 bg-black/95 text-white backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
           open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -73,17 +73,17 @@ export function SiteHeader() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-foreground/90 transition hover:bg-card"
+              className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-white/90 transition hover:bg-white/10"
             >
               <span>{l.label}</span>
-              <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
+              <ArrowRight className="h-3.5 w-3.5 text-white/60" />
             </a>
           ))}
-          <div className="mt-2 grid grid-cols-2 gap-2 border-t border-border pt-3">
-            <a href="#" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-md border border-border bg-card/60 px-3.5 py-2 text-sm font-medium text-foreground transition hover:bg-card">
+          <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
+            <a href="#" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 px-3.5 py-2 text-sm font-medium text-white transition hover:bg-white/10">
               Sign in
             </a>
-            <a href="/#pricing" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-1.5 rounded-md bg-foreground px-3.5 py-2 text-sm font-medium text-background transition hover:bg-foreground/90">
+            <a href="/#pricing" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-1.5 rounded-md bg-white px-3.5 py-2 text-sm font-medium text-black transition hover:bg-white/90">
               Get started <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
