@@ -1164,8 +1164,10 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="section-edge section-dark">
-      <Container className="py-16 md:py-20">
+    <section className="relative section-edge section-dark overflow-hidden">
+      <FloatingSocials />
+      <Container className="relative py-16 md:py-20">
+
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
