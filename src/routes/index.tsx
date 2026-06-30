@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
+  ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Cpu, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
+  MessageSquare, Minus, Network, Plus, Search, Send, Share2, Shield, Sparkles, Target, Waypoints, X, Zap,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -250,24 +250,22 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
-        {/* Ambient floating social icons — spread to outer edges so they peek past the content column on any device */}
-        <Facebook
-          className="social-float absolute left-[1%] top-[12%] h-14 w-14 text-[#1877F2] opacity-[0.12] blur-[2px] sm:h-20 sm:w-20"
-          style={{ ["--dur" as never]: "11s", ["--dx" as never]: "14px", ["--dy" as never]: "-22px", ["--r" as never]: "-8deg" } as React.CSSProperties}
+        {/* Ambient floating brand logos — spread to outer edges so they peek past the content column on any device */}
+        <SiFacebook
+          className="social-float absolute left-[1%] top-[12%] h-14 w-14 opacity-[0.14] blur-[2px] sm:h-20 sm:w-20"
+          style={{ color: "#1877F2", ["--dur" as never]: "11s", ["--dx" as never]: "14px", ["--dy" as never]: "-22px", ["--r" as never]: "-8deg" } as React.CSSProperties}
         />
-        <Linkedin
-          className="social-float absolute right-[1.5%] top-[18%] h-14 w-14 text-[#0A66C2] opacity-[0.12] blur-[2px] sm:h-20 sm:w-20"
-          style={{ ["--dur" as never]: "13s", ["--dx" as never]: "-12px", ["--dy" as never]: "20px", ["--r" as never]: "6deg" } as React.CSSProperties}
+        <SiLinkedIn
+          className="social-float absolute right-[1.5%] top-[18%] h-14 w-14 opacity-[0.14] blur-[2px] sm:h-20 sm:w-20"
+          style={{ color: "#0A66C2", ["--dur" as never]: "13s", ["--dx" as never]: "-12px", ["--dy" as never]: "20px", ["--r" as never]: "6deg" } as React.CSSProperties}
         />
-        <span
-          className="social-float absolute left-[3%] bottom-[14%] opacity-[0.11] blur-[2px]"
-          style={{ ["--dur" as never]: "15s", ["--dx" as never]: "18px", ["--dy" as never]: "-14px", ["--r" as never]: "-4deg" } as React.CSSProperties}
-        >
-          <RedditIcon className="h-14 w-14 text-[#FF4500] sm:h-20 sm:w-20" />
-        </span>
-        <Facebook
-          className="social-float absolute right-[6%] bottom-[10%] h-10 w-10 text-[#1877F2] opacity-[0.10] blur-[2px] sm:h-14 sm:w-14"
-          style={{ ["--dur" as never]: "17s", ["--dx" as never]: "-10px", ["--dy" as never]: "-16px", ["--r" as never]: "5deg" } as React.CSSProperties}
+        <SiReddit
+          className="social-float absolute left-[3%] bottom-[14%] h-14 w-14 opacity-[0.13] blur-[2px] sm:h-20 sm:w-20"
+          style={{ color: "#FF4500", ["--dur" as never]: "15s", ["--dx" as never]: "18px", ["--dy" as never]: "-14px", ["--r" as never]: "-4deg" } as React.CSSProperties}
+        />
+        <SiX
+          className="social-float absolute right-[6%] bottom-[10%] h-10 w-10 opacity-[0.12] blur-[2px] sm:h-14 sm:w-14"
+          style={{ color: "#0F0F0F", ["--dur" as never]: "17s", ["--dx" as never]: "-10px", ["--dy" as never]: "-16px", ["--r" as never]: "5deg" } as React.CSSProperties}
         />
       </div>
 
@@ -461,13 +459,13 @@ function Scope() {
   return (
     <section className="section-edge section-light relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <Linkedin
-          className="social-float absolute -left-4 top-10 h-20 w-20 text-[#0A66C2] opacity-[0.07] blur-[2px]"
-          style={{ ["--dur" as never]: "16s", ["--dx" as never]: "16px", ["--dy" as never]: "-14px", ["--r" as never]: "-6deg" } as React.CSSProperties}
+        <SiLinkedIn
+          className="social-float absolute -left-4 top-10 h-20 w-20 opacity-[0.09] blur-[2px]"
+          style={{ color: "#0A66C2", ["--dur" as never]: "16s", ["--dx" as never]: "16px", ["--dy" as never]: "-14px", ["--r" as never]: "-6deg" } as React.CSSProperties}
         />
-        <Facebook
-          className="social-float absolute right-2 bottom-8 h-24 w-24 text-[#1877F2] opacity-[0.06] blur-[2.5px]"
-          style={{ ["--dur" as never]: "19s", ["--dx" as never]: "-14px", ["--dy" as never]: "18px", ["--r" as never]: "8deg" } as React.CSSProperties}
+        <SiFacebook
+          className="social-float absolute right-2 bottom-8 h-24 w-24 opacity-[0.08] blur-[2.5px]"
+          style={{ color: "#1877F2", ["--dur" as never]: "19s", ["--dx" as never]: "-14px", ["--dy" as never]: "18px", ["--r" as never]: "8deg" } as React.CSSProperties}
         />
       </div>
       <Container className="relative py-16 md:py-20">
@@ -675,22 +673,23 @@ const scoringFactors = [
 ];
 
 function Scoring() {
-  const floatIcons = [
-    { Icon: SiFacebook, color: "#1877F2", style: "top-[8%] left-[4%] h-24 w-24 animate-[social-float_11s_ease-in-out_infinite]" },
-    { Icon: SiLinkedIn, color: "#0A66C2", style: "top-[18%] right-[6%] h-28 w-28 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
-    { Icon: SiReddit, color: "#FF4500", style: "bottom-[12%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
-    { Icon: SiMeta, color: "#0668E1", style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
-    { Icon: SiX, color: "#000000", style: "top-[45%] left-[48%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
+  const aiFloats = [
+    { Icon: BrainCircuit, style: "top-[8%] left-[4%] h-28 w-28 animate-[social-float_11s_ease-in-out_infinite]" },
+    { Icon: Cpu,          style: "top-[18%] right-[6%] h-24 w-24 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
+    { Icon: Sparkles,     style: "bottom-[14%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
+    { Icon: Network,      style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
+    { Icon: Waypoints,    style: "top-[46%] left-[46%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
+    { Icon: Zap,          style: "top-[60%] left-[20%] h-14 w-14 animate-[social-float_14s_ease-in-out_infinite_-5s]" },
   ];
   return (
     <section id="scoring" className="section-edge section-light relative overflow-hidden">
-      {/* Floating glassy social icons — AI signal vibe */}
+      {/* Floating AI-themed glyphs — signal engine vibe */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        {floatIcons.map(({ Icon, color, style }, i) => (
+        {aiFloats.map(({ Icon, style }, i) => (
           <Icon
             key={i}
-            className={`absolute opacity-[0.07] blur-[2px] ${style}`}
-            style={{ color }}
+            className={`absolute text-[color:var(--signal)] opacity-[0.10] blur-[1.5px] ${style}`}
+            strokeWidth={1.25}
           />
         ))}
         <div className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/8 blur-[120px]" />
