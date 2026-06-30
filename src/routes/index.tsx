@@ -222,7 +222,7 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiWordpress, SiWix, SiGoogleads, SiMeta } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 const TRUSTED_LOGOS = [
@@ -414,6 +414,15 @@ function PreviewDetail() {
 }
 
 /* ---------- scope (what we cover) ---------- */
+const tagBrand: Record<string, { Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string }> = {
+  WordPress: { Icon: SiWordpress, color: "#21759B" },
+  Webflow:   { Icon: SiWebflow,   color: "#146EF5" },
+  Wix:       { Icon: SiWix,       color: "#0C6EFC" },
+  Framer:    { Icon: SiFramer,    color: "#0055FF" },
+  "Paid ads (Meta / Google)": { Icon: SiMeta, color: "#0866FF" },
+  "E-commerce stores":        { Icon: SiShopify, color: "#95BF47" },
+};
+
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
   { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
   { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
@@ -446,9 +455,15 @@ function Scope() {
                 <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
               </div>
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {tags.map((t) => (
-                  <span key={t} className="rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">{t}</span>
-                ))}
+                {tags.map((t) => {
+                  const brand = tagBrand[t];
+                  return (
+                    <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">
+                      {brand ? <brand.Icon className="h-3 w-3" style={{ color: brand.color }} /> : null}
+                      {t}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -473,9 +488,15 @@ function Scope() {
               We don't capture leads for general industries like:
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {outOfScope.map((t) => (
-                <span key={t} className="rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">{t}</span>
-              ))}
+              {outOfScope.map((t) => {
+                const brand = tagBrand[t];
+                return (
+                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground line-through decoration-muted-foreground/40">
+                    {brand ? <brand.Icon className="h-3 w-3 no-underline" style={{ color: brand.color }} /> : null}
+                    {t}
+                  </span>
+                );
+              })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               We focus only on website + SEO leads. If you sell something else, Grow By Lead probably isn't the right fit.
