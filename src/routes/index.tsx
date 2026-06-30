@@ -259,7 +259,12 @@ function Hero() {
           className="social-float absolute right-[8%] top-[60%] h-20 w-20 text-[#0A66C2] opacity-[0.09] blur-[2.5px]"
           style={{ ["--dur" as never]: "14s", ["--dx" as never]: "-16px", ["--dy" as never]: "-22px", ["--r" as never]: "6deg" } as React.CSSProperties}
         />
-        <RedditIcon className="social-float absolute left-[42%] top-[8%] h-14 w-14 text-[#FF4500] opacity-[0.10] blur-[2px]" />
+        <span
+          className="social-float absolute left-[42%] top-[8%] opacity-[0.10] blur-[2px]"
+          style={{ ["--dur" as never]: "13s", ["--dx" as never]: "-10px", ["--dy" as never]: "16px", ["--r" as never]: "4deg" } as React.CSSProperties}
+        >
+          <RedditIcon className="h-14 w-14 text-[#FF4500]" />
+        </span>
       </div>
 
       <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
