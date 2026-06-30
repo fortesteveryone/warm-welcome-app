@@ -1157,9 +1157,9 @@ function FloatingSocials() {
 function FinalCTA() {
   return (
     <section className="relative section-edge section-light overflow-hidden">
-      <FloatingSocials />
       <Container className="relative py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
+          <FloatingSocials />
           <h2 className="relative text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
             Stop scrolling.<br />
             <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
