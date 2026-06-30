@@ -602,8 +602,8 @@ const platforms: PlatformEntry[] = [
   { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
   { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and pinned comments from creator and business accounts." },
   { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
-  { icon: XIcon,       color: "#FFFFFF", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
-  { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
+  { icon: XIcon,       color: "#000000", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
+  { icon: ThreadsIcon, color: "#000000", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
 ];
 
 const dailyVolumeStats = [
@@ -625,7 +625,7 @@ function Platforms() {
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {dailyVolumeStats.map((s) => (
-            <div key={s.label} className="rounded-xl border border-border bg-card/60 p-5">
+            <div key={s.label} className="rounded-xl border border-border bg-white p-5">
               <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
               <div className="mt-1 text-sm font-medium">{s.label}</div>
               <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.hint}</p>
@@ -642,7 +642,7 @@ function Platforms() {
           {platforms.map((p) => {
             const Icon = p.icon;
             return (
-              <div key={p.name} className="group rounded-xl border border-border bg-card/50 p-5 transition hover:bg-card">
+              <div key={p.name} className="group rounded-xl border border-border bg-white p-5 transition hover:shadow-sm">
                 <div className="flex items-center justify-between">
                   <div
                     className="grid h-10 w-10 place-items-center rounded-lg border border-border"
