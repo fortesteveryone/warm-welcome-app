@@ -877,7 +877,7 @@ function Pricing() {
         "Email support within 12 hours",
         "Everything in Free",
       ],
-      cta: "Free during launch", featured: true,
+      cta: "Apply for early access", featured: true,
     },
     {
       name: "VIP · Hot leads", price: "Soon", cadence: "", desc: "Hand-picked hot leads delivered to your Gmail in real time. Launching soon.",
