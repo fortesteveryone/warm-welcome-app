@@ -250,21 +250,25 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
-        {/* Ambient floating social icons — very low opacity, blurred, slow drift */}
+        {/* Ambient floating social icons — spread to outer edges so they peek past the content column on any device */}
         <Facebook
-          className="social-float absolute left-[6%] top-[22%] h-16 w-16 text-[#1877F2] opacity-[0.10] blur-[2px]"
-          style={{ ["--dur" as never]: "11s", ["--dx" as never]: "12px", ["--dy" as never]: "-20px", ["--r" as never]: "-8deg" } as React.CSSProperties}
+          className="social-float absolute left-[1%] top-[12%] h-14 w-14 text-[#1877F2] opacity-[0.12] blur-[2px] sm:h-20 sm:w-20"
+          style={{ ["--dur" as never]: "11s", ["--dx" as never]: "14px", ["--dy" as never]: "-22px", ["--r" as never]: "-8deg" } as React.CSSProperties}
         />
         <Linkedin
-          className="social-float absolute right-[8%] top-[60%] h-20 w-20 text-[#0A66C2] opacity-[0.09] blur-[2.5px]"
-          style={{ ["--dur" as never]: "14s", ["--dx" as never]: "-16px", ["--dy" as never]: "-22px", ["--r" as never]: "6deg" } as React.CSSProperties}
+          className="social-float absolute right-[1.5%] top-[18%] h-14 w-14 text-[#0A66C2] opacity-[0.12] blur-[2px] sm:h-20 sm:w-20"
+          style={{ ["--dur" as never]: "13s", ["--dx" as never]: "-12px", ["--dy" as never]: "20px", ["--r" as never]: "6deg" } as React.CSSProperties}
         />
         <span
-          className="social-float absolute left-[42%] top-[8%] opacity-[0.10] blur-[2px]"
-          style={{ ["--dur" as never]: "13s", ["--dx" as never]: "-10px", ["--dy" as never]: "16px", ["--r" as never]: "4deg" } as React.CSSProperties}
+          className="social-float absolute left-[3%] bottom-[14%] opacity-[0.11] blur-[2px]"
+          style={{ ["--dur" as never]: "15s", ["--dx" as never]: "18px", ["--dy" as never]: "-14px", ["--r" as never]: "-4deg" } as React.CSSProperties}
         >
-          <RedditIcon className="h-14 w-14 text-[#FF4500]" />
+          <RedditIcon className="h-14 w-14 text-[#FF4500] sm:h-20 sm:w-20" />
         </span>
+        <Facebook
+          className="social-float absolute right-[6%] bottom-[10%] h-10 w-10 text-[#1877F2] opacity-[0.10] blur-[2px] sm:h-14 sm:w-14"
+          style={{ ["--dur" as never]: "17s", ["--dx" as never]: "-10px", ["--dy" as never]: "-16px", ["--r" as never]: "5deg" } as React.CSSProperties}
+        />
       </div>
 
       <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
