@@ -2,6 +2,8 @@ import {
   ArrowUpRight, Bot, Filter, Flame, Globe, Inbox, Layers, MessageSquare,
   Send, Sparkles, Target, TrendingUp, Zap, Facebook, Linkedin,
 } from "lucide-react";
+import { SiFacebook, SiReddit, SiInstagram, SiX } from "react-icons/si";
+import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 function RedditMark({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -286,10 +288,11 @@ export function FeatureBento() {
 export function StatsStrip() {
   const flags = ["🇺🇸", "🇬🇧", "🇮🇳", "🇧🇩", "🇦🇪"];
   const platforms = [
-    { Icon: Facebook, color: "#1877F2" },
-    { Icon: Linkedin, color: "#0A66C2" },
-    { Icon: RedditMark, color: "#FF4500" },
-    { Icon: XMark, color: "#FFFFFF" },
+    { Icon: SiFacebook, color: "#1877F2" },
+    { Icon: SiLinkedIn, color: "#0A66C2" },
+    { Icon: SiReddit, color: "#FF4500" },
+    { Icon: SiX, color: "#000000" },
+    { Icon: SiInstagram, color: "#E4405F" },
   ];
   return (
     <section className="section-edge section-light">
@@ -333,13 +336,16 @@ export function StatsStrip() {
               <div className="card-noir relative overflow-hidden rounded-xl border p-5">
                 <div className="text-3xl font-semibold tracking-tight text-white">5</div>
                 <div className="mt-1 text-xs text-white/55">Platforms parsed</div>
-                <div className="mt-3 flex items-center gap-2">
+                <div className="mt-3 flex items-center gap-1.5">
                   {platforms.map(({ Icon, color }, i) => (
-                    <span key={i} style={{ color }} className="inline-flex h-5 w-5 items-center justify-center">
-                      <Icon className="h-4 w-4" />
+                    <span
+                      key={i}
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/5"
+                    >
+                      <Icon style={{ color }} className="h-3.5 w-3.5" />
                     </span>
                   ))}
-                  <span className="ml-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-white/20 px-1.5 text-[10px] font-medium text-white/70">+</span>
+                  <span className="ml-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-semibold text-foreground/70 shadow-[0_1px_2px_rgba(0,0,0,0.25)]">+</span>
                 </div>
               </div>
 
