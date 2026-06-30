@@ -217,16 +217,25 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom } from "react-icons/si";
+
 const TRUSTED_LOGOS = [
-  { name: "Shopify", Icon: SiShopify },
-  { name: "HubSpot", Icon: SiHubspot },
-  { name: "Webflow", Icon: SiWebflow },
-  { name: "Notion", Icon: SiNotion },
-  { name: "Framer", Icon: SiFramer },
-  { name: "Linear", Icon: SiLinear },
-  { name: "Vercel", Icon: SiVercel },
-  { name: "Stripe", Icon: SiStripe },
+  { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
+  { name: "HubSpot", Icon: SiHubspot, color: "#FF7A59" },
+  { name: "Slack", Icon: SiSlack, color: "#4A154B" },
+  { name: "Asana", Icon: SiAsana, color: "#F06A6A" },
+  { name: "Airbnb", Icon: SiAirbnb, color: "#FF5A5F" },
+  { name: "Spotify", Icon: SiSpotify, color: "#1DB954" },
+  { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
+  { name: "Google", Icon: SiGoogle, color: "#4285F4" },
+  { name: "Atlassian", Icon: SiAtlassian, color: "#0052CC" },
+  { name: "Zoom", Icon: SiZoom, color: "#2D8CFF" },
+  { name: "Webflow", Icon: SiWebflow, color: "#146EF5" },
+  { name: "Notion", Icon: SiNotion, color: "#FFFFFF" },
+  { name: "Framer", Icon: SiFramer, color: "#0055FF" },
+  { name: "Linear", Icon: SiLinear, color: "#5E6AD2" },
+  { name: "Vercel", Icon: SiVercel, color: "#FFFFFF" },
+  { name: "Stripe", Icon: SiStripe, color: "#635BFF" },
 ];
 
 function Hero() {
