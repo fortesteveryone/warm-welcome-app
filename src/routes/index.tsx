@@ -290,11 +290,10 @@ function Hero() {
           </div>
 
           <div className="relative min-w-0">
-            <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10">
-              <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/15 blur-[80px]" />
-              <span className="orbital-halo" />
+            <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10 opacity-40">
+              <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/5 blur-[80px]" />
             </div>
-            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/40 to-[color:var(--signal)]/0 blur-2xl opacity-50" />
+            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/0 blur-2xl opacity-25" />
             <HeroReel />
           </div>
         </div>
