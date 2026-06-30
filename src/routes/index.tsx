@@ -504,7 +504,7 @@ function Scope() {
                 const brand = tagBrand[t];
                 return (
                   <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
-                    {brand ? <brand.Icon className="h-3 w-3 no-underline" style={{ color: brand.color }} /> : null}
+                    {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3 no-underline" style={{ color: b.color }} />)}
                     {t}
                   </span>
                 );
