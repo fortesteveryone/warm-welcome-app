@@ -287,12 +287,12 @@ function Hero() {
               </a>
             </div>
 
-            <div className="marquee-mask mt-4 overflow-hidden">
-              <div className="animate-marquee-rtl flex w-max items-center gap-10 opacity-70 will-change-transform">
+            <div className="marquee-mask mt-10 overflow-hidden">
+              <div className="animate-marquee-rtl flex w-max items-center gap-12 will-change-transform">
                 {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
-                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2 text-muted-foreground">
-                    <logo.Icon className="h-5 w-5" />
-                    <span className="font-mono text-xs uppercase tracking-[0.18em]">{logo.name}</span>
+                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5">
+                    <logo.Icon className="h-7 w-7 shrink-0" style={{ color: logo.color }} />
+                    <span className="font-semibold text-base text-foreground/80 tracking-tight">{logo.name}</span>
                   </span>
                 ))}
               </div>
