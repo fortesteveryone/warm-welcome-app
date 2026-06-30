@@ -602,8 +602,8 @@ const platforms: PlatformEntry[] = [
   { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
   { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and pinned comments from creator and business accounts." },
   { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
-  { icon: XIcon,       color: "#FFFFFF", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
-  { icon: ThreadsIcon, color: "#FFFFFF", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
+  { icon: XIcon,       color: "#000000", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
+  { icon: ThreadsIcon, color: "#000000", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
 ];
 
 const dailyVolumeStats = [
