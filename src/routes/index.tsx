@@ -798,7 +798,7 @@ function Concierge() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card/70 p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)] backdrop-blur">
+          <div className="rounded-2xl border border-black/10 bg-white p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)]">
             {/* mock Gmail message */}
             <div className="flex items-center justify-between border-b border-border px-4 py-2">
               <div className="flex items-center gap-2">
