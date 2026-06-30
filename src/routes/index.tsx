@@ -1127,7 +1127,7 @@ function FloatingSocials() {
     { Icon: SiReddit,   color: "#FF4500", top: "76%", right: "14%", size: 52, dur: "11s", delay: "7.4s", peak: "0.28", fx: "-10px", fy: "-12px", blur: "blur-md" },
   ];
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 hidden lg:block">
+    <div aria-hidden className="pointer-events-none absolute inset-0">
       {items.map((it, i) => {
         const { Icon, color, size, dur, delay, peak, fx, fy, blur } = it;
         const style: React.CSSProperties = {
@@ -1157,9 +1157,9 @@ function FloatingSocials() {
 function FinalCTA() {
   return (
     <section className="relative section-edge section-light overflow-hidden">
-      <FloatingSocials />
       <Container className="relative py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
+          <FloatingSocials />
           <h2 className="relative text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
             Stop scrolling.<br />
             <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
