@@ -186,13 +186,13 @@ export function FeatureBento() {
                   <div
                     className={`grid h-10 w-10 place-items-center rounded-lg ${
                       tone === "noir"
-                        ? "bg-white/10 text-[color:var(--signal)]"
+                        ? "bg-white text-[color:var(--signal)]"
                         : tone === "signal"
-                          ? "bg-[color:var(--signal)]/20 text-[color:var(--signal)]"
+                          ? "bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30"
                           : "border border-border bg-background/60 text-foreground"
                     }`}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    <Icon className="h-5 w-5" strokeWidth={2} />
                   </div>
                   <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
                   <p className={`mt-1.5 text-sm leading-relaxed ${tone === "noir" ? "text-white/60" : "text-muted-foreground"}`}>
