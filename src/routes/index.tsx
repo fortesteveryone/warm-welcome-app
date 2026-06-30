@@ -240,10 +240,9 @@ const TRUSTED_LOGOS = [
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden section-edge section-dark">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.06),transparent_60%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
+    <section className="relative overflow-hidden section-edge section-dark section-glow">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
       </div>
 
       <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
