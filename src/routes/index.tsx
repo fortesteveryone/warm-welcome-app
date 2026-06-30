@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Copy, ExternalLink, Facebook,
+  ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Cpu, Code2, Copy, ExternalLink, Facebook,
   Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Plus, Search, Send, Share2, Shield, Sparkles, Target, X,
+  MessageSquare, Minus, Network, Plus, Search, Send, Share2, Shield, Sparkles, Target, Waypoints, X, Zap,
 } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
