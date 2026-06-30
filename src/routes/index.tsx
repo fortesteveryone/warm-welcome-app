@@ -222,7 +222,7 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiWordpress, SiWix, SiGoogleads, SiMeta } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 const TRUSTED_LOGOS = [
@@ -414,13 +414,25 @@ function PreviewDetail() {
 }
 
 /* ---------- scope (what we cover) ---------- */
-const tagBrand: Record<string, { Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string }> = {
-  WordPress: { Icon: SiWordpress, color: "#21759B" },
-  Webflow:   { Icon: SiWebflow,   color: "#146EF5" },
-  Wix:       { Icon: SiWix,       color: "#0C6EFC" },
-  Framer:    { Icon: SiFramer,    color: "#0055FF" },
-  "Paid ads (Meta / Google)": { Icon: SiMeta, color: "#0866FF" },
-  "E-commerce stores":        { Icon: SiShopify, color: "#95BF47" },
+type BrandMark = { Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string };
+const tagBrand: Record<string, BrandMark[]> = {
+  WordPress: [{ Icon: SiWordpress, color: "#21759B" }],
+  Webflow:   [{ Icon: SiWebflow,   color: "#146EF5" }],
+  Wix:       [{ Icon: SiWix,       color: "#0C6EFC" }],
+  Framer:    [{ Icon: SiFramer,    color: "#0055FF" }],
+  "Paid ads (Meta / Google)": [
+    { Icon: SiMeta, color: "#0866FF" },
+    { Icon: SiGoogleads, color: "#4285F4" },
+  ],
+  "E-commerce stores": [{ Icon: SiShopify, color: "#95BF47" }],
+  "Analytics / GTM / CRO": [
+    { Icon: SiGoogleanalytics, color: "#E37400" },
+    { Icon: SiGoogletagmanager, color: "#246FDB" },
+  ],
+  "Social media management": [
+    { Icon: SiFacebook, color: "#1877F2" },
+    { Icon: SiX, color: "#000000" },
+  ],
 };
 
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
@@ -459,7 +471,7 @@ function Scope() {
                   const brand = tagBrand[t];
                   return (
                     <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">
-                      {brand ? <brand.Icon className="h-3 w-3" style={{ color: brand.color }} /> : null}
+                      {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3" style={{ color: b.color }} />)}
                       {t}
                     </span>
                   );
@@ -492,7 +504,7 @@ function Scope() {
                 const brand = tagBrand[t];
                 return (
                   <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
-                    {brand ? <brand.Icon className="h-3 w-3 no-underline" style={{ color: brand.color }} /> : null}
+                    {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3 no-underline" style={{ color: b.color }} />)}
                     {t}
                   </span>
                 );
