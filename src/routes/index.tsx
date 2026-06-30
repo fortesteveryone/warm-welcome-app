@@ -217,16 +217,25 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom } from "react-icons/si";
+
 const TRUSTED_LOGOS = [
-  { name: "Shopify", Icon: SiShopify },
-  { name: "HubSpot", Icon: SiHubspot },
-  { name: "Webflow", Icon: SiWebflow },
-  { name: "Notion", Icon: SiNotion },
-  { name: "Framer", Icon: SiFramer },
-  { name: "Linear", Icon: SiLinear },
-  { name: "Vercel", Icon: SiVercel },
-  { name: "Stripe", Icon: SiStripe },
+  { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
+  { name: "HubSpot", Icon: SiHubspot, color: "#FF7A59" },
+  { name: "Slack", Icon: SiSlack, color: "#4A154B" },
+  { name: "Asana", Icon: SiAsana, color: "#F06A6A" },
+  { name: "Airbnb", Icon: SiAirbnb, color: "#FF5A5F" },
+  { name: "Spotify", Icon: SiSpotify, color: "#1DB954" },
+  { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
+  { name: "Google", Icon: SiGoogle, color: "#4285F4" },
+  { name: "Atlassian", Icon: SiAtlassian, color: "#0052CC" },
+  { name: "Zoom", Icon: SiZoom, color: "#2D8CFF" },
+  { name: "Webflow", Icon: SiWebflow, color: "#146EF5" },
+  { name: "Notion", Icon: SiNotion, color: "#FFFFFF" },
+  { name: "Framer", Icon: SiFramer, color: "#0055FF" },
+  { name: "Linear", Icon: SiLinear, color: "#5E6AD2" },
+  { name: "Vercel", Icon: SiVercel, color: "#FFFFFF" },
+  { name: "Stripe", Icon: SiStripe, color: "#635BFF" },
 ];
 
 function Hero() {
@@ -278,12 +287,12 @@ function Hero() {
               </a>
             </div>
 
-            <div className="marquee-mask mt-4 overflow-hidden">
-              <div className="animate-marquee-rtl flex w-max items-center gap-10 opacity-70 will-change-transform">
+            <div className="marquee-mask mt-10 overflow-hidden">
+              <div className="animate-marquee-rtl flex w-max items-center gap-12 will-change-transform">
                 {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
-                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2 text-muted-foreground">
-                    <logo.Icon className="h-5 w-5" />
-                    <span className="font-mono text-xs uppercase tracking-[0.18em]">{logo.name}</span>
+                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5">
+                    <logo.Icon className="h-7 w-7 shrink-0" style={{ color: logo.color }} />
+                    <span className="font-semibold text-base text-foreground/80 tracking-tight">{logo.name}</span>
                   </span>
                 ))}
               </div>
