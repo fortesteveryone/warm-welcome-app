@@ -181,34 +181,60 @@
   }
 }
 
-/* Black/white section surfaces. .section-light re-scopes the design
-   tokens so all children flip to a light palette automatically. */
+/* Section surfaces — the whole site lives on white/grey now.
+   .section-dark is intentionally aliased to a soft warm-grey surface so
+   legacy markup that opted into "dark" becomes a subtle band, not a
+   black slab. Use .section-noir / .card-noir for the rare real-black
+   accent pieces. */
 @utility section-dark {
-  background-color: oklch(0 0 0);
-  color: oklch(0.985 0 0);
+  --background: oklch(0.97 0 0);
+  --card: oklch(1 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.46 0 0);
+  --border: oklch(0 0 0 / 10%);
+  background-color: oklch(0.97 0 0);
+  color: oklch(0.18 0 0);
 }
 @utility section-light {
   --background: oklch(1 0 0);
-  --foreground: oklch(0 0 0);
+  --foreground: oklch(0.18 0 0);
   --card: oklch(0.985 0 0);
-  --card-foreground: oklch(0 0 0);
+  --card-foreground: oklch(0.18 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0 0 0);
-  --primary: oklch(0 0 0);
+  --popover-foreground: oklch(0.18 0 0);
+  --primary: oklch(0.18 0 0);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0 0 0);
+  --secondary-foreground: oklch(0.18 0 0);
   --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.42 0 0);
+  --muted-foreground: oklch(0.46 0 0);
   --accent: oklch(0.94 0 0);
-  --accent-foreground: oklch(0 0 0);
-  --border: oklch(0 0 0 / 12%);
+  --accent-foreground: oklch(0.18 0 0);
+  --border: oklch(0 0 0 / 10%);
   --input: oklch(0 0 0 / 14%);
   --ring: oklch(0 0 0 / 30%);
-  /* Keep brand signal green on light sections too. */
   --signal: oklch(0.58 0.18 145);
   background-color: oklch(1 0 0);
-  color: oklch(0 0 0);
+  color: oklch(0.18 0 0);
+}
+
+/* Real-black accent surfaces. Use sparingly — single cards, icon tiles,
+   small callout strips. NOT for full page sections. */
+@utility section-noir {
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.12 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --border: oklch(1 0 0 / 12%);
+  background-color: oklch(0.08 0 0);
+  color: oklch(0.985 0 0);
+}
+@utility card-noir {
+  background-color: oklch(0.08 0 0);
+  color: oklch(0.985 0 0);
+  border-color: oklch(1 0 0 / 12%);
 }
 
 /* Signal Darkroom ambient effects — top horizon glow + faint dot grid.
