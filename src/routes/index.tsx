@@ -222,7 +222,8 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX } from "react-icons/si";
+import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 const TRUSTED_LOGOS = [
   { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
@@ -1161,10 +1162,53 @@ function FAQ() {
 }
 
 /* ---------- final CTA ---------- */
+function FloatingSocials() {
+  // Ambient blurred social icons drifting in the side gaps around the CTA card.
+  const items = [
+    { Icon: SiFacebook,  color: "#1877F2", top: "12%",  left: "4%",   size: 88,  dur: "13s", dx: "18px",  dy: "-22px", r: "-8deg", blur: "blur-xl",  op: "opacity-30" },
+    { Icon: SiLinkedIn,  color: "#0A66C2", top: "62%",  left: "8%",   size: 72,  dur: "16s", dx: "-14px", dy: "16px",  r: "6deg",  blur: "blur-lg",  op: "opacity-35" },
+    { Icon: SiReddit,    color: "#FF4500", top: "70%",  left: "2%",   size: 56,  dur: "11s", dx: "12px",  dy: "-14px", r: "10deg", blur: "blur-md",  op: "opacity-25" },
+    { Icon: SiX,         color: "#0F0F0F", top: "20%",  right: "6%",  size: 64,  dur: "14s", dx: "-16px", dy: "18px",  r: "8deg",  blur: "blur-lg",  op: "opacity-30" },
+    { Icon: SiFacebook,  color: "#1877F2", top: "58%",  right: "3%",  size: 96,  dur: "17s", dx: "14px",  dy: "20px",  r: "-6deg", blur: "blur-2xl", op: "opacity-25" },
+    { Icon: SiLinkedIn,  color: "#0A66C2", top: "10%",  right: "14%", size: 48,  dur: "12s", dx: "-10px", dy: "-12px", r: "-4deg", blur: "blur-md",  op: "opacity-30" },
+    { Icon: SiReddit,    color: "#FF4500", top: "78%",  right: "16%", size: 44,  dur: "15s", dx: "10px",  dy: "12px",  r: "12deg", blur: "blur-md",  op: "opacity-30" },
+    { Icon: SiX,         color: "#0F0F0F", top: "44%",  left: "14%",  size: 40,  dur: "10s", dx: "-8px",  dy: "10px",  r: "-10deg",blur: "blur-sm",  op: "opacity-25" },
+  ];
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden lg:block">
+      {items.map((it, i) => {
+        const { Icon, color, size, dur, dx, dy, r, blur, op } = it;
+        const style: React.CSSProperties = {
+          top: it.top,
+          left: (it as any).left,
+          right: (it as any).right,
+          width: size,
+          height: size,
+          color,
+          // CSS vars consumed by the social-drift keyframes
+          ['--dur' as any]: dur,
+          ['--dx' as any]: dx,
+          ['--dy' as any]: dy,
+          ['--r' as any]: r,
+          animationDelay: `${i * 0.6}s`,
+        };
+        return (
+          <div key={i} className={`social-float absolute ${blur} ${op}`} style={style}>
+            <Icon size={size} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
 function FinalCTA() {
   return (
-    <section className="section-edge section-dark">
-      <Container className="py-16 md:py-20">
+    <section className="relative section-edge section-dark overflow-hidden">
+      <FloatingSocials />
+      <Container className="relative py-16 md:py-20">
+
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
