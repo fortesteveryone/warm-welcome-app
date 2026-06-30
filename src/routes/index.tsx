@@ -250,6 +250,16 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
+        {/* Ambient floating social icons — very low opacity, blurred, slow drift */}
+        <Facebook
+          className="social-float absolute left-[6%] top-[22%] h-16 w-16 text-[#1877F2] opacity-[0.10] blur-[2px]"
+          style={{ ["--dur" as never]: "11s", ["--dx" as never]: "12px", ["--dy" as never]: "-20px", ["--r" as never]: "-8deg" } as React.CSSProperties}
+        />
+        <Linkedin
+          className="social-float absolute right-[8%] top-[60%] h-20 w-20 text-[#0A66C2] opacity-[0.09] blur-[2.5px]"
+          style={{ ["--dur" as never]: "14s", ["--dx" as never]: "-16px", ["--dy" as never]: "-22px", ["--r" as never]: "6deg" } as React.CSSProperties}
+        />
+        <RedditIcon className="social-float absolute left-[42%] top-[8%] h-14 w-14 text-[#FF4500] opacity-[0.10] blur-[2px]" />
       </div>
 
       <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
