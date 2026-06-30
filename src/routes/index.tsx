@@ -268,13 +268,17 @@ function Hero() {
               </a>
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 opacity-70 lg:justify-start">
-              {TRUSTED_LOGOS.map((name) => (
-                <span key={name} className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  {name}
-                </span>
-              ))}
+            <div className="marquee-mask mt-4 overflow-hidden">
+              <div className="animate-marquee-rtl flex w-max items-center gap-10 opacity-70 will-change-transform">
+                {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
+                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2 text-muted-foreground">
+                    <logo.Icon className="h-5 w-5" />
+                    <span className="font-mono text-xs uppercase tracking-[0.18em]">{logo.name}</span>
+                  </span>
+                ))}
+              </div>
             </div>
+
           </div>
 
           {/* Right: animated demo */}
