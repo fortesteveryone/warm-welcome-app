@@ -315,10 +315,10 @@ export function StatsStrip() {
             </h2>
             <div className="mt-8 grid grid-cols-2 gap-4">
               {/* Fresh leads */}
-              <div className="card-noir relative overflow-hidden rounded-xl border p-5">
-                <Flame className="absolute right-3 top-3 h-4 w-4 text-orange-400" />
-                <div className="text-3xl font-semibold tracking-tight text-white">365+</div>
-                <div className="mt-1 text-xs text-white/55">Fresh leads daily</div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+                <Flame className="absolute right-3 top-3 h-4 w-4 text-orange-500" />
+                <div className="text-3xl font-semibold tracking-tight text-foreground">365+</div>
+                <div className="mt-1 text-xs text-muted-foreground">Fresh leads daily</div>
               </div>
 
               {/* Countries */}
@@ -333,19 +333,19 @@ export function StatsStrip() {
               </div>
 
               {/* Platforms */}
-              <div className="card-noir relative overflow-hidden rounded-xl border p-5">
-                <div className="text-3xl font-semibold tracking-tight text-white">5</div>
-                <div className="mt-1 text-xs text-white/55">Platforms parsed</div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+                <div className="text-3xl font-semibold tracking-tight text-foreground">5</div>
+                <div className="mt-1 text-xs text-muted-foreground">Platforms parsed</div>
                 <div className="mt-3 flex items-center gap-1.5">
                   {platforms.map(({ Icon, color }, i) => (
                     <span
                       key={i}
-                      className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/5"
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] ring-1 ring-black/5"
                     >
                       <Icon style={{ color }} className="h-3.5 w-3.5" />
                     </span>
                   ))}
-                  <span className="ml-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-semibold text-foreground/70 shadow-[0_1px_2px_rgba(0,0,0,0.25)]">+</span>
+                  <span className="ml-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-foreground/70 ring-1 ring-black/5">+</span>
                 </div>
               </div>
 
