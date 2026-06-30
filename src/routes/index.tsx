@@ -673,52 +673,29 @@ const scoringFactors = [
 ];
 
 function Scoring() {
-  const aiFloats = [
-    { Icon: BrainCircuit, style: "top-[8%] left-[4%] h-28 w-28 animate-[social-float_11s_ease-in-out_infinite]" },
-    { Icon: Cpu,          style: "top-[18%] right-[6%] h-24 w-24 animate-[social-float_13s_ease-in-out_infinite_-2s]" },
-    { Icon: Sparkles,     style: "bottom-[14%] left-[10%] h-20 w-20 animate-[social-float_9s_ease-in-out_infinite_-4s]" },
-    { Icon: Network,      style: "bottom-[20%] right-[12%] h-24 w-24 animate-[social-float_12s_ease-in-out_infinite_-6s]" },
-    { Icon: Waypoints,    style: "top-[46%] left-[46%] h-16 w-16 animate-[social-float_10s_ease-in-out_infinite_-3s]" },
-    { Icon: Zap,          style: "top-[60%] left-[20%] h-14 w-14 animate-[social-float_14s_ease-in-out_infinite_-5s]" },
-  ];
   return (
     <section id="scoring" className="section-edge section-light relative overflow-hidden">
-      {/* Floating AI-themed glyphs — signal engine vibe */}
+      {/* Single ambient AI glyph in the background */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        {aiFloats.map(({ Icon, style }, i) => (
-          <Icon
-            key={i}
-            className={`absolute text-[color:var(--signal)] opacity-[0.10] blur-[1.5px] ${style}`}
-            strokeWidth={1.25}
-          />
-        ))}
+        <BrainCircuit
+          className="absolute right-[6%] top-[14%] h-40 w-40 text-[color:var(--signal)] opacity-[0.07] blur-[1.5px] animate-[social-float_14s_ease-in-out_infinite]"
+          strokeWidth={1.1}
+        />
         <div className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/8 blur-[120px]" />
       </div>
 
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-white/70 px-3 py-1 text-[11px] font-semibold tracking-tight text-foreground backdrop-blur-md shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--signal)] opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--signal)]" />
-              </span>
-              <Sparkles className="h-3 w-3 text-[color:var(--signal)]" />
-              AI-powered scoring engine
-            </span>
-            <div className="mt-4">
-              <SectionTitle
-                kicker="Scoring"
-                title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
-                lede="Our AI reads every public post, weighs six signals, and ships a short human reason with each score — so your team trusts the priority order."
-              />
-            </div>
+            <SectionTitle
+              kicker="Scoring"
+              title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
+              lede="Our AI reads every public post, weighs six signals, and ships a short human reason with each score — so your team trusts the priority order."
+            />
             <div className="mt-6 rounded-xl border border-border bg-white/80 p-5 backdrop-blur-md shadow-sm">
               <div className="flex items-center justify-between">
                 <Mono className="text-muted-foreground">AI reasoning</Mono>
-                <span className="inline-flex items-center gap-1 rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">
-                  <Sparkles className="h-2.5 w-2.5" /> AI
-                </span>
+                <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
               </div>
               <p className="mt-3 text-sm">
                 <span className="text-[color:var(--signal)]">Low competition.</span> Based on 8 visible comments at capture time — below the category median of 21.
@@ -731,9 +708,7 @@ function Scoring() {
                 <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[color:var(--signal)]/10 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="flex items-center justify-between">
                   <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
-                  <span className="inline-flex items-center gap-1 rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">
-                    <Sparkles className="h-2.5 w-2.5" /> AI
-                  </span>
+                  <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
                 </div>
                 <h3 className="mt-3 text-base font-semibold tracking-tight">{t}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{b}</p>
