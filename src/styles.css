@@ -368,3 +368,13 @@
   animation: social-fade var(--dur, 9s) ease-in-out infinite;
   will-change: opacity, transform;
 }
+
+/* Footer wordmark marquee — right to left */
+@keyframes wordmark-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.wordmark-marquee {
+  animation: wordmark-marquee 28s linear infinite;
+  will-change: transform;
+}
