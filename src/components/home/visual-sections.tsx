@@ -186,13 +186,13 @@ export function FeatureBento() {
                   <div
                     className={`grid h-10 w-10 place-items-center rounded-lg ${
                       tone === "noir"
-                        ? "bg-white/10 text-[color:var(--signal)]"
+                        ? "bg-white text-[color:var(--signal)]"
                         : tone === "signal"
-                          ? "bg-[color:var(--signal)]/20 text-[color:var(--signal)]"
+                          ? "bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30"
                           : "border border-border bg-background/60 text-foreground"
                     }`}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    <Icon className="h-5 w-5" strokeWidth={2} />
                   </div>
                   <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
                   <p className={`mt-1.5 text-sm leading-relaxed ${tone === "noir" ? "text-white/60" : "text-muted-foreground"}`}>
@@ -210,8 +210,8 @@ export function FeatureBento() {
           <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-6 text-white">
             <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)]/20 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
-                  <Target className="h-3 w-3" /> Signal engine
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-[#0a0a0a]">
+                  <Target className="h-3 w-3 text-[color:var(--signal)]" /> Signal engine
                 </span>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight">
                   We listen to the open web — you reply to the ones that matter.
