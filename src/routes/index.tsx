@@ -268,9 +268,6 @@ function Hero() {
               </a>
             </div>
 
-            <p className="mt-6 text-xs text-muted-foreground">
-              Trusted by <span className="font-semibold text-foreground">2M+</span> sales professionals worldwide
-            </p>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 opacity-70 lg:justify-start">
               {TRUSTED_LOGOS.map((name) => (
                 <span key={name} className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
