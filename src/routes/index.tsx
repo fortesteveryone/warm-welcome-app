@@ -222,7 +222,7 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 const TRUSTED_LOGOS = [
@@ -907,6 +907,13 @@ function Pricing() {
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
             Apply for early access — unlock Pro free for 1 month.
+          </div>
+          <div className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            <span className="font-mono uppercase tracking-[0.18em] text-[10px]">Live on</span>
+            <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> <span className="text-foreground/80">Facebook</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> <span className="text-foreground/80">LinkedIn</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <span className="text-foreground/80">Reddit</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> <span className="text-foreground/80">Instagram</span></span>
           </div>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
