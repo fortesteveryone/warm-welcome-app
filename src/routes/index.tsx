@@ -1127,7 +1127,7 @@ function FloatingSocials() {
     { Icon: SiReddit,   color: "#FF4500", top: "76%", right: "14%", size: 52, dur: "11s", delay: "7.4s", peak: "0.28", fx: "-10px", fy: "-12px", blur: "blur-md" },
   ];
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 hidden lg:block">
+    <div aria-hidden className="pointer-events-none absolute inset-0">
       {items.map((it, i) => {
         const { Icon, color, size, dur, delay, peak, fx, fy, blur } = it;
         const style: React.CSSProperties = {
