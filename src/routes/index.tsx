@@ -243,13 +243,13 @@ function Hero() {
     <section className="relative overflow-hidden section-edge section-dark">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.06),transparent_60%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
       </div>
 
-      <Container className="relative pt-20 pb-16 md:pt-28 md:pb-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
+      <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
+        <div className="grid items-center gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
           {/* Left: copy */}
-          <div className="text-center lg:text-left">
+          <div className="min-w-0 text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
               <Eyebrow>
                 <span>Early access open</span>
@@ -258,78 +258,92 @@ function Hero() {
               </Eyebrow>
             </div>
 
-            <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
               Social posts to{" "}
-              <span className="bg-gradient-to-br from-[color:var(--signal)] to-foreground/60 bg-clip-text text-transparent">
-                sales-ready leads.
-              </span>
+              <span className="text-foreground/55">sales-ready leads.</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-muted-foreground md:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0">
               Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
             </p>
 
             {/* highlight strip */}
-            <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 px-4 py-1.5 text-sm">
-              <Sparkles className="h-3.5 w-3.5 text-[color:var(--signal)]" />
-              <span className="text-foreground">Every day we surface <span className="font-semibold text-[color:var(--signal)]">500+ fresh leads</span></span>
-              <span className="text-foreground/40">·</span>
-              <span className="inline-flex items-center gap-1 text-foreground"><MapPin className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Global coverage</span>
+            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-foreground/20 bg-foreground/[0.04] px-4 py-1.5 text-sm">
+              <Sparkles className="h-3.5 w-3.5 text-foreground" />
+              <span className="text-foreground/80">Every day we surface <span className="font-semibold text-foreground">500+ fresh leads</span></span>
+              <span className="text-foreground/30">·</span>
+              <span className="inline-flex items-center gap-1 text-foreground/80"><MapPin className="h-3.5 w-3.5 text-foreground" /> Global coverage</span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)] px-5 py-2.5 text-sm font-semibold text-background transition hover:opacity-90">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
                 Early access — 40% lifetime off <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-foreground/10">
                 Start now
               </a>
             </div>
-
-            <div className="marquee-mask mt-10 overflow-hidden">
-              <div className="animate-marquee-rtl flex w-max items-center gap-12 will-change-transform">
-                {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
-                  <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5">
-                    <logo.Icon className="h-7 w-7 shrink-0" style={{ color: logo.color }} />
-                    <span className="font-semibold text-base text-foreground/80 tracking-tight">{logo.name}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
           </div>
 
-          {/* Right: animated demo */}
-          <div className="relative">
-            <div aria-hidden className="absolute -inset-6 rounded-[32px] bg-gradient-to-b from-[color:var(--signal)]/10 to-transparent blur-2xl" />
-            <div className="relative rounded-xl border border-border bg-card/80 p-1 shadow-[0_30px_120px_-20px_oklch(0.72_0.19_145/0.25),0_0_0_1px_oklch(1_0_0/0.04)] backdrop-blur">
-              <div className="flex items-center justify-between border-b border-border px-4 py-2">
+          {/* Right: B&W lead inbox mock */}
+          <div className="relative min-w-0">
+            <div className="relative overflow-hidden rounded-xl border border-foreground/15 bg-foreground/[0.03] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+              <div className="flex items-center justify-between gap-3 border-b border-foreground/10 px-3 py-2 sm:px-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.2_25)]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.78_0.16_70)]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.72_0.19_145)]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/30" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
                 </div>
-                <Mono className="text-muted-foreground">growbylead.app / live</Mono>
-                <span className="inline-flex items-center gap-1.5 text-[11px] text-[color:var(--signal)]">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
-                  <Mono className="text-[color:var(--signal)]">LIVE</Mono>
+                <Mono className="truncate text-foreground/50">growbylead.app / inbox</Mono>
+                <span className="inline-flex shrink-0 items-center gap-1.5 text-[11px] text-foreground">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-foreground" />
+                  <Mono>LIVE</Mono>
                 </span>
               </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-background/40">
-                <img
-                  src="https://media.giphy.com/media/3o7TKsQ8gqVrxZw4AU/giphy.gif"
-                  alt="Grow By Lead dashboard streaming new leads in real time"
-                  className="h-full w-full object-cover"
-                  loading="eager"
-                />
+              <div className="space-y-2 p-3 sm:p-4">
+                {sampleLeads.slice(0, 4).map((l, i) => (
+                  <div
+                    key={l.title}
+                    className={`rounded-lg border px-3 py-2.5 ${i === 0 ? "border-foreground/30 bg-foreground/[0.06]" : "border-foreground/10 bg-foreground/[0.02]"}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="line-clamp-1 text-sm font-medium text-foreground">{l.title}</p>
+                      <span className="shrink-0 rounded-full border border-foreground/25 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-foreground/80">{l.temp}</span>
+                    </div>
+                    <div className="mt-1.5 flex items-center gap-2 text-[11px] text-foreground/55">
+                      <span aria-hidden>{l.flag}</span>
+                      <span>{l.country}</span>
+                      <span>·</span>
+                      <span>{l.platform}</span>
+                      <span>·</span>
+                      <span>{l.ago} ago</span>
+                    </div>
+                  </div>
+                ))}
+                <div className="flex items-center justify-between pt-1 text-[11px] text-foreground/50">
+                  <span>+ 496 new today</span>
+                  <span className="inline-flex items-center gap-1"><span className="h-1 w-1 animate-pulse rounded-full bg-foreground" /> streaming</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
+        {/* monochrome logo marquee */}
+        <div className="marquee-mask mt-12 w-full overflow-hidden">
+          <div className="animate-marquee-rtl flex w-max items-center gap-10 will-change-transform">
+            {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
+              <span key={`${logo.name}-${i}`} className="flex shrink-0 items-center gap-2.5 text-foreground/55">
+                <logo.Icon className="h-6 w-6 shrink-0" />
+                <span className="text-sm font-semibold tracking-tight">{logo.name}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* coverage flag strip */}
-        <div className="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-[color:var(--signal)]" /> Live in</span>
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-foreground/60">
+          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3 text-foreground" /> Live in</span>
           {[
             ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
             ["🇧🇩", "Bangladesh"], ["🇮🇳", "India"], ["🇦🇪", "UAE"], ["🇸🇬", "Singapore"],
