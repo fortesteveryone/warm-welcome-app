@@ -217,7 +217,17 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-const TRUSTED_LOGOS = ["Shopify", "HubSpot", "Webflow", "Notion", "Framer", "Linear", "Vercel", "Stripe"];
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe } from "react-icons/si";
+const TRUSTED_LOGOS = [
+  { name: "Shopify", Icon: SiShopify },
+  { name: "HubSpot", Icon: SiHubspot },
+  { name: "Webflow", Icon: SiWebflow },
+  { name: "Notion", Icon: SiNotion },
+  { name: "Framer", Icon: SiFramer },
+  { name: "Linear", Icon: SiLinear },
+  { name: "Vercel", Icon: SiVercel },
+  { name: "Stripe", Icon: SiStripe },
+];
 
 function Hero() {
   return (
