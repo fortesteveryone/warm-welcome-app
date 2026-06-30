@@ -132,7 +132,7 @@ function Home() {
       <StatsStrip />
       <Platforms />
       <Scoring />
-      <Coverage />
+      
       <Concierge />
       <Pricing />
       <Testimonials />
@@ -790,50 +790,7 @@ function UseCases() {
 /* (Categories chip list removed — trimming page length) */
 
 
-/* ---------- coverage ---------- */
-const countries = [
-  { flag: "🇺🇸", name: "United States", live: true },
-  { flag: "🇨🇦", name: "Canada", live: true },
-  { flag: "🇬🇧", name: "United Kingdom", live: true },
-  { flag: "🇦🇺", name: "Australia", live: true },
-  { flag: "🇧🇩", name: "Bangladesh", live: true },
-  { flag: "🇮🇳", name: "India", live: true },
-  { flag: "🇦🇪", name: "UAE", live: true },
-  { flag: "🇸🇬", name: "Singapore", live: true },
-  { flag: "🇩🇪", name: "Germany", live: false },
-  { flag: "🇫🇷", name: "France", live: false },
-  { flag: "🇧🇷", name: "Brazil", live: false },
-  { flag: "🌍", name: "Global pool", live: true },
-];
-
-function Coverage() {
-  return (
-    <section className="section-edge section-light">
-      <Container className="py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
-          <SectionTitle
-            kicker="Coverage"
-            title={<>Wherever buyers post, <span className="text-muted-foreground">we organize.</span></>}
-            lede="Country and city show only when confident — left blank when not. We don't guess geography."
-          />
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 md:grid-cols-4">
-            {countries.map((c) => (
-              <div key={c.name} className="flex items-center justify-between gap-2 bg-card px-4 py-3.5">
-                <div className="flex min-w-0 items-center gap-2.5">
-                  <span className="text-lg leading-none" aria-hidden>{c.flag}</span>
-                  <span className="truncate text-sm font-medium">{c.name}</span>
-                </div>
-                {c.live
-                  ? <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--signal)] shadow-[0_0_6px_var(--signal)]" />
-                  : <Mono className="shrink-0 text-muted-foreground">soon</Mono>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
+/* ---------- coverage section removed — covered in hero flag strip ---------- */
 
 /* ---------- concierge (VIP hot-leads) ---------- */
 function Concierge() {
