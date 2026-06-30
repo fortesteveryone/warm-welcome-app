@@ -331,6 +331,7 @@ function Hero() {
             <span key={n} className="inline-flex items-center gap-1.5"><span className="text-base leading-none" aria-hidden>{f}</span>{n}</span>
           ))}
           <span className="inline-flex items-center gap-1.5 font-medium text-foreground/80">
+            <span className="text-foreground/60">and</span>
             <Globe className="h-3.5 w-3.5 text-foreground" /> Global coverage
           </span>
         </div>
