@@ -459,8 +459,18 @@ const outOfScope = [
 
 function Scope() {
   return (
-    <section className="section-edge section-light">
-      <Container className="py-16 md:py-20">
+    <section className="section-edge section-light relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <Linkedin
+          className="social-float absolute -left-4 top-10 h-20 w-20 text-[#0A66C2] opacity-[0.07] blur-[2px]"
+          style={{ ["--dur" as never]: "16s", ["--dx" as never]: "16px", ["--dy" as never]: "-14px", ["--r" as never]: "-6deg" } as React.CSSProperties}
+        />
+        <Facebook
+          className="social-float absolute right-2 bottom-8 h-24 w-24 text-[#1877F2] opacity-[0.06] blur-[2.5px]"
+          style={{ ["--dur" as never]: "19s", ["--dx" as never]: "-14px", ["--dy" as never]: "18px", ["--r" as never]: "8deg" } as React.CSSProperties}
+        />
+      </div>
+      <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
           title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
