@@ -222,7 +222,7 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiLinkedin, SiReddit, SiX } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiLinkedin as SiLinkedIn, SiReddit, SiX } from "react-icons/si";
 
 const TRUSTED_LOGOS = [
   { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
