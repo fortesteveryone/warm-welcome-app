@@ -187,12 +187,12 @@
    black slab. Use .section-noir / .card-noir for the rare real-black
    accent pieces. */
 @utility section-dark {
-  --background: oklch(0.975 0.012 150);
+  --background: oklch(0.952 0.025 150);
   --card: oklch(1 0 0);
-  --muted: oklch(0.965 0.014 150);
+  --muted: oklch(0.942 0.028 150);
   --muted-foreground: oklch(0.42 0 0);
-  --border: oklch(0 0 0 / 8%);
-  background-color: oklch(0.975 0.012 150);
+  --border: oklch(0 0 0 / 10%);
+  background-color: oklch(0.952 0.025 150);
   color: oklch(0.16 0 0);
 }
 
