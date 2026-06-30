@@ -420,19 +420,10 @@ const tagBrand: Record<string, BrandMark[]> = {
   Webflow:   [{ Icon: SiWebflow,   color: "#146EF5" }],
   Wix:       [{ Icon: SiWix,       color: "#0C6EFC" }],
   Framer:    [{ Icon: SiFramer,    color: "#0055FF" }],
-  "Paid ads (Meta / Google)": [
-    { Icon: SiMeta, color: "#0866FF" },
-    { Icon: SiGoogleads, color: "#4285F4" },
-  ],
+  "Paid ads (Meta / Google)": [{ Icon: SiGoogleads, color: "#4285F4" }],
   "E-commerce stores": [{ Icon: SiShopify, color: "#95BF47" }],
-  "Analytics / GTM / CRO": [
-    { Icon: SiGoogleanalytics, color: "#E37400" },
-    { Icon: SiGoogletagmanager, color: "#246FDB" },
-  ],
-  "Social media management": [
-    { Icon: SiFacebook, color: "#1877F2" },
-    { Icon: SiX, color: "#000000" },
-  ],
+  "Analytics / GTM / CRO": [{ Icon: SiGoogleanalytics, color: "#E37400" }],
+  "Social media management": [{ Icon: SiFacebook, color: "#1877F2" }],
 };
 
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
