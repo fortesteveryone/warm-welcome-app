@@ -240,10 +240,9 @@ const TRUSTED_LOGOS = [
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden section-edge">
+    <section className="relative overflow-hidden section-edge section-dark">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-200px] h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
-        <div className="absolute right-[-200px] top-[100px] h-[500px] w-[700px] rounded-full bg-[radial-gradient(circle_at_center,oklch(0.7_0.16_230/0.15),transparent_60%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.06),transparent_60%)]" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
@@ -431,7 +430,7 @@ const outOfScope = [
 
 function Scope() {
   return (
-    <section className="section-edge section-surface-amber">
+    <section className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
@@ -502,7 +501,7 @@ const afterLoginItems = [
 
 function AfterLogin() {
   return (
-    <section id="features" className="section-edge section-surface-cyan">
+    <section id="features" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
@@ -545,7 +544,7 @@ const drafts = [
 function ExampleLead() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="example" className="section-edge">
+    <section id="example" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Example"
@@ -675,7 +674,7 @@ const dailyVolumeStats = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge section-surface-blue">
+    <section id="platforms" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
@@ -736,7 +735,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-surface-violet">
+    <section id="scoring" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -790,7 +789,7 @@ const useCases = [
 
 function UseCases() {
   return (
-    <section className="section-edge">
+    <section className="section-edge section-dark">
       <Container className="py-12 md:py-16">
         <div className="flex flex-col items-center text-center">
           <Mono className="text-muted-foreground">Who uses it</Mono>
@@ -831,7 +830,7 @@ const countries = [
 
 function Coverage() {
   return (
-    <section className="section-edge section-surface-amber">
+    <section className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
           <SectionTitle
@@ -867,7 +866,7 @@ function Concierge() {
     { Icon: Inbox,       title: "Dedicated VIP inbox",     body: "A separate \"Hot Leads\" section unlocks in your dashboard so you can act on the best opportunities first." },
   ];
   return (
-    <section id="concierge" className="section-edge section-surface-signal">
+    <section id="concierge" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
@@ -966,7 +965,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge section-surface-charcoal">
+    <section id="pricing" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
@@ -1123,7 +1122,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
 function Testimonials() {
   const row = [...testimonials, ...testimonials]; // duplicate for seamless loop
   return (
-    <section id="testimonials" className="section-edge section-surface-violet">
+    <section id="testimonials" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Loved by"
@@ -1157,7 +1156,7 @@ const faqs = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="section-edge">
+    <section className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
         <div className="mt-10 divide-y divide-border rounded-xl border border-border bg-card/50">
@@ -1179,7 +1178,7 @@ function FAQ() {
 /* ---------- final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="section-edge section-surface-signal">
+    <section className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div aria-hidden className="pointer-events-none absolute inset-0">

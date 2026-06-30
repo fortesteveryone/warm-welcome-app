@@ -28,10 +28,9 @@ export function PageShell({
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-      <section className="relative overflow-hidden section-edge">
+      <section className="relative overflow-hidden section-edge section-dark">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-[-200px] h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_145/0.18),transparent_60%)] blur-3xl" />
-          <div className="absolute right-[-200px] top-[100px] h-[500px] w-[700px] rounded-full bg-[radial-gradient(circle_at_center,oklch(0.7_0.16_230/0.15),transparent_60%)] blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.05),transparent_60%)]" />
         </div>
         <Container className="py-14 md:py-20">
           <Link
@@ -49,10 +48,10 @@ export function PageShell({
         </Container>
       </section>
 
-      <section className="section-edge section-surface-cyan">
+      <section className="section-edge section-light">
         <Container className="py-14 md:py-20">
           <div className="max-w-[760px]">
-            <div className="prose prose-invert prose-sm md:prose-base max-w-none">
+            <div className="prose prose-sm md:prose-base max-w-none">
               <div className="space-y-8 text-sm leading-relaxed text-foreground/85 md:text-[15px]">
                 {children}
               </div>
