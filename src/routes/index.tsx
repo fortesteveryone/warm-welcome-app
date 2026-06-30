@@ -547,9 +547,9 @@ function AfterLogin() {
         />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {afterLoginItems.map(({ Icon, title, body }, i) => (
-            <div key={title} className="group relative rounded-xl border border-border bg-card/50 p-6 transition hover:bg-card">
+            <div key={title} className="group relative rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
               <div className="flex items-center justify-between">
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                   <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </div>
                 <Mono className="text-muted-foreground">0{i + 1}</Mono>
