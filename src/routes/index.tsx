@@ -256,11 +256,21 @@ function Hero() {
           {/* Left: copy */}
           <div className="min-w-0 text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
-              <Eyebrow>
+              <a
+                href="#pricing"
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/80 py-1 pl-3 pr-1.5 text-xs text-muted-foreground backdrop-blur transition hover:border-[color:var(--signal)]/50 hover:bg-card hover:text-foreground"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--signal)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+                </span>
                 <span>Early access open</span>
                 <span className="text-foreground/40">→</span>
                 <span className="text-foreground">40% lifetime discount</span>
-              </Eyebrow>
+                <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-foreground px-2 py-1 text-[11px] font-semibold text-background transition group-hover:bg-[color:var(--signal)] group-hover:text-background">
+                  Claim <ArrowRight className="h-3 w-3 transition group-hover:translate-x-0.5" />
+                </span>
+              </a>
             </div>
 
             <h1 className="mt-6 text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
