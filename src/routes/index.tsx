@@ -281,7 +281,7 @@ function Hero() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
-              Postly turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
+              Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads — delivered to your inbox daily.
             </p>
 
             {/* highlight strip */}
