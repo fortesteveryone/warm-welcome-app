@@ -8,9 +8,9 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Postly" },
-      { name: "description", content: "Tactics, templates and playbooks for website and SEO agencies, freelancers and lead-gen teams." },
+      { name: "description", content: "Tactics, templates and playbooks for website design, development and CMS agencies, freelancers and lead-gen teams." },
       { property: "og:title", content: "Postly — Blog" },
-      { property: "og:description", content: "Lead generation, outreach, web design and SEO playbooks for agencies and freelancers." },
+      { property: "og:description", content: "Lead generation, outreach, web design, development and CMS playbooks for agencies and freelancers." },
     ],
   }),
   component: BlogIndex,
