@@ -21,7 +21,7 @@ export function Logo({ className = "h-9 w-auto" }: { className?: string }) {
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "Home", href: "/" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blogs", href: "/blog" },
   { label: "Support", href: "/support" },
   { label: "Contact", href: "/contact" },
 ];
@@ -143,7 +143,7 @@ export function SiteFooter() {
     {
       title: "Resources",
       links: [
-        { label: "Blog", to: "/blog" },
+        { label: "Blogs", to: "/blog" },
         { label: "Support", to: "/support" },
         { label: "Docs", soon: true },
       ],
