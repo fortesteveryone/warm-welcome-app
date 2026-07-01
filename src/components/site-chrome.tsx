@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu, X } from "lucide-react";
-import logoAsset from "@/assets/growbylead-logo.png.asset.json";
-import footerLogoAsset from "@/assets/footer-logo.png.asset.json";
+import logoUrl from "@/assets/postly-logo.png";
+import footerLogoUrl from "@/assets/postly-footer-logo.png";
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
