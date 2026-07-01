@@ -723,7 +723,7 @@ const useCases = [
 function UseCases() {
   return (
     <section className="section-edge section-dark">
-      <Container className="py-12 md:py-16">
+      <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
           <Mono className="text-muted-foreground">Who uses it</Mono>
           <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
@@ -1236,7 +1236,7 @@ function Footer() {
   ];
   return (
     <footer className="bg-background">
-      <Container className="py-16">
+      <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(5,1fr)]">
           <div>
             <div className="flex items-center gap-2">
