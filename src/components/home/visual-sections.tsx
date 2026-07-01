@@ -43,12 +43,12 @@ export function ProductShowcase() {
     <section id="product" className="section-edge section-dark relative overflow-hidden scroll-mt-24">
       <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
-          <Kicker>Inside Postly</Kicker>
+          <Kicker>Inside the product</Kicker>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-[44px]">
-            Your website opportunity workspace
+            A focused workspace for website opportunities.
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Postly brings public website-service posts into one focused dashboard.
+            Review fresh public posts, understand the opportunity, and prepare a reply without jumping between platforms.
           </p>
         </div>
 
@@ -67,10 +67,10 @@ export function ProductShowcase() {
                 </span>
               </div>
               <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                Your inbox, your pipeline, your scoreboard.
+                Your website opportunity feed, organized and ready.
               </h3>
               <p className="mt-2 max-w-md text-sm text-white/60">
-                Triage 365+ fresh leads daily without losing context. Filters, scores, and one-click outreach in a single view.
+                Review fresh public posts from Facebook, LinkedIn, Instagram, and Reddit with filters, scores, and source proof in one clean view.
               </p>
               <div className="relative mt-6 overflow-hidden rounded-xl border border-white/10">
                 <img
@@ -85,20 +85,20 @@ export function ProductShowcase() {
             </div>
           </figure>
 
-          {/* Analytics card */}
+          {/* Lead score card */}
           <div className="col-span-6 overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-5 text-white sm:col-span-3 lg:col-span-2">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-medium">
-                <TrendingUp className="h-3 w-3" /> Trend
+                <Target className="h-3 w-3" /> Lead Score
               </span>
               <ArrowUpRight className="h-4 w-4 text-white/40" />
             </div>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">Always-on analytics</h3>
-            <p className="mt-1 text-xs text-white/55">Daily volume, source mix, conversion — all auto-rolled.</p>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">Prioritize the best opportunities first.</h3>
+            <p className="mt-1 text-xs text-white/55">See why a post looks promising based on intent, urgency, freshness, competition, budget signal, and service fit.</p>
             <div className="relative mt-4 overflow-hidden rounded-lg border border-white/10">
               <img
                 src={dashAnalytics}
-                alt="Analytics view"
+                alt="Lead score view"
                 width={1280}
                 height={896}
                 loading="lazy"
@@ -113,10 +113,10 @@ export function ProductShowcase() {
             <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
               <Sparkles className="h-3 w-3" /> AI Outreach
             </span>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">Reply faster without sounding generic.</h3>
-            <p className="mt-1 text-xs text-muted-foreground">Generate multiple outreach angles based on the original post, then edit them in your own voice.</p>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to personalize.</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Start with a draft, adjust your tone, and respond faster to qualified website opportunities.</p>
             <div className="mt-4 space-y-2">
-              {["Website redesign support", "Landing page offer", "Clear scope & pricing"].map((t, i) => (
+              {["Website redesign support", "Quick delivery angle", "Scope & budget clarity"].map((t, i) => (
                 <div
                   key={t}
                   className={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs ${

@@ -144,10 +144,10 @@ export function SiteFooter() {
         <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-12 md:flex-row md:items-end">
           <div className="max-w-xl">
             <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Buying signals, delivered daily.
+              Website opportunities, delivered daily.
             </h3>
             <p className="mt-3 text-sm text-white/60">
-              Structured, scored, outreach-ready leads from across social — no scraping, no spreadsheets.
+              Public website-service signals, organized into structured, scored, outreach-ready opportunities.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -173,7 +173,7 @@ export function SiteFooter() {
               <img src={footerLogoUrl} alt="Postly" className="h-20 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
-              Social media buying signals, organized into structured, scored, outreach-ready leads.
+              Postly helps web agencies, developers, freelancers, and CMS specialists find website-service opportunities from public social posts.
             </p>
             <div className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
               <span className="h-1.5 w-1.5 rounded-md bg-[#22C55E]" /> All systems normal
@@ -222,8 +222,8 @@ export function SiteFooter() {
 
         {/* Bottom meta */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6">
-          <Mono className="text-white/50">© {new Date().getFullYear()} Postly</Mono>
-          <Mono className="text-white/50">Built for sales teams that move fast</Mono>
+          <Mono className="text-white/50">© {new Date().getFullYear()} Postly. Built for website service teams that move fast.</Mono>
+          <Mono className="text-white/50">postly.growbylead.com</Mono>
         </div>
       </Container>
 

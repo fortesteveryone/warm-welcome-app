@@ -1,30 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import React, { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Cpu, Code2, Copy, ExternalLink, Facebook,
-  Filter, Flame, Globe, Heart, Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MapPin, Menu, MessageCircle,
-  MessageSquare, Minus, Network, Plus, Search, Send, Share2, Shield, Sparkles, Target, Waypoints, X, Zap,
+  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Facebook, Filter, Flame, Globe,
+  Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MessageSquare, Search, Send,
+  Shield, Sparkles, Target, X,
 } from "lucide-react";
-import logoAsset from "@/assets/growbylead-logo.png.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { ProductShowcase, FeatureBento, StatsStrip } from "@/components/home/visual-sections";
+import { ProductShowcase } from "@/components/home/visual-sections";
 import { HeroReel } from "@/components/home/hero-reel";
+import {
+  SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
+  SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
+  SiNotion, SiLinear, SiVercel, SiStripe,
+} from "react-icons/si";
+import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Postly — Social media buying signals, scored and sales-ready" },
-      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for agencies, freelancers and sales teams." },
+      { title: "Postly — Website service opportunities from public social posts" },
+      { name: "description", content: "Postly turns public website-service posts on Facebook, LinkedIn, Instagram and Reddit into structured, scored, outreach-ready opportunities for web agencies, freelancers and CMS specialists." },
       { property: "og:title", content: "Postly" },
-      { property: "og:description", content: "From messy social posts to clean, sales-ready leads with outreach drafts included." },
+      { property: "og:description", content: "Find website design, development, redesign and CMS opportunities from public social posts." },
     ],
   }),
   component: Home,
 });
 
-/* ============================================================
-   Primitives
-   ============================================================ */
+/* ============================================================ Primitives ============================================================ */
 
 function Mono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <span className={`font-mono text-[11px] tracking-tight ${className}`}>{children}</span>;
@@ -34,15 +37,6 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
   return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-      <span className="h-1.5 w-1.5 rounded-md bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
-      {children}
-    </div>
-  );
-}
-
 function SectionTitle({ kicker, title, lede }: { kicker: string; title: React.ReactNode; lede?: string }) {
   return (
     <div className="max-w-4xl">
@@ -50,7 +44,7 @@ function SectionTitle({ kicker, title, lede }: { kicker: string; title: React.Re
       <h2 className="mt-3 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-5xl">
         {title}
       </h2>
-      {lede && <p className="mt-4 max-w-4xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{lede}</p>}
+      {lede && <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{lede}</p>}
     </div>
   );
 }
@@ -77,7 +71,6 @@ function RedditIcon({ className = "h-4 w-4" }: { className?: string }) {
     </svg>
   );
 }
-
 function XIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
@@ -85,8 +78,6 @@ function XIcon({ className = "h-4 w-4" }: { className?: string }) {
     </svg>
   );
 }
-
-
 function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
@@ -95,47 +86,33 @@ function ThreadsIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-const PLATFORM_META: Record<string, { Icon: React.ComponentType<{ className?: string }>; color: string; label: string }> = {
-  Facebook:  { Icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", label: "Facebook" },
-  LinkedIn:  { Icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", label: "LinkedIn" },
-  Reddit:    { Icon: RedditIcon, color: "#FF4500", label: "Reddit" },
-  Instagram: { Icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />, color: "#E1306C", label: "Instagram" },
-  X:         { Icon: XIcon, color: "#FFFFFF", label: "X" },
+const PLATFORM_META: Record<string, { color: string; label: string }> = {
+  Facebook:  { color: "#1877F2", label: "Facebook" },
+  LinkedIn:  { color: "#0A66C2", label: "LinkedIn" },
+  Reddit:    { color: "#FF4500", label: "Reddit" },
+  Instagram: { color: "#E1306C", label: "Instagram" },
+  X:         { color: "#0F0F0F", label: "X" },
 };
 
-function PlatformBadge({ name, className = "h-3.5 w-3.5" }: { name: string; className?: string }) {
-  const m = PLATFORM_META[name];
-  if (!m) return <span className="text-xs">{name}</span>;
-  const { Icon } = m;
-  return (
-    <span className="inline-flex items-center gap-1.5 text-xs">
-      <span style={{ color: m.color }} className="inline-flex"><Icon className={className} /></span>
-      <span>{m.label}</span>
-    </span>
-  );
-}
-
-/* ============================================================
-   Page
-   ============================================================ */
+/* ============================================================ Page ============================================================ */
 
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
-      {/* Who this is for / what Postly finds */}
-      <Scope />
-      {/* What you get inside the dashboard */}
+      <TrustStrip />
       <ProductShowcase />
-      {/* Where the data comes from */}
-      <Platforms />
-      {/* How leads are scored */}
-      <Scoring />
-      {/* Example lead preview */}
+      <Scope />
+      <WhyTeamsSwitch />
+      <SignalEngine />
       <AfterLogin />
-      {/* Pricing / early access */}
+      <ByTheNumbers />
+      <Platforms />
+      <Scoring />
+      <VipAddon />
       <Pricing />
+      <BuiltFor />
       <FAQ />
       <FinalCTA />
       <SiteFooter />
@@ -143,88 +120,7 @@ function Home() {
   );
 }
 
-/* ---------- top bar ---------- */
-function TopBar() {
-  const links: [string, string][] = [
-    
-    ["Platforms", "#platforms"],
-    ["Scoring", "#scoring"],
-    ["Pricing", "#pricing"],
-    ["Blog", "/blog"],
-  ];
-  const [open, setOpen] = useState(false);
-  return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
-      <Container className="flex h-14 items-center justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-7">
-          <a href="#" className="flex shrink-0 items-center gap-2">
-            <Logo />
-          </a>
-          <nav className="hidden items-center gap-6 md:flex">
-            {links.map(([l, h]) => (
-              <a key={h} href={h} className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>
-            ))}
-          </nav>
-        </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
-            Sign in
-          </a>
-          <a href="#pricing" className="hidden items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90 sm:inline-flex">
-            Get started <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="grid h-9 w-9 place-items-center rounded-md border border-border bg-card/60 text-foreground transition hover:bg-card md:hidden"
-          >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
-      </Container>
-
-      {/* Mobile dropdown */}
-      <div
-        className={`overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
-          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <Container className="flex flex-col gap-1 py-3">
-          {links.map(([l, h]) => (
-            <a
-              key={h}
-              href={h}
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-foreground/90 transition hover:bg-card"
-            >
-              <span>{l}</span>
-              <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
-            </a>
-          ))}
-          <div className="mt-2 grid grid-cols-2 gap-2 border-t border-border pt-3">
-            <a href="#" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-md border border-border bg-card/60 px-3.5 py-2 text-sm font-medium text-foreground transition hover:bg-card">
-              Sign in
-            </a>
-            <a href="#pricing" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-1.5 rounded-md bg-foreground px-3.5 py-2 text-sm font-medium text-background transition hover:bg-foreground/90">
-              Get started <ArrowRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </Container>
-      </div>
-    </header>
-  );
-}
-
-function Logo({ className = "h-7 w-auto" }: { className?: string }) {
-  return <img src={logoAsset.url} alt="Postly" className={className} />;
-}
-
-/* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
-import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
-
+/* ---------- hero (UNCHANGED CONTENT) ---------- */
 const TRUSTED_LOGOS = [
   { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
   { name: "HubSpot", Icon: SiHubspot, color: "#FF7A59" },
@@ -253,10 +149,8 @@ function Hero() {
         <HeroFloatingSocials />
       </div>
 
-
       <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
         <div className="grid items-center gap-8 sm:gap-10 md:gap-14">
-          {/* Copy */}
           <div className="min-w-0 text-center">
             <div className="flex justify-center">
               <a
@@ -285,7 +179,6 @@ function Hero() {
               Built for web designers, web developers, CMS specialists and agencies — Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads in your dashboard.
             </p>
 
-            {/* highlight strip */}
             <div className="mt-6 flex justify-center">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 text-sm text-foreground/70">
                 Every day we surface <span className="rounded-full bg-[color:var(--signal)]/15 px-2.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span>
@@ -303,19 +196,12 @@ function Hero() {
           </div>
 
           <div className="relative w-full min-w-0">
-            {/* top-right green corner glow (like reference) */}
             <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-md bg-[color:var(--signal)]/40 blur-[90px]" />
             <HeroReel />
-            {/* bottom fade: reel dissolves gently into the white section background */}
             <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-56 rounded-b-2xl bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.5)_55%,#ffffff_100%)]" />
           </div>
         </div>
 
-
-
-
-
-        {/* monochrome logo marquee */}
         <div className="marquee-mask mt-12 w-full overflow-hidden">
           <div className="animate-marquee-rtl flex w-max items-center gap-10 will-change-transform">
             {[...TRUSTED_LOGOS, ...TRUSTED_LOGOS].map((logo, i) => (
@@ -327,7 +213,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* coverage flag strip */}
         <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-foreground/60">
           {[
             ["🇺🇸", "USA"], ["🇬🇧", "UK"], ["🇨🇦", "Canada"], ["🇦🇺", "Australia"],
@@ -345,76 +230,37 @@ function Hero() {
   );
 }
 
-const sampleLeads = [
-  { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
-  { title: "Need a WordPress rebuild for local plumbing business", platform: "Reddit",   temp: "Warm", service: "WordPress", comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
-  { title: "Need help with a Webflow rebuild for restaurant site", platform: "Facebook", temp: "Warm", service: "Webflow", comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
-  { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
-  { title: "Anyone do landing pages for SaaS launch?",           platform: "Reddit",   temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
-] as const;
-
-function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
-  const toneByTemp: Record<string, "hot" | "warm" | "cold"> = { Hot: "hot", Warm: "warm", Cold: "cold" };
+/* ---------- trust / category strip ---------- */
+function TrustStrip() {
+  const services = [
+    "Website design", "Website development", "Redesign", "WordPress", "Webflow",
+    "Wix", "Framer", "Shopify website rebuild", "Landing pages", "CMS migration",
+  ];
+  const countries = ["USA", "UK", "Canada", "Australia", "UAE", "Bangladesh", "India", "Singapore", "Global coverage"];
   return (
-    <div className={`rounded-lg border px-3 py-2.5 transition ${active ? "border-foreground/30 bg-foreground/[0.04]" : "border-transparent hover:border-border hover:bg-card"}`}>
-      <div className="flex items-start justify-between gap-3">
-        <p className="line-clamp-1 text-sm font-medium">{l.title}</p>
-        <Tag tone={toneByTemp[l.temp]}>{l.temp}</Tag>
-      </div>
-      <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
-        <PlatformBadge name={l.platform} className="h-3 w-3" />
-        <span>·</span>
-        <span className="inline-flex items-center gap-1"><span aria-hidden>{l.flag}</span>{l.country}</span>
-        <span className="ml-auto font-mono">{l.ago}</span>
-      </div>
-    </div>
-  );
-}
-
-function PreviewDetail() {
-  return (
-    <div className="rounded-lg border border-border bg-background/40 p-4">
-      <div className="flex flex-wrap items-center gap-1.5">
-        <Tag tone="hot">● Hot</Tag>
-        <Tag tone="signal">High intent</Tag>
-        <Tag>Low competition</Tag>
-        <span className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 text-[11px] font-medium">
-          <span style={{ color: PLATFORM_META.Facebook.color }}><Facebook className="h-3 w-3" fill="currentColor" strokeWidth={0} /></span>
-          Facebook
-        </span>
-        <span className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 text-[11px]">
-          🇧🇩 Bangladesh
-        </span>
-      </div>
-      <h3 className="mt-3 text-base font-semibold leading-tight tracking-tight">Paid portfolio website developer needed for updates</h3>
-      <p className="mt-1.5 text-sm text-muted-foreground">
-        Khansa Maroof is looking for a developer to update a portfolio website and mentioned good payment.
-      </p>
-      <div className="mt-3 grid grid-cols-3 gap-1.5 text-xs">
-        {[
-          ["Reactions", "6", Heart],
-          ["Comments", "8", MessageCircle],
-          ["Shares", "—", Share2],
-        ].map(([k, v, I]) => {
-          const Ico = I as React.ComponentType<{ className?: string }>;
-          return (
-            <div key={k as string} className="rounded-md border border-border bg-card/40 px-2.5 py-1.5">
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <Ico className="h-3 w-3" />
-                <Mono>{k as string}</Mono>
-              </div>
-              <div className="mt-0.5 text-foreground">{v as string}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="mt-3 rounded-md border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-3 text-xs">
-        <Mono className="text-[color:var(--signal)]">Recommended action</Mono>
-        <p className="mt-1.5 text-foreground/90">
-          Contact within 30 minutes with portfolio examples. Ask for current site link, required updates, timeline and payment terms.
+    <section className="section-edge section-light">
+      <Container className="py-12 md:py-14">
+        <p className="text-center text-sm font-medium text-foreground/80 md:text-base">
+          Built for web agencies, freelancers, developers, and CMS specialists.
         </p>
-      </div>
-    </div>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground md:text-sm">
+          {services.map((s, i) => (
+            <React.Fragment key={s}>
+              <span className="text-foreground/75">{s}</span>
+              {i < services.length - 1 && <span aria-hidden className="text-foreground/25">·</span>}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
+          {countries.map((c, i) => (
+            <React.Fragment key={c}>
+              <span>{c}</span>
+              {i < countries.length - 1 && <span aria-hidden className="text-foreground/25">·</span>}
+            </React.Fragment>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }
 
@@ -425,42 +271,28 @@ const tagBrand: Record<string, BrandMark[]> = {
   Webflow:   [{ Icon: SiWebflow,   color: "#146EF5" }],
   Wix:       [{ Icon: SiWix,       color: "#0C6EFC" }],
   Framer:    [{ Icon: SiFramer,    color: "#0055FF" }],
-  "Paid ads (Meta / Google)": [{ Icon: SiGoogleads, color: "#4285F4" }],
-  "E-commerce stores": [{ Icon: SiShopify, color: "#95BF47" }],
-  "Analytics / GTM / CRO": [{ Icon: SiGoogleanalytics, color: "#E37400" }],
-  "Social media management": [{ Icon: SiFacebook, color: "#1877F2" }],
+  "Shopify website rebuild": [{ Icon: SiShopify, color: "#95BF47" }],
 };
 
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
-  { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
-  { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
-  { Icon: Search,  title: "Migrations & rebuilds",        tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "Framer migration", "CMS setup"] },
+  { Icon: Code2,   title: "Website work",       tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild", "Landing pages"] },
+  { Icon: Layers,  title: "CMS platforms",      tags: ["WordPress", "Webflow", "Wix", "Framer", "Shopify website rebuild"] },
+  { Icon: Search,  title: "Migrations & setup", tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "CMS setup", "Platform migration"] },
 ];
 
 const outOfScope = [
-  "E-commerce stores", "Paid ads (Meta / Google)", "SEO services", "Design & branding", "Logo / graphic design",
-  "Social media management", "Analytics / GTM / CRO", "Real estate", "Legal", "Healthcare",
-  "Recruiting", "Physical products", "Financial services",
+  "SEO-only requests", "Paid ads", "Logo design only", "Social media management",
+  "Recruiting posts", "General business directories", "Physical product leads", "Unrelated service categories",
 ];
 
 function Scope() {
   return (
     <section className="section-edge section-light relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <SiLinkedIn
-          className="social-float absolute -left-4 top-10 h-20 w-20 opacity-[0.09] blur-[2px]"
-          style={{ color: "#0A66C2", ["--dur" as never]: "16s", ["--dx" as never]: "16px", ["--dy" as never]: "-14px", ["--r" as never]: "-6deg" } as React.CSSProperties}
-        />
-        <SiFacebook
-          className="social-float absolute right-2 bottom-8 h-24 w-24 opacity-[0.08] blur-[2.5px]"
-          style={{ color: "#1877F2", ["--dur" as never]: "19s", ["--dx" as never]: "-14px", ["--dy" as never]: "18px", ["--r" as never]: "8deg" } as React.CSSProperties}
-        />
-      </div>
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Only for <span className="text-muted-foreground">website &amp; CMS</span> service sellers.</>}
-          lede="Postly is niche on purpose. We only capture posts where people ask for website work — design, development, redesign or rebuild — on WordPress, Webflow, Wix or Framer. Nothing else."
+          title={<>Only <span className="text-muted-foreground">website and CMS</span> opportunities.</>}
+          lede="Postly tracks posts where people ask for website design, development, redesign, landing page, CMS, or platform migration help."
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
@@ -494,31 +326,111 @@ function Scope() {
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
             <p className="mt-2 text-sm text-foreground/90">
-              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer. If a post asks for that kind of help, it lands in your inbox.
+              Anyone selling website design, development, redesign, rebuild, landing pages, CMS setup, or platform migration services. If a public post asks for this kind of website help, it belongs in Postly.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card/50 p-5">
             <div className="flex items-center gap-2">
               <X className="h-4 w-4 text-red-500" />
-              <Mono className="text-red-500">Not in scope (today)</Mono>
+              <Mono className="text-red-500">Not in scope</Mono>
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We don't capture leads for general industries like:
-            </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {outOfScope.map((t) => {
-                const brand = tagBrand[t];
-                return (
-                  <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
-                    {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3 no-underline" style={{ color: b.color }} />)}
-                    {t}
-                  </span>
-                );
-              })}
+              {outOfScope.map((t) => (
+                <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
+                  {t}
+                </span>
+              ))}
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              We focus only on website design, development and CMS leads. If you sell something else, Postly probably isn't the right fit.
+          </div>
+        </div>
+
+        <p className="mt-6 text-center text-xs text-muted-foreground">
+          Postly is built for website-service sellers. If the post is not about website or CMS help, we do not treat it as a qualified opportunity.
+        </p>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------- why teams switch ---------- */
+const whyCards = [
+  { Icon: Filter, title: "Useful filters",     desc: "Filter by platform, country, service type, intent, budget signal, and lead temperature." },
+  { Icon: Target, title: "Scores with context", desc: "Every score includes a short reason so your team understands the priority." },
+  { Icon: Globe,  title: "Global by default",  desc: "Track website opportunities across supported countries without locking your pipeline to one market." },
+  { Icon: Send,   title: "Faster first replies", desc: "Open an opportunity, choose a reply angle, personalize it, and follow up with less manual work." },
+];
+
+function WhyTeamsSwitch() {
+  return (
+    <section className="section-edge section-dark relative overflow-hidden">
+      <Container className="py-16 md:py-20">
+        <SectionTitle
+          kicker="Why teams switch"
+          title={<>Built like a workflow, <span className="text-muted-foreground">not a spreadsheet.</span></>}
+          lede="Everything is organized so your team can review, qualify, save, and respond to website opportunities faster."
+        />
+        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {whyCards.map(({ Icon, title, desc }) => (
+            <div key={title} className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30">
+                <Icon className="h-5 w-5" strokeWidth={2} />
+              </div>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------- signal engine ---------- */
+function SignalEngine() {
+  return (
+    <section className="section-edge section-light">
+      <Container className="py-16 md:py-20">
+        <SectionTitle
+          kicker="Signal engine"
+          title={<>We track public posts. <span className="text-muted-foreground">You choose the best ones.</span></>}
+          lede="Postly monitors supported public sources, detects website-service intent, and turns relevant posts into structured opportunities."
+        />
+        <div className="mt-10 grid gap-4 lg:grid-cols-2">
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> Facebook</span>
+              <span className="text-foreground/25">·</span>
+              <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> LinkedIn</span>
+              <span className="text-foreground/25">·</span>
+              <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> Instagram</span>
+              <span className="text-foreground/25">·</span>
+              <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> Reddit</span>
+            </div>
+            <h3 className="mt-4 text-xl font-semibold tracking-tight">Sources monitored today</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Postly parses public posts across four live platforms, detects website-service intent, and routes qualified opportunities into your dashboard.
             </p>
+            <p className="mt-4 text-xs text-muted-foreground">
+              X and Threads are planned for future coverage.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="flex items-center justify-between">
+              <Tag tone="signal">● Lead detail · High intent</Tag>
+              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <h3 className="mt-3 text-xl font-semibold tracking-tight">Every opportunity opens into a full briefing.</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              See the summary, service need, score, source proof, reply angles, and activity timeline in one screen.
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
+              {["Summary", "Service need", "Score & reasons", "Source proof", "Reply angles", "Activity timeline"].map((k) => (
+                <div key={k} className="rounded-md border border-border bg-background/40 px-3 py-2 text-foreground/80">
+                  {k}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Container>
@@ -526,14 +438,14 @@ function Scope() {
   );
 }
 
-/* ---------- after login (what you get) ---------- */
+/* ---------- after login ---------- */
 const afterLoginItems = [
-  { Icon: Inbox,      title: "Fresh lead feed",        body: "Newly captured service-request posts from Facebook, LinkedIn, Reddit and manual imports — sorted by freshness." },
-  { Icon: ListChecks, title: "Structured lead profile", body: "Each post becomes a clean profile: title, summary, service need, project type, budget signal and source platform." },
-  { Icon: Target,     title: "Lead scoring with reasons", body: "Intent, temperature, urgency and competition level — each score ships with a short, human reason." },
-  { Icon: Link2,      title: "Original post proof",     body: "Open the source post, see the author, post time, reactions, comments and platform — verify before you reach out." },
-  { Icon: Send,       title: "Outreach drafts",        body: "Multiple ready-to-send message angles per lead — copy, tweak, send. No blank-page outreach." },
-  { Icon: Filter,     title: "Inbox actions & filters", body: "Save, filter, assign, contact, export, or flag for manual review. Built like an inbox, not a spreadsheet." },
+  { Icon: Inbox,      title: "Fresh opportunity feed",     body: "New website-service posts from supported platforms, sorted by freshness and intent." },
+  { Icon: ListChecks, title: "Structured opportunity profile", body: "Each post becomes a clean profile with title, summary, service need, project type, budget signal, and source platform." },
+  { Icon: Target,     title: "Scoring with reasons",       body: "Intent, urgency, freshness, competition, and service fit are scored with a short explanation." },
+  { Icon: Link2,      title: "Original post proof",        body: "Open the source post and verify the author, post time, platform, comments, and context before outreach." },
+  { Icon: Send,       title: "Outreach drafts",            body: "Get multiple reply angles per opportunity, then edit the message in your own voice." },
+  { Icon: Filter,     title: "Inbox actions & filters",    body: "Save, filter, tag, contact, export, or flag opportunities for later review." },
 ];
 
 function AfterLogin() {
@@ -543,7 +455,7 @@ function AfterLogin() {
         <SectionTitle
           kicker="After login"
           title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
-          lede="No mystery box. Here's what lands in your dashboard the moment you sign in."
+          lede="Your dashboard shows the information needed to verify, prioritize, and manage website opportunities from one place."
         />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {afterLoginItems.map(({ Icon, title, body }, i) => (
@@ -561,18 +473,41 @@ function AfterLogin() {
         </div>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
           <Shield className="h-3.5 w-3.5 text-[color:var(--signal)]" />
-          <span>If a field is missing from the post, we mark it as <span className="text-foreground">unknown</span> — we never guess country, budget or service type.</span>
+          <span>If a field is missing from the original post, Postly marks it as <span className="text-foreground">unknown</span>. We do not guess country, budget, or service type.</span>
         </div>
       </Container>
     </section>
   );
 }
 
-/* (Capture / BentoCard / SummaryGraphic / TempGraphic / CompGraphic removed — redundant internal detail) */
-
-
-
-
+/* ---------- by the numbers ---------- */
+function ByTheNumbers() {
+  const stats = [
+    { value: "365+",       label: "Fresh website-service posts daily" },
+    { value: "30+",        label: "Countries monitored" },
+    { value: "4 Live",     label: "Facebook, LinkedIn, Instagram, Reddit" },
+    { value: "Auto",       label: "Structured and scored" },
+  ];
+  return (
+    <section className="section-edge section-dark">
+      <Container className="py-16 md:py-20">
+        <SectionTitle
+          kicker="By the numbers"
+          title={<>Built for a <span className="text-muted-foreground">daily outreach pipeline.</span></>}
+          lede="Postly keeps your opportunity feed fresh, structured, and ready for consistent follow-up."
+        />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="rounded-xl border border-border bg-card p-5">
+              <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
+              <div className="mt-1.5 text-sm text-muted-foreground">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
 
 /* ---------- platforms ---------- */
 type PlatformEntry = {
@@ -584,19 +519,19 @@ type PlatformEntry = {
 };
 
 const platforms: PlatformEntry[] = [
-  { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Service-request posts and business asks across public groups and pages." },
-  { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
-  { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
-  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "soon", note: "Captions and pinned comments from creator and business accounts." },
-  { icon: XIcon,       color: "#000000", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
-  { icon: ThreadsIcon, color: "#000000", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
+  { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Public groups and pages where business owners ask for website help." },
+  { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Founder posts, agency requests, and public website service recommendations." },
+  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and comments from creators and businesses asking for website support." },
+  { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche communities where people discuss website fixes, rebuilds, and CMS help." },
+  { icon: XIcon,       color: "#0F0F0F", name: "X",        state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
+  { icon: ThreadsIcon, color: "#0F0F0F", name: "Threads",  state: "soon", note: "Conversation-first posts from creators and small businesses asking for support." },
 ];
 
 const dailyVolumeStats = [
-  { value: "365+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
-  { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
-  { value: "200+", label: "CMS & migrations", hint: "Platform switches, rebuilds and fresh CMS setups on WP, Webflow, Wix, Framer." },
-  { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
+  { value: "365+",       label: "Fresh website-service posts daily" },
+  { value: "Website work", label: "Design, development, redesign, rebuild, and landing pages" },
+  { value: "CMS work",   label: "WordPress, Webflow, Wix, Framer, Shopify rebuilds, and migrations" },
+  { value: "Worldwide",  label: "Opportunities from supported countries around the world" },
 ];
 
 function Platforms() {
@@ -605,23 +540,21 @@ function Platforms() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
-          title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
-          lede="At least 365+ fresh website design, development and CMS leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+          title={<>Monitor the places where <span className="text-muted-foreground">buyers ask for website help.</span></>}
+          lede="Postly currently tracks Facebook, LinkedIn, Instagram, and Reddit, with X and Threads planned for future coverage."
         />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {dailyVolumeStats.map((s) => (
             <div key={s.label} className="rounded-xl border border-border bg-white p-5">
-              <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
-              <div className="mt-1 text-sm font-medium">{s.label}</div>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.hint}</p>
+              <div className="text-2xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{s.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <Tag tone="signal">● Daily minimum</Tag>
-          <span>365+ total · 250+ web design &amp; development · 200+ CMS &amp; migrations · from any country.</span>
+        <div className="mt-4 text-xs text-muted-foreground">
+          Daily volume can vary by platform, country, and source activity.
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -649,29 +582,26 @@ function Platforms() {
   );
 }
 
-
 /* ---------- scoring ---------- */
-const scoringFactors = [
-  ["Intent level", "Does the post directly ask for a service, or just describe a problem?"],
-  ["Urgency", "Words like ASAP, urgent, today, quickly push priority up."],
-  ["Budget signal", "Any mention of price, hourly rate, or budget range."],
-  ["Competition", "Number of visible comments and replies at capture time."],
-  ["Freshness", "How long ago the post was created — fresher leads convert better."],
-  ["Service fit", "Web design, development, redesign, rebuild or CMS work (WP / Webflow / Wix / Framer) — which one the request matches."],
+const scoringFactors: [string, string][] = [
+  ["Intent level", "Does the post directly ask for website help, or only mention a general problem?"],
+  ["Urgency", "Words like ASAP, urgent, today, or quickly increase the priority."],
+  ["Budget signal", "Any mention of budget, price, hourly rate, or payment readiness."],
+  ["Competition", "How many visible comments and replies exist at capture time."],
+  ["Freshness", "How recently the post was published."],
+  ["Service fit", "Whether the request matches website design, development, redesign, rebuild, landing page, or CMS work."],
 ];
 
 function Scoring() {
   return (
     <section id="scoring" className="section-edge section-dark relative overflow-hidden">
-
-
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
             <SectionTitle
               kicker="Scoring"
-              title={<>Six factors. <span className="text-muted-foreground">No black box.</span></>}
-              lede="Our AI reads every public post, weighs six signals, and ships a short human reason with each score — so your team trusts the priority order."
+              title={<>Six factors. <span className="text-muted-foreground">Clear reasons.</span></>}
+              lede="Each opportunity is scored using visible signals from the post, so your team understands why it should be prioritized."
             />
             <div className="mt-6 rounded-xl border border-border bg-white/80 p-5 backdrop-blur-md shadow-sm">
               <div className="flex items-center justify-between">
@@ -679,14 +609,13 @@ function Scoring() {
                 <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
               </div>
               <p className="mt-3 text-sm">
-                <span className="text-[color:var(--signal)]">Low competition.</span> Based on 8 visible comments at capture time — below the category median of 21.
+                <span className="text-[color:var(--signal)]">Low competition.</span> Based on visible comments at capture time, this post has fewer competing replies than similar website-service requests.
               </p>
             </div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {scoringFactors.map(([t, b], i) => (
               <div key={t} className="group relative overflow-hidden rounded-xl border border-border bg-white/70 p-5 backdrop-blur-md shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
-                <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-md bg-[color:var(--signal)]/10 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="flex items-center justify-between">
                   <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
                   <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
@@ -702,61 +631,16 @@ function Scoring() {
   );
 }
 
-/* (Outreach standalone section removed — drafts already shown in ExampleLead) */
-
-
-/* (Dashboard, Lead profile + Data quality sections removed — internal detail, not user-facing) */
-
-
-/* ---------- use cases ---------- */
-const useCases = [
-  "Web design agencies",
-  "Freelance web designers",
-  "Webflow / WordPress developers",
-  "Wix & Framer studios",
-  "CMS specialists",
-  "Website redesign teams",
-  "Lead-gen agencies",
-  "Outreach teams",
-];
-
-function UseCases() {
-  return (
-    <section className="section-edge section-dark">
-      <Container className="py-16 md:py-20">
-        <div className="flex flex-col items-center text-center">
-          <Mono className="text-muted-foreground">Who uses it</Mono>
-          <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
-            Built for people selling <span className="text-muted-foreground">website &amp; CMS</span> services.
-          </h3>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
-            {useCases.map((t) => (
-              <span key={t} className="rounded-md border border-border bg-card/50 px-3 py-1 text-xs text-foreground/85">
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* (Categories chip list removed — trimming page length) */
-
-
-/* ---------- coverage section removed — covered in hero flag strip ---------- */
-
-/* ---------- concierge (VIP hot-leads) ---------- */
-function Concierge() {
+/* ---------- VIP add-on ---------- */
+function VipAddon() {
   const perks = [
-    { Icon: Flame,       title: "Hot leads only",          body: "We hand-pick the highest-intent posts of the day — no cold or maybe-leads in the mix." },
-    { Icon: Shield,      title: "Human-filtered",          body: "Every lead is manually reviewed by our team before it reaches your inbox." },
-    { Icon: Send,        title: "Delivered to Gmail",      body: "Hot leads are sent straight to your Gmail the moment they're approved — no need to refresh the dashboard." },
-    { Icon: Inbox,       title: "Dedicated VIP inbox",     body: "A separate \"Hot Leads\" section unlocks in your dashboard so you can act on the best opportunities first." },
+    { Icon: Flame,  title: "Hot leads only",       body: "We select the strongest website-service opportunities from the daily feed." },
+    { Icon: Shield, title: "Human-reviewed",       body: "Each VIP lead is checked before it reaches your inbox." },
+    { Icon: Send,   title: "Gmail delivery",       body: "Approved hot leads will be sent to Gmail when the VIP add-on launches." },
+    { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first." },
   ];
   return (
-    <section id="concierge" className="section-edge section-dark">
+    <section id="vip" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
@@ -764,23 +648,22 @@ function Concierge() {
               <Flame className="h-3 w-3 text-[color:var(--signal)]" /> VIP add-on · Coming soon
             </div>
             <h2 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
-              Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
+              VIP Hot Leads, <span className="text-muted-foreground">reviewed before they reach you.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website design, development and CMS leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+              For teams that want extra filtering, Postly VIP will manually review the strongest website opportunities and send approved hot leads to Gmail.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-md border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
                 Coming soon
               </span>
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Pricing &amp; launch date — to be announced
+                <Check className="h-3.5 w-3.5 text-[color:var(--signal)]" /> Pricing and launch date to be announced
               </span>
             </div>
           </div>
 
           <div className="rounded-2xl border border-black/10 bg-white p-1 shadow-[0_30px_120px_-30px_oklch(0.72_0.19_145/0.35)]">
-            {/* mock Gmail message */}
             <div className="flex items-center justify-between border-b border-border px-4 py-2">
               <div className="flex items-center gap-2">
                 <span className="grid h-6 w-6 place-items-center rounded-md bg-[#EA4335]/15 text-[#EA4335]">
@@ -788,7 +671,7 @@ function Concierge() {
                 </span>
                 <Mono className="text-muted-foreground">gmail · inbox</Mono>
               </div>
-              <Mono className="text-muted-foreground">Just now</Mono>
+              <Mono className="text-muted-foreground">Preview</Mono>
             </div>
             <div className="space-y-3 p-5">
               <div className="flex items-center justify-between">
@@ -808,12 +691,8 @@ function Concierge() {
                 <Tag>Low competition</Tag>
               </div>
               <p className="text-sm text-muted-foreground">
-                Manually reviewed at 09:14 — author mentioned a clear budget, 2-week timeline and is actively replying to comments. Recommended: contact within the hour.
+                Manually reviewed because the author mentioned a clear budget, timeline, and active replies. Recommended action: review and respond quickly.
               </p>
-              <div className="flex items-center justify-between rounded-md border border-border bg-background/40 px-3 py-2 text-xs">
-                <span className="inline-flex items-center gap-1.5"><Link2 className="h-3 w-3 text-muted-foreground" /> Open lead in dashboard</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground" />
-              </div>
             </div>
           </div>
         </div>
@@ -839,36 +718,39 @@ function Pricing() {
   const [showLaunchModal, setShowLaunchModal] = useState(false);
   const plans = [
     {
-      name: "Free", price: "$0", cadence: "/ month", desc: "Get a daily taste of fresh leads — no card, no commitment.",
+      name: "Free", price: "$0", cadence: "/ month",
+      desc: "A limited way to test fresh website opportunities.",
       features: [
-        <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> <strong className="font-semibold text-foreground">100 Facebook</strong> hot leads / day</span>,
-        <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <strong className="font-semibold text-foreground">50 Reddit</strong> hot leads / day</span>,
-        "150 leads total, refreshed every 24h",
-        "Save leads for up to 24 hours",
-        "Support available (24–48h response)",
+        "Limited daily opportunities",
+        "Facebook and Reddit sample feed",
+        "Refreshed every 24 hours",
+        "Save opportunities for up to 24 hours",
+        "No card required",
       ] as React.ReactNode[],
       cta: "Start free", featured: false, free: true,
     },
     {
-      name: "Pro", price: "$10", cadence: "/ month", desc: "For sellers shipping outreach every day across every channel.",
+      name: "Pro", price: "$10", cadence: "/ month after launch",
+      desc: "For freelancers and agencies doing website-service outreach every day.",
       features: [
-        "Unlimited leads across all platforms",
-        "Save leads for up to 1 month (auto-delete after)",
-        "Hot lead notifications in real time",
-        "Email support within 12 hours",
-        "Everything in Free",
+        "Access to all live platforms",
+        "More daily website opportunities",
+        "Save opportunities for up to 1 month",
+        "Filters, tags, and export",
+        "Outreach drafts",
+        "Early access: 1 month free + lifetime 40% discount",
       ],
       cta: "Apply for early access", featured: true,
     },
     {
-      name: "VIP · Hot leads", price: "Soon", cadence: "", desc: "Hand-picked hot leads delivered to your Gmail in real time. Launching soon.",
+      name: "VIP · Hot Leads", price: "Coming soon", cadence: "",
+      desc: "Human-reviewed hot leads delivered to Gmail after approval.",
       features: [
         "Everything in Pro",
         "Manually filtered hot leads",
-        "Real-time Gmail delivery",
+        "Gmail delivery after approval",
         "Dedicated Hot Leads dashboard",
-        "Priority over standard queue",
-        "Concierge support",
+        "Priority support",
       ],
       cta: "Coming soon", featured: false, vip: true, soon: true,
     },
@@ -879,21 +761,21 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] md:text-4xl">
-            Simple, honest pricing <span className="text-muted-foreground">— and free during our launch window.</span>
+            Simple launch pricing.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
-            Pick the plan that matches how you sell. Every paid plan is 100% free while we're launching — no card required, no auto-charge when the offer ends. Cancel anytime.
+            Start with free access, upgrade when you need more volume, and unlock the early access lifetime discount while it is available.
           </p>
           <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
-            Apply for early access — unlock Pro free for 1 month.
+            Early access users can unlock 1 month free and a lifetime 40% discount.
           </div>
           <div className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
             <span className="font-mono uppercase tracking-[0.18em] text-[10px]">Live on</span>
             <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> <span className="text-foreground/80">Facebook</span></span>
             <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> <span className="text-foreground/80">LinkedIn</span></span>
-            <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <span className="text-foreground/80">Reddit</span></span>
             <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> <span className="text-foreground/80">Instagram</span></span>
+            <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> <span className="text-foreground/80">Reddit</span></span>
           </div>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-3">
@@ -920,11 +802,8 @@ function Pricing() {
               )}
               <Mono className="text-muted-foreground">{p.name}</Mono>
               <div className="mt-4 flex items-baseline gap-1.5">
-                <span className={`text-5xl font-semibold tracking-[-0.03em] ${p.featured && !((p as { soon?: boolean }).soon) ? "text-muted-foreground/60 line-through decoration-[color:var(--signal)]/60 decoration-2" : ""}`}>{p.price}</span>
+                <span className="text-5xl font-semibold tracking-[-0.03em]">{p.price}</span>
                 <span className="text-sm text-muted-foreground">{p.cadence}</span>
-                {p.featured && !((p as { soon?: boolean }).soon) && (
-                  <span className="ml-1 rounded-md bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">Free now</span>
-                )}
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
               <ul className="mt-6 space-y-2.5">
@@ -974,14 +853,11 @@ function Pricing() {
               <X className="h-4 w-4" />
             </button>
             <div className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
-              <Sparkles className="h-3 w-3" /> Launch offer
+              <Sparkles className="h-3 w-3" /> Early access
             </div>
-            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">No payment needed — yet.</h3>
+            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">Apply for early access.</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              To celebrate our launch, Postly is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
-            </p>
-            <p className="mt-2 text-xs text-muted-foreground">
-              Paid plans will be enabled in about 10–15 days. Until then, every feature is free for everyone.
+              Get 1 month of Pro free plus a lifetime 40% discount when paid plans go live.
             </p>
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
               <a
@@ -1005,70 +881,54 @@ function Pricing() {
   );
 }
 
-/* ---------- testimonials (auto-marquee, no controls) ---------- */
-const testimonials: { name: string; role: string; avatar: string; quote: string }[] = [
-  { name: "Arif Chowdhury", role: "Founder · Pixelhaus (Webflow studio)", avatar: "https://i.pravatar.cc/120?img=11", quote: "We replaced two cold-call VAs with Postly. Within 3 weeks we booked 11 discovery calls — all from Facebook group posts we'd never have seen." },
-  { name: "Nadia Rahman", role: "WordPress developer", avatar: "https://i.pravatar.cc/120?img=32", quote: "The scoring is the best part. I skip the cold ones and only reply to warm/hot leads — my reply rate is 4× what it was last quarter." },
-  { name: "Lucas Pereira", role: "Co-founder · Pereira Studios", avatar: "https://i.pravatar.cc/120?img=15", quote: "Outreach drafts saved my Mondays. I used to spend 2 hours writing first messages — now I tweak the draft and send in 5 minutes." },
-  { name: "Maya Chen", role: "Webflow studio owner", avatar: "https://i.pravatar.cc/120?img=20", quote: "Finally a tool that understands my niche. Every lead is a real business asking for a real website — not random noise." },
-  { name: "Tanvir Hasan", role: "Senior web developer · Freelance", avatar: "https://i.pravatar.cc/120?img=12", quote: "The country + platform filters alone are worth the subscription. I only work with US/CA/UK clients and the inbox respects that." },
-  { name: "Priya Shah", role: "Outreach lead · 4-person agency", avatar: "https://i.pravatar.cc/120?img=23", quote: "Our team shares one inbox now. We assign leads, mark contacted, and stop double-replying. It feels like a CRM built for cold posts." },
-  { name: "Eitan Gold", role: "Design lead · Goldhaus", avatar: "https://i.pravatar.cc/120?img=7", quote: "The LinkedIn feed is where we find our best clients. Founders posting about site rebuilds — we reply the same day and half of them jump on a call." },
-  { name: "Sara Lindqvist", role: "Freelance web designer", avatar: "https://i.pravatar.cc/120?img=38", quote: "I was about to quit freelancing. Postly gave me 3 paying clients in my first month — I'm fully booked through next quarter." },
-  { name: "Noah Whitman", role: "Founder · Whitman & Co", avatar: "https://i.pravatar.cc/120?img=60", quote: "Honest review: the data quality is good, not perfect. But it's still 10× better than scraping Reddit manually like I used to." },
-  { name: "Jordan Ali", role: "Framer specialist", avatar: "https://i.pravatar.cc/120?img=53", quote: "I export the daily leads to my own CRM and run my own outreach cadence on top. The structured data makes that 1-click easy." },
+/* ---------- built for (replaces testimonials) ---------- */
+const builtForCards = [
+  { title: "Freelance web designers",     body: "Find people asking for redesigns, portfolio updates, landing pages, and small website fixes." },
+  { title: "WordPress developers",         body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and migrations." },
+  { title: "Webflow and Framer studios",   body: "Find founders and businesses looking for modern rebuilds, landing pages, and CMS improvements." },
+  { title: "Small web agencies",           body: "Build a daily outreach pipeline from public website-service requests across supported platforms." },
+  { title: "Shopify website specialists",  body: "Spot redesign, rebuild, and migration requests from store owners who need website help." },
+  { title: "CMS migration teams",          body: "Find requests involving platform switches, CMS setup, and website rebuild projects." },
 ];
 
-function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
+function BuiltFor() {
   return (
-    <figure className="flex w-[340px] shrink-0 flex-col justify-between rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-      <blockquote className="text-[15px] leading-relaxed text-foreground/90">
-        <span aria-hidden className="mr-1 text-[color:var(--signal)]">“</span>
-        {t.quote}
-      </blockquote>
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-        <img src={t.avatar} alt={t.name} className="h-10 w-10 rounded-md object-cover" />
-        <div className="min-w-0 text-sm leading-tight">
-          <p className="truncate font-medium">{t.name}</p>
-          <p className="truncate text-xs text-muted-foreground">{t.role}</p>
-        </div>
-      </figcaption>
-    </figure>
-  );
-}
-
-function Testimonials() {
-  const row = [...testimonials, ...testimonials]; // duplicate for seamless loop
-  return (
-    <section id="testimonials" className="section-edge section-dark">
+    <section id="built-for" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
-          kicker="Loved by"
-          title={<>Agencies, freelancers and studios <span className="text-muted-foreground">already using it daily.</span></>}
+          kicker="Built for"
+          title={<>Built for <span className="text-muted-foreground">website service sellers.</span></>}
+          lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
-      </Container>
-      <div className="marquee-mask relative overflow-hidden pb-16 md:pb-20">
-        <div className="animate-marquee-rtl flex w-max gap-5 will-change-transform">
-          {row.map((t, i) => <TestimonialCard key={i} t={t} />)}
+        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {builtForCards.map((c) => (
+            <div key={c.title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
+              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
+                <Target className="h-5 w-5" strokeWidth={1.75} />
+              </div>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{c.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+            </div>
+          ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for e-commerce stores, paid ads, branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services. Postly is not an SEO tool and we do not sell SEO leads." },
-  { q: "What do I get after login?", a: "A clean lead dashboard with structured website design, development and CMS leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts you can copy and send." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn and Reddit are live right now. Instagram, X (Twitter) and Threads are coming soon." },
-  { q: "How many leads will I get per day?", a: "At least 365+ fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Every one of them is a website design, development or CMS request (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
-  { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the dashboard by country if you only want to work with specific markets." },
-  { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
-  { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
-  { q: "Who is this for?", a: "Web design agencies, freelance web designers and developers, CMS specialists (WordPress, Webflow, Wix, Framer) and cold outreach teams selling website design, development and CMS services." },
-  { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
-  { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Each score includes a short, human-readable reason." },
-  { q: "What's included in the VIP plan?", a: "VIP is launching soon. When it goes live, you'll get hand-picked hot website design & development leads delivered to your Gmail in real time, plus a dedicated Hot Leads section inside your dashboard on top of everything in the Pro plan." },
+  { q: "What kind of leads will I get?", a: "You will get public posts where people ask for website design, development, redesign, rebuild, landing page, CMS setup, WordPress, Webflow, Wix, Framer, or Shopify website help." },
+  { q: "What do I get after login?", a: "You get a fresh opportunity feed, structured profiles, scoring with reasons, original post proof, outreach drafts, filters, save actions, and export options." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram, and Reddit are live. X and Threads are planned for future coverage." },
+  { q: "How many leads will I get per day?", a: "Postly surfaces 365+ fresh website-service posts daily. Exact volume can vary by platform, country, and source activity." },
+  { q: "Which countries do the leads come from?", a: "Postly monitors public website-service posts from 30+ countries. Country is shown only when it is clear from the post, profile, or source context." },
+  { q: "Do you guess missing information?", a: "No. If budget, country, service type, or contact details are not clear from the original post, Postly marks the field as unknown." },
+  { q: "Can I see the original post?", a: "Yes. Each opportunity includes source proof so you can verify the original post before contacting anyone." },
+  { q: "Who is this for?", a: "Postly is for web agencies, web designers, web developers, WordPress developers, Webflow experts, Wix specialists, Framer specialists, Shopify website specialists, freelancers, and CMS teams." },
+  { q: "Do I get outreach messages?", a: "Yes. Postly provides multiple reply angles that you can personalize before sending." },
+  { q: "How is the lead score calculated?", a: "The score is based on intent, urgency, budget signal, competition, freshness, and service fit. Each score includes a short reason." },
+  { q: "Can I export leads to my own CRM?", a: "Yes. Pro users can export opportunities and organize them inside their own outreach or CRM workflow." },
 ];
 
 function FAQ() {
@@ -1093,11 +953,8 @@ function FAQ() {
   );
 }
 
-/* ---------- final CTA ---------- */
+/* ---------- floating socials (used in hero + final CTA) ---------- */
 function HeroFloatingSocials() {
-  // One logo at a time, appearing near the outer corners of the hero (outside
-  // the ~1200px content column). Each cycle picks a different icon, a fresh
-  // edge slot, and a subtle rotation for a professional, non-repetitive feel.
   const ICONS = [
     { Icon: SiFacebook,  color: "#1877F2" },
     { Icon: SiLinkedIn,  color: "#0A66C2" },
@@ -1105,7 +962,6 @@ function HeroFloatingSocials() {
     { Icon: SiX,         color: "#0F0F0F" },
     { Icon: SiInstagram, color: "#E4405F" },
   ];
-  // Edge slots — hugging the corners / outer margins of the hero on all sizes.
   const SLOTS = [
     { top: "10%", left: "2%"  },
     { top: "18%", right: "3%" },
@@ -1147,26 +1003,22 @@ function HeroFloatingSocials() {
         height: item.size,
         color,
         transform: `rotate(${item.rotate}deg)`,
-        ['--dur' as any]: `4.2s`,
-        ['--peak' as any]: '0.38',
-        ['--fx' as any]: '0px',
-        ['--fy' as any]: '0px',
-      }}
+        ['--dur' as never]: `4.2s`,
+        ['--peak' as never]: '0.38',
+        ['--fx' as never]: '0px',
+        ['--fy' as never]: '0px',
+      } as React.CSSProperties}
     >
       <Icon size={item.size} />
     </div>
   );
 }
 
-
 function FloatingSocials() {
-  // Ambient social logos that softly fade in and out around the CTA card.
-  // Only 2-3 visible at any time — staggered across a shared 18s loop in 3 pairs.
   const items = [
     { Icon: SiFacebook, color: "#1877F2", top: "14%", left: "5%",   size: 72, dur: "18s", delay: "0s",  peak: "0.55", fx: "-18px", fy: "8px",   blur: "blur-md" },
     { Icon: SiReddit,   color: "#FF4500", top: "70%", right: "8%",  size: 56, dur: "18s", delay: "0s",  peak: "0.55", fx: "12px",  fy: "-10px", blur: "blur-sm" },
     { Icon: SiLinkedIn, color: "#0A66C2", top: "68%", left: "9%",   size: 64, dur: "18s", delay: "6s",  peak: "0.55", fx: "-14px", fy: "-12px", blur: "blur-md" },
-    { Icon: SiX,        color: "#0F0F0F", top: "16%", right: "6%",  size: 56, dur: "18s", delay: "6s",  peak: "0.5",  fx: "16px",  fy: "12px",  blur: "blur-sm" },
     { Icon: SiInstagram,color: "#E4405F", top: "20%", left: "44%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "-12px", blur: "blur-sm" },
     { Icon: SiFacebook, color: "#1877F2", top: "74%", left: "46%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "12px",  blur: "blur-sm" },
   ];
@@ -1176,17 +1028,17 @@ function FloatingSocials() {
         const { Icon, color, size, dur, delay, peak, fx, fy, blur } = it;
         const style: React.CSSProperties = {
           top: it.top,
-          left: (it as any).left,
-          right: (it as any).right,
+          left: (it as { left?: string }).left,
+          right: (it as { right?: string }).right,
           width: size,
           height: size,
           color,
-          ['--dur' as any]: dur,
-          ['--peak' as any]: peak,
-          ['--fx' as any]: fx,
-          ['--fy' as any]: fy,
+          ['--dur' as never]: dur,
+          ['--peak' as never]: peak,
+          ['--fx' as never]: fx,
+          ['--fy' as never]: fy,
           animationDelay: delay,
-        };
+        } as React.CSSProperties;
         return (
           <div key={i} className={`social-fade absolute ${blur}`} style={style}>
             <Icon size={size} />
@@ -1196,7 +1048,6 @@ function FloatingSocials() {
     </div>
   );
 }
-
 
 function FinalCTA() {
   return (
@@ -1208,8 +1059,8 @@ function FinalCTA() {
             Stop scrolling.<br />
             <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
           </h2>
-          <p className="relative mx-auto mt-5 max-w-md text-muted-foreground">
-            Structured, scored, outreach-ready leads from the social posts you'd otherwise miss.
+          <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">
+            Find structured, scored website opportunities from public social posts without manually checking every platform.
           </p>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
             <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
@@ -1222,56 +1073,5 @@ function FinalCTA() {
         </div>
       </Container>
     </section>
-  );
-}
-
-/* ---------- footer ---------- */
-function Footer() {
-  const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
-    { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
-    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "CMS specialists" }, { label: "Developers" }, { label: "Outreach" }] },
-    { title: "Resources", links: [{ label: "Blog", soon: true }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
-    { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
-    { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
-  ];
-  return (
-    <footer className="bg-background">
-      <Container className="py-16 md:py-20">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(5,1fr)]">
-          <div>
-            <div className="flex items-center gap-2">
-              <Logo className="h-8 w-auto" />
-            </div>
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Social media buying signals, organized into structured, scored, outreach-ready leads.
-            </p>
-            <div className="mt-5 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-md bg-[color:var(--signal)]" /> All systems normal
-              </span>
-            </div>
-          </div>
-          {cols.map((c) => (
-            <div key={c.title}>
-              <Mono className="text-foreground">{c.title}</Mono>
-              <ul className="mt-4 space-y-2.5">
-                {c.links.map((l) => (
-                  <li key={l.label}>
-                    <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
-                      {l.label}
-                      {l.soon && <span className="rounded-md border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
-          <Mono className="text-muted-foreground">© {new Date().getFullYear()} Postly</Mono>
-          <Mono className="text-muted-foreground">Built for sales teams that move fast</Mono>
-        </div>
-      </Container>
-    </footer>
   );
 }
