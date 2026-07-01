@@ -31,7 +31,7 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 
 function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-md border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
+    <span className="inline-flex items-center rounded-full border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
       {children}
     </span>
   );
