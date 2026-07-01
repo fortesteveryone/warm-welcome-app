@@ -890,12 +890,12 @@ function Pricing() {
 
 /* ---------- built for (replaces testimonials) ---------- */
 const builtForCards = [
-  { title: "Freelance web designers",     body: "Find people asking for redesigns, portfolio updates, landing pages, and small website fixes." },
-  { title: "WordPress developers",         body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and migrations." },
-  { title: "Webflow and Framer studios",   body: "Find founders and businesses looking for modern rebuilds, landing pages, and CMS improvements." },
-  { title: "Small web agencies",           body: "Build a daily outreach pipeline from public website-service requests across supported platforms." },
-  { title: "Shopify website specialists",  body: "Spot redesign, rebuild, and migration requests from store owners who need website help." },
-  { title: "CMS migration teams",          body: "Find requests involving platform switches, CMS setup, and website rebuild projects." },
+  { Icon: Paintbrush,     title: "Freelance web designers",     body: "Find people asking for redesigns, portfolio updates, landing pages, and small website fixes." },
+  { Icon: Code2,          title: "WordPress developers",         body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and migrations." },
+  { Icon: Wand2,          title: "Webflow and Framer studios",   body: "Find founders and businesses looking for modern rebuilds, landing pages, and CMS improvements." },
+  { Icon: Users,          title: "Small web agencies",           body: "Build a daily outreach pipeline from public website-service requests across supported platforms." },
+  { Icon: ShoppingBag,    title: "Shopify website specialists",  body: "Spot redesign, rebuild, and migration requests from store owners who need website help." },
+  { Icon: ArrowRightLeft, title: "CMS migration teams",          body: "Find requests involving platform switches, CMS setup, and website rebuild projects." },
 ];
 
 function BuiltFor() {
