@@ -908,13 +908,13 @@ function BuiltFor() {
           lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {builtForCards.map((c) => (
-            <div key={c.title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
+          {builtForCards.map(({ Icon, title, body }) => (
+            <div key={title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
-                <Target className="h-5 w-5" strokeWidth={1.75} />
+                <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{c.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
             </div>
           ))}
         </div>
