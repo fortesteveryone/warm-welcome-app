@@ -5,9 +5,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/support")({
   head: () => ({
     meta: [
-      { title: "Support — Grow By Lead" },
-      { name: "description", content: "Help, troubleshooting and contact channels for Grow By Lead customers." },
-      { property: "og:title", content: "Support — Grow By Lead" },
+      { title: "Support — Postly" },
+      { name: "description", content: "Help, troubleshooting and contact channels for Postly customers." },
+      { property: "og:title", content: "Support — Postly" },
       { property: "og:description", content: "How to reach support, what we cover, and typical response times." },
     ],
   }),

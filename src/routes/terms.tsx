@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — Grow By Lead" },
-      { name: "description", content: "The terms under which Grow By Lead is offered to customers." },
-      { property: "og:title", content: "Terms of Service — Grow By Lead" },
+      { title: "Terms of Service — Postly" },
+      { name: "description", content: "The terms under which Postly is offered to customers." },
+      { property: "og:title", content: "Terms of Service — Postly" },
       { property: "og:description", content: "Account rules, acceptable use, billing and termination." },
     ],
   }),
@@ -18,11 +18,11 @@ function TermsPage() {
     <PageShell
       kicker="Legal"
       title="Terms of service"
-      lede="Plain-English rules for using Grow By Lead. By creating an account you agree to these terms."
+      lede="Plain-English rules for using Postly. By creating an account you agree to these terms."
       updated="June 2026"
     >
       <Section title="1. The service">
-        <p>Grow By Lead surfaces public social media posts as structured leads and provides tools to filter, score, export and message them. We may add, change or remove features over time.</p>
+        <p>Postly surfaces public social media posts as structured leads and provides tools to filter, score, export and message them. We may add, change or remove features over time.</p>
       </Section>
       <Section title="2. Your account">
         <p>You are responsible for keeping login credentials secret and for everything done under your account. Don't share a single seat across multiple people on plans that are sold per-seat.</p>

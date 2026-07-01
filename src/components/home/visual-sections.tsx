@@ -72,12 +72,12 @@ export function ProductShowcase() {
                 Your inbox, your pipeline, your scoreboard.
               </h3>
               <p className="mt-2 max-w-md text-sm text-white/60">
-                Triage 500+ fresh leads daily without losing context. Filters, scores, and one-click outreach in a single view.
+                Triage 365+ fresh leads daily without losing context. Filters, scores, and one-click outreach in a single view.
               </p>
               <div className="relative mt-6 overflow-hidden rounded-xl border border-white/10">
                 <img
                   src={dashLeads}
-                  alt="Grow By Lead dashboard inbox"
+                  alt="Postly dashboard inbox"
                   width={1600}
                   height={1024}
                   loading="lazy"
@@ -179,7 +179,7 @@ export function FeatureBento() {
             </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground md:text-base">
-            Four things you'll feel inside thirty seconds of using Grow By Lead.
+            Four things you'll feel inside thirty seconds of using Postly.
           </p>
         </div>
 

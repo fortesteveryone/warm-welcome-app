@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/gdpr")({
   head: () => ({
     meta: [
-      { title: "GDPR — Grow By Lead" },
-      { name: "description", content: "How Grow By Lead supports GDPR rights for EU/EEA/UK customers and post authors." },
-      { property: "og:title", content: "GDPR — Grow By Lead" },
+      { title: "GDPR — Postly" },
+      { name: "description", content: "How Postly supports GDPR rights for EU/EEA/UK customers and post authors." },
+      { property: "og:title", content: "GDPR — Postly" },
       { property: "og:description", content: "Data subject rights, lawful basis, and how to file a request." },
     ],
   }),

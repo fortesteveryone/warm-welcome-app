@@ -18,7 +18,7 @@ export const Route = createFileRoute("/dashboard/leads/$leadId")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.lead.name ?? "Lead"} — Grow By Lead CRM` },
+      { title: `${loaderData?.lead.name ?? "Lead"} — Postly CRM` },
       { name: "robots", content: "noindex" },
     ],
   }),

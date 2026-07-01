@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/refund")({
   head: () => ({
     meta: [
-      { title: "Refund Policy — Grow By Lead" },
-      { name: "description", content: "When and how Grow By Lead issues refunds and lead credits." },
-      { property: "og:title", content: "Refund Policy — Grow By Lead" },
+      { title: "Refund Policy — Postly" },
+      { name: "description", content: "When and how Postly issues refunds and lead credits." },
+      { property: "og:title", content: "Refund Policy — Postly" },
       { property: "og:description", content: "Our 7-day money-back guarantee, lead credits, and how to request a refund." },
     ],
   }),

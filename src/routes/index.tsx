@@ -13,9 +13,9 @@ import { HeroReel } from "@/components/home/hero-reel";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Grow By Lead — Social media buying signals, scored and sales-ready" },
-      { name: "description", content: "Grow By Lead turns public social media posts into structured, scored, outreach-ready leads for agencies, freelancers and sales teams." },
-      { property: "og:title", content: "Grow By Lead" },
+      { title: "Postly — Social media buying signals, scored and sales-ready" },
+      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for agencies, freelancers and sales teams." },
+      { property: "og:title", content: "Postly" },
       { property: "og:description", content: "From messy social posts to clean, sales-ready leads with outreach drafts included." },
     ],
   }),
@@ -218,7 +218,7 @@ function TopBar() {
 }
 
 function Logo({ className = "h-7 w-auto" }: { className?: string }) {
-  return <img src={logoAsset.url} alt="Grow By Lead" className={className} />;
+  return <img src={logoAsset.url} alt="Postly" className={className} />;
 }
 
 /* ---------- hero ---------- */
@@ -281,7 +281,7 @@ function Hero() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
-              Grow By Lead turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
+              Postly turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
             </p>
 
             {/* highlight strip */}
@@ -456,7 +456,7 @@ function Scope() {
         <SectionTitle
           kicker="What we cover"
           title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
-          lede="Grow By Lead is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
+          lede="Postly is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
@@ -513,7 +513,7 @@ function Scope() {
               })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              We focus only on website + SEO leads. If you sell something else, Grow By Lead probably isn't the right fit.
+              We focus only on website + SEO leads. If you sell something else, Postly probably isn't the right fit.
             </p>
           </div>
         </div>
@@ -589,7 +589,7 @@ const platforms: PlatformEntry[] = [
 ];
 
 const dailyVolumeStats = [
-  { value: "500+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
+  { value: "365+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
   { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
   { value: "200+", label: "SEO requests", hint: "Local, technical, on-page and link building help." },
   { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
@@ -617,7 +617,7 @@ function Platforms() {
 
         <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Tag tone="signal">● Daily minimum</Tag>
-          <span>500+ total · 400+ web design &amp; development · 200+ SEO · from any country.</span>
+          <span>365+ total · 250+ web design &amp; development · 200+ SEO · from any country.</span>
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -788,7 +788,7 @@ function Concierge() {
             </div>
             <div className="space-y-3 p-5">
               <div className="flex items-center justify-between">
-                <div className="text-sm font-medium">Grow By Lead · VIP</div>
+                <div className="text-sm font-medium">Postly · VIP</div>
                 <Tag tone="hot"><Flame className="h-3 w-3" /> Hot lead</Tag>
               </div>
               <div className="text-base font-semibold tracking-tight">
@@ -974,7 +974,7 @@ function Pricing() {
             </div>
             <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">No payment needed — yet.</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              To celebrate our launch, Grow By Lead is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
+              To celebrate our launch, Postly is <span className="text-foreground font-medium">completely free</span> for everyone. Just create an account and start using all features — no card, no checkout.
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
               Paid plans will be enabled in about 10–15 days. Until then, every feature is free for everyone.
@@ -1003,14 +1003,14 @@ function Pricing() {
 
 /* ---------- testimonials (auto-marquee, no controls) ---------- */
 const testimonials: { name: string; role: string; avatar: string; quote: string }[] = [
-  { name: "Arif Chowdhury", role: "Founder · Pixelhaus (Webflow studio)", avatar: "https://i.pravatar.cc/120?img=11", quote: "We replaced two cold-call VAs with Grow By Lead. Within 3 weeks we booked 11 discovery calls — all from Facebook group posts we'd never have seen." },
+  { name: "Arif Chowdhury", role: "Founder · Pixelhaus (Webflow studio)", avatar: "https://i.pravatar.cc/120?img=11", quote: "We replaced two cold-call VAs with Postly. Within 3 weeks we booked 11 discovery calls — all from Facebook group posts we'd never have seen." },
   { name: "Nadia Rahman", role: "SEO consultant", avatar: "https://i.pravatar.cc/120?img=32", quote: "The scoring is the best part. I skip the cold ones and only reply to warm/hot leads — my reply rate is 4× what it was last quarter." },
   { name: "Lucas Pereira", role: "Co-founder · Pereira Studios", avatar: "https://i.pravatar.cc/120?img=15", quote: "Outreach drafts saved my Mondays. I used to spend 2 hours writing first messages — now I tweak the draft and send in 5 minutes." },
   { name: "Maya Chen", role: "Local SEO agency owner", avatar: "https://i.pravatar.cc/120?img=20", quote: "Finally a tool that understands my niche. Every lead is a real local business asking for SEO — not a random 'need a website' post." },
   { name: "Tanvir Hasan", role: "Senior web developer · Freelance", avatar: "https://i.pravatar.cc/120?img=12", quote: "The country + platform filters alone are worth the subscription. I only work with US/CA/UK clients and the inbox respects that." },
   { name: "Priya Shah", role: "Outreach lead · 4-person agency", avatar: "https://i.pravatar.cc/120?img=23", quote: "Our team shares one inbox now. We assign leads, mark contacted, and stop double-replying. It feels like a CRM built for cold posts." },
   { name: "Eitan Gold", role: "Design lead · Goldhaus", avatar: "https://i.pravatar.cc/120?img=7", quote: "The hot-leads Gmail add-on closes deals for us. I get the alert, reply within 10 minutes, and clients are visibly impressed by the speed." },
-  { name: "Sara Lindqvist", role: "Freelance web designer", avatar: "https://i.pravatar.cc/120?img=38", quote: "I was about to quit freelancing. Grow By Lead gave me 3 paying clients in my first month — I'm fully booked through next quarter." },
+  { name: "Sara Lindqvist", role: "Freelance web designer", avatar: "https://i.pravatar.cc/120?img=38", quote: "I was about to quit freelancing. Postly gave me 3 paying clients in my first month — I'm fully booked through next quarter." },
   { name: "Noah Whitman", role: "Founder · Whitman & Co", avatar: "https://i.pravatar.cc/120?img=60", quote: "Honest review: the data quality is good, not perfect. But it's still 10× better than scraping Reddit manually like I used to." },
   { name: "Jordan Ali", role: "Technical SEO", avatar: "https://i.pravatar.cc/120?img=53", quote: "I export the daily leads to my own CRM and run my own outreach cadence on top. The structured data makes that 1-click easy." },
 ];
@@ -1058,8 +1058,8 @@ const faqs = [
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
   { q: "How many leads will I get per day?", a: "At least 500 fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, 400+ are website design & development requests (WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild) and 200+ are SEO requests (local, technical, on-page and link building). You'll never run out of work to reach out to." },
-  { q: "Which countries do the leads come from?", a: "Any country. Grow By Lead captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
-  { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Grow By Lead marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
+  { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
+  { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
   { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
   { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
@@ -1263,7 +1263,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
-          <Mono className="text-muted-foreground">© {new Date().getFullYear()} Grow By Lead</Mono>
+          <Mono className="text-muted-foreground">© {new Date().getFullYear()} Postly</Mono>
           <Mono className="text-muted-foreground">Built for sales teams that move fast</Mono>
         </div>
       </Container>

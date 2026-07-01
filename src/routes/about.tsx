@@ -4,10 +4,10 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Grow By Lead" },
-      { name: "description", content: "Grow By Lead turns public social media posts into structured, scored, outreach-ready leads for website and SEO sellers." },
-      { property: "og:title", content: "About — Grow By Lead" },
-      { property: "og:description", content: "Who we are, what we do, and why we built Grow By Lead." },
+      { title: "About — Postly" },
+      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for website and SEO sellers." },
+      { property: "og:title", content: "About — Postly" },
+      { property: "og:description", content: "Who we are, what we do, and why we built Postly." },
     ],
   }),
   component: AboutPage,
@@ -18,7 +18,7 @@ function AboutPage() {
     <PageShell
       kicker="About"
       title="We turn social noise into sales-ready leads."
-      lede="Grow By Lead is a focused buying-signal platform for people who sell website design, development and SEO services."
+      lede="Postly is a focused buying-signal platform for people who sell website design, development and SEO services."
     >
       <Section title="Why we exist">
         <p>
@@ -27,7 +27,7 @@ function AboutPage() {
           to track manually.
         </p>
         <p>
-          We built Grow By Lead to capture those signals, structure them into clean lead profiles, score them by intent
+          We built Postly to capture those signals, structure them into clean lead profiles, score them by intent
           and temperature, and deliver them to your inbox with outreach drafts already written.
         </p>
       </Section>
