@@ -117,7 +117,7 @@ export function SiteFooter() {
     {
       title: "Company",
       links: [
-        { label: "About", to: "/about" },
+        
         { label: "Contact", to: "/contact" },
         { label: "Careers", soon: true },
       ],
