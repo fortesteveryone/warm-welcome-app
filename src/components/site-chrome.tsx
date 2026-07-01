@@ -93,17 +93,26 @@ export function SiteHeader() {
         }`}
       >
         <Container className="flex flex-col gap-1 py-3">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-foreground/90 transition hover:bg-card"
-            >
-              <span>{l.label}</span>
-              <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
-            </a>
-          ))}
+          {NAV_LINKS.map((l) => {
+            const active = isActive(l.href, pathname);
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center justify-between rounded-md px-3 py-2.5 text-sm transition ${
+                  active
+                    ? "bg-card text-foreground border-l-2 border-[color:var(--signal)]"
+                    : "text-foreground/90 hover:bg-card"
+                }`}
+              >
+                <span>{l.label}</span>
+                <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
+              </a>
+            );
+          })}
+
           <div className="mt-2 grid grid-cols-2 gap-2 border-t border-border pt-3">
             <a href="#" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-md border border-border bg-card/60 px-3.5 py-2 text-sm font-medium text-foreground transition hover:bg-card">
               Sign in
