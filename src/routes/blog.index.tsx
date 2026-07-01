@@ -75,7 +75,7 @@ function BlogIndex() {
                 onChange={(e) => { setQuery(e.target.value); setShowSuggest(true); }}
                 onFocus={() => setShowSuggest(true)}
                 onBlur={() => setTimeout(() => setShowSuggest(false), 120)}
-                placeholder="Search blog — try 'webflow', 'outreach', 'local seo'…"
+                placeholder="Search blog — try 'webflow', 'outreach', 'wordpress'…"
                 className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
               />
               {query && (
