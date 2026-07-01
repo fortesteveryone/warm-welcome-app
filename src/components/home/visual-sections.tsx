@@ -43,13 +43,13 @@ export function ProductShowcase() {
     <section id="product" className="section-edge section-light relative overflow-hidden scroll-mt-24">
       <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
-          <Kicker>Inside the product</Kicker>
+          <Kicker>Inside Postly</Kicker>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-[44px]">
-            A focused workspace built for one job —{" "}
-            <span className="text-muted-foreground">turning posts into replies.</span>
+            See how website opportunity posts are organized, scored{" "}
+            <span className="text-muted-foreground">and made ready for outreach.</span>
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Every screen is engineered for speed: triage in seconds, score with reason, reply with intent.
+            Built for web agencies, designers, developers and CMS specialists who want to find and act on website opportunities faster.
           </p>
         </div>
 
@@ -112,12 +112,12 @@ export function ProductShowcase() {
           <div className="relative col-span-6 overflow-hidden rounded-2xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-6 sm:col-span-3 lg:col-span-2">
             <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl" />
             <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
-              <Sparkles className="h-3 w-3" /> AI outreach
+              <Sparkles className="h-3 w-3" /> AI Outreach
             </span>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to send</h3>
-            <p className="mt-1 text-xs text-muted-foreground">No blank page. Pick a tone, edit a word, send.</p>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to personalize.</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Start with a strong first draft, edit your tone, and respond faster to website opportunity posts.</p>
             <div className="mt-4 space-y-2">
-              {["Portfolio update support", "Fast turnaround offer", "Clear scope & payment"].map((t, i) => (
+              {["Website redesign support", "Quick delivery angle", "Scope & budget clarity"].map((t, i) => (
                 <div
                   key={t}
                   className={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs ${
