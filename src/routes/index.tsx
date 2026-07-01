@@ -601,7 +601,7 @@ const dailyVolumeStats = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge section-dark">
+    <section id="platforms" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
