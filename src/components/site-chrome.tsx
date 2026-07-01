@@ -31,9 +31,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
-      <Container className="relative flex h-16 items-center justify-between gap-3">
+      <Container className="relative flex h-20 items-center justify-between gap-3">
         <Link to="/" className="flex shrink-0 items-center gap-2">
-          <Logo className="h-9 w-auto" />
+          <Logo className="h-14 w-auto" />
         </Link>
         <nav className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
           {NAV_LINKS.map((l) => (
