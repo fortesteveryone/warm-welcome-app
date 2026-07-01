@@ -24,7 +24,7 @@ const RECENT_OPENED = [
 
 const RECOMMENDED = [
   { headline: "SaaS founder needs landing page rebuild on Webflow", country: "🇺🇸", budget: "$2–4k", posted: "8m ago",  score: 94, hot: true },
-  { headline: "Boutique law firm — full SEO audit + on-page",        country: "🇨🇦", budget: "$1.2k/mo", posted: "27m ago", score: 88, hot: true },
+  { headline: "Boutique law firm — Framer rebuild + CMS setup",     country: "🇨🇦", budget: "$1.2k/mo", posted: "27m ago", score: 88, hot: true },
   { headline: "Wix to WordPress migration, 20+ pages",               country: "🇦🇺", budget: "$3k",  posted: "1h ago", score: 81, hot: false },
 ];
 
