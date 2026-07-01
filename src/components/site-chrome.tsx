@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Menu, X } from "lucide-react";
+
 import logoUrl from "@/assets/postly-logo.png";
 import footerLogoUrl from "@/assets/postly-footer-logo.png";
 
