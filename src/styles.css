@@ -224,7 +224,6 @@
   background-image:
     linear-gradient(oklch(0.952 0.025 150 / 0.86), oklch(0.952 0.025 150 / 0.86)),
     url('/src/assets/section-3d-decor.png');
-  background-attachment: fixed, fixed;
   background-repeat: no-repeat, no-repeat;
   background-position: center center, center center;
   background-size: cover, cover;
