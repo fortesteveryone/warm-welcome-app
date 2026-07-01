@@ -450,7 +450,7 @@ const afterLoginItems = [
 
 function AfterLogin() {
   return (
-    <section id="features" className="section-edge section-light">
+    <section id="features" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
@@ -489,7 +489,7 @@ function ByTheNumbers() {
     { value: "Auto",       label: "Structured and scored" },
   ];
   return (
-    <section className="section-edge section-dark">
+    <section className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="By the numbers"
@@ -536,7 +536,7 @@ const dailyVolumeStats = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge section-light">
+    <section id="platforms" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
@@ -594,7 +594,7 @@ const scoringFactors: [string, string][] = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-dark relative overflow-hidden">
+    <section id="scoring" className="section-edge section-light relative overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
@@ -640,7 +640,7 @@ function VipAddon() {
     { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first." },
   ];
   return (
-    <section id="vip" className="section-edge section-light">
+    <section id="vip" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
@@ -756,7 +756,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge section-dark">
+    <section id="pricing" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
@@ -893,7 +893,7 @@ const builtForCards = [
 
 function BuiltFor() {
   return (
-    <section id="built-for" className="section-edge section-light">
+    <section id="built-for" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Built for"
