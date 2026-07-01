@@ -489,11 +489,30 @@ function AfterLogin() {
 
 /* ---------- by the numbers ---------- */
 function ByTheNumbers() {
-  const stats = [
-    { value: "365+",       label: "Fresh website-service posts daily" },
-    { value: "30+",        label: "Countries monitored" },
-    { value: "4 Live",     label: "Facebook, LinkedIn, Instagram, Reddit" },
-    { value: "Auto",       label: "Structured and scored" },
+  const liveSocials = [
+    { Icon: SiFacebook, name: "Facebook", color: "#1877F2" },
+    { Icon: SiLinkedIn, name: "LinkedIn", color: "#0A66C2" },
+    { Icon: SiInstagram, name: "Instagram", color: "#E4405F" },
+    { Icon: SiReddit, name: "Reddit", color: "#FF4500" },
+  ];
+  const stats: Array<{ value: React.ReactNode; label: React.ReactNode }> = [
+    { value: "365+",   label: "Fresh website-service posts daily" },
+    { value: "30+",    label: "Countries monitored" },
+    {
+      value: "4 Live",
+      label: (
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {liveSocials.map(({ Icon, name, color }, i) => (
+            <span key={name} className="inline-flex items-center gap-1">
+              <Icon className="h-3.5 w-3.5" style={{ color }} />
+              <span>{name}</span>
+              {i < liveSocials.length - 1 && <span className="text-muted-foreground/60">·</span>}
+            </span>
+          ))}
+        </span>
+      ),
+    },
+    { value: "Auto",   label: "Structured and scored" },
   ];
   return (
     <section className="section-edge section-light">
@@ -504,8 +523,8 @@ function ByTheNumbers() {
           lede="Postly keeps your opportunity feed fresh, structured, and ready for consistent follow-up."
         />
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="rounded-xl border border-border bg-card p-5">
+          {stats.map((s, i) => (
+            <div key={i} className="rounded-xl border border-border bg-card p-5">
               <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
               <div className="mt-1.5 text-sm text-muted-foreground">{s.label}</div>
             </div>
