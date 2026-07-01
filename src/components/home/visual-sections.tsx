@@ -31,8 +31,7 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 
 function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
-      <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+    <span className="inline-flex items-center rounded-full border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
       {children}
     </span>
   );
@@ -41,7 +40,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 /* ---------- Product showcase: big black dashboard + bento callouts ---------- */
 export function ProductShowcase() {
   return (
-    <section className="section-edge section-light relative overflow-hidden">
+    <section id="product" className="section-edge section-light relative overflow-hidden scroll-mt-24">
       <Container className="py-20 md:py-28">
         <div className="flex flex-col items-center text-center">
           <Kicker>Inside the product</Kicker>
