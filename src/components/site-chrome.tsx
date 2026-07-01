@@ -240,8 +240,8 @@ export function SiteFooter() {
             transform: "translateY(18%)",
           }}
         >
-          <span className="pr-[0.25em]">GrowByLead&nbsp;·&nbsp;GrowByLead&nbsp;·&nbsp;</span>
-          <span className="pr-[0.25em]">GrowByLead&nbsp;·&nbsp;GrowByLead&nbsp;·&nbsp;</span>
+          <span className="pr-[0.25em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
+          <span className="pr-[0.25em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
         </div>
       </div>
 
