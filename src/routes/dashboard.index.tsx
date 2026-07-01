@@ -16,9 +16,9 @@ export const Route = createFileRoute("/dashboard/")({
 const CREDITS = { balance: 312, included: 500, used: 188, plan: "Starter · $10/mo", resets: "Jul 1" };
 
 const RECENT_OPENED = [
-  { name: "Aisha Rahman",  headline: "Need a Shopify redesign + SEO for jewellery brand",  country: "United Kingdom", flag: "🇬🇧", budget: "$3–6k",  when: "12m ago",  status: "replied" as const },
+  { name: "Aisha Rahman",  headline: "Need a Shopify → Webflow redesign for jewellery brand",  country: "United Kingdom", flag: "🇬🇧", budget: "$3–6k",  when: "12m ago",  status: "replied" as const },
   { name: "Marcus Lin",    headline: "Looking for Webflow developer — 8-page marketing site", country: "United States", flag: "🇺🇸", budget: "$4–8k",  when: "1h ago",   status: "contacted" as const },
-  { name: "Priya Devi",    headline: "Local SEO for a 3-location restaurant in Mumbai",     country: "India",          flag: "🇮🇳", budget: "$800–1.5k", when: "3h ago",   status: "saved" as const },
+  { name: "Priya Devi",    headline: "WordPress site rebuild for a 3-location restaurant in Mumbai",     country: "India",          flag: "🇮🇳", budget: "$800–1.5k", when: "3h ago",   status: "saved" as const },
   { name: "Jonas Weber",   headline: "WordPress → Framer migration, logistics company",     country: "Germany",        flag: "🇩🇪", budget: "$5–10k", when: "Yesterday", status: "viewed" as const },
 ];
 
