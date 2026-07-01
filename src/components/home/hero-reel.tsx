@@ -42,7 +42,7 @@ export function HeroReel() {
           <span className="h-2.5 w-2.5 rounded-md bg-white/15" />
           <span className="h-2.5 w-2.5 rounded-md bg-white/15" />
         </div>
-        <span className="truncate font-mono text-[10px] text-white/40">growbylead.app / inbox</span>
+        <span className="truncate font-mono text-[10px] text-white/40">postly.growbylead.com / inbox</span>
         <span className="inline-flex shrink-0 items-center gap-1.5 text-[10px] text-[color:var(--signal)]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-md bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
           <span className="font-mono tracking-wider">REC</span>
