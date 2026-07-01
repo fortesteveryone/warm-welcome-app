@@ -228,20 +228,19 @@ export function SiteFooter() {
       </Container>
 
       {/* Oversized brand wordmark — scrolls right→left, clipped at the bottom */}
-      <div aria-hidden className="relative select-none overflow-hidden">
+      <div aria-hidden className="relative select-none overflow-hidden py-4">
         <div
-          className="wordmark-marquee pointer-events-none flex whitespace-nowrap font-semibold leading-[0.8] tracking-tighter"
+          className="wordmark-marquee pointer-events-none flex whitespace-nowrap font-semibold leading-[1] tracking-tight"
           style={{
-            fontSize: "clamp(96px, 22vw, 320px)",
-            background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(34,197,94,0.18) 55%, rgba(34,197,94,0) 100%)",
+            fontSize: "clamp(56px, 12vw, 160px)",
+            background: "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(34,197,94,0.22) 60%, rgba(34,197,94,0.05) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
-            transform: "translateY(18%)",
           }}
         >
-          <span className="pr-[0.25em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
-          <span className="pr-[0.25em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
+          <span className="pr-[0.5em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
+          <span className="pr-[0.5em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
         </div>
       </div>
 
