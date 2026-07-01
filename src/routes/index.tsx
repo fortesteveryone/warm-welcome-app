@@ -1053,17 +1053,17 @@ function Testimonials() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for SEO, e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
-  { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
+  { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for e-commerce stores, paid ads, branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services. Postly is not an SEO tool and we do not sell SEO leads." },
+  { q: "What do I get after login?", a: "A clean lead dashboard with structured website design, development and CMS leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts you can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn and Reddit are live right now. Instagram, X (Twitter) and Threads are coming soon." },
-  { q: "How many leads will I get per day?", a: "At least 365+ fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, the majority are website design & development requests and CMS-related requests (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
-  { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
+  { q: "How many leads will I get per day?", a: "At least 365+ fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Every one of them is a website design, development or CMS request (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
+  { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the dashboard by country if you only want to work with specific markets." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
-  { q: "Who is this for?", a: "Web design agencies, freelance designers and developers, CMS specialists, social media managers, cold outreach teams and lead-generation agencies selling website design, development and CMS services." },
+  { q: "Who is this for?", a: "Web design agencies, freelance web designers and developers, CMS specialists (WordPress, Webflow, Wix, Framer) and cold outreach teams selling website design, development and CMS services." },
   { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
   { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Each score includes a short, human-readable reason." },
-  { q: "Can I export leads to my own CRM?", a: "Yes. CSV and JSON export are available on all plans. API access and webhook delivery are in beta on the Agency plan." },
+  { q: "What's included in the VIP plan?", a: "VIP is launching soon. When it goes live, you'll get hand-picked hot website design & development leads delivered to your Gmail in real time, plus a dedicated Hot Leads section inside your dashboard on top of everything in the Pro plan." },
 ];
 
 function FAQ() {
