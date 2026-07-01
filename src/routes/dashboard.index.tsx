@@ -154,7 +154,7 @@ function Overview() {
               {[
                 { l: "Web design", v: "82" },
                 { l: "Webflow",    v: "54" },
-                { l: "SEO",        v: "31" },
+                { l: "Framer",     v: "31" },
                 { l: "WordPress",  v: "21" },
               ].map((s) => (
                 <div key={s.l}>
