@@ -1064,7 +1064,7 @@ function FinalCTA() {
           <FloatingSocials />
           <h2 className="relative text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
             Stop scrolling.<br />
-            <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
+            <span className="text-[color:var(--signal)]">Start closing.</span>
           </h2>
           <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">
             Find structured, scored website opportunities from public social posts without manually checking every platform.
