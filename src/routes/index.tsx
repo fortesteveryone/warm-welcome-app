@@ -173,7 +173,7 @@ function Hero() {
 
             <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
               Find website service opportunities{" "}
-              <span className="text-foreground/55">from public social posts</span>
+              <span className="text-[color:var(--signal)]">from public social posts</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg">
@@ -295,7 +295,7 @@ function Scope() {
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Only <span className="text-muted-foreground">website and CMS</span> opportunities.</>}
+          title={<>Only <span className="text-[color:var(--signal)]">website and CMS</span> opportunities.</>}
           lede="Postly tracks posts where people ask for website design, development, redesign, landing page, CMS, or platform migration help."
         />
 
@@ -370,7 +370,7 @@ function WhyTeamsSwitch() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Why teams switch"
-          title={<>Built like a workflow, <span className="text-muted-foreground">not a spreadsheet.</span></>}
+          title={<>Built like a workflow, <span className="text-[color:var(--signal)]">not a spreadsheet.</span></>}
           lede="Everything is organized so your team can review, qualify, save, and respond to website opportunities faster."
         />
         <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -397,7 +397,7 @@ function SignalEngine() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Signal engine"
-          title={<>We track public posts. <span className="text-muted-foreground">You choose the best ones.</span></>}
+          title={<>We track public posts. <span className="text-[color:var(--signal)]">You choose the best ones.</span></>}
           lede="Postly monitors supported public sources, detects website-service intent, and turns relevant posts into structured opportunities."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-stretch">
@@ -461,7 +461,7 @@ function AfterLogin() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
-          title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
+          title={<>Exactly what you get <span className="text-[color:var(--signal)]">inside your account.</span></>}
           lede="Your dashboard shows the information needed to verify, prioritize, and manage website opportunities from one place."
         />
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -500,7 +500,7 @@ function ByTheNumbers() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="By the numbers"
-          title={<>Built for a <span className="text-muted-foreground">daily outreach pipeline.</span></>}
+          title={<>Built for a <span className="text-[color:var(--signal)]">daily outreach pipeline.</span></>}
           lede="Postly keeps your opportunity feed fresh, structured, and ready for consistent follow-up."
         />
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -547,7 +547,7 @@ function Platforms() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
-          title={<>Monitor the places where <span className="text-muted-foreground">buyers ask for website help.</span></>}
+          title={<>Monitor the places where <span className="text-[color:var(--signal)]">buyers ask for website help.</span></>}
           lede="Postly currently tracks Facebook, LinkedIn, Instagram, and Reddit, with X and Threads planned for future coverage."
         />
 
@@ -607,7 +607,7 @@ function Scoring() {
           <div className="md:sticky md:top-24">
             <SectionTitle
               kicker="Scoring"
-              title={<>Six factors. <span className="text-muted-foreground">Clear reasons.</span></>}
+              title={<>Six factors. <span className="text-[color:var(--signal)]">Clear reasons.</span></>}
               lede="Each opportunity is scored using visible signals from the post, so your team understands why it should be prioritized."
             />
             <div className="mt-6 rounded-xl border border-border bg-white/80 p-5 backdrop-blur-md shadow-sm">
@@ -904,7 +904,7 @@ function BuiltFor() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Built for"
-          title={<>Built for <span className="text-muted-foreground">website service sellers.</span></>}
+          title={<>Built for <span className="text-[color:var(--signal)]">website service sellers.</span></>}
           lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -943,7 +943,7 @@ function FAQ() {
   return (
     <section className="section-edge section-light">
       <Container className="py-16 md:py-20">
-        <SectionTitle kicker="FAQ" title={<>Common <span className="text-muted-foreground">questions.</span></>} />
+        <SectionTitle kicker="FAQ" title={<>Common <span className="text-[color:var(--signal)]">questions.</span></>} />
         <div className="mt-10 divide-y divide-border rounded-xl border border-border bg-card/50">
           {faqs.map((f, i) => (
             <div key={i}>
