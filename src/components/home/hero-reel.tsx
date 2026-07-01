@@ -16,8 +16,8 @@ const REEL_LEADS: Lead[] = [
   { title: "Need WordPress dev to fix checkout — paying today", platform: "Facebook", country: "USA", flag: "🇺🇸", ago: "12s", hot: true },
   { title: "Need a WordPress developer to redesign my clinic site", platform: "LinkedIn", country: "UK", flag: "🇬🇧", ago: "38s" },
   { title: "Anyone do Webflow rebuilds? Budget $3k", platform: "Reddit", country: "Canada", flag: "🇨🇦", ago: "1m" },
-  { title: "Restaurant Instagram redesign + landing page", platform: "Instagram", country: "UAE", flag: "🇦🇪", ago: "2m" },
-  { title: "Framer portfolio update — small fixes", platform: "X", country: "Australia", flag: "🇦🇺", ago: "3m", hot: true },
+  { title: "Looking for a Webflow dev to rebuild our landing page", platform: "LinkedIn", country: "UAE", flag: "🇦🇪", ago: "2m" },
+  { title: "Framer portfolio update — small fixes", platform: "Reddit", country: "Australia", flag: "🇦🇺", ago: "3m", hot: true },
 ];
 
 function PlatformDot({ name }: { name: Lead["platform"] }) {

@@ -343,9 +343,9 @@ function Hero() {
 const sampleLeads = [
   { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
   { title: "Need a WordPress rebuild for local plumbing business", platform: "Reddit",   temp: "Warm", service: "WordPress", comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
-  { title: "Need help managing our Instagram for restaurant",    platform: "Instagram",temp: "Warm", service: "SMM",     comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
+  { title: "Need help with a Webflow rebuild for restaurant site", platform: "Facebook", temp: "Warm", service: "Webflow", comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
   { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
-  { title: "Anyone do landing pages for SaaS launch?",           platform: "X",        temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
+  { title: "Anyone do landing pages for SaaS launch?",           platform: "Reddit",   temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
 ] as const;
 
 function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
@@ -581,8 +581,8 @@ type PlatformEntry = {
 const platforms: PlatformEntry[] = [
   { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Service-request posts and business asks across public groups and pages." },
   { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Hiring asks, agency searches and ICP buying signals from public posts." },
-  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and pinned comments from creator and business accounts." },
   { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche subreddits, freelance asks and vendor recommendation threads." },
+  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "soon", note: "Captions and pinned comments from creator and business accounts." },
   { icon: XIcon,       color: "#000000", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs and intent keywords." },
   { icon: ThreadsIcon, color: "#000000", name: "Threads",     state: "soon", note: "Conversation-first posts from creators and small businesses." },
 ];
@@ -1055,7 +1055,7 @@ function Testimonials() {
 const faqs = [
   { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for SEO, e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn and Reddit are live right now. Instagram, X (Twitter) and Threads are coming soon." },
   { q: "How many leads will I get per day?", a: "At least 365+ fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, the majority are website design & development requests and CMS-related requests (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
   { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },

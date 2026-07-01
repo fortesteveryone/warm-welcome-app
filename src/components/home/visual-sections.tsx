@@ -233,10 +233,10 @@ export function FeatureBento() {
                   We listen to the open web — you reply to the ones that matter.
                 </h3>
                 <p className="mt-2 text-sm text-white/60">
-                  Our engine parses public posts across Facebook, LinkedIn, Reddit, Instagram and X, scores intent, and drops only the qualified ones in your inbox.
+                  Our engine parses public posts across Facebook, LinkedIn and Reddit, scores intent, and drops only the qualified ones in your inbox.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
-                  {["Facebook", "LinkedIn", "Reddit", "Instagram", "X"].map((p) => (
+                  {["Facebook", "LinkedIn", "Reddit"].map((p) => (
                     <span key={p} className="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-white/75">{p}</span>
                   ))}
                 </div>
