@@ -19,7 +19,6 @@ export const BLOG_CATEGORIES = [
   "Webflow",
   "Wix",
   "Framer",
-  "SEO",
   "Lead generation",
   "Outreach",
 ] as const;
