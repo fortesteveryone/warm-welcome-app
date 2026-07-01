@@ -615,7 +615,7 @@ const scoringFactors: [string, string][] = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden">
+    <section id="scoring" className="section-edge section-dark relative overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">
