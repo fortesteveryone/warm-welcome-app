@@ -601,7 +601,7 @@ function Platforms() {
         <SectionTitle
           kicker="Platforms"
           title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
-          lede="At least 500 fresh website design, development and CMS leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+          lede="At least 365+ fresh website design, development and CMS leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
         />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -1056,7 +1056,7 @@ const faqs = [
   { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for SEO, e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
-  { q: "How many leads will I get per day?", a: "At least 500 fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, 400+ are website design & development requests and 200+ are CMS-related requests (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
+  { q: "How many leads will I get per day?", a: "At least 365+ fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, the majority are website design & development requests and CMS-related requests (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
   { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
