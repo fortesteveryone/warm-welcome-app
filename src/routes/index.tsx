@@ -513,7 +513,7 @@ function Scope() {
               })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              We focus only on website + SEO leads. If you sell something else, Postly probably isn't the right fit.
+              We focus only on website design, development and CMS leads. If you sell something else, Postly probably isn't the right fit.
             </p>
           </div>
         </div>
