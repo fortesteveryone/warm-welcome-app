@@ -1091,8 +1091,9 @@ function FAQ() {
 
 /* ---------- final CTA ---------- */
 function HeroFloatingSocials() {
-  // Hero-only: at most 1–2 logos visible at a time, fading in/out
-  // at random positions across the hero. Each "slot" cycles independently.
+  // One logo at a time, appearing near the outer corners of the hero (outside
+  // the ~1200px content column). Each cycle picks a different icon, a fresh
+  // edge slot, and a subtle rotation for a professional, non-repetitive feel.
   const ICONS = [
     { Icon: SiFacebook,  color: "#1877F2" },
     { Icon: SiLinkedIn,  color: "#0A66C2" },
@@ -1100,59 +1101,59 @@ function HeroFloatingSocials() {
     { Icon: SiX,         color: "#0F0F0F" },
     { Icon: SiInstagram, color: "#E4405F" },
   ];
+  // Edge slots — hugging the corners / outer margins of the hero on all sizes.
+  const SLOTS = [
+    { top: "10%", left: "2%"  },
+    { top: "18%", right: "3%" },
+    { top: "62%", left: "3%"  },
+    { top: "70%", right: "2%" },
+    { top: "40%", left: "1%"  },
+    { top: "48%", right: "1%" },
+    { top: "84%", left: "8%"  },
+    { top: "86%", right: "9%" },
+  ] as const;
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
-  const pick = <T,>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
-  type Slot = { id: number; iconIdx: number; top: number; left: number; size: number; dur: number };
-  const next = (id: number): Slot => ({
-    id,
-    iconIdx: Math.floor(Math.random() * ICONS.length),
-    top: rand(8, 78),
-    left: rand(2, 92),
-    size: pick([56, 64, 72, 80]),
-    dur: rand(6, 8.5),
-  });
-  const [slots, setSlots] = React.useState<[Slot, Slot]>(() => [next(1), next(2)]);
+  type Item = { key: number; iconIdx: number; slotIdx: number; size: number; rotate: number };
+  const build = (key: number, prevIcon: number, prevSlot: number): Item => {
+    let iconIdx = Math.floor(Math.random() * ICONS.length);
+    if (iconIdx === prevIcon) iconIdx = (iconIdx + 1) % ICONS.length;
+    let slotIdx = Math.floor(Math.random() * SLOTS.length);
+    if (slotIdx === prevSlot) slotIdx = (slotIdx + 1) % SLOTS.length;
+    const rotate = (Math.random() < 0.5 ? -1 : 1) * rand(28, 42);
+    const size = Math.round(rand(56, 84));
+    return { key, iconIdx, slotIdx, size, rotate };
+  };
+  const [item, setItem] = React.useState<Item>(() => build(1, -1, -1));
   React.useEffect(() => {
-    let counter = 100;
-    // Stagger the two slots so only one is mid-peak at a time.
-    const t1 = setInterval(() => setSlots(([_, b]) => [next(++counter), b]), 7200);
-    const t2 = setTimeout(() => {
-      const t2b = setInterval(() => setSlots(([a, _]) => [a, next(++counter)]), 7200);
-      (t2 as any)._inner = t2b;
-    }, 3600);
-    return () => {
-      clearInterval(t1);
-      clearTimeout(t2);
-      if ((t2 as any)._inner) clearInterval((t2 as any)._inner);
-    };
+    let n = 2;
+    const t = setInterval(() => {
+      setItem((prev) => build(n++, prev.iconIdx, prev.slotIdx));
+    }, 4200);
+    return () => clearInterval(t);
   }, []);
+  const { Icon, color } = ICONS[item.iconIdx];
+  const slot = SLOTS[item.slotIdx];
   return (
-    <>
-      {slots.map((s) => {
-        const { Icon, color } = ICONS[s.iconIdx];
-        return (
-          <div
-            key={s.id}
-            className="social-fade absolute blur-[1.5px]"
-            style={{
-              top: `${s.top}%`,
-              left: `${s.left}%`,
-              width: s.size,
-              height: s.size,
-              color,
-              ['--dur' as any]: `${s.dur}s`,
-              ['--peak' as any]: '0.32',
-              ['--fx' as any]: `${rand(-14, 14)}px`,
-              ['--fy' as any]: `${rand(-14, 14)}px`,
-            }}
-          >
-            <Icon size={s.size} />
-          </div>
-        );
-      })}
-    </>
+    <div
+      key={item.key}
+      className="social-fade absolute blur-[1.5px]"
+      style={{
+        ...slot,
+        width: item.size,
+        height: item.size,
+        color,
+        transform: `rotate(${item.rotate}deg)`,
+        ['--dur' as any]: `4.2s`,
+        ['--peak' as any]: '0.38',
+        ['--fx' as any]: '0px',
+        ['--fy' as any]: '0px',
+      }}
+    >
+      <Icon size={item.size} />
+    </div>
   );
 }
+
 
 function FloatingSocials() {
   // Ambient social logos that softly fade in and out around the CTA card.
