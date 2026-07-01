@@ -277,7 +277,7 @@ function Hero() {
 
             <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
               Find website service opportunities{" "}
-              <span className="text-foreground/55">from public social posts.</span>
+              <span className="text-foreground/55">from public social posts</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg">
