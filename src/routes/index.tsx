@@ -254,10 +254,10 @@ function Hero() {
       </div>
 
       <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
-        <div className="grid items-center gap-8 sm:gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
-          {/* Left: copy */}
-          <div className="min-w-0 text-center lg:text-left">
-            <div className="flex justify-center lg:justify-start">
+        <div className="grid items-center gap-8 sm:gap-10 md:gap-14">
+          {/* Copy */}
+          <div className="min-w-0 text-center">
+            <div className="flex justify-center">
               <a
                 href="#pricing"
                 className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/80 py-1 pl-3 pr-1.5 text-xs text-muted-foreground backdrop-blur transition hover:border-[color:var(--signal)]/50 hover:bg-card hover:text-foreground"
@@ -280,7 +280,7 @@ function Hero() {
               <span className="text-foreground/55">from public social posts.</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
+            <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg">
               Built for web designers, web developers, CMS specialists and agencies — Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads in your dashboard.
             </p>
 
@@ -289,7 +289,7 @@ function Hero() {
               Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
                 Request early access <ArrowRight className="h-4 w-4" />
               </a>
@@ -299,7 +299,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="relative min-w-0">
+          <div className="relative mx-auto w-full min-w-0 max-w-3xl">
             <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10 opacity-40">
               <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/5 blur-[80px]" />
             </div>
