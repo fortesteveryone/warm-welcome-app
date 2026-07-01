@@ -763,7 +763,7 @@ function Concierge() {
               Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website &amp; SEO leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website design, development and CMS leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
