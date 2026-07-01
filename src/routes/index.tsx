@@ -370,16 +370,21 @@ function WhyTeamsSwitch() {
           title={<>Built like a workflow, <span className="text-muted-foreground">not a spreadsheet.</span></>}
           lede="Everything is organized so your team can review, qualify, save, and respond to website opportunities faster."
         />
-        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          {whyCards.map(({ Icon, title, desc }) => (
-            <div key={title} className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1">
-              <div className="grid h-10 w-10 place-items-center rounded-lg bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30">
-                <Icon className="h-5 w-5" strokeWidth={2} />
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {whyCards.map(({ Icon, title, desc }) => (
+              <div key={title} className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30">
+                  <Icon className="h-5 w-5" strokeWidth={2} />
+                </div>
+                <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
               </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="lg:pl-6">
+            <MockFilters />
+          </div>
         </div>
       </Container>
     </section>
