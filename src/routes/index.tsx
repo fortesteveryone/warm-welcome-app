@@ -293,7 +293,7 @@ function Hero() {
               <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
                 Start free trial <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#product" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-foreground/10">
+              <a href="#product" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-white/90">
                 Explore now
               </a>
             </div>
