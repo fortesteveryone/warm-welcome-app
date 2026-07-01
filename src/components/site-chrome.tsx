@@ -230,7 +230,7 @@ export function SiteFooter() {
       {/* Oversized brand wordmark — scrolls right→left, clipped at the bottom */}
       <div aria-hidden className="relative select-none overflow-hidden py-4">
         <div
-          className="wordmark-marquee pointer-events-none flex whitespace-nowrap font-semibold leading-[1] tracking-tight"
+          className="wordmark-marquee pointer-events-none flex items-center whitespace-nowrap font-semibold leading-[1] tracking-tight"
           style={{
             fontSize: "clamp(56px, 12vw, 160px)",
             background: "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(34,197,94,0.22) 60%, rgba(34,197,94,0.05) 100%)",
@@ -239,8 +239,16 @@ export function SiteFooter() {
             color: "transparent",
           }}
         >
-          <span className="pr-[0.5em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
-          <span className="pr-[0.5em]">postly.growbylead.com&nbsp;·&nbsp;postly.growbylead.com&nbsp;·&nbsp;</span>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="flex shrink-0 items-center">
+              <span>postly.growbylead.com</span>
+              <span
+                aria-hidden
+                className="mx-[0.35em] inline-block h-[0.7em] w-[3px] rounded-full"
+                style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.35), rgba(34,197,94,0.35))" }}
+              />
+            </span>
+          ))}
         </div>
       </div>
 
