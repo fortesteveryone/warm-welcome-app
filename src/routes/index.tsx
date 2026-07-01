@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import React, { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Facebook, Filter, Flame, Globe,
-  Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MessageSquare, Search, Send,
-  Shield, Sparkles, Target, X,
+  ArrowRight, ArrowRightLeft, ArrowUpRight, Check, ChevronDown, Code2, Facebook, Filter, Flame, Globe,
+  Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MessageSquare, Paintbrush, Search, Send,
+  Shield, ShoppingBag, Sparkles, Target, Users, Wand2, X,
 } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductShowcase } from "@/components/home/visual-sections";
