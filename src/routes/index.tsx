@@ -286,7 +286,7 @@ const outOfScope = [
 
 function Scope() {
   return (
-    <section className="section-edge section-light relative overflow-hidden">
+    <section className="section-edge section-dark relative overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
