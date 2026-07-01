@@ -179,7 +179,7 @@ function LeadsPage() {
             <Mono className="text-muted-foreground">Quick filter</Mono>
             <div className="mt-1 text-sm font-medium">{unopenedOnly ? "Showing only unopened" : "Show only unopened"}</div>
           </div>
-          <span className={`grid h-8 w-8 place-items-center rounded-full border ${unopenedOnly ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-background/40 text-muted-foreground"}`}>
+          <span className={`grid h-8 w-8 place-items-center rounded-md border ${unopenedOnly ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-background/40 text-muted-foreground"}`}>
             <Eye className="h-4 w-4" />
           </span>
         </button>
@@ -213,7 +213,7 @@ function LeadsPage() {
           className={`inline-flex h-9 items-center gap-1.5 rounded-md border px-3 text-sm transition ${showFilters || activeFilterCount > 0 ? "border-foreground/40 bg-foreground/10" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
         >
           <Filter className="h-3.5 w-3.5" /> Filters
-          {activeFilterCount > 0 && <span className="rounded-full bg-foreground px-1.5 text-[10px] font-semibold text-background">{activeFilterCount}</span>}
+          {activeFilterCount > 0 && <span className="rounded-md bg-foreground px-1.5 text-[10px] font-semibold text-background">{activeFilterCount}</span>}
         </button>
         <div className="flex items-center gap-1 rounded-md border border-border bg-card/50 p-0.5">
           <button onClick={() => setView("feed")} className={`grid h-8 w-8 place-items-center rounded ${view === "feed" ? "bg-foreground/10 text-foreground" : "text-muted-foreground"}`} aria-label="Feed view">
@@ -251,7 +251,7 @@ function LeadsPage() {
                 <Flame className="h-3.5 w-3.5 text-rose-400" /> Hot
               </Chip>
               <Chip active={temperatures.includes("warm")} onClick={() => { setTemperatures(toggle(temperatures, "warm" as LeadStatus)); setPage(1); }}>
-                <span className="h-2 w-2 rounded-full bg-amber-400" /> Warm
+                <span className="h-2 w-2 rounded-md bg-amber-400" /> Warm
               </Chip>
               <Chip active={temperatures.includes("cold")} onClick={() => { setTemperatures(toggle(temperatures, "cold" as LeadStatus)); setPage(1); }}>
                 <Snowflake className="h-3.5 w-3.5 text-sky-400" /> Cold
@@ -417,7 +417,7 @@ function LeadPostCard({
                               "from-sky-500 to-indigo-500";
   const tempBadge =
     lead.status === "hot"  ? { cls: "bg-rose-500/15 text-rose-200 ring-rose-500/30",  icon: <Flame className="h-3 w-3" />, label: "Hot" } :
-    lead.status === "warm" ? { cls: "bg-amber-500/15 text-amber-200 ring-amber-500/30", icon: <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />, label: "Warm" } :
+    lead.status === "warm" ? { cls: "bg-amber-500/15 text-amber-200 ring-amber-500/30", icon: <span className="h-1.5 w-1.5 rounded-md bg-amber-300" />, label: "Warm" } :
                               { cls: "bg-sky-500/15 text-sky-200 ring-sky-500/30",       icon: <Snowflake className="h-3 w-3" />, label: "Cold" };
 
   const intentDot =
@@ -461,17 +461,17 @@ function LeadPostCard({
               </span>
             </div>
             <div className="mt-1 flex flex-wrap items-center gap-1.5">
-              <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ring-1 ${tempBadge.cls}`}>
+              <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ring-1 ${tempBadge.cls}`}>
                 {tempBadge.icon} {tempBadge.label}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 text-[10px] text-muted-foreground ring-1 ring-border">
+              <span className="inline-flex items-center gap-1 rounded-md bg-background/60 px-2 py-0.5 text-[10px] text-muted-foreground ring-1 ring-border">
                 {lead.category}
               </span>
               {!isOpened && (
                 <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-foreground">
                   <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-60" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-foreground" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-md bg-foreground opacity-60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-md bg-foreground" />
                   </span>
                   NEW
                 </span>
@@ -498,7 +498,7 @@ function LeadPostCard({
           <span className="inline-flex items-center gap-1"><MessageSquare className="h-3 w-3" /> {lead.comments}</span>
           <span className="inline-flex items-center gap-1"><FileText className="h-3 w-3" /> {lead.drafts}</span>
           <span className="inline-flex items-center gap-1">
-            <span className={`h-1.5 w-1.5 rounded-full ${intentDot}`} /> {lead.intent.toLowerCase()}
+            <span className={`h-1.5 w-1.5 rounded-md ${intentDot}`} /> {lead.intent.toLowerCase()}
           </span>
           <span className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-foreground/5 px-1.5 py-0.5 font-mono text-[10px] text-foreground/80 ring-1 ring-border">
             <span className="opacity-60">SCR</span>
@@ -589,7 +589,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs transition ${active ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+      className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs transition ${active ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
     >
       {children}
     </button>
@@ -600,7 +600,7 @@ function AllChip({ active, onClick }: { active: boolean; onClick: () => void }) 
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+      className={`inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-semibold transition ${active ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
     >
       All
     </button>
@@ -609,12 +609,12 @@ function AllChip({ active, onClick }: { active: boolean; onClick: () => void }) 
 
 function IntentDot({ level }: { level: LeadIntent }) {
   const color = level === "High" ? "bg-emerald-400" : level === "Medium" ? "bg-amber-400" : "bg-sky-400";
-  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+  return <span className={`h-2 w-2 rounded-md ${color}`} />;
 }
 
 function QualDot({ value }: { value: LeadQualification }) {
   const color = value === "qualified" ? "bg-emerald-400" : value === "disqualified" ? "bg-rose-400" : "bg-muted-foreground/60";
-  return <span className={`h-2 w-2 rounded-full ${color}`} />;
+  return <span className={`h-2 w-2 rounded-md ${color}`} />;
 }
 
 function PlatformIcon({ p }: { p: LeadPlatform }) {

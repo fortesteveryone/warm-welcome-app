@@ -74,7 +74,7 @@ export function CreditPackages({
           >
             {pkg.badge && (
               <span
-                className={`absolute -top-2 right-3 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                className={`absolute -top-2 right-3 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
                   pkg.badge === "Popular"
                     ? "bg-foreground text-background"
                     : "border border-border bg-background text-foreground"

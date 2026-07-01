@@ -117,7 +117,7 @@ function BlogDetail() {
                 <ul key={i} className="my-5 space-y-2">
                   {b.items?.map((it) => (
                     <li key={it} className="flex gap-3 text-base leading-relaxed text-foreground/90">
-                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[color:var(--signal)]" />
+                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-md bg-[color:var(--signal)]" />
                       <span>{it}</span>
                     </li>
                   ))}
@@ -128,7 +128,7 @@ function BlogDetail() {
 
             <div className="mt-10 flex flex-wrap gap-1.5 border-t border-border pt-6">
               {post.tags.map((t) => (
-                <span key={t} className="rounded-full border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">#{t}</span>
+                <span key={t} className="rounded-md border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">#{t}</span>
               ))}
             </div>
           </div>

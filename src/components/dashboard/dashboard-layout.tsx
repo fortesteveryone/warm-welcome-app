@@ -83,7 +83,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             </button>
           ) : (
             <div className="flex items-center gap-2.5 rounded-md p-2">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[11px] font-semibold ring-1 ring-border">
+              <span className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[11px] font-semibold ring-1 ring-border">
                 NS
               </span>
               <div className="min-w-0 flex-1">
@@ -166,7 +166,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             </button>
             <ComplaintBoxButton />
             <NotificationsBell />
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[12px] font-semibold ring-1 ring-border">
+            <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[12px] font-semibold ring-1 ring-border">
               NS
             </span>
           </div>

@@ -31,7 +31,7 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 
 function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
+    <span className="inline-flex items-center rounded-md border border-foreground/15 bg-foreground/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/70">
       {children}
     </span>
   );
@@ -60,11 +60,11 @@ export function ProductShowcase() {
             <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[color:var(--signal)]/15 to-transparent" />
             <div className="relative p-5 sm:p-7">
               <div className="mb-4 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white">
                   <Inbox className="h-3 w-3" /> Lead Inbox
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)]/20 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)]" /> Live
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/20 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-md bg-[color:var(--signal)]" /> Live
                 </span>
               </div>
               <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
@@ -89,7 +89,7 @@ export function ProductShowcase() {
           {/* Analytics card */}
           <div className="col-span-6 overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-5 text-white sm:col-span-3 lg:col-span-2">
             <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium">
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-medium">
                 <TrendingUp className="h-3 w-3" /> Trend
               </span>
               <ArrowUpRight className="h-4 w-4 text-white/40" />
@@ -110,8 +110,8 @@ export function ProductShowcase() {
 
           {/* AI replies — colored card (signal green tint) */}
           <div className="relative col-span-6 overflow-hidden rounded-2xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-6 sm:col-span-3 lg:col-span-2">
-            <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[color:var(--signal)]/20 blur-3xl" />
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
+            <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl" />
+            <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
               <Sparkles className="h-3 w-3" /> AI outreach
             </span>
             <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to send</h3>
@@ -196,7 +196,7 @@ export function FeatureBento() {
                 className={`relative overflow-hidden rounded-2xl p-6 transition hover:-translate-y-1 ${styles}`}
               >
                 {tone === "signal" && (
-                  <div aria-hidden className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[color:var(--signal)]/25 blur-3xl" />
+                  <div aria-hidden className="absolute -right-12 -top-12 h-40 w-40 rounded-md bg-[color:var(--signal)]/25 blur-3xl" />
                 )}
                 <div className="relative">
                   <div
@@ -226,7 +226,7 @@ export function FeatureBento() {
           <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-6 text-white">
             <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-[#0a0a0a]">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-white px-2.5 py-1 text-[11px] font-semibold text-[#0a0a0a]">
                   <Target className="h-3 w-3 text-[color:var(--signal)]" /> Signal engine
                 </span>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight">
@@ -237,7 +237,7 @@ export function FeatureBento() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
                   {["Facebook", "LinkedIn", "Reddit"].map((p) => (
-                    <span key={p} className="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-white/75">{p}</span>
+                    <span key={p} className="rounded-md border border-white/15 bg-white/5 px-2 py-0.5 text-white/75">{p}</span>
                   ))}
                 </div>
               </div>
@@ -255,7 +255,7 @@ export function FeatureBento() {
           {/* Lead detail screenshot */}
           <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-[#0a0a0a] p-6 text-white">
             <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium">
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-medium">
                 <MessageSquare className="h-3 w-3" /> Lead detail
               </span>
               <span className="text-[11px] text-white/40">High intent · 92/100</span>
@@ -339,12 +339,12 @@ export function StatsStrip() {
                   {platforms.map(({ Icon, color }, i) => (
                     <span
                       key={i}
-                      className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] ring-1 ring-black/5"
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] ring-1 ring-black/5"
                     >
                       <Icon style={{ color }} className="h-3.5 w-3.5" />
                     </span>
                   ))}
-                  <span className="ml-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-foreground/70 ring-1 ring-black/5">+</span>
+                  <span className="ml-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-md bg-muted px-1.5 text-[10px] font-semibold text-foreground/70 ring-1 ring-black/5">+</span>
                 </div>
               </div>
 

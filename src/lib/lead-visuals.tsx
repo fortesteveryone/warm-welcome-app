@@ -38,7 +38,7 @@ export function CountryBadge({
   country, className = "",
 }: { country: string; className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[11px] text-foreground/80 ${className}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-0.5 text-[11px] text-foreground/80 ${className}`}>
       <span className="text-sm leading-none">{countryFlag(country)}</span>
       <span className="truncate">{country || "—"}</span>
     </span>
@@ -124,7 +124,7 @@ export function SocialTile({
 export function SocialPill({ platform }: { platform: LeadPlatform }) {
   const v = platformVisual(platform);
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground/90">
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground/90">
       <v.Icon style={{ width: 12, height: 12, color: v.brand }} />
       <span>{v.label}</span>
     </span>

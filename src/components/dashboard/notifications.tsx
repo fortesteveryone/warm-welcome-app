@@ -107,7 +107,7 @@ export function NotificationsBell() {
         setItems((cur) => [n, ...cur].slice(0, 50));
         toast(n.title, {
           description: n.body,
-          icon: <span className={`grid h-5 w-5 place-items-center rounded-full ${TYPE_META[n.type].tone} border`}><Bell className="h-2.5 w-2.5" /></span>,
+          icon: <span className={`grid h-5 w-5 place-items-center rounded-md ${TYPE_META[n.type].tone} border`}><Bell className="h-2.5 w-2.5" /></span>,
           action: n.href ? { label: "View", onClick: () => { window.location.assign(n.href!); } } : undefined,
           duration: 5000,
         });
@@ -136,7 +136,7 @@ export function NotificationsBell() {
       >
         <Bell className="h-4 w-4" />
         {unread > 0 && (
-          <span className="absolute -right-1 -top-1 grid h-4 min-w-[16px] place-items-center rounded-full bg-[color:var(--hot,oklch(0.65_0.22_25))] px-1 text-[10px] font-semibold leading-none text-background ring-2 ring-background">
+          <span className="absolute -right-1 -top-1 grid h-4 min-w-[16px] place-items-center rounded-md bg-[color:var(--hot,oklch(0.65_0.22_25))] px-1 text-[10px] font-semibold leading-none text-background ring-2 ring-background">
             {unread > 9 ? "9+" : unread}
           </span>
         )}
@@ -182,7 +182,7 @@ export function NotificationsBell() {
           <ul className="max-h-[420px] overflow-y-auto">
             {visible.length === 0 ? (
               <li className="px-6 py-10 text-center">
-                <div className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-border bg-background/60 text-muted-foreground">
+                <div className="mx-auto grid h-10 w-10 place-items-center rounded-md border border-border bg-background/60 text-muted-foreground">
                   <Check className="h-4 w-4" />
                 </div>
                 <div className="mt-3 text-sm font-medium">Nothing new</div>
@@ -202,7 +202,7 @@ export function NotificationsBell() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">
                         <div className={`truncate text-sm ${n.read ? "" : "font-semibold"}`}>{n.title}</div>
-                        {!n.read && <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${meta.dot}`} />}
+                        {!n.read && <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-md ${meta.dot}`} />}
                       </div>
                       <div className="line-clamp-2 text-[12px] text-muted-foreground">{n.body}</div>
                       <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground">

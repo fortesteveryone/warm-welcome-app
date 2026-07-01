@@ -104,7 +104,7 @@ export function Badge({
   };
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${tones[tone]}`}
+      className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${tones[tone]}`}
     >
       {children}
     </span>
@@ -122,7 +122,7 @@ export function Avatar({ name, className = "" }: { name: string; className?: str
   const hue = hues[name.charCodeAt(0) % hues.length];
   return (
     <span
-      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br ${hue} text-[11px] font-semibold text-foreground ring-1 ring-border ${className}`}
+      className={`grid h-8 w-8 shrink-0 place-items-center rounded-md bg-gradient-to-br ${hue} text-[11px] font-semibold text-foreground ring-1 ring-border ${className}`}
     >
       {initials}
     </span>

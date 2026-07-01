@@ -136,7 +136,7 @@ export function SiteFooter() {
       {/* Soft brand glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-md opacity-40 blur-3xl"
         style={{ background: "radial-gradient(closest-side, rgba(34,197,94,0.35), transparent 70%)" }}
       />
       <Container className="relative py-20">
@@ -153,13 +153,13 @@ export function SiteFooter() {
           <div className="flex items-center gap-3">
             <a
               href="/#pricing"
-              className="inline-flex items-center gap-2 rounded-full bg-[#22C55E] px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#16a34a]"
+              className="inline-flex items-center gap-2 rounded-md bg-[#22C55E] px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#16a34a]"
             >
               Start now
             </a>
             <a
               href="/#pricing"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"
+              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"
             >
               Early access · 40% off
             </a>
@@ -175,8 +175,8 @@ export function SiteFooter() {
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
             </p>
-            <div className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#22C55E]" /> All systems normal
+            <div className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
+              <span className="h-1.5 w-1.5 rounded-md bg-[#22C55E]" /> All systems normal
             </div>
           </div>
           {cols.map((c) => (
@@ -188,7 +188,7 @@ export function SiteFooter() {
                     <>
                       {l.label}
                       {l.soon && (
-                        <span className="rounded-full border border-white/15 bg-white/5 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-white/60">
+                        <span className="rounded-md border border-white/15 bg-white/5 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-white/60">
                           Soon
                         </span>
                       )}
@@ -244,7 +244,7 @@ export function SiteFooter() {
               <span>postly.growbylead.com</span>
               <span
                 aria-hidden
-                className="mx-[0.35em] inline-block h-[0.7em] w-[3px] rounded-full"
+                className="mx-[0.35em] inline-block h-[0.7em] w-[3px] rounded-md"
                 style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.35), rgba(34,197,94,0.35))" }}
               />
             </span>
