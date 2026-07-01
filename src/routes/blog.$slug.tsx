@@ -30,11 +30,12 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   notFoundComponent: () => (
     <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
       <div className="mx-auto max-w-2xl px-6 py-32 text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">404</p>
+        <p className="font-mono text-[11px] uppercase tracking-tight text-muted-foreground">404</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">Post not found</h1>
         <p className="mt-3 text-muted-foreground">That article doesn't exist or has been moved.</p>
-        <Link to="/blog" className="mt-6 inline-flex items-center gap-1.5 rounded-md border border-border bg-card/60 px-3.5 py-2 text-sm hover:bg-card">
+        <Link to="/blog" className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-4 py-2 text-sm hover:border-[color:var(--signal)]/40">
           <ArrowLeft className="h-3.5 w-3.5" /> Back to blog
         </Link>
       </div>
@@ -42,8 +43,9 @@ export const Route = createFileRoute("/blog/$slug")({
   ),
   errorComponent: ({ error }) => (
     <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
       <div className="mx-auto max-w-2xl px-6 py-32 text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-destructive">Error</p>
+        <p className="font-mono text-[11px] uppercase tracking-tight text-destructive">Error</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">Could not load post</h1>
         <p className="mt-3 text-muted-foreground">{error.message}</p>
       </div>
@@ -56,6 +58,10 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
   return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
 }
 
+function Mono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <span className={`font-mono text-[11px] uppercase tracking-tight ${className}`}>{children}</span>;
+}
+
 function BlogDetail() {
   const { post, related } = Route.useLoaderData() as { post: BlogPost; related: BlogPost[] };
   const [copied, setCopied] = useState(false);
@@ -64,11 +70,11 @@ function BlogDetail() {
   const shareText = `${post.title} — ${post.excerpt}`;
 
   const shareLinks = [
-    { name: "Facebook",  Icon: Facebook,  href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}` },
-    { name: "LinkedIn",  Icon: Linkedin,  href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}` },
-    { name: "X",         Icon: XIcon,     href: `https://twitter.com/intent/tweet?text=${enc(shareText)}&url=${enc(url)}` },
-    { name: "Reddit",    Icon: RedditIcon,href: `https://reddit.com/submit?url=${enc(url)}&title=${enc(post.title)}` },
-    { name: "Telegram",  Icon: Send,      href: `https://t.me/share/url?url=${enc(url)}&text=${enc(shareText)}` },
+    { name: "Facebook", Icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}` },
+    { name: "LinkedIn", Icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}` },
+    { name: "X", Icon: XIcon, href: `https://twitter.com/intent/tweet?text=${enc(shareText)}&url=${enc(url)}` },
+    { name: "Reddit", Icon: RedditIcon, href: `https://reddit.com/submit?url=${enc(url)}&title=${enc(post.title)}` },
+    { name: "Telegram", Icon: Send, href: `https://t.me/share/url?url=${enc(url)}&text=${enc(shareText)}` },
   ];
 
   const onCopy = async () => {
@@ -79,93 +85,121 @@ function BlogDetail() {
     } catch { /* noop */ }
   };
 
+  // Highlight last word of title in signal green (matches home/PageShell)
+  const titleNode = (() => {
+    const parts = post.title.trim().split(/\s+/);
+    if (parts.length < 2) return post.title;
+    const last = parts.pop();
+    return (
+      <>
+        {parts.join(" ")}{" "}
+        <span className="text-[color:var(--signal)]">{last}</span>
+      </>
+    );
+  })();
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-
-      <article>
-        <Container className="pt-10 md:pt-16">
-          <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="h-3.5 w-3.5" /> All articles
+      {/* Hero — matches PageShell / contact breadcrumb */}
+      <section className="relative overflow-hidden section-edge section-dark">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.05),transparent_60%)]" />
+        </div>
+        <Container className="py-14 md:py-20">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
+          >
+            <ArrowLeft className="h-3 w-3" /> All articles
           </Link>
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--signal)]">{post.category}</p>
-          <h1 className="mt-3 max-w-3xl text-balance text-3xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-4xl md:text-5xl">
-            {post.title}
+          <Mono className="mt-6 block text-[color:var(--signal)]">{post.category}</Mono>
+          <h1 className="mt-3 max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl">
+            {titleNode}
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{post.excerpt}</p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3 border-y border-border py-4 text-xs text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">{post.excerpt}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <span>{formatDate(post.date)}</span>
+            <span className="h-1 w-1 rounded-full bg-border" />
+            <span>{Math.max(3, Math.round(post.body.reduce((n, b) => n + (b.text?.split(" ").length ?? 0), 0) / 220))} min read</span>
           </div>
         </Container>
+      </section>
 
-        <Container className="mt-10">
-          <div className="overflow-hidden rounded-2xl border border-border">
+      {/* Body */}
+      <section className="section-edge section-light">
+        <Container className="py-14 md:py-20">
+          <div className="overflow-hidden rounded-2xl border border-border bg-white">
             <img src={post.cover} alt={post.title} className="aspect-[16/8] w-full object-cover" />
           </div>
-        </Container>
 
-        <Container className="mt-12 grid gap-12 md:grid-cols-[1fr_220px]">
-          <div className="prose-content">
-            {post.body.map((b, i) => {
-              if (b.type === "h2") return <h2 key={i} className="mt-10 text-2xl font-semibold tracking-tight md:text-3xl">{b.text}</h2>;
-              if (b.type === "quote") return (
-                <blockquote key={i} className="my-8 border-l-2 border-[color:var(--signal)] pl-5 text-lg italic text-foreground/90">{b.text}</blockquote>
-              );
-              if (b.type === "list") return (
-                <ul key={i} className="my-5 space-y-2">
-                  {b.items?.map((it) => (
-                    <li key={it} className="flex gap-3 text-base leading-relaxed text-foreground/90">
-                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-md bg-[color:var(--signal)]" />
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              );
-              return <p key={i} className="my-5 text-base leading-relaxed text-foreground/85 md:text-[17px]">{b.text}</p>;
-            })}
+          <div className="mt-12 grid gap-12 md:grid-cols-[1fr_220px]">
+            <article className="min-w-0">
+              {post.body.map((b, i) => {
+                if (b.type === "h2") return <h2 key={i} className="mt-10 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">{b.text}</h2>;
+                if (b.type === "quote") return (
+                  <blockquote key={i} className="my-8 border-l-2 border-[color:var(--signal)] pl-5 text-lg italic text-foreground/90">{b.text}</blockquote>
+                );
+                if (b.type === "list") return (
+                  <ul key={i} className="my-5 space-y-2">
+                    {b.items?.map((it) => (
+                      <li key={it} className="flex gap-3 text-base leading-relaxed text-foreground/90">
+                        <span className="mt-2.5 h-1 w-1 shrink-0 rounded-md bg-[color:var(--signal)]" />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                );
+                return <p key={i} className="my-5 text-base leading-relaxed text-foreground/85 md:text-[17px]">{b.text}</p>;
+              })}
 
-            <div className="mt-10 flex flex-wrap gap-1.5 border-t border-border pt-6">
-              {post.tags.map((t) => (
-                <span key={t} className="rounded-md border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">#{t}</span>
-              ))}
-            </div>
-          </div>
+              <div className="mt-10 flex flex-wrap gap-1.5 border-t border-border pt-6">
+                {post.tags.map((t) => (
+                  <span key={t} className="rounded-full border border-border bg-white px-2.5 py-1 text-xs text-muted-foreground">#{t}</span>
+                ))}
+              </div>
+            </article>
 
-          {/* sticky share rail */}
-          <aside className="md:sticky md:top-20 md:self-start">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Share</p>
-            <div className="mt-3 flex flex-wrap gap-2 md:flex-col md:items-stretch">
-              {shareLinks.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md border border-border bg-card/50 px-3 py-2 text-xs text-foreground hover:bg-card"
+            {/* sticky share rail */}
+            <aside className="md:sticky md:top-20 md:self-start">
+              <Mono className="text-muted-foreground">Share</Mono>
+              <div className="mt-3 flex flex-wrap gap-2 md:flex-col md:items-stretch">
+                {shareLinks.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-2 text-xs text-foreground transition hover:border-[color:var(--signal)]/40 hover:text-[color:var(--signal)]"
+                  >
+                    <s.Icon className="h-3.5 w-3.5" /> {s.name}
+                  </a>
+                ))}
+                <button
+                  type="button"
+                  onClick={onCopy}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-2 text-xs text-foreground transition hover:border-[color:var(--signal)]/40 hover:text-[color:var(--signal)]"
                 >
-                  <s.Icon className="h-3.5 w-3.5" /> {s.name}
-                </a>
-              ))}
-              <button
-                type="button"
-                onClick={onCopy}
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-card/50 px-3 py-2 text-xs text-foreground hover:bg-card"
-              >
-                <Link2 className="h-3.5 w-3.5" /> {copied ? "Copied!" : "Copy link"}
-              </button>
-            </div>
-          </aside>
+                  <Link2 className="h-3.5 w-3.5" /> {copied ? "Copied!" : "Copy link"}
+                </button>
+              </div>
+            </aside>
+          </div>
         </Container>
-      </article>
+      </section>
 
       {related.length > 0 && (
-        <section className="mt-20 border-t border-border bg-card/20">
-          <Container className="py-14">
+        <section className="section-edge section-dark">
+          <Container className="py-16 md:py-20">
             <div className="flex items-end justify-between gap-6">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Related reading</h2>
-              <Link to="/blog" className="hidden items-center gap-1 text-sm text-muted-foreground hover:text-foreground sm:inline-flex">
+              <div>
+                <Mono className="text-muted-foreground">Keep reading</Mono>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+                  Related <span className="text-[color:var(--signal)]">articles</span>
+                </h2>
+              </div>
+              <Link to="/blog" className="hidden items-center gap-1 text-sm text-muted-foreground transition hover:text-foreground sm:inline-flex">
                 Browse all <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -175,14 +209,14 @@ function BlogDetail() {
                   key={p.slug}
                   to="/blog/$slug"
                   params={{ slug: p.slug }}
-                  className="group overflow-hidden rounded-xl border border-border bg-card/40 transition hover:bg-card"
+                  className="group overflow-hidden rounded-2xl border border-border bg-white transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)]"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img src={p.cover} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
                   </div>
                   <div className="p-5">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{p.category}</p>
-                    <h3 className="mt-2 text-base font-semibold leading-snug tracking-tight">{p.title}</h3>
+                    <Mono className="text-muted-foreground">{p.category}</Mono>
+                    <h3 className="mt-2 text-base font-semibold leading-snug tracking-tight text-foreground">{p.title}</h3>
                     <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{p.excerpt}</p>
                   </div>
                 </Link>
@@ -197,7 +231,7 @@ function BlogDetail() {
   );
 }
 
-/* Tiny inline brand icons (avoid touching shared icon module) */
+/* Tiny inline brand icons */
 function XIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
