@@ -101,7 +101,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
-      <TrustStrip />
+      
       <ProductShowcase />
       <Scope />
       <WhyTeamsSwitch />
