@@ -192,7 +192,7 @@ function LeadDetailPage() {
                   <SocialTile platform={lead.platform} size={72} className="ring-4 ring-card" />
                   <span
                     aria-label={`${lead.country} flag`}
-                    className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-card text-base ring-2 ring-card shadow"
+                    className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-md bg-card text-base ring-2 ring-card shadow"
                   >
                     {countryFlag(lead.country)}
                   </span>
@@ -200,16 +200,16 @@ function LeadDetailPage() {
 
                 <div className="min-w-0 flex-1 pt-9">
                   <div className="flex flex-wrap items-center gap-1.5">
-                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${d.tempCls}`}>
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+                    <span className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${d.tempCls}`}>
+                      <span className="inline-block h-1.5 w-1.5 rounded-md bg-current" />
                       {d.tempLabel}
                     </span>
                     <SocialPill platform={lead.platform} />
-                    <span className="inline-flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 text-[11px] text-foreground/80 ring-1 ring-border">
+                    <span className="inline-flex items-center gap-1 rounded-md bg-background/60 px-2 py-0.5 text-[11px] text-foreground/80 ring-1 ring-border">
                       <span className="text-sm leading-none">{countryFlag(lead.country)}</span>
                       {lead.country}
                     </span>
-                    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] ${d.qualCls}`}>
+                    <span className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-0.5 text-[11px] ${d.qualCls}`}>
                       <ArrowLeftRight className="h-3 w-3" /> {d.qualLabel}
                     </span>
                   </div>
@@ -282,7 +282,7 @@ function LeadDetailPage() {
               <footer className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> {lead.postedAt}</span>
                 <span className="inline-flex items-center gap-1.5">
-                  <span className={`grid h-5 w-5 place-items-center rounded-full text-[10px] font-semibold uppercase ${v.bg} ${v.color}`}>
+                  <span className={`grid h-5 w-5 place-items-center rounded-md text-[10px] font-semibold uppercase ${v.bg} ${v.color}`}>
                     {d.handle[1]}
                   </span>
                   {d.handle}

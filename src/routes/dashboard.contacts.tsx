@@ -77,7 +77,7 @@ function ContactsPage() {
           <button
             key={t}
             onClick={() => toggleTag(t)}
-            className={`rounded-full border px-2.5 py-0.5 text-[11px] transition ${tags.includes(t) ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
+            className={`rounded-md border px-2.5 py-0.5 text-[11px] transition ${tags.includes(t) ? "border-foreground/40 bg-foreground/10 text-foreground" : "border-border bg-card/50 text-muted-foreground hover:text-foreground"}`}
           >{t}</button>
         ))}
         {(tags.length > 0 || query) && (

@@ -41,7 +41,7 @@ function SupportPage() {
               </span>
               <span className="text-sm font-semibold text-foreground">{title}</span>
               {soon && (
-                <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">
+                <span className="rounded-md border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">
                   Soon
                 </span>
               )}

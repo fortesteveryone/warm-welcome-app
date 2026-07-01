@@ -101,7 +101,7 @@ function BlogIndex() {
                           key={t}
                           type="button"
                           onMouseDown={(e) => { e.preventDefault(); setQuery(t); setShowSuggest(false); }}
-                          className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-xs text-foreground/85 hover:bg-background"
+                          className="rounded-md border border-border bg-background/60 px-2.5 py-1 text-xs text-foreground/85 hover:bg-background"
                         >{t}</button>
                       ))}
                     </div>
@@ -142,7 +142,7 @@ function BlogIndex() {
                   key={c}
                   type="button"
                   onClick={() => setActive(c)}
-                  className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                  className={`rounded-md border px-3 py-1.5 text-xs transition ${
                     isActive
                       ? "border-foreground bg-foreground text-background"
                       : "border-border bg-card/50 text-foreground/85 hover:bg-card"

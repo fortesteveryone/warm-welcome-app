@@ -38,13 +38,13 @@ export function HeroReel() {
       {/* window chrome */}
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-3 py-2.5">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-md bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-md bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-md bg-white/15" />
         </div>
         <span className="truncate font-mono text-[10px] text-white/40">growbylead.app / inbox</span>
         <span className="inline-flex shrink-0 items-center gap-1.5 text-[10px] text-[color:var(--signal)]">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-md bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
           <span className="font-mono tracking-wider">REC</span>
         </span>
       </div>
@@ -82,7 +82,7 @@ export function HeroReel() {
               <div className="flex items-start justify-between gap-3">
                 <p className="line-clamp-1 text-[13px] font-medium text-white">{l.title}</p>
                 {l.hot && (
-                  <span className="shrink-0 rounded-full bg-[color:var(--signal)]/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">
+                  <span className="shrink-0 rounded-md bg-[color:var(--signal)]/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">
                     Hot
                   </span>
                 )}
@@ -116,7 +116,7 @@ export function HeroReel() {
             className="reel-spark"
           />
         </svg>
-        <span className="inline-flex items-center gap-1 rounded-full bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
+        <span className="inline-flex items-center gap-1 rounded-md bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
           <Send className="h-2.5 w-2.5" /> sent
         </span>
       </div>

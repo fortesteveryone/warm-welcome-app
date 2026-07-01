@@ -82,7 +82,7 @@ function Overview() {
               <span className="text-3xl font-semibold tracking-tight">{CREDITS.balance}</span>
               <span className="text-sm text-muted-foreground">credits left · resets {CREDITS.resets}</span>
             </div>
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-card">
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-md bg-card">
               <div className="h-full bg-foreground/70" style={{ width: `${creditsPct}%` }} />
             </div>
             <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted-foreground">
@@ -181,7 +181,7 @@ function Overview() {
                   <span className="text-muted-foreground">{s.stage}</span>
                   <span className="font-medium">{s.v}</span>
                 </div>
-                <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-card">
+                <div className="mt-1.5 h-2 overflow-hidden rounded-md bg-card">
                   <div className={`h-full ${s.c}`} style={{ width: `${s.w}%` }} />
                 </div>
               </div>
@@ -231,7 +231,7 @@ function Overview() {
               <li key={c.name} className="flex items-center gap-3 px-5 py-3 text-sm">
                 <span className="text-lg leading-none">{c.flag}</span>
                 <span className="flex-1 truncate">{c.name}</span>
-                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-card">
+                <div className="h-1.5 w-20 overflow-hidden rounded-md bg-card">
                   <div className="h-full bg-foreground/60" style={{ width: `${c.pct * 2.8}%` }} />
                 </div>
                 <Mono className="w-10 text-right text-muted-foreground">{c.count}</Mono>
@@ -281,7 +281,7 @@ function Overview() {
                   {t.done ? (
                     <CheckCircle2 className="mt-0.5 h-4 w-4 text-[color:var(--signal)]" />
                   ) : (
-                    <span className="mt-0.5 h-4 w-4 rounded-full border border-border" />
+                    <span className="mt-0.5 h-4 w-4 rounded-md border border-border" />
                   )}
                   <div className="min-w-0 flex-1">
                     <div className={`text-sm ${t.done ? "text-muted-foreground line-through" : ""}`}>{t.text}</div>

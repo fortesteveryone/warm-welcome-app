@@ -36,8 +36,8 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-      <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+    <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+      <span className="h-1.5 w-1.5 rounded-md bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
       {children}
     </div>
   );
@@ -64,7 +64,7 @@ function Tag({ children, tone = "default" }: { children: React.ReactNode; tone?:
     signal: "border-[color:var(--signal)]/30 bg-[color:var(--signal)]/10 text-[color:var(--signal)]",
   };
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>
+    <span className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>
       {children}
     </span>
   );
@@ -261,16 +261,16 @@ function Hero() {
             <div className="flex justify-center">
               <a
                 href="#pricing"
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/80 py-1 pl-3 pr-1.5 text-xs text-muted-foreground backdrop-blur transition hover:border-[color:var(--signal)]/50 hover:bg-card hover:text-foreground"
+                className="group inline-flex items-center gap-2 rounded-md border border-border bg-card/80 py-1 pl-3 pr-1.5 text-xs text-muted-foreground backdrop-blur transition hover:border-[color:var(--signal)]/50 hover:bg-card hover:text-foreground"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--signal)] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-md bg-[color:var(--signal)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-md bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]" />
                 </span>
                 <span>Early access open</span>
                 <span className="text-foreground/40">→</span>
                 <span className="text-foreground">40% lifetime discount</span>
-                <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-foreground px-2 py-1 text-[11px] font-semibold text-background transition group-hover:bg-[color:var(--signal)] group-hover:text-background">
+                <span className="ml-1 inline-flex items-center gap-1 rounded-md bg-foreground px-2 py-1 text-[11px] font-semibold text-background transition group-hover:bg-[color:var(--signal)] group-hover:text-background">
                   Claim <ArrowRight className="h-3 w-3 transition group-hover:translate-x-0.5" />
                 </span>
               </a>
@@ -293,10 +293,10 @@ function Hero() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
+              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
                 Request early access <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#product" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-white/90">
+              <a href="#product" className="inline-flex items-center gap-1.5 rounded-md border border-foreground/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-white/90">
                 See example leads
               </a>
             </div>
@@ -304,7 +304,7 @@ function Hero() {
 
           <div className="relative w-full min-w-0">
             {/* top-right green corner glow (like reference) */}
-            <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-full bg-[color:var(--signal)]/40 blur-[90px]" />
+            <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-md bg-[color:var(--signal)]/40 blur-[90px]" />
             <div aria-hidden className="pointer-events-none absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/20 blur-2xl opacity-40" />
             <HeroReel />
             {/* bottom fade: reel dissolves into the now-white section background */}
@@ -379,11 +379,11 @@ function PreviewDetail() {
         <Tag tone="hot">● Hot</Tag>
         <Tag tone="signal">High intent</Tag>
         <Tag>Low competition</Tag>
-        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2 py-0.5 text-[11px] font-medium">
+        <span className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 text-[11px] font-medium">
           <span style={{ color: PLATFORM_META.Facebook.color }}><Facebook className="h-3 w-3" fill="currentColor" strokeWidth={0} /></span>
           Facebook
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2 py-0.5 text-[11px]">
+        <span className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 text-[11px]">
           🇧🇩 Bangladesh
         </span>
       </div>
@@ -477,7 +477,7 @@ function Scope() {
                 {tags.map((t) => {
                   const brand = tagBrand[t];
                   return (
-                    <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">
+                    <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">
                       {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3" style={{ color: b.color }} />)}
                       {t}
                     </span>
@@ -510,7 +510,7 @@ function Scope() {
               {outOfScope.map((t) => {
                 const brand = tagBrand[t];
                 return (
-                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
+                  <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
                     {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3 no-underline" style={{ color: b.color }} />)}
                     {t}
                   </span>
@@ -687,7 +687,7 @@ function Scoring() {
           <div className="grid gap-3 sm:grid-cols-2">
             {scoringFactors.map(([t, b], i) => (
               <div key={t} className="group relative overflow-hidden rounded-xl border border-border bg-white/70 p-5 backdrop-blur-md shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
-                <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[color:var(--signal)]/10 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
+                <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-md bg-[color:var(--signal)]/10 blur-2xl opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="flex items-center justify-between">
                   <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
                   <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
@@ -732,7 +732,7 @@ function UseCases() {
           </h3>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
             {useCases.map((t) => (
-              <span key={t} className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-foreground/85">
+              <span key={t} className="rounded-md border border-border bg-card/50 px-3 py-1 text-xs text-foreground/85">
                 {t}
               </span>
             ))}
@@ -761,7 +761,7 @@ function Concierge() {
       <Container className="py-16 md:py-20">
         <div className="grid gap-10 md:grid-cols-[1.05fr_1fr] md:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground">
+            <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground">
               <Flame className="h-3 w-3 text-[color:var(--signal)]" /> VIP add-on · Coming soon
             </div>
             <h2 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl">
@@ -771,7 +771,7 @@ function Concierge() {
               We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website design, development and CMS leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
+              <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-md border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
                 Coming soon
               </span>
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -784,7 +784,7 @@ function Concierge() {
             {/* mock Gmail message */}
             <div className="flex items-center justify-between border-b border-border px-4 py-2">
               <div className="flex items-center gap-2">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-[#EA4335]/15 text-[#EA4335]">
+                <span className="grid h-6 w-6 place-items-center rounded-md bg-[#EA4335]/15 text-[#EA4335]">
                   <MessageSquare className="h-3.5 w-3.5" />
                 </span>
                 <Mono className="text-muted-foreground">gmail · inbox</Mono>
@@ -800,11 +800,11 @@ function Concierge() {
                 New hot lead — Shopify store redesign, $2k budget
               </div>
               <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5">
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5">
                   <span style={{ color: PLATFORM_META.LinkedIn.color }}><Linkedin className="h-3 w-3" fill="currentColor" strokeWidth={0} /></span>
                   LinkedIn
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-2 py-0.5">🇨🇦 Canada</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5">🇨🇦 Canada</span>
                 <Tag tone="signal">High intent</Tag>
                 <Tag>Low competition</Tag>
               </div>
@@ -885,7 +885,7 @@ function Pricing() {
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
             Pick the plan that matches how you sell. Every paid plan is 100% free while we're launching — no card required, no auto-charge when the offer ends. Cancel anytime.
           </p>
-          <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
+          <div className="mx-auto mt-6 inline-flex max-w-xl items-center gap-2 rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
             <Sparkles className="h-3.5 w-3.5" />
             Apply for early access — unlock Pro free for 1 month.
           </div>
@@ -910,12 +910,12 @@ function Pricing() {
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-2.5 left-6 rounded-full bg-[#0f5132] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm">
+                <span className="absolute -top-2.5 left-6 rounded-md bg-[#0f5132] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm">
                   Most popular
                 </span>
               )}
               {(p as { vip?: boolean }).vip && (
-                <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1 rounded-md border border-border bg-background px-2.5 py-0.5 text-[10px] font-medium text-muted-foreground">
                   <Flame className="h-2.5 w-2.5 text-[color:var(--signal)]" /> Coming soon
                 </span>
               )}
@@ -924,7 +924,7 @@ function Pricing() {
                 <span className={`text-5xl font-semibold tracking-[-0.03em] ${p.featured && !((p as { soon?: boolean }).soon) ? "text-muted-foreground/60 line-through decoration-[color:var(--signal)]/60 decoration-2" : ""}`}>{p.price}</span>
                 <span className="text-sm text-muted-foreground">{p.cadence}</span>
                 {p.featured && !((p as { soon?: boolean }).soon) && (
-                  <span className="ml-1 rounded-full bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">Free now</span>
+                  <span className="ml-1 rounded-md bg-[color:var(--signal)]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--signal)]">Free now</span>
                 )}
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
@@ -974,7 +974,7 @@ function Pricing() {
             >
               <X className="h-4 w-4" />
             </button>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
+            <div className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
               <Sparkles className="h-3 w-3" /> Launch offer
             </div>
             <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">No payment needed — yet.</h3>
@@ -1028,7 +1028,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
         {t.quote}
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-        <img src={t.avatar} alt={t.name} className="h-10 w-10 rounded-full object-cover" />
+        <img src={t.avatar} alt={t.name} className="h-10 w-10 rounded-md object-cover" />
         <div className="min-w-0 text-sm leading-tight">
           <p className="truncate font-medium">{t.name}</p>
           <p className="truncate text-xs text-muted-foreground">{t.role}</p>
@@ -1213,10 +1213,10 @@ function FinalCTA() {
             Structured, scored, outreach-ready leads from the social posts you'd otherwise miss.
           </p>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
+            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
               Get access <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#platforms" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
+            <a href="#platforms" className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
               See platforms
             </a>
           </div>
@@ -1247,8 +1247,8 @@ function Footer() {
               Social media buying signals, organized into structured, scored, outreach-ready leads.
             </p>
             <div className="mt-5 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" /> All systems normal
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-2.5 py-1 text-xs text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-md bg-[color:var(--signal)]" /> All systems normal
               </span>
             </div>
           </div>
@@ -1260,7 +1260,7 @@ function Footer() {
                   <li key={l.label}>
                     <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
                       {l.label}
-                      {l.soon && <span className="rounded-full border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
+                      {l.soon && <span className="rounded-md border border-border bg-card/60 px-1.5 py-px text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Soon</span>}
                     </a>
                   </li>
                 ))}

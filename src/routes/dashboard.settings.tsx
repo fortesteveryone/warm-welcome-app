@@ -187,8 +187,8 @@ function NotificationsPanel() {
               <div className="text-sm font-medium">{i.l}</div>
               <div className="text-xs text-muted-foreground">{i.d}</div>
             </div>
-            <span className={`relative inline-flex h-5 w-9 cursor-pointer items-center rounded-full ${i.on ? "bg-foreground" : "bg-card border border-border"}`}>
-              <span className={`inline-block h-4 w-4 rounded-full bg-background shadow transition ${i.on ? "translate-x-4" : "translate-x-0.5"}`} />
+            <span className={`relative inline-flex h-5 w-9 cursor-pointer items-center rounded-md ${i.on ? "bg-foreground" : "bg-card border border-border"}`}>
+              <span className={`inline-block h-4 w-4 rounded-md bg-background shadow transition ${i.on ? "translate-x-4" : "translate-x-0.5"}`} />
             </span>
           </li>
         ))}
