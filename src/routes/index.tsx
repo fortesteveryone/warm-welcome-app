@@ -662,7 +662,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden bg-white">
+    <section id="scoring" className="section-edge section-dark relative overflow-hidden">
 
 
       <Container className="relative py-16 md:py-20">
