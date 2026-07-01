@@ -199,7 +199,7 @@ function Hero() {
           <div className="relative w-full min-w-0">
             <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-md bg-[color:var(--signal)]/40 blur-[90px]" />
             <HeroReel />
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-56 rounded-b-2xl bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.5)_55%,#ffffff_100%)]" />
+            
           </div>
         </div>
 
