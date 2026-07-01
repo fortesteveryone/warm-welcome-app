@@ -68,10 +68,10 @@ export function ProductShowcase() {
                 </span>
               </div>
               <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                Your website opportunity workspace.
+                Your inbox, your pipeline, your scoreboard.
               </h3>
               <p className="mt-2 max-w-md text-sm text-white/60">
-                Postly brings public website-service posts into one focused dashboard.
+                Triage 365+ fresh leads daily without losing context. Filters, scores, and one-click outreach in a single view.
               </p>
               <div className="relative mt-6 overflow-hidden rounded-xl border border-white/10">
                 <img
