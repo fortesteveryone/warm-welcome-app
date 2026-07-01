@@ -1040,7 +1040,7 @@ function Testimonials() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Loved by"
-          title={<>Agencies, freelancers and SEO teams <span className="text-muted-foreground">already using it daily.</span></>}
+          title={<>Agencies, freelancers and studios <span className="text-muted-foreground">already using it daily.</span></>}
         />
       </Container>
       <div className="marquee-mask relative overflow-hidden pb-16 md:pb-20">
