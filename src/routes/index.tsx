@@ -291,11 +291,11 @@ function Hero() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
-                Early access — 40% lifetime off <ArrowRight className="h-4 w-4" />
+              <a href="#pricing" className="inline-flex items-center gap-2 rounded-full bg-[#22C55E] px-6 py-3 text-sm font-semibold text-black shadow-[0_10px_30px_-10px_rgba(34,197,94,0.6)] ring-1 ring-[#22C55E]/40 transition hover:bg-[#16a34a]">
+                Start free trial <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-foreground/10">
-                Start now
+              <a href="#example" className="inline-flex items-center gap-2 rounded-full border border-foreground/30 bg-background px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-foreground/5">
+                See live leads
               </a>
             </div>
           </div>
