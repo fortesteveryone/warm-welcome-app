@@ -172,7 +172,7 @@ function Hero() {
             </div>
 
             <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
-              Find website service opportunities{" "}
+              Find <span className="text-[color:var(--signal)]">website service opportunities</span>{" "}
               <span className="text-foreground/55">from public social posts</span>
             </h1>
 
