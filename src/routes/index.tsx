@@ -286,7 +286,7 @@ function Hero() {
 
             {/* highlight strip */}
             <div className="mt-6 flex justify-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-foreground/80 bg-[color:var(--signal)]/[0.06] px-4 py-1.5 text-sm text-foreground/70 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] backdrop-blur">
+              <div className="inline-flex items-center gap-2 bg-white px-4 py-1.5 text-sm text-foreground/70">
                 Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span>
               </div>
             </div>
