@@ -248,10 +248,11 @@ function Hero() {
   return (
     <section className="relative overflow-hidden section-edge section-dark section-no-decor section-glow">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,transparent_30%,rgba(255,255,255,0.85)_55%,#ffffff_70%,#ffffff_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
         <HeroFloatingSocials />
       </div>
+
 
       <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
         <div className="grid items-center gap-8 sm:gap-10 md:gap-14">
