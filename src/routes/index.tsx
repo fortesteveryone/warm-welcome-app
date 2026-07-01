@@ -12,7 +12,7 @@ import { MockScore, MockSources } from "@/components/home/section-mockups";
 import {
   SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
   SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
-  SiNotion, SiLinear, SiVercel, SiStripe,
+  SiNotion, SiLinear, SiVercel, SiStripe, SiThreads,
 } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
@@ -523,12 +523,12 @@ type PlatformEntry = {
 };
 
 const platforms: PlatformEntry[] = [
-  { icon: ({ className }) => <Facebook  className={className} fill="currentColor" strokeWidth={0} />, color: "#1877F2", name: "Facebook",  state: "live", note: "Public groups and pages where business owners ask for website help." },
-  { icon: ({ className }) => <Linkedin  className={className} fill="currentColor" strokeWidth={0} />, color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Founder posts, agency requests, and public website service recommendations." },
-  { icon: ({ className }) => <Instagram className={className} strokeWidth={1.75} />,                  color: "#E1306C", name: "Instagram", state: "live", note: "Captions and comments from creators and businesses asking for website support." },
-  { icon: RedditIcon,  color: "#FF4500", name: "Reddit",   state: "live", note: "Niche communities where people discuss website fixes, rebuilds, and CMS help." },
-  { icon: XIcon,       color: "#0F0F0F", name: "X",        state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
-  { icon: ThreadsIcon, color: "#0F0F0F", name: "Threads",  state: "soon", note: "Conversation-first posts from creators and small businesses asking for support." },
+  { icon: SiFacebook,  color: "#1877F2", name: "Facebook",  state: "live", note: "Public groups and pages where business owners ask for website help." },
+  { icon: SiLinkedIn,  color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Founder posts, agency requests, and public website service recommendations." },
+  { icon: SiInstagram, color: "#E4405F", name: "Instagram", state: "live", note: "Captions and comments from creators and businesses asking for website support." },
+  { icon: SiReddit,    color: "#FF4500", name: "Reddit",    state: "live", note: "Niche communities where people discuss website fixes, rebuilds, and CMS help." },
+  { icon: SiX,         color: "#0F0F0F", name: "X",         state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
+  { icon: SiThreads,   color: "#0F0F0F", name: "Threads",   state: "soon", note: "Conversation-first posts from creators and small businesses asking for support." },
 ];
 
 const dailyVolumeStats = [
@@ -568,10 +568,10 @@ function Platforms() {
               <div key={p.name} className="group rounded-xl border border-border bg-white p-5 transition hover:shadow-sm">
                 <div className="flex items-center justify-between">
                   <div
-                    className="grid h-10 w-10 place-items-center rounded-lg border border-border"
-                    style={{ background: `color-mix(in oklab, ${p.color} 14%, transparent)`, color: p.color }}
+                    className="grid h-10 w-10 place-items-center rounded-lg"
+                    style={{ color: p.color }}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-9 w-9" />
                   </div>
                   {p.state === "live" ? <Tag tone="signal">● Live</Tag> : <Tag>○ Soon</Tag>}
                 </div>
