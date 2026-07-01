@@ -45,11 +45,10 @@ export function ProductShowcase() {
         <div className="flex flex-col items-center text-center">
           <Kicker>Inside Postly</Kicker>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-[44px]">
-            See how website opportunity posts are organized, scored{" "}
-            <span className="text-muted-foreground">and made ready for outreach.</span>
+            Your website opportunity workspace
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Built for web agencies, designers, developers and CMS specialists who want to find and act on website opportunities faster.
+            Postly brings public website-service posts into one focused dashboard.
           </p>
         </div>
 
