@@ -168,19 +168,19 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "technical-seo-quick-wins",
-    title: "7 technical SEO quick wins you can ship before lunch",
+    slug: "cms-migration-playbook",
+    title: "The CMS migration playbook: WordPress, Webflow, Wix and Framer without downtime",
     excerpt:
-      "Image sizes, internal links, schema, meta titles — small fixes that move rankings without a full audit.",
-    category: "SEO",
-    tags: ["Technical SEO", "Performance"],
-    author: { name: "Jordan Ali", role: "Technical SEO", avatar: av(53) },
+      "How to plan a CMS switch, keep SEO equity intact, and ship the new site in a weekend — with a rollback plan clients trust.",
+    category: "WordPress",
+    tags: ["Migration", "WordPress", "Webflow", "CMS"],
+    author: { name: "Jordan Ali", role: "CMS migration specialist", avatar: av(53) },
     date: "2026-03-11",
     readMinutes: 6,
     cover: cover("1460925895917-afdab827c52f"),
     body: [
-      { type: "p", text: "Most websites are sitting on rankings they don't realize they're throwing away." },
-      { type: "list", items: ["Compress every image > 200kb", "Add internal links from 3 strongest pages to your money page", "Add Organization + LocalBusiness schema", "Rewrite meta titles to start with the keyword", "Fix broken links from Search Console", "Add an XML sitemap and submit it", "Make sure canonical tags point to the right URL"] },
+      { type: "p", text: "Most CMS migrations fail on the boring stuff: redirects, form endpoints, and staging that doesn't match production." },
+      { type: "list", items: ["Freeze content on the old CMS one week before switch", "Map every old URL to a new one (301s, not 302s)", "Rebuild forms and test submissions on staging", "Copy over analytics + tag manager containers", "Move DNS on a low-traffic day", "Keep the old CMS live for 30 days as a rollback"] },
     ],
   },
   {
