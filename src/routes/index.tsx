@@ -302,15 +302,15 @@ function Hero() {
           </div>
 
           <div className="relative w-full min-w-0">
-            <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10 opacity-40">
-              <div className="absolute inset-0 rounded-full bg-[color:var(--signal)]/5 blur-[80px]" />
-            </div>
-            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/0 blur-2xl opacity-25" />
+            {/* top-right green corner glow (like reference) */}
+            <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-full bg-[color:var(--signal)]/40 blur-[90px]" />
+            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/20 blur-2xl opacity-40" />
             <HeroReel />
-            {/* bottom white fade so the reel appears to dissolve into the page */}
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-white/70 to-white rounded-b-2xl" />
+            {/* bottom white fade so the reel dissolves into the page */}
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 -bottom-2 h-64 bg-gradient-to-b from-transparent via-white to-white" />
           </div>
         </div>
+
 
 
 
