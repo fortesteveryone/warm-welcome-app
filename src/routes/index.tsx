@@ -591,7 +591,7 @@ const platforms: PlatformEntry[] = [
 const dailyVolumeStats = [
   { value: "365+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
   { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
-  { value: "200+", label: "SEO requests", hint: "Local, technical, on-page and link building help." },
+  { value: "200+", label: "CMS & migrations", hint: "Platform switches, rebuilds and fresh CMS setups on WP, Webflow, Wix, Framer." },
   { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
 ];
 
