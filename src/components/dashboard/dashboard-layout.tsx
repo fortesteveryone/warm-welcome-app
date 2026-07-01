@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Users, UserPlus, Settings,
   Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
 } from "lucide-react";
-import logoAsset from "@/assets/growbylead-logo.png.asset.json";
+import logoAsset from "@/assets/postly-logo.png";
 import { NotificationsBell } from "./notifications";
 import { ComplaintBoxButton } from "./complaint-box";
 
@@ -36,7 +36,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
       >
         <div className="flex h-16 items-center justify-between border-b border-border px-3">
           <Link to="/" className="flex items-center gap-2 overflow-hidden">
-            <img src={logoAsset.url} alt="Postly" className="h-8 w-auto shrink-0" />
+            <img src={logoUrl} alt="Postly" className="h-8 w-auto shrink-0" />
             {!collapsed && <span className="truncate text-sm font-semibold tracking-tight">Postly</span>}
           </Link>
           {!collapsed && (
@@ -108,7 +108,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           >
             <div className="flex h-16 items-center justify-between border-b border-border px-4">
               <Link to="/" className="flex items-center gap-2">
-                <img src={logoAsset.url} alt="" className="h-8 w-auto" />
+                <img src={logoUrl} alt="" className="h-8 w-auto" />
                 <span className="text-sm font-semibold tracking-tight">Postly</span>
               </Link>
               <button onClick={() => setMobileOpen(false)} className="grid h-8 w-8 place-items-center rounded-md hover:bg-card" aria-label="Close">

@@ -13,7 +13,7 @@ function Mono({ children, className = "" }: { children: React.ReactNode; classNa
 }
 
 export function Logo({ className = "h-9 w-auto" }: { className?: string }) {
-  return <img src={logoAsset.url} alt="Postly" className={className} />;
+  return <img src={logoUrl} alt="Postly" className={className} />;
 }
 
 /* Cross-route nav links. In-page anchors use `/#id` so they work from any route. */
@@ -170,7 +170,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <img src={footerLogoAsset.url} alt="Postly" className="h-20 w-auto" />
+              <img src={footerLogoUrl} alt="Postly" className="h-20 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
