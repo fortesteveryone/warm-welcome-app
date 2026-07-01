@@ -874,7 +874,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge section-light">
+    <section id="pricing" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
