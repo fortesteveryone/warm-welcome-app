@@ -430,7 +430,7 @@ const tagBrand: Record<string, BrandMark[]> = {
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
   { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
   { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
-  { Icon: Search,  title: "Digital marketing — SEO only", tags: ["Local SEO", "Technical SEO", "On-page SEO", "Off-page / link building", "SEO audits"] },
+  { Icon: Search,  title: "Migrations & rebuilds",        tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "Framer migration", "CMS setup"] },
 ];
 
 const outOfScope = [
