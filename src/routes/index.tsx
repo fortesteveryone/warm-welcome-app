@@ -617,7 +617,7 @@ function Platforms() {
 
         <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Tag tone="signal">● Daily minimum</Tag>
-          <span>365+ total · 250+ web design &amp; development · 200+ SEO · from any country.</span>
+          <span>365+ total · 250+ web design &amp; development · 200+ CMS &amp; migrations · from any country.</span>
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
