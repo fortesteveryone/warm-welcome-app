@@ -276,12 +276,12 @@ function Hero() {
             </div>
 
             <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
-              Social posts to{" "}
-              <span className="text-foreground/55">sales-ready leads.</span>
+              Find website service opportunities{" "}
+              <span className="text-foreground/55">from public social posts.</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
-              Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads — delivered to your inbox daily.
+              Built for web designers, web developers, CMS specialists and agencies — Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads in your dashboard.
             </p>
 
             {/* highlight strip */}
@@ -291,10 +291,10 @@ function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
-                Start free trial <ArrowRight className="h-4 w-4" />
+                Request early access <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#product" className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-white/90">
-                Explore now
+                See example leads
               </a>
             </div>
           </div>
