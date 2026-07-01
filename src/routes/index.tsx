@@ -602,7 +602,7 @@ function Platforms() {
         <SectionTitle
           kicker="Platforms"
           title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
-          lede="At least 500 fresh website &amp; SEO leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+          lede="At least 500 fresh website design, development and CMS leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
         />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
