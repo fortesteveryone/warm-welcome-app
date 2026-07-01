@@ -5,7 +5,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Postly" },
-      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for website and SEO sellers." },
+      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for website design, development and CMS sellers." },
       { property: "og:title", content: "About — Postly" },
       { property: "og:description", content: "Who we are, what we do, and why we built Postly." },
     ],
