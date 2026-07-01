@@ -285,8 +285,10 @@ function Hero() {
             </p>
 
             {/* highlight strip */}
-            <div className="mt-5 text-sm text-foreground/70">
-              Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span>
+            <div className="mt-6 flex justify-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/25 bg-[color:var(--signal)]/[0.06] px-4 py-1.5 text-sm text-foreground/70 shadow-[0_0_24px_-8px_var(--signal)] backdrop-blur">
+                Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span>
+              </div>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
