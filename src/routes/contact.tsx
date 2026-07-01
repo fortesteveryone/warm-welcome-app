@@ -5,9 +5,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Grow By Lead" },
-      { name: "description", content: "Get in touch with Grow By Lead — sales, support, partnerships and press." },
-      { property: "og:title", content: "Contact — Grow By Lead" },
+      { title: "Contact — Postly" },
+      { name: "description", content: "Get in touch with Postly — sales, support, partnerships and press." },
+      { property: "og:title", content: "Contact — Postly" },
       { property: "og:description", content: "Reach our sales, support and partnerships teams." },
     ],
   }),
@@ -49,7 +49,7 @@ function ContactPage() {
 
       <Section title="Where we're based">
         <p>
-          Grow By Lead is a fully-remote team. Our core hours overlap Asia, Europe and North America, so most messages
+          Postly is a fully-remote team. Our core hours overlap Asia, Europe and North America, so most messages
           get a same-day answer.
         </p>
       </Section>

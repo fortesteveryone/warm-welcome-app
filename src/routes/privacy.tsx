@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Grow By Lead" },
-      { name: "description", content: "How Grow By Lead collects, stores and uses information about customers and the public posts we surface." },
-      { property: "og:title", content: "Privacy Policy — Grow By Lead" },
+      { title: "Privacy Policy — Postly" },
+      { name: "description", content: "How Postly collects, stores and uses information about customers and the public posts we surface." },
+      { property: "og:title", content: "Privacy Policy — Postly" },
       { property: "og:description", content: "Our approach to customer data, cookies and third-party processors." },
     ],
   }),
@@ -28,7 +28,7 @@ function PrivacyPage() {
         <p>To run your account, send service emails, prevent abuse, and improve the product. We do not use customer data to train third-party AI models.</p>
       </Section>
       <Section title="3. Public posts we surface">
-        <p>Grow By Lead indexes publicly-visible posts on supported social platforms. We store the post URL, author handle (as published), platform, timestamp and content. If a post is deleted or made private upstream, we remove it from active feeds within 24 hours of detection.</p>
+        <p>Postly indexes publicly-visible posts on supported social platforms. We store the post URL, author handle (as published), platform, timestamp and content. If a post is deleted or made private upstream, we remove it from active feeds within 24 hours of detection.</p>
       </Section>
       <Section title="4. Sharing & subprocessors">
         <p>We share data with hosting, payments and email delivery providers only as needed to operate the service. A current list is available on request.</p>

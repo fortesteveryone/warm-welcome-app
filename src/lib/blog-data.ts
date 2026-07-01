@@ -37,7 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "A repeatable system to spot real buying intent in public Facebook groups — and reach out without sounding like every other freelancer.",
     category: "Lead generation",
     tags: ["Facebook", "Outreach", "Web design"],
-    author: { name: "Arifa Rahman", role: "Lead strategist · Grow By Lead", avatar: av(47) },
+    author: { name: "Arifa Rahman", role: "Lead strategist · Postly", avatar: av(47) },
     date: "2026-06-02",
     readMinutes: 7,
     cover: cover("1611926653458-09294b3142bf"),

@@ -4,9 +4,9 @@ import { PageShell, Section } from "@/components/page-shell";
 export const Route = createFileRoute("/data-usage")({
   head: () => ({
     meta: [
-      { title: "Data Usage Policy — Grow By Lead" },
-      { name: "description", content: "What data Grow By Lead processes, why, and how it leaves the system." },
-      { property: "og:title", content: "Data Usage Policy — Grow By Lead" },
+      { title: "Data Usage Policy — Postly" },
+      { name: "description", content: "What data Postly processes, why, and how it leaves the system." },
+      { property: "og:title", content: "Data Usage Policy — Postly" },
       { property: "og:description", content: "Sources, processing, retention and deletion of the data we handle." },
     ],
   }),

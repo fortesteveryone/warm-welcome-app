@@ -4,7 +4,7 @@ import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Grow By Lead CRM" },
+      { title: "Dashboard — Postly CRM" },
       { name: "robots", content: "noindex" },
     ],
   }),

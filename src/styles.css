@@ -61,7 +61,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Grow By Lead — pure black & white system. Sections alternate using
+/* Postly — pure black & white system. Sections alternate using
    .section-dark / .section-light utilities below. */
 :root {
   --radius: 0.5rem;
