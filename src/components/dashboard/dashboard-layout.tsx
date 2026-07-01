@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Users, UserPlus, Settings,
   Search, Menu, X, ChevronsLeft, ChevronsRight, Plus, LogOut,
 } from "lucide-react";
-import logoAsset from "@/assets/postly-logo.png";
+import logoUrl from "@/assets/postly-logo.png";
 import { NotificationsBell } from "./notifications";
 import { ComplaintBoxButton } from "./complaint-box";
 
