@@ -568,10 +568,10 @@ function Platforms() {
               <div key={p.name} className="group rounded-xl border border-border bg-white p-5 transition hover:shadow-sm">
                 <div className="flex items-center justify-between">
                   <div
-                    className="grid h-10 w-10 place-items-center rounded-lg border border-border"
-                    style={{ background: `color-mix(in oklab, ${p.color} 14%, transparent)`, color: p.color }}
+                    className="grid h-10 w-10 place-items-center rounded-lg"
+                    style={{ color: p.color }}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-9 w-9" />
                   </div>
                   {p.state === "live" ? <Tag tone="signal">● Live</Tag> : <Tag>○ Soon</Tag>}
                 </div>
