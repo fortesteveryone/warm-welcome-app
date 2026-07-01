@@ -33,12 +33,17 @@ export function PageShell({
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.05),transparent_60%)]" />
         </div>
         <Container className="py-14 md:py-20">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
-          >
-            <ArrowLeft className="h-3 w-3" /> Back home
-          </Link>
+          <div className="flex items-center justify-between gap-4">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
+            >
+              <ArrowLeft className="h-3 w-3" /> Back home
+            </Link>
+            {updated && (
+              <Mono className="text-muted-foreground">Last updated · {updated}</Mono>
+            )}
+          </div>
           <Mono className="mt-6 block text-muted-foreground">{kicker}</Mono>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             {(() => {
@@ -54,9 +59,7 @@ export function PageShell({
             })()}
           </h1>
           {lede && <p className="mt-4 max-w-[680px] text-base text-muted-foreground md:text-lg">{lede}</p>}
-          {updated && (
-            <Mono className="mt-6 block text-muted-foreground">Last updated · {updated}</Mono>
-          )}
+
         </Container>
       </section>
 
