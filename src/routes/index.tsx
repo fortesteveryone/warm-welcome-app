@@ -124,18 +124,18 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
-      <ProductShowcase />
+      {/* Who this is for / what Postly finds */}
       <Scope />
-      <FeatureBento />
-      <AfterLogin />
-      
-      <StatsStrip />
+      {/* What you get inside the dashboard */}
+      <ProductShowcase />
+      {/* Where the data comes from */}
       <Platforms />
+      {/* How leads are scored */}
       <Scoring />
-      
-      <Concierge />
+      {/* Example lead preview */}
+      <AfterLogin />
+      {/* Pricing / early access */}
       <Pricing />
-      <Testimonials />
       <FAQ />
       <FinalCTA />
       <SiteFooter />
