@@ -265,21 +265,18 @@ export function SiteFooter() {
       <div
         aria-hidden
         className="relative select-none overflow-hidden"
-        style={{ height: "calc(clamp(72px, 18vw, 260px) * 0.66)" }}
+        style={{ height: "calc(clamp(72px, 18vw, 260px) * 0.82)" }}
       >
         <div
-          className="pointer-events-none flex w-full items-start justify-center whitespace-nowrap text-center font-semibold leading-[1] tracking-tight"
+          className="wordmark-shimmer pointer-events-none flex w-full items-start justify-center whitespace-nowrap text-center font-semibold uppercase leading-[1] tracking-tight"
           style={{
             fontSize: "clamp(72px, 18vw, 260px)",
-            background: "linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(34,197,94,0.28) 70%, rgba(34,197,94,0.10) 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
           }}
         >
-          postly.growbylead.com
+          POSTLY.GROWBYLEAD.COM
         </div>
       </div>
+
 
 
     </footer>
