@@ -768,7 +768,7 @@ function Pricing() {
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
           <h2 className="mx-auto mt-3 max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] md:text-4xl">
-            Simple launch pricing.
+            Simple <span className="text-[color:var(--signal)]">launch pricing.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
             Start with free access, upgrade when you need more volume, and unlock the early access lifetime discount while it is available.
