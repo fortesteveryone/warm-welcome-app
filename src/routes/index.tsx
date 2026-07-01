@@ -401,42 +401,44 @@ function SignalEngine() {
           title={<>We track public posts. <span className="text-muted-foreground">You choose the best ones.</span></>}
           lede="Postly monitors supported public sources, detects website-service intent, and turns relevant posts into structured opportunities."
         />
-        <div className="mt-10 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-card p-6">
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> Facebook</span>
-              <span className="text-foreground/25">·</span>
-              <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> LinkedIn</span>
-              <span className="text-foreground/25">·</span>
-              <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> Instagram</span>
-              <span className="text-foreground/25">·</span>
-              <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> Reddit</span>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-stretch">
+          <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> Facebook</span>
+                <span className="text-foreground/25">·</span>
+                <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> LinkedIn</span>
+                <span className="text-foreground/25">·</span>
+                <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> Instagram</span>
+                <span className="text-foreground/25">·</span>
+                <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> Reddit</span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold tracking-tight">Sources monitored today</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Postly parses public posts across four live platforms, detects website-service intent, and routes qualified opportunities into your dashboard.
+              </p>
+              <p className="mt-4 text-xs text-muted-foreground">X and Threads are planned for future coverage.</p>
             </div>
-            <h3 className="mt-4 text-xl font-semibold tracking-tight">Sources monitored today</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Postly parses public posts across four live platforms, detects website-service intent, and routes qualified opportunities into your dashboard.
-            </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              X and Threads are planned for future coverage.
-            </p>
+            <div className="mt-6"><MockSources /></div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-6">
-            <div className="flex items-center justify-between">
-              <Tag tone="signal">● Lead detail · High intent</Tag>
-              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6">
+            <div>
+              <div className="flex items-center justify-between">
+                <Tag tone="signal">● Lead detail · High intent</Tag>
+                <MessageSquare className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight">Every opportunity opens into a full briefing.</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                See the summary, service need, score, source proof, reply angles, and activity timeline in one screen.
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
+                {["Summary", "Service need", "Score & reasons", "Source proof", "Reply angles", "Activity timeline"].map((k) => (
+                  <div key={k} className="rounded-md border border-border bg-background/40 px-3 py-2 text-foreground/80">{k}</div>
+                ))}
+              </div>
             </div>
-            <h3 className="mt-3 text-xl font-semibold tracking-tight">Every opportunity opens into a full briefing.</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              See the summary, service need, score, source proof, reply angles, and activity timeline in one screen.
-            </p>
-            <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
-              {["Summary", "Service need", "Score & reasons", "Source proof", "Reply angles", "Activity timeline"].map((k) => (
-                <div key={k} className="rounded-md border border-border bg-background/40 px-3 py-2 text-foreground/80">
-                  {k}
-                </div>
-              ))}
-            </div>
+            <div className="mt-6"><MockScore /></div>
           </div>
         </div>
       </Container>
