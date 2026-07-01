@@ -34,7 +34,7 @@ function PlatformDot({ name }: { name: Lead["platform"] }) {
 
 export function HeroReel() {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[color:var(--signal)]/30 bg-[#080808]">
+    <div className="relative overflow-hidden rounded-2xl bg-[#080808]">
       {/* window chrome */}
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-3 py-2.5">
         <div className="flex items-center gap-1.5">
@@ -68,7 +68,7 @@ export function HeroReel() {
       </div>
 
       {/* feed — leads cascade in from top */}
-      <div className="relative h-[280px] overflow-hidden p-3">
+      <div className="relative h-[440px] overflow-hidden p-3">
         <div className="reel-feed space-y-2">
           {[...REEL_LEADS, ...REEL_LEADS].map((l, i) => (
             <div
