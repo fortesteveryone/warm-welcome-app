@@ -222,7 +222,7 @@
      while the page scrolls — the shape doesn't move, only content does. */
   background-color: oklch(0.952 0.025 150);
   background-image:
-    linear-gradient(oklch(0.952 0.025 150 / 0.86), oklch(0.952 0.025 150 / 0.86)),
+    linear-gradient(oklch(0.952 0.025 150 / 0.89), oklch(0.952 0.025 150 / 0.89)),
     url('/src/assets/section-3d-decor.png');
   background-repeat: no-repeat, no-repeat;
   background-position: center center, center center;
