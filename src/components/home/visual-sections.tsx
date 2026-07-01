@@ -41,7 +41,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 export function ProductShowcase() {
   return (
     <section id="product" className="section-edge section-light relative overflow-hidden scroll-mt-24">
-      <Container className="py-20 md:py-28">
+      <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
           <Kicker>Inside the product</Kicker>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-[44px]">
@@ -169,7 +169,7 @@ const featureCards = [
 export function FeatureBento() {
   return (
     <section className="section-edge section-dark relative overflow-hidden">
-      <Container className="py-20 md:py-28">
+      <Container className="py-16 md:py-20">
         <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-12">
           <div>
             <Kicker>Why teams switch</Kicker>
