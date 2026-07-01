@@ -275,7 +275,7 @@ function Hero() {
               </a>
             </div>
 
-            <h1 className="mt-6 text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
+            <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
               Social posts to{" "}
               <span className="text-foreground/55">sales-ready leads.</span>
             </h1>
