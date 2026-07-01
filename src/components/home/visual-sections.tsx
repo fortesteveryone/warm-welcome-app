@@ -48,7 +48,7 @@ export function ProductShowcase() {
             A focused workspace for <span className="text-[color:var(--signal)]">website opportunities</span>.
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Review fresh public posts, understand the opportunity, and prepare a reply without jumping between platforms.
+            Review fresh public posts from real business owners, understand the opportunity in seconds, and prepare a personalised reply without ever jumping between platforms or browser tabs.
           </p>
         </div>
 
