@@ -723,7 +723,7 @@ function UseCases() {
         <div className="flex flex-col items-center text-center">
           <Mono className="text-muted-foreground">Who uses it</Mono>
           <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
-            Built for people selling <span className="text-muted-foreground">website &amp; SEO</span> services.
+            Built for people selling <span className="text-muted-foreground">website &amp; CMS</span> services.
           </h3>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
             {useCases.map((t) => (
