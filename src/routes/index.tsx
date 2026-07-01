@@ -307,6 +307,8 @@ function Hero() {
             <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-full bg-[color:var(--signal)]/40 blur-[90px]" />
             <div aria-hidden className="pointer-events-none absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/20 blur-2xl opacity-40" />
             <HeroReel />
+            {/* bottom fade: reel dissolves into the now-white section background */}
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 rounded-b-2xl bg-gradient-to-b from-transparent to-white" />
           </div>
         </div>
 
