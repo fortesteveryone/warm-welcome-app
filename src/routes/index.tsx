@@ -538,7 +538,7 @@ const afterLoginItems = [
 
 function AfterLogin() {
   return (
-    <section id="features" className="section-edge section-dark">
+    <section id="features" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="After login"
@@ -601,7 +601,7 @@ const dailyVolumeStats = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge section-dark">
+    <section id="platforms" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
@@ -662,7 +662,7 @@ const scoringFactors = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden bg-white">
+    <section id="scoring" className="section-edge section-dark relative overflow-hidden">
 
 
       <Container className="relative py-16 md:py-20">
@@ -874,7 +874,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="section-edge section-light">
+    <section id="pricing" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
         <div className="text-center">
           <Mono className="text-muted-foreground">Pricing</Mono>
