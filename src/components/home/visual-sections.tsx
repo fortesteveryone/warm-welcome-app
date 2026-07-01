@@ -111,12 +111,12 @@ export function ProductShowcase() {
           <div className="relative col-span-6 overflow-hidden rounded-2xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-6 sm:col-span-3 lg:col-span-2">
             <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl" />
             <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
-              <Sparkles className="h-3 w-3" /> AI Outreach
+              <Sparkles className="h-3 w-3" /> Reply Angles
             </span>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to personalize.</h3>
-            <p className="mt-1 text-xs text-muted-foreground">Start with a draft, adjust your tone, and respond faster to qualified website opportunities.</p>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">Personalized replies without starting from scratch.</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Turn each qualified website opportunity into clear reply angles based on the original post, service need, urgency, and budget signal.</p>
             <div className="mt-4 space-y-2">
-              {["Website redesign support", "Quick delivery angle", "Scope & budget clarity"].map((t, i) => (
+              {["Offer website redesign help", "Ask about scope & timeline", "Share a quick next step"].map((t, i) => (
                 <div
                   key={t}
                   className={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs ${
