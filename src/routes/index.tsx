@@ -8,7 +8,7 @@ import {
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductShowcase } from "@/components/home/visual-sections";
 import { HeroReel } from "@/components/home/hero-reel";
-import { MockFeed, MockScore, MockOutreach, MockSources } from "@/components/home/section-mockups";
+import { MockScore, MockSources } from "@/components/home/section-mockups";
 import {
   SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
   SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
@@ -461,10 +461,6 @@ function AfterLogin() {
           title={<>Exactly what you get <span className="text-muted-foreground">inside your account.</span></>}
           lede="Your dashboard shows the information needed to verify, prioritize, and manage website opportunities from one place."
         />
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <MockFeed />
-          <MockOutreach />
-        </div>
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {afterLoginItems.map(({ Icon, title, body }, i) => (
             <div key={title} className="group relative rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
