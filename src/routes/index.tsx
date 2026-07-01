@@ -285,9 +285,9 @@ function Hero() {
             </p>
 
             {/* highlight strip */}
-            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-foreground/20 bg-foreground/[0.04] px-4 py-1.5 text-sm">
-              <Sparkles className="h-3.5 w-3.5 text-foreground" />
-              <span className="text-foreground/80">Every day we surface <span className="font-semibold text-foreground">365+ fresh leads</span></span>
+            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/[0.10] px-4 py-1.5 text-sm shadow-[0_0_0_3px_var(--signal-glow)]">
+              <Sparkles className="h-3.5 w-3.5 text-[color:var(--signal)]" />
+              <span className="text-foreground/80">Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span></span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
