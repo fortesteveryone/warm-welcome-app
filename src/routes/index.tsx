@@ -574,9 +574,13 @@ function Platforms() {
           ))}
         </div>
 
-        <div className="mt-4 text-xs text-muted-foreground">
-          Daily volume can vary by platform, country, and source activity.
+        <div className="mt-8 mb-2 flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--signal)]/25 bg-[color:var(--signal)]/10 px-4 py-1.5 text-xs font-medium text-[color:var(--signal)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+            Daily volume can vary by platform, country, and source activity.
+          </span>
         </div>
+
 
         <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {platforms.map((p) => {
