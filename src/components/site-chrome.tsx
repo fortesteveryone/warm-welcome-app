@@ -17,32 +17,56 @@ export function Logo({ className = "h-9 w-auto" }: { className?: string }) {
   return <img src={logoUrl} alt="Postly" className={className} />;
 }
 
-/* Cross-route nav links. In-page anchors use `/#id` so they work from any route. */
+/* Primary nav — keep it short. Home is always first. */
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "Home", href: "/" },
-  { label: "Example", href: "/#example" },
-  { label: "Platforms", href: "/#platforms" },
-  { label: "Scoring", href: "/#scoring" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
-  { label: "Dashboard", href: "/dashboard" },
+  { label: "Support", href: "/support" },
+  { label: "Contact", href: "/contact" },
 ];
+
+function isActive(href: string, pathname: string): boolean {
+  if (href === "/") return pathname === "/";
+  if (href.startsWith("/#")) return false; // in-page anchor on home
+  return pathname === href || pathname.startsWith(href + "/");
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
       <Container className="relative flex h-20 items-center justify-between gap-3">
         <Link to="/" className="flex shrink-0 items-center gap-2">
           <Logo className="h-14 w-auto" />
         </Link>
-        <nav className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
-          {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="pointer-events-auto text-sm text-muted-foreground transition hover:text-foreground">
-              {l.label}
-            </a>
-          ))}
+        <nav className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
+          {NAV_LINKS.map((l) => {
+            const active = isActive(l.href, pathname);
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className={`pointer-events-auto relative rounded-md px-3 py-1.5 text-sm transition ${
+                  active
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {l.label}
+                {active && (
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-3 -bottom-0.5 h-[2px] rounded-full bg-[color:var(--signal)]"
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
+
 
         <div className="flex shrink-0 items-center gap-2">
           <a href="#" className="hidden rounded-md border border-border bg-card/60 px-3.5 py-1.5 text-sm font-medium text-foreground transition hover:bg-card sm:inline-flex">
