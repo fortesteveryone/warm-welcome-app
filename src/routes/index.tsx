@@ -710,8 +710,8 @@ const useCases = [
   "Freelance web designers",
   "Webflow / WordPress developers",
   "Wix & Framer studios",
-  "SEO experts & consultants",
-  "Local SEO agencies",
+  "CMS specialists",
+  "Website redesign teams",
   "Lead-gen agencies",
   "Outreach teams",
 ];
