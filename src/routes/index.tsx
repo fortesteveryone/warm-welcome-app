@@ -253,8 +253,8 @@ function Hero() {
         <HeroFloatingSocials />
       </div>
 
-      <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
-        <div className="grid items-center gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
+      <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
+        <div className="grid items-center gap-8 sm:gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
           {/* Left: copy */}
           <div className="min-w-0 text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
@@ -275,7 +275,7 @@ function Hero() {
               </a>
             </div>
 
-            <h1 className="mt-6 text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
+            <h1 className="mt-6 text-balance text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[64px]">
               Social posts to{" "}
               <span className="text-foreground/55">sales-ready leads.</span>
             </h1>
@@ -285,9 +285,9 @@ function Hero() {
             </p>
 
             {/* highlight strip */}
-            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-foreground/20 bg-foreground/[0.04] px-4 py-1.5 text-sm">
-              <Sparkles className="h-3.5 w-3.5 text-foreground" />
-              <span className="text-foreground/80">Every day we surface <span className="font-semibold text-foreground">365+ fresh leads</span></span>
+            <div className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/[0.10] px-4 py-1.5 text-sm shadow-[0_0_0_3px_var(--signal-glow)]">
+              <Sparkles className="h-3.5 w-3.5 text-[color:var(--signal)]" />
+              <span className="text-foreground/80">Every day we surface <span className="rounded-md bg-[color:var(--signal)]/15 px-1.5 py-0.5 font-semibold text-[color:var(--signal)]">365+ fresh leads</span></span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
