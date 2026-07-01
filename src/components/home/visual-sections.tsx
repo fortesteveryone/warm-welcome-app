@@ -43,9 +43,9 @@ export function ProductShowcase() {
     <section id="product" className="section-edge section-dark relative overflow-hidden scroll-mt-24">
       <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
-          <Kicker>Inside the product</Kicker>
+          <Kicker>Inside Postly</Kicker>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-4xl md:text-[44px]">
-            A focused workspace for website opportunities.
+            A focused workspace for <span className="text-[color:var(--signal)]">website opportunities</span>.
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
             Review fresh public posts, understand the opportunity, and prepare a reply without jumping between platforms.
