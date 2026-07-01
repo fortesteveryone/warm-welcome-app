@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu, X } from "lucide-react";
 import logoAsset from "@/assets/growbylead-logo.png.asset.json";
+import footerLogoAsset from "@/assets/footer-logo.png.asset.json";
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
@@ -169,7 +170,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <Logo className="h-10 w-auto" />
+              <img src={footerLogoAsset.url} alt="Grow By Lead" className="h-10 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
