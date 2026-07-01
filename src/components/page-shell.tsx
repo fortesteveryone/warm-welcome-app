@@ -40,7 +40,19 @@ export function PageShell({
             <ArrowLeft className="h-3 w-3" /> Back home
           </Link>
           <Mono className="mt-6 block text-muted-foreground">{kicker}</Mono>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{title}</h1>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            {(() => {
+              const parts = title.trim().split(/\s+/);
+              if (parts.length < 2) return title;
+              const last = parts.pop();
+              return (
+                <>
+                  {parts.join(" ")}{" "}
+                  <span className="text-[color:var(--signal)]">{last}</span>
+                </>
+              );
+            })()}
+          </h1>
           {lede && <p className="mt-4 max-w-[680px] text-base text-muted-foreground md:text-lg">{lede}</p>}
           {updated && (
             <Mono className="mt-6 block text-muted-foreground">Last updated · {updated}</Mono>
