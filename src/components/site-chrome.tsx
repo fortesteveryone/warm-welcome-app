@@ -173,7 +173,7 @@ export function SiteFooter() {
               <img src={footerLogoUrl} alt="Postly" className="h-20 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
-              Social media buying signals, organized into structured, scored, outreach-ready leads.
+              Postly helps web agencies, developers, freelancers, and CMS specialists find website-service opportunities from public social posts.
             </p>
             <div className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
               <span className="h-1.5 w-1.5 rounded-md bg-[#22C55E]" /> All systems normal
