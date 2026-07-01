@@ -227,30 +227,26 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      {/* Oversized brand wordmark — scrolls right→left, clipped at the bottom */}
-      <div aria-hidden className="relative select-none overflow-hidden py-4">
+      {/* Oversized brand wordmark — static, bottom third clipped */}
+      <div
+        aria-hidden
+        className="relative select-none overflow-hidden"
+        style={{ height: "calc(clamp(72px, 18vw, 260px) * 0.66)" }}
+      >
         <div
-          className="wordmark-marquee pointer-events-none flex items-center whitespace-nowrap font-semibold leading-[1] tracking-tight"
+          className="pointer-events-none flex w-full items-start justify-center whitespace-nowrap text-center font-semibold leading-[1] tracking-tight"
           style={{
-            fontSize: "clamp(56px, 12vw, 160px)",
-            background: "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(34,197,94,0.22) 60%, rgba(34,197,94,0.05) 100%)",
+            fontSize: "clamp(72px, 18vw, 260px)",
+            background: "linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(34,197,94,0.28) 70%, rgba(34,197,94,0.10) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
           }}
         >
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="flex shrink-0 items-center">
-              <span>postly.growbylead.com</span>
-              <span
-                aria-hidden
-                className="mx-[0.35em] inline-block h-[0.7em] w-[3px] rounded-md"
-                style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.35), rgba(34,197,94,0.35))" }}
-              />
-            </span>
-          ))}
+          postly.growbylead.com
         </div>
       </div>
+
 
     </footer>
   );
