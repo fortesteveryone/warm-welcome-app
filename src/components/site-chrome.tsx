@@ -222,8 +222,8 @@ export function SiteFooter() {
 
         {/* Bottom meta */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6">
-          <Mono className="text-white/50">© {new Date().getFullYear()} Postly</Mono>
-          <Mono className="text-white/50">Built for sales teams that move fast</Mono>
+          <Mono className="text-white/50">© {new Date().getFullYear()} Postly. Built for website service teams that move fast.</Mono>
+          <Mono className="text-white/50">postly.growbylead.com</Mono>
         </div>
       </Container>
 
