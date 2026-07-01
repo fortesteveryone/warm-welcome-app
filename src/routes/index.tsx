@@ -102,16 +102,11 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
-      
-      <ProductShowcase />
       <Scope />
-      <WhyTeamsSwitch />
-      <SignalEngine />
+      <ProductShowcase />
       <AfterLogin />
-      <ByTheNumbers />
       <Platforms />
       <Scoring />
-      <VipAddon />
       <Pricing />
       <BuiltFor />
       <FAQ />
