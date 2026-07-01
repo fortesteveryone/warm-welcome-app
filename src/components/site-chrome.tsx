@@ -170,7 +170,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <img src={footerLogoAsset.url} alt="Grow By Lead" className="h-10 w-auto" />
+              <img src={footerLogoAsset.url} alt="Grow By Lead" className="h-20 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Social media buying signals, organized into structured, scored, outreach-ready leads.
