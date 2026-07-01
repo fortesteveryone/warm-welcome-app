@@ -1225,7 +1225,7 @@ function FinalCTA() {
 function Footer() {
   const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
     { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
-    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "SEO teams" }, { label: "Developers" }, { label: "Outreach" }] },
+    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "CMS specialists" }, { label: "Developers" }, { label: "Outreach" }] },
     { title: "Resources", links: [{ label: "Blog", soon: true }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
     { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
     { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
