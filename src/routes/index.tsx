@@ -244,8 +244,8 @@ function TrustStrip() {
   return (
     <section className="section-edge section-light">
       <Container className="py-12 md:py-14">
-        <p className="text-center text-sm font-medium text-foreground/80 md:text-base">
-          Built for web agencies, freelancers, developers, and CMS specialists.
+        <p className="mx-auto max-w-3xl text-center text-sm font-medium text-foreground/80 md:text-base">
+          Built for web designers, web developers, CMS specialists and agencies — Postly turns public posts asking for <span className="text-[color:var(--signal)]">website design, development, redesign and CMS help</span> into scored, outreach-ready leads in your dashboard.
         </p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground md:text-sm">
           {services.map((s, i) => (
