@@ -434,7 +434,7 @@ const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; titl
 ];
 
 const outOfScope = [
-  "E-commerce stores", "Paid ads (Meta / Google)", "Design & branding", "Logo / graphic design",
+  "E-commerce stores", "Paid ads (Meta / Google)", "SEO services", "Design & branding", "Logo / graphic design",
   "Social media management", "Analytics / GTM / CRO", "Real estate", "Legal", "Healthcare",
   "Recruiting", "Physical products", "Financial services",
 ];
