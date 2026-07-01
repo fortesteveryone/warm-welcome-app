@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import React, { useState } from "react";
 import {
-  ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Facebook, Filter, Flame, Globe,
-  Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MessageSquare, Search, Send,
-  Shield, Sparkles, Target, X,
+  ArrowRight, ArrowRightLeft, ArrowUpRight, Check, ChevronDown, Code2, Facebook, Filter, Flame, Globe,
+  Inbox, Instagram, Layers, Linkedin, Link2, ListChecks, MessageSquare, Paintbrush, Search, Send,
+  Shield, ShoppingBag, Sparkles, Target, Users, Wand2, X,
 } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductShowcase } from "@/components/home/visual-sections";
@@ -890,12 +890,12 @@ function Pricing() {
 
 /* ---------- built for (replaces testimonials) ---------- */
 const builtForCards = [
-  { title: "Freelance web designers",     body: "Find people asking for redesigns, portfolio updates, landing pages, and small website fixes." },
-  { title: "WordPress developers",         body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and migrations." },
-  { title: "Webflow and Framer studios",   body: "Find founders and businesses looking for modern rebuilds, landing pages, and CMS improvements." },
-  { title: "Small web agencies",           body: "Build a daily outreach pipeline from public website-service requests across supported platforms." },
-  { title: "Shopify website specialists",  body: "Spot redesign, rebuild, and migration requests from store owners who need website help." },
-  { title: "CMS migration teams",          body: "Find requests involving platform switches, CMS setup, and website rebuild projects." },
+  { Icon: Paintbrush,     title: "Freelance web designers",     body: "Find people asking for redesigns, portfolio updates, landing pages, and small website fixes." },
+  { Icon: Code2,          title: "WordPress developers",         body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and migrations." },
+  { Icon: Wand2,          title: "Webflow and Framer studios",   body: "Find founders and businesses looking for modern rebuilds, landing pages, and CMS improvements." },
+  { Icon: Users,          title: "Small web agencies",           body: "Build a daily outreach pipeline from public website-service requests across supported platforms." },
+  { Icon: ShoppingBag,    title: "Shopify website specialists",  body: "Spot redesign, rebuild, and migration requests from store owners who need website help." },
+  { Icon: ArrowRightLeft, title: "CMS migration teams",          body: "Find requests involving platform switches, CMS setup, and website rebuild projects." },
 ];
 
 function BuiltFor() {
@@ -908,13 +908,13 @@ function BuiltFor() {
           lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {builtForCards.map((c) => (
-            <div key={c.title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
+          {builtForCards.map(({ Icon, title, body }) => (
+            <div key={title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
-                <Target className="h-5 w-5" strokeWidth={1.75} />
+                <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{c.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{body}</p>
             </div>
           ))}
         </div>
