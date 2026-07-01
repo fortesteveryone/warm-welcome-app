@@ -41,7 +41,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 /* ---------- Product showcase: big black dashboard + bento callouts ---------- */
 export function ProductShowcase() {
   return (
-    <section className="section-edge section-light relative overflow-hidden">
+    <section id="product" className="section-edge section-light relative overflow-hidden scroll-mt-24">
       <Container className="py-20 md:py-28">
         <div className="flex flex-col items-center text-center">
           <Kicker>Inside the product</Kicker>
