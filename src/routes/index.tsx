@@ -629,7 +629,7 @@ function Scoring() {
               title={<>Six factors. <span className="text-[color:var(--signal)]">Clear reasons.</span></>}
               lede="Each opportunity is scored using visible signals from the post, so your team understands why it should be prioritized."
             />
-            <div className="mt-6 rounded-xl border border-border bg-white/80 p-5 backdrop-blur-md shadow-sm">
+            <div className="mt-6 rounded-xl border border-border bg-white p-5 shadow-sm">
               <div className="flex items-center justify-between">
                 <Mono className="text-muted-foreground">AI reasoning</Mono>
                 <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
@@ -641,7 +641,7 @@ function Scoring() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {scoringFactors.map(([t, b], i) => (
-              <div key={t} className="group relative overflow-hidden rounded-xl border border-border bg-white/70 p-5 backdrop-blur-md shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
+              <div key={t} className="group relative overflow-hidden rounded-xl border border-border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/30">
                 <div className="flex items-center justify-between">
                   <Mono className="text-muted-foreground">F.0{i + 1}</Mono>
                   <span className="rounded-md bg-[color:var(--signal)]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--signal)]">AI</span>
