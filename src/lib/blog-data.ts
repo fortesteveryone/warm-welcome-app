@@ -170,7 +170,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "cms-migration-playbook",
     title: "The CMS migration playbook: WordPress, Webflow, Wix and Framer without downtime",
     excerpt:
-      "How to plan a CMS switch, keep SEO equity intact, and ship the new site in a weekend — with a rollback plan clients trust.",
+      "How to plan a CMS switch, preserve URLs and rankings, and ship the new site in a weekend — with a rollback plan clients trust.",
     category: "WordPress",
     tags: ["Migration", "WordPress", "Webflow", "CMS"],
     author: { name: "Jordan Ali", role: "CMS migration specialist", avatar: av(53) },
