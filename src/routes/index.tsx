@@ -102,16 +102,11 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <Hero />
-      
-      <ProductShowcase />
       <Scope />
-      <WhyTeamsSwitch />
-      <SignalEngine />
+      <ProductShowcase />
       <AfterLogin />
-      <ByTheNumbers />
       <Platforms />
       <Scoring />
-      <VipAddon />
       <Pricing />
       <BuiltFor />
       <FAQ />
@@ -291,7 +286,7 @@ const outOfScope = [
 
 function Scope() {
   return (
-    <section className="section-edge section-light relative overflow-hidden">
+    <section className="section-edge section-dark relative overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
@@ -562,7 +557,7 @@ const dailyVolumeStats = [
 
 function Platforms() {
   return (
-    <section id="platforms" className="section-edge section-dark">
+    <section id="platforms" className="section-edge section-light">
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Platforms"
@@ -620,7 +615,7 @@ const scoringFactors: [string, string][] = [
 
 function Scoring() {
   return (
-    <section id="scoring" className="section-edge section-light relative overflow-hidden">
+    <section id="scoring" className="section-edge section-dark relative overflow-hidden">
       <Container className="relative py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
           <div className="md:sticky md:top-24">

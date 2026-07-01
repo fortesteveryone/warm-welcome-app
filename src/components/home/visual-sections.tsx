@@ -40,7 +40,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 /* ---------- Product showcase: big black dashboard + bento callouts ---------- */
 export function ProductShowcase() {
   return (
-    <section id="product" className="section-edge section-dark relative overflow-hidden scroll-mt-24">
+    <section id="product" className="section-edge section-light relative overflow-hidden scroll-mt-24">
       <Container className="py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
           <Kicker>Inside Postly</Kicker>
