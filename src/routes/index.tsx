@@ -455,8 +455,8 @@ function Scope() {
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
-          lede="Postly is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
+          title={<>Only for <span className="text-muted-foreground">website &amp; CMS</span> service sellers.</>}
+          lede="Postly is niche on purpose. We only capture posts where people ask for website work — design, development, redesign or rebuild — on WordPress, Webflow, Wix or Framer. Nothing else."
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
