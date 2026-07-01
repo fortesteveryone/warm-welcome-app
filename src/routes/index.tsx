@@ -248,10 +248,11 @@ function Hero() {
   return (
     <section className="relative overflow-hidden section-edge section-dark section-no-decor section-glow">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,transparent_30%,rgba(255,255,255,0.85)_55%,#ffffff_70%,#ffffff_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
         <HeroFloatingSocials />
       </div>
+
 
       <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
         <div className="grid items-center gap-8 sm:gap-10 md:gap-14">
@@ -304,12 +305,11 @@ function Hero() {
           <div className="relative w-full min-w-0">
             {/* top-right green corner glow (like reference) */}
             <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 -z-10 h-64 w-64 rounded-full bg-[color:var(--signal)]/40 blur-[90px]" />
-            <div aria-hidden className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/20 blur-2xl opacity-40" />
+            <div aria-hidden className="pointer-events-none absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-tr from-[color:var(--signal)]/0 via-[color:var(--signal)]/10 to-[color:var(--signal)]/20 blur-2xl opacity-40" />
             <HeroReel />
-            {/* bottom white fade so the reel dissolves into the page */}
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 -bottom-2 h-64 bg-gradient-to-b from-transparent via-white to-white" />
           </div>
         </div>
+
 
 
 
