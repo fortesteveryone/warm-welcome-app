@@ -12,7 +12,7 @@ import { MockScore, MockSources } from "@/components/home/section-mockups";
 import {
   SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
   SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
-  SiNotion, SiLinear, SiVercel, SiStripe,
+  SiNotion, SiLinear, SiVercel, SiStripe, SiThreads,
 } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
