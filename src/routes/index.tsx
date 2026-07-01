@@ -343,9 +343,9 @@ function Hero() {
 const sampleLeads = [
   { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
   { title: "Need a WordPress rebuild for local plumbing business", platform: "Reddit",   temp: "Warm", service: "WordPress", comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
-  { title: "Need help managing our Instagram for restaurant",    platform: "Instagram",temp: "Warm", service: "SMM",     comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
+  { title: "Need help with a Webflow rebuild for restaurant site", platform: "Facebook", temp: "Warm", service: "Webflow", comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
   { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
-  { title: "Anyone do landing pages for SaaS launch?",           platform: "X",        temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
+  { title: "Anyone do landing pages for SaaS launch?",           platform: "Reddit",   temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
 ] as const;
 
 function InboxRow({ l, active }: { l: typeof sampleLeads[number]; active?: boolean }) {
