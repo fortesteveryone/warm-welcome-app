@@ -115,10 +115,11 @@ function BlogDetail() {
             <ArrowLeft className="h-3 w-3" /> All articles
           </Link>
           <Mono className="mt-6 block text-[color:var(--signal)]">{post.category}</Mono>
-          <h1 className="mt-3 max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl">
+          <h1 className="mt-3 max-w-5xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.4rem]">
             {titleNode}
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">{post.excerpt}</p>
+          <p className="mt-4 max-w-4xl text-base text-muted-foreground md:text-lg">{post.excerpt}</p>
+
           <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <span>{formatDate(post.date)}</span>
             <span className="h-1 w-1 rounded-full bg-border" />

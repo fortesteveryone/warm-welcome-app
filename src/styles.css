@@ -214,36 +214,26 @@
   --muted: oklch(0.942 0.028 150);
   --muted-foreground: oklch(0.42 0 0);
   --border: oklch(0 0 0 / 10%);
-  background-color: oklch(0.952 0.025 150);
   color: oklch(0.16 0 0);
   position: relative;
   isolation: isolate;
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image: url('/src/assets/section-3d-decor.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 0.12;
-    filter: blur(4px) saturate(130%);
-    animation: section-decor-drift 24s ease-in-out infinite;
-  }
-}
-
-@keyframes section-decor-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.1; }
-  50%      { transform: translate3d(-1.2%, 0.8%, 0) scale(1.03); opacity: 0.14; }
+  /* Tinted overlay on top of the 3D decor. Both layers use
+     background-attachment: fixed so the decor stays locked to the viewport
+     while the page scrolls — the shape doesn't move, only content does. */
+  background-color: oklch(0.952 0.025 150);
+  background-image:
+    linear-gradient(oklch(0.952 0.025 150 / 0.86), oklch(0.952 0.025 150 / 0.86)),
+    url('/src/assets/section-3d-decor.png');
+  background-attachment: fixed, fixed;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: cover, cover;
 }
 
 @utility section-no-decor {
-  &::before {
-    display: none;
-  }
+  background-image: none;
 }
+
 
 
 
