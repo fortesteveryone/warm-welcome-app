@@ -144,10 +144,10 @@ export function SiteFooter() {
         <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-12 md:flex-row md:items-end">
           <div className="max-w-xl">
             <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Buying signals, delivered daily.
+              Website opportunities, delivered daily.
             </h3>
             <p className="mt-3 text-sm text-white/60">
-              Structured, scored, outreach-ready leads from across social — no scraping, no spreadsheets.
+              Public website-service signals, organized into structured, scored, outreach-ready opportunities.
             </p>
           </div>
           <div className="flex items-center gap-3">
