@@ -490,7 +490,7 @@ function Scope() {
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
             <p className="mt-2 text-sm text-foreground/90">
-              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer — or SEO services. If a post asks for that kind of help, it lands in your inbox.
+              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer. If a post asks for that kind of help, it lands in your inbox.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card/50 p-5">
