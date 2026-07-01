@@ -222,13 +222,13 @@ function Logo({ className = "h-7 w-auto" }: { className?: string }) {
 }
 
 /* ---------- hero ---------- */
-import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
+import { SiShopify, SiHubspot, SiWebflow, SiNotion, SiFramer, SiLinear, SiVercel, SiStripe, SiSlackware, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix, SiGoogleads, SiMeta, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 const TRUSTED_LOGOS = [
   { name: "Shopify", Icon: SiShopify, color: "#95BF47" },
   { name: "HubSpot", Icon: SiHubspot, color: "#FF7A59" },
-  { name: "Slack", Icon: SiSlack, color: "#4A154B" },
+  { name: "Slack", Icon: SiSlackware, color: "#4A154B" },
   { name: "Asana", Icon: SiAsana, color: "#F06A6A" },
   { name: "Airbnb", Icon: SiAirbnb, color: "#FF5A5F" },
   { name: "Spotify", Icon: SiSpotify, color: "#1DB954" },
