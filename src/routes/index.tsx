@@ -253,8 +253,8 @@ function Hero() {
         <HeroFloatingSocials />
       </div>
 
-      <Container className="relative pt-16 pb-14 md:pt-24 md:pb-20">
-        <div className="grid items-center gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
+      <Container className="relative pt-12 pb-12 sm:pt-16 sm:pb-14 md:pt-24 md:pb-20">
+        <div className="grid items-center gap-8 sm:gap-10 md:gap-14 lg:grid-cols-[1.05fr_1fr]">
           {/* Left: copy */}
           <div className="min-w-0 text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
