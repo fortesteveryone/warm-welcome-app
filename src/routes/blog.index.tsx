@@ -8,9 +8,9 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Postly" },
-      { name: "description", content: "Tactics, templates and playbooks for website and SEO agencies, freelancers and lead-gen teams." },
+      { name: "description", content: "Tactics, templates and playbooks for website design, development and CMS agencies, freelancers and lead-gen teams." },
       { property: "og:title", content: "Postly — Blog" },
-      { property: "og:description", content: "Lead generation, outreach, web design and SEO playbooks for agencies and freelancers." },
+      { property: "og:description", content: "Lead generation, outreach, web design, development and CMS playbooks for agencies and freelancers." },
     ],
   }),
   component: BlogIndex,
@@ -60,7 +60,7 @@ function BlogIndex() {
         <Container className="py-14 md:py-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Blog</p>
           <h1 className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.02em] sm:text-5xl md:text-6xl">
-            Playbooks for selling <span className="text-muted-foreground">website &amp; SEO</span> services.
+            Playbooks for selling <span className="text-muted-foreground">website &amp; CMS</span> services.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Outreach scripts, pricing frameworks, lead-gen tactics and platform deep-dives — written for agencies, freelancers and small studios.
@@ -75,7 +75,7 @@ function BlogIndex() {
                 onChange={(e) => { setQuery(e.target.value); setShowSuggest(true); }}
                 onFocus={() => setShowSuggest(true)}
                 onBlur={() => setTimeout(() => setShowSuggest(false), 120)}
-                placeholder="Search blog — try 'webflow', 'outreach', 'local seo'…"
+                placeholder="Search blog — try 'webflow', 'outreach', 'wordpress'…"
                 className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
               />
               {query && (

@@ -5,7 +5,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Postly" },
-      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for website and SEO sellers." },
+      { name: "description", content: "Postly turns public social media posts into structured, scored, outreach-ready leads for website design, development and CMS sellers." },
       { property: "og:title", content: "About — Postly" },
       { property: "og:description", content: "Who we are, what we do, and why we built Postly." },
     ],
@@ -18,13 +18,13 @@ function AboutPage() {
     <PageShell
       kicker="About"
       title="We turn social noise into sales-ready leads."
-      lede="Postly is a focused buying-signal platform for people who sell website design, development and SEO services."
+      lede="Postly is a focused buying-signal platform for people who sell website design, development, redesign and CMS services."
     >
       <Section title="Why we exist">
         <p>
           Every day, thousands of business owners post on Facebook, Reddit, LinkedIn and Instagram asking for help with
-          their website or SEO. Those posts are real buying signals — but they're scattered, repetitive, and impossible
-          to track manually.
+          their website — a redesign, a rebuild, a new CMS. Those posts are real buying signals — but they're scattered,
+          repetitive, and impossible to track manually.
         </p>
         <p>
           We built Postly to capture those signals, structure them into clean lead profiles, score them by intent
@@ -42,8 +42,8 @@ function AboutPage() {
 
       <Section title="Who it's for">
         <p>
-          Web design agencies, freelance designers and developers, Webflow / WordPress / Wix / Framer studios, SEO
-          experts, local SEO agencies, lead-gen agencies, and small sales teams selling website &amp; SEO services.
+          Web design agencies, freelance designers and developers, Webflow / WordPress / Wix / Framer studios,
+          CMS specialists, lead-gen agencies, and small sales teams selling website design, development and CMS services.
         </p>
       </Section>
 

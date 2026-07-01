@@ -16,15 +16,15 @@ export const Route = createFileRoute("/dashboard/")({
 const CREDITS = { balance: 312, included: 500, used: 188, plan: "Starter · $10/mo", resets: "Jul 1" };
 
 const RECENT_OPENED = [
-  { name: "Aisha Rahman",  headline: "Need a Shopify redesign + SEO for jewellery brand",  country: "United Kingdom", flag: "🇬🇧", budget: "$3–6k",  when: "12m ago",  status: "replied" as const },
+  { name: "Aisha Rahman",  headline: "Need a Shopify → Webflow redesign for jewellery brand",  country: "United Kingdom", flag: "🇬🇧", budget: "$3–6k",  when: "12m ago",  status: "replied" as const },
   { name: "Marcus Lin",    headline: "Looking for Webflow developer — 8-page marketing site", country: "United States", flag: "🇺🇸", budget: "$4–8k",  when: "1h ago",   status: "contacted" as const },
-  { name: "Priya Devi",    headline: "Local SEO for a 3-location restaurant in Mumbai",     country: "India",          flag: "🇮🇳", budget: "$800–1.5k", when: "3h ago",   status: "saved" as const },
+  { name: "Priya Devi",    headline: "WordPress site rebuild for a 3-location restaurant in Mumbai",     country: "India",          flag: "🇮🇳", budget: "$800–1.5k", when: "3h ago",   status: "saved" as const },
   { name: "Jonas Weber",   headline: "WordPress → Framer migration, logistics company",     country: "Germany",        flag: "🇩🇪", budget: "$5–10k", when: "Yesterday", status: "viewed" as const },
 ];
 
 const RECOMMENDED = [
   { headline: "SaaS founder needs landing page rebuild on Webflow", country: "🇺🇸", budget: "$2–4k", posted: "8m ago",  score: 94, hot: true },
-  { headline: "Boutique law firm — full SEO audit + on-page",        country: "🇨🇦", budget: "$1.2k/mo", posted: "27m ago", score: 88, hot: true },
+  { headline: "Boutique law firm — Framer rebuild + CMS setup",     country: "🇨🇦", budget: "$1.2k/mo", posted: "27m ago", score: 88, hot: true },
   { headline: "Wix to WordPress migration, 20+ pages",               country: "🇦🇺", budget: "$3k",  posted: "1h ago", score: 81, hot: false },
 ];
 
@@ -154,7 +154,7 @@ function Overview() {
               {[
                 { l: "Web design", v: "82" },
                 { l: "Webflow",    v: "54" },
-                { l: "SEO",        v: "31" },
+                { l: "Framer",     v: "31" },
                 { l: "WordPress",  v: "21" },
               ].map((s) => (
                 <div key={s.l}>

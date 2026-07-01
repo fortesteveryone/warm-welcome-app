@@ -281,7 +281,7 @@ function Hero() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-balance text-base text-foreground/65 md:text-lg lg:mx-0 lg:max-w-none">
-              Postly turns public posts asking for web design, development, CMS and SEO help into scored, outreach-ready leads — delivered to your inbox daily.
+              Postly turns public posts asking for website design, development, redesign and CMS help into scored, outreach-ready leads — delivered to your inbox daily.
             </p>
 
             {/* highlight strip */}
@@ -343,7 +343,7 @@ function Hero() {
 
 const sampleLeads = [
   { title: "Paid portfolio website developer needed for updates", platform: "Facebook", temp: "Hot",  service: "Web Dev", comp: "Low",    ago: "12m", flag: "🇧🇩", country: "Bangladesh" },
-  { title: "Looking for SEO expert — local plumbing business",   platform: "Reddit",   temp: "Warm", service: "SEO",     comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
+  { title: "Need a WordPress rebuild for local plumbing business", platform: "Reddit",   temp: "Warm", service: "WordPress", comp: "Medium", ago: "38m", flag: "🇺🇸", country: "United States" },
   { title: "Need help managing our Instagram for restaurant",    platform: "Instagram",temp: "Warm", service: "SMM",     comp: "Low",    ago: "1h",  flag: "🇬🇧", country: "United Kingdom" },
   { title: "Shopify store redesign — budget $2k",                platform: "LinkedIn", temp: "Hot",  service: "E-com",   comp: "Medium", ago: "2h",  flag: "🇨🇦", country: "Canada" },
   { title: "Anyone do landing pages for SaaS launch?",           platform: "X",        temp: "Cold", service: "Landing", comp: "High",   ago: "4h",  flag: "🇦🇺", country: "Australia" },
@@ -430,11 +430,11 @@ const tagBrand: Record<string, BrandMark[]> = {
 const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
   { Icon: Code2,   title: "Website design & development", tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild"] },
   { Icon: Layers,  title: "CMS platforms",                tags: ["WordPress", "Webflow", "Wix", "Framer"] },
-  { Icon: Search,  title: "Digital marketing — SEO only", tags: ["Local SEO", "Technical SEO", "On-page SEO", "Off-page / link building", "SEO audits"] },
+  { Icon: Search,  title: "Migrations & rebuilds",        tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "Framer migration", "CMS setup"] },
 ];
 
 const outOfScope = [
-  "E-commerce stores", "Paid ads (Meta / Google)", "Design & branding", "Logo / graphic design",
+  "E-commerce stores", "Paid ads (Meta / Google)", "SEO services", "Design & branding", "Logo / graphic design",
   "Social media management", "Analytics / GTM / CRO", "Real estate", "Legal", "Healthcare",
   "Recruiting", "Physical products", "Financial services",
 ];
@@ -455,8 +455,8 @@ function Scope() {
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Only for <span className="text-muted-foreground">website &amp; SEO</span> service sellers.</>}
-          lede="Postly is niche on purpose. We only capture posts where people ask for website work (design, development, redesign, rebuild) on WordPress, Webflow, Wix or Framer — plus SEO help. Nothing else."
+          title={<>Only for <span className="text-muted-foreground">website &amp; CMS</span> service sellers.</>}
+          lede="Postly is niche on purpose. We only capture posts where people ask for website work — design, development, redesign or rebuild — on WordPress, Webflow, Wix or Framer. Nothing else."
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
@@ -490,7 +490,7 @@ function Scope() {
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
             <p className="mt-2 text-sm text-foreground/90">
-              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer — or SEO services. If a post asks for that kind of help, it lands in your inbox.
+              Anyone selling website design, development, redesign or rebuild on WordPress, Webflow, Wix or Framer. If a post asks for that kind of help, it lands in your inbox.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card/50 p-5">
@@ -513,7 +513,7 @@ function Scope() {
               })}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              We focus only on website + SEO leads. If you sell something else, Postly probably isn't the right fit.
+              We focus only on website design, development and CMS leads. If you sell something else, Postly probably isn't the right fit.
             </p>
           </div>
         </div>
@@ -591,7 +591,7 @@ const platforms: PlatformEntry[] = [
 const dailyVolumeStats = [
   { value: "365+", label: "Fresh leads / day", hint: "Minimum daily volume across all live platforms — usually higher." },
   { value: "400+", label: "Website design & development", hint: "WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild." },
-  { value: "200+", label: "SEO requests", hint: "Local, technical, on-page and link building help." },
+  { value: "200+", label: "CMS & migrations", hint: "Platform switches, rebuilds and fresh CMS setups on WP, Webflow, Wix, Framer." },
   { value: "Worldwide", label: "Any country", hint: "Leads come from buyers anywhere in the world — no region lock." },
 ];
 
@@ -602,7 +602,7 @@ function Platforms() {
         <SectionTitle
           kicker="Platforms"
           title={<>Capture leads from <span className="text-muted-foreground">where buyers post.</span></>}
-          lede="At least 500 fresh website &amp; SEO leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
+          lede="At least 500 fresh website design, development and CMS leads are captured every day from buyers around the world — what you see below is the daily minimum, not a cap."
         />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -617,7 +617,7 @@ function Platforms() {
 
         <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Tag tone="signal">● Daily minimum</Tag>
-          <span>365+ total · 250+ web design &amp; development · 200+ SEO · from any country.</span>
+          <span>365+ total · 250+ web design &amp; development · 200+ CMS &amp; migrations · from any country.</span>
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -653,7 +653,7 @@ const scoringFactors = [
   ["Budget signal", "Any mention of price, hourly rate, or budget range."],
   ["Competition", "Number of visible comments and replies at capture time."],
   ["Freshness", "How long ago the post was created — fresher leads convert better."],
-  ["Service fit", "Web design, development, CMS (WP / Webflow / Wix / Framer) or SEO — which one the request matches."],
+  ["Service fit", "Web design, development, redesign, rebuild or CMS work (WP / Webflow / Wix / Framer) — which one the request matches."],
 ];
 
 function Scoring() {
@@ -710,8 +710,8 @@ const useCases = [
   "Freelance web designers",
   "Webflow / WordPress developers",
   "Wix & Framer studios",
-  "SEO experts & consultants",
-  "Local SEO agencies",
+  "CMS specialists",
+  "Website redesign teams",
   "Lead-gen agencies",
   "Outreach teams",
 ];
@@ -723,7 +723,7 @@ function UseCases() {
         <div className="flex flex-col items-center text-center">
           <Mono className="text-muted-foreground">Who uses it</Mono>
           <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
-            Built for people selling <span className="text-muted-foreground">website &amp; SEO</span> services.
+            Built for people selling <span className="text-muted-foreground">website &amp; CMS</span> services.
           </h3>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5">
             {useCases.map((t) => (
@@ -763,7 +763,7 @@ function Concierge() {
               Hot leads, hand-picked and <span className="text-muted-foreground">delivered to your Gmail.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website &amp; SEO leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
+              We're putting the finishing touches on this. Soon you'll be able to upgrade to VIP and we'll manually filter the day's hottest website design, development and CMS leads, then ship them to your Gmail in real time — plus unlock a dedicated <span className="text-foreground">Hot Leads</span> section inside your dashboard.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <span className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground">
@@ -1004,15 +1004,15 @@ function Pricing() {
 /* ---------- testimonials (auto-marquee, no controls) ---------- */
 const testimonials: { name: string; role: string; avatar: string; quote: string }[] = [
   { name: "Arif Chowdhury", role: "Founder · Pixelhaus (Webflow studio)", avatar: "https://i.pravatar.cc/120?img=11", quote: "We replaced two cold-call VAs with Postly. Within 3 weeks we booked 11 discovery calls — all from Facebook group posts we'd never have seen." },
-  { name: "Nadia Rahman", role: "SEO consultant", avatar: "https://i.pravatar.cc/120?img=32", quote: "The scoring is the best part. I skip the cold ones and only reply to warm/hot leads — my reply rate is 4× what it was last quarter." },
+  { name: "Nadia Rahman", role: "WordPress developer", avatar: "https://i.pravatar.cc/120?img=32", quote: "The scoring is the best part. I skip the cold ones and only reply to warm/hot leads — my reply rate is 4× what it was last quarter." },
   { name: "Lucas Pereira", role: "Co-founder · Pereira Studios", avatar: "https://i.pravatar.cc/120?img=15", quote: "Outreach drafts saved my Mondays. I used to spend 2 hours writing first messages — now I tweak the draft and send in 5 minutes." },
-  { name: "Maya Chen", role: "Local SEO agency owner", avatar: "https://i.pravatar.cc/120?img=20", quote: "Finally a tool that understands my niche. Every lead is a real local business asking for SEO — not a random 'need a website' post." },
+  { name: "Maya Chen", role: "Webflow studio owner", avatar: "https://i.pravatar.cc/120?img=20", quote: "Finally a tool that understands my niche. Every lead is a real business asking for a real website — not random noise." },
   { name: "Tanvir Hasan", role: "Senior web developer · Freelance", avatar: "https://i.pravatar.cc/120?img=12", quote: "The country + platform filters alone are worth the subscription. I only work with US/CA/UK clients and the inbox respects that." },
   { name: "Priya Shah", role: "Outreach lead · 4-person agency", avatar: "https://i.pravatar.cc/120?img=23", quote: "Our team shares one inbox now. We assign leads, mark contacted, and stop double-replying. It feels like a CRM built for cold posts." },
   { name: "Eitan Gold", role: "Design lead · Goldhaus", avatar: "https://i.pravatar.cc/120?img=7", quote: "The hot-leads Gmail add-on closes deals for us. I get the alert, reply within 10 minutes, and clients are visibly impressed by the speed." },
   { name: "Sara Lindqvist", role: "Freelance web designer", avatar: "https://i.pravatar.cc/120?img=38", quote: "I was about to quit freelancing. Postly gave me 3 paying clients in my first month — I'm fully booked through next quarter." },
   { name: "Noah Whitman", role: "Founder · Whitman & Co", avatar: "https://i.pravatar.cc/120?img=60", quote: "Honest review: the data quality is good, not perfect. But it's still 10× better than scraping Reddit manually like I used to." },
-  { name: "Jordan Ali", role: "Technical SEO", avatar: "https://i.pravatar.cc/120?img=53", quote: "I export the daily leads to my own CRM and run my own outreach cadence on top. The structured data makes that 1-click easy." },
+  { name: "Jordan Ali", role: "Framer specialist", avatar: "https://i.pravatar.cc/120?img=53", quote: "I export the daily leads to my own CRM and run my own outreach cadence on top. The structured data makes that 1-click easy." },
 ];
 
 function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
@@ -1040,7 +1040,7 @@ function Testimonials() {
       <Container className="py-16 md:py-20">
         <SectionTitle
           kicker="Loved by"
-          title={<>Agencies, freelancers and SEO teams <span className="text-muted-foreground">already using it daily.</span></>}
+          title={<>Agencies, freelancers and studios <span className="text-muted-foreground">already using it daily.</span></>}
         />
       </Container>
       <div className="marquee-mask relative overflow-hidden pb-16 md:pb-20">
@@ -1054,14 +1054,14 @@ function Testimonials() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "Only website and SEO service requests — website design, development, design + development, redesign and rebuild work on WordPress, Webflow, Wix or Framer, plus SEO (local, technical, on-page and link building). We do not capture leads for e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
+  { q: "What kind of leads will I get?", a: "Only website design, development and CMS service requests — website design, development, design + development, redesign, rebuild and CMS setup/migration work on WordPress, Webflow, Wix or Framer. We do not capture leads for SEO, e-commerce stores, paid ads, design / branding, social media management, analytics / GTM / CRO, or unrelated industries like real estate, legal, healthcare, recruiting, physical products or financial services." },
   { q: "What do I get after login?", a: "A clean lead inbox with structured social media leads — original post links, AI-written summaries, scoring with reasons, competition signals and outreach drafts your team can copy and send." },
   { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram and Reddit are live right now. X (Twitter) and Threads are coming soon." },
-  { q: "How many leads will I get per day?", a: "At least 500 fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, 400+ are website design & development requests (WordPress, Webflow, Wix, Framer — design, dev, redesign, rebuild) and 200+ are SEO requests (local, technical, on-page and link building). You'll never run out of work to reach out to." },
+  { q: "How many leads will I get per day?", a: "At least 500 fresh leads are captured every single day across the live platforms — that's the minimum, real numbers are usually higher. Of those, 400+ are website design & development requests and 200+ are CMS-related requests (WordPress, Webflow, Wix, Framer — setup, redesign, rebuild, migration). You'll never run out of work to reach out to." },
   { q: "Which countries do the leads come from?", a: "Any country. Postly captures public service-request posts from buyers worldwide — there is no region or country lock. You can filter the inbox by country if you only want to work with specific markets." },
   { q: "Do you guess missing information?", a: "No. If country, city, budget or other details aren't clear in the post, Postly marks them as unknown instead of guessing. Missing critical fields are flagged for manual review." },
   { q: "Can I see the original post?", a: "Yes. Every lead keeps the source link, author name and post time, so you can verify before contacting." },
-  { q: "Who is this for?", a: "Web design agencies, SEO experts, freelancers, social media managers, cold outreach teams and lead-generation agencies selling digital services." },
+  { q: "Who is this for?", a: "Web design agencies, freelance designers and developers, CMS specialists, social media managers, cold outreach teams and lead-generation agencies selling website design, development and CMS services." },
   { q: "Do I get outreach messages?", a: "Yes. Each qualified lead ships with multiple outreach draft angles based on the post context — copy, edit, send." },
   { q: "How is the lead score calculated?", a: "Six explainable factors: intent, urgency, budget signal, competition, freshness and service fit. Each score includes a short, human-readable reason." },
   { q: "Can I export leads to my own CRM?", a: "Yes. CSV and JSON export are available on all plans. API access and webhook delivery are in beta on the Agency plan." },
@@ -1225,7 +1225,7 @@ function FinalCTA() {
 function Footer() {
   const cols: { title: string; links: { label: string; soon?: boolean }[] }[] = [
     { title: "Product", links: [{ label: "Features" }, { label: "Dashboard" }, { label: "Lead examples" }, { label: "Pricing" }, { label: "Changelog", soon: true }] },
-    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "SEO teams" }, { label: "Developers" }, { label: "Outreach" }] },
+    { title: "Solutions", links: [{ label: "Agencies" }, { label: "Freelancers" }, { label: "CMS specialists" }, { label: "Developers" }, { label: "Outreach" }] },
     { title: "Resources", links: [{ label: "Blog", soon: true }, { label: "Guides", soon: true }, { label: "Docs", soon: true }, { label: "API reference", soon: true }, { label: "Support" }] },
     { title: "Company", links: [{ label: "About" }, { label: "Contact" }, { label: "Careers", soon: true }, { label: "Press", soon: true }] },
     { title: "Legal", links: [{ label: "Privacy" }, { label: "Terms" }, { label: "Data usage" }, { label: "Refund" }, { label: "GDPR" }] },
