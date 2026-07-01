@@ -8,6 +8,7 @@ import {
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductShowcase } from "@/components/home/visual-sections";
 import { HeroReel } from "@/components/home/hero-reel";
+import { MockFilters, MockFeed, MockScore, MockOutreach, MockSources } from "@/components/home/section-mockups";
 import {
   SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
   SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
