@@ -113,10 +113,10 @@ export function ProductShowcase() {
             <span className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--signal)]/15 px-2.5 py-1 text-[11px] font-medium text-[color:var(--signal)]">
               <Sparkles className="h-3 w-3" /> AI Outreach
             </span>
-            <h3 className="mt-3 text-base font-semibold tracking-tight">3 reply angles, ready to personalize.</h3>
-            <p className="mt-1 text-xs text-muted-foreground">Start with a strong first draft, edit your tone, and respond faster to website opportunity posts.</p>
+            <h3 className="mt-3 text-base font-semibold tracking-tight">Reply faster without sounding generic.</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Generate multiple outreach angles based on the original post, then edit them in your own voice.</p>
             <div className="mt-4 space-y-2">
-              {["Website redesign support", "Quick delivery angle", "Scope & budget clarity"].map((t, i) => (
+              {["Website redesign support", "Landing page offer", "Clear scope & pricing"].map((t, i) => (
                 <div
                   key={t}
                   className={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs ${
