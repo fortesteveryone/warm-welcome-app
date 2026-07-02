@@ -354,10 +354,10 @@ function Scope() {
           <div className="rounded-xl border border-border bg-white p-5">
             <div className="flex items-center gap-2">
               <X className="h-4 w-4 text-red-500" />
-              <Mono className="text-red-500">Not in scope</Mono>
+              <Mono className="text-red-500">We don't narrow by</Mono>
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
-              We don't filter by niche or platform — every website-service post is in, no matter the industry or stack.
+              No niche, industry, or stack filter — every website-service post is in, whether it's e-commerce, plumbing, WordPress, or Next.js.
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {outOfScope.map((t) => (
