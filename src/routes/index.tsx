@@ -605,8 +605,8 @@ function VipAddon() {
 
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-6">
           {perks.map(({ Icon, title, body, lgOnly }) => (
-            <div key={title} className={`rounded-xl border border-black/10 bg-white p-5 shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
-              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+            <div key={title} className={`group rounded-xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)] ${lgOnly ? "hidden lg:block" : ""}`}>
+              <div className="icon-pop grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
