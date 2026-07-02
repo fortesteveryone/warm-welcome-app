@@ -19,7 +19,8 @@ export function FinalCTA() {
   return (
     <section className="relative section-edge section-dark overflow-hidden">
       <div className="mx-auto w-full max-w-[1200px] px-3 md:px-6">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16 py-16 md:py-20">
+      <div className="mx-auto w-full max-w-[1200px] px-3 py-16 md:px-6 md:py-20">
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div
             aria-hidden
             className="pointer-events-none absolute -top-24 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/10 blur-[120px]"
