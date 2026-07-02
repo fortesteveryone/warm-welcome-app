@@ -1010,7 +1010,7 @@ function HeroFloatingSocials() {
   return (
     <div
       key={item.key}
-      className="social-fade absolute blur-[1.5px]"
+      className="social-fade absolute"
       style={{
         ...slot,
         width: item.size,
@@ -1018,50 +1018,95 @@ function HeroFloatingSocials() {
         color,
         transform: `rotate(${item.rotate}deg)`,
         ['--dur' as never]: `4.2s`,
-        ['--peak' as never]: '0.38',
+        ['--peak' as never]: '0.95',
         ['--fx' as never]: '0px',
         ['--fy' as never]: '0px',
+        filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.18))',
       } as React.CSSProperties}
     >
       <Icon size={item.size} />
     </div>
+
   );
 }
 
 function FloatingSocials() {
-  const items = [
-    { Icon: SiFacebook, color: "#1877F2", top: "14%", left: "5%",   size: 72, dur: "18s", delay: "0s",  peak: "0.55", fx: "-18px", fy: "8px",   blur: "blur-md" },
-    { Icon: SiReddit,   color: "#FF4500", top: "70%", right: "8%",  size: 56, dur: "18s", delay: "0s",  peak: "0.55", fx: "12px",  fy: "-10px", blur: "blur-sm" },
-    { Icon: SiLinkedIn, color: "#0A66C2", top: "68%", left: "9%",   size: 64, dur: "18s", delay: "6s",  peak: "0.55", fx: "-14px", fy: "-12px", blur: "blur-md" },
-    { Icon: SiInstagram,color: "#E4405F", top: "20%", left: "44%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "-12px", blur: "blur-sm" },
-    { Icon: SiFacebook, color: "#1877F2", top: "74%", left: "46%",  size: 52, dur: "18s", delay: "12s", peak: "0.5",  fx: "0px",   fy: "12px",  blur: "blur-sm" },
+  const ICONS = [
+    { Icon: SiFacebook,  color: "#1877F2" },
+    { Icon: SiLinkedIn,  color: "#0A66C2" },
+    { Icon: SiReddit,    color: "#FF4500" },
+    { Icon: SiX,         color: "#0F0F0F" },
+    { Icon: SiInstagram, color: "#E4405F" },
   ];
+  const SLOTS = [
+    { top: "12%", left: "6%"  },
+    { top: "18%", right: "8%" },
+    { top: "58%", left: "8%"  },
+    { top: "66%", right: "6%" },
+    { top: "38%", left: "3%"  },
+    { top: "44%", right: "3%" },
+    { top: "78%", left: "40%" },
+    { top: "16%", left: "44%" },
+  ] as const;
+  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
+  type Item = { key: number; iconIdx: number; slotIdx: number; size: number; rotate: number; delay: number };
+  const pickTwo = (baseKey: number, prev: [number, number]): [Item, Item] => {
+    const iconPool = [0, 1, 2, 3, 4].filter((i) => !prev.includes(i));
+    const shuffled = iconPool.sort(() => Math.random() - 0.5);
+    const iconA = shuffled[0];
+    const iconB = shuffled[1] ?? (iconA + 1) % ICONS.length;
+    const slotIdxs = [...Array(SLOTS.length).keys()].sort(() => Math.random() - 0.5);
+    const mk = (key: number, iconIdx: number, slotIdx: number, delay: number): Item => ({
+      key, iconIdx, slotIdx,
+      size: Math.round(rand(56, 84)),
+      rotate: (Math.random() < 0.5 ? -1 : 1) * rand(20, 38),
+      delay,
+    });
+    return [mk(baseKey, iconA, slotIdxs[0], 0), mk(baseKey + 1, iconB, slotIdxs[1], 1.2)];
+  };
+  const [items, setItems] = React.useState<[Item, Item]>(() => pickTwo(1, [-1, -1]));
+  React.useEffect(() => {
+    let n = 3;
+    const t = setInterval(() => {
+      setItems((prev) => {
+        const next = pickTwo(n, [prev[0].iconIdx, prev[1].iconIdx]);
+        n += 2;
+        return next;
+      });
+    }, 4600);
+    return () => clearInterval(t);
+  }, []);
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      {items.map((it, i) => {
-        const { Icon, color, size, dur, delay, peak, fx, fy, blur } = it;
-        const style: React.CSSProperties = {
-          top: it.top,
-          left: (it as { left?: string }).left,
-          right: (it as { right?: string }).right,
-          width: size,
-          height: size,
-          color,
-          ['--dur' as never]: dur,
-          ['--peak' as never]: peak,
-          ['--fx' as never]: fx,
-          ['--fy' as never]: fy,
-          animationDelay: delay,
-        } as React.CSSProperties;
+      {items.map((it) => {
+        const { Icon, color } = ICONS[it.iconIdx];
+        const slot = SLOTS[it.slotIdx];
         return (
-          <div key={i} className={`social-fade absolute ${blur}`} style={style}>
-            <Icon size={size} />
+          <div
+            key={it.key}
+            className="social-fade absolute"
+            style={{
+              ...slot,
+              width: it.size,
+              height: it.size,
+              color,
+              transform: `rotate(${it.rotate}deg)`,
+              ['--dur' as never]: '4.6s',
+              ['--peak' as never]: '0.95',
+              ['--fx' as never]: '0px',
+              ['--fy' as never]: '0px',
+              animationDelay: `${it.delay}s`,
+              filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.18))',
+            } as React.CSSProperties}
+          >
+            <Icon size={it.size} />
           </div>
         );
       })}
     </div>
   );
 }
+
 
 function FinalCTA() {
   return (
