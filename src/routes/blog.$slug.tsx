@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check, Link2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+
 import { BLOG_POSTS, getPostBySlug, getRelatedPosts, type BlogPost } from "@/lib/blog-data";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
