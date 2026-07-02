@@ -356,7 +356,7 @@ function Scope() {
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {outOfScope.map((t) => (
-                <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/70 decoration-[1.5px]">
+                <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/60 decoration-[0.5px]">
                   {t}
                 </span>
               ))}
