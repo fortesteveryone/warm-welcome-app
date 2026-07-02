@@ -21,6 +21,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
+import { Route as DashboardFavouritesRouteImport } from './routes/dashboard.favourites'
 import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as DashboardLeadsIndexRouteImport } from './routes/dashboard.leads.index'
@@ -86,6 +87,11 @@ const DashboardLeadsRoute = DashboardLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardFavouritesRoute = DashboardFavouritesRouteImport.update({
+  id: '/favourites',
+  path: '/favourites',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardContactsRoute = DashboardContactsRouteImport.update({
   id: '/contacts',
   path: '/contacts',
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/favourites': typeof DashboardFavouritesRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/favourites': typeof DashboardFavouritesRoute
   '/blog': typeof BlogIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
+  '/dashboard/favourites': typeof DashboardFavouritesRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -174,6 +183,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/dashboard/contacts'
+    | '/dashboard/favourites'
     | '/dashboard/leads'
     | '/blog/'
     | '/dashboard/'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/dashboard/contacts'
+    | '/dashboard/favourites'
     | '/blog'
     | '/dashboard'
     | '/dashboard/leads/$leadId'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/dashboard/contacts'
+    | '/dashboard/favourites'
     | '/dashboard/leads'
     | '/blog/'
     | '/dashboard/'
@@ -315,6 +327,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLeadsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/favourites': {
+      id: '/dashboard/favourites'
+      path: '/favourites'
+      fullPath: '/dashboard/favourites'
+      preLoaderRoute: typeof DashboardFavouritesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/contacts': {
       id: '/dashboard/contacts'
       path: '/contacts'
@@ -362,12 +381,14 @@ const DashboardLeadsRouteWithChildren = DashboardLeadsRoute._addFileChildren(
 
 interface DashboardRouteChildren {
   DashboardContactsRoute: typeof DashboardContactsRoute
+  DashboardFavouritesRoute: typeof DashboardFavouritesRoute
   DashboardLeadsRoute: typeof DashboardLeadsRouteWithChildren
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardContactsRoute: DashboardContactsRoute,
+  DashboardFavouritesRoute: DashboardFavouritesRoute,
   DashboardLeadsRoute: DashboardLeadsRouteWithChildren,
   DashboardIndexRoute: DashboardIndexRoute,
 }
