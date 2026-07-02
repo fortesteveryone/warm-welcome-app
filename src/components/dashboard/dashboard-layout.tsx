@@ -62,13 +62,16 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
                 key={item.to}
                 to={item.to}
                 title={collapsed ? item.label : undefined}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition ${
+                className={`group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition ${
                   isActive
-                    ? "bg-[color:var(--signal)]/15 text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30"
-                    : "text-muted-foreground hover:bg-card hover:text-foreground"
+                    ? "bg-gradient-to-r from-[color:var(--signal)]/18 via-[color:var(--signal)]/8 to-transparent text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/25 shadow-[inset_0_1px_0_0_oklch(1_0_0_/_0.05)]"
+                    : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
                 } ${collapsed ? "justify-center" : ""}`}
               >
-                <Icon className="h-4 w-4 shrink-0" />
+                {isActive && !collapsed && (
+                  <span className="absolute left-0 top-1/2 h-5 -translate-y-1/2 w-[3px] rounded-r-full bg-[color:var(--signal)] shadow-[0_0_12px_var(--signal-glow)]" />
+                )}
+                <Icon className={`h-4 w-4 shrink-0 transition ${isActive ? "" : "group-hover:text-foreground"}`} />
                 {!collapsed && <span className="truncate">{item.label}</span>}
               </Link>
             );
