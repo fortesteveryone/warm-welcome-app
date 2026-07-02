@@ -35,7 +35,7 @@ function Mono({ children, className = "" }: { children: React.ReactNode; classNa
 }
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-3 md:px-6 ${className}`}>{children}</div>;
 }
 
 function SectionTitle({ kicker, title, lede }: { kicker: string; title: React.ReactNode; lede?: string }) {
@@ -954,11 +954,11 @@ function FAQ() {
         <div className="mt-10 divide-y divide-border rounded-xl border border-border bg-card/50">
           {faqs.map((f, i) => (
             <div key={i}>
-              <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-5">
+              <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-3 md:px-6 md:py-5">
                 <span className="text-sm font-medium md:text-base">{f.q}</span>
                 <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition ${open === i ? "rotate-180" : ""}`} />
               </button>
-              {open === i && <div className="px-5 pb-5 text-sm text-muted-foreground md:px-6 md:pb-6">{f.a}</div>}
+              {open === i && <div className="px-5 pb-5 text-sm text-muted-foreground md:px-3 md:px-6 md:pb-6">{f.a}</div>}
             </div>
           ))}
         </div>

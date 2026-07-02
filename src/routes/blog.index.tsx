@@ -17,7 +17,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-3 md:px-6 ${className}`}>{children}</div>;
 }
 
 function Mono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
