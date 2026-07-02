@@ -369,12 +369,9 @@ function Scope() {
 
 /* ---------- after login ---------- */
 const afterLoginItems = [
-  { Icon: Inbox,      title: "Fresh opportunity feed",     body: "New website-service posts from supported platforms, sorted by freshness and intent." },
   { Icon: ListChecks, title: "Structured opportunity profile", body: "Each post becomes a clean profile with title, summary, service need, project type, budget signal, and source platform." },
-  { Icon: Target,     title: "Scoring with reasons",       body: "Intent, urgency, freshness, competition, and service fit are scored with a short explanation." },
-  { Icon: Link2,      title: "Original post proof",        body: "Open the source post and verify the author, post time, platform, comments, and context before outreach." },
-  { Icon: Send,       title: "Outreach drafts",            body: "Get multiple reply angles per opportunity, then edit the message in your own voice." },
-  { Icon: Filter,     title: "Inbox actions & filters",    body: "Save, filter, tag, contact, export, or flag opportunities for later review." },
+  { Icon: Link2,      title: "Original post proof",            body: "Open the source post and verify the author, post time, platform, comments, and context before outreach." },
+  { Icon: Filter,     title: "Save, tag & export",             body: "Favourite opportunities, apply tags, filter by platform or country, and export to CSV or your CRM." },
 ];
 
 function AfterLogin() {
