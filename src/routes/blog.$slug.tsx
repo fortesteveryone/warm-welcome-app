@@ -163,28 +163,47 @@ function BlogDetail() {
 
             {/* sticky share rail */}
             <aside className="md:sticky md:top-20 md:self-start">
-              <Mono className="text-muted-foreground">Share</Mono>
-              <div className="mt-3 flex flex-wrap gap-2 md:flex-col md:items-stretch">
-                {shareLinks.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-2 text-xs text-foreground transition hover:border-[color:var(--signal)]/40 hover:text-[color:var(--signal)]"
-                  >
-                    <s.Icon className="h-3.5 w-3.5" /> {s.name}
-                  </a>
-                ))}
+              <div className="rounded-2xl border border-border bg-white p-5">
+                <Mono className="text-muted-foreground">Share this article</Mono>
+                <p className="mt-2 text-sm text-foreground/70">Found this useful? Send it to someone who needs it.</p>
+
+                <div className="mt-4 grid grid-cols-6 gap-2 md:grid-cols-3">
+                  {shareLinks.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Share on ${s.name}`}
+                      title={`Share on ${s.name}`}
+                      style={{ ["--brand" as string]: s.brand }}
+                      className="group/share relative flex aspect-square items-center justify-center rounded-xl border border-border bg-white text-foreground/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent hover:text-white hover:shadow-[0_10px_24px_-12px_var(--brand)] hover:bg-[color:var(--brand)]"
+                    >
+                      <s.Icon className="h-[18px] w-[18px]" />
+                    </a>
+                  ))}
+                </div>
+
                 <button
                   type="button"
                   onClick={onCopy}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-2 text-xs text-foreground transition hover:border-[color:var(--signal)]/40 hover:text-[color:var(--signal)]"
+                  className="mt-3 flex w-full items-center gap-2 rounded-xl border border-border bg-[oklch(0.98_0_0)] px-3 py-2.5 text-left text-xs transition hover:border-[color:var(--signal)]/40"
                 >
-                  <Link2 className="h-3.5 w-3.5" /> {copied ? "Copied!" : "Copy link"}
+                  {copied ? (
+                    <Check className="h-4 w-4 shrink-0 text-[color:var(--signal)]" />
+                  ) : (
+                    <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  )}
+                  <span className="flex-1 truncate font-mono text-[11px] text-muted-foreground">
+                    {copied ? "Link copied to clipboard" : url.replace(/^https?:\/\//, "")}
+                  </span>
+                  <span className="shrink-0 rounded-md bg-foreground px-2 py-1 text-[10px] font-medium text-background">
+                    {copied ? "Copied" : "Copy"}
+                  </span>
                 </button>
               </div>
             </aside>
+
           </div>
         </Container>
       </section>
