@@ -217,15 +217,34 @@
   color: oklch(0.16 0 0);
   position: relative;
   isolation: isolate;
-  /* Soft colorful surface with a low-opacity white AI orb floating in it. */
+  overflow: hidden;
   background-color: oklch(0.952 0.025 150);
-  background-image:
-    linear-gradient(oklch(0.952 0.025 150 / 0.82), oklch(0.952 0.025 150 / 0.82)),
-    url('/src/assets/section-3d-decor.png');
-  background-repeat: no-repeat, no-repeat;
-  background-position: center center, center center;
-  background-size: cover, cover;
 }
+/* Soft blurred brand-green blob that drifts to a different corner in each
+   section. Uses ::before so we can freely blur/reposition without touching
+   the section background. */
+section.section-dark::before,
+div.section-dark::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/src/assets/section-3d-decor.png');
+  background-repeat: no-repeat;
+  background-size: 70% auto;
+  background-position: 20% 30%;
+  opacity: 0.55;
+  filter: blur(40px);
+}
+section.section-dark:nth-of-type(4n+1)::before,
+div.section-dark:nth-of-type(4n+1)::before  { background-position: 15% 25%; background-size: 65% auto; }
+section.section-dark:nth-of-type(4n+2)::before,
+div.section-dark:nth-of-type(4n+2)::before  { background-position: 85% 70%; background-size: 60% auto; }
+section.section-dark:nth-of-type(4n+3)::before,
+div.section-dark:nth-of-type(4n+3)::before  { background-position: 50% 15%; background-size: 75% auto; }
+section.section-dark:nth-of-type(4n)::before,
+div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; background-size: 55% auto; }
 
 @utility section-no-decor {
   background-image: none;
