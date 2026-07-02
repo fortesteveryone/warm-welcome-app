@@ -73,12 +73,14 @@ function BlogDetail() {
   const shareText = `${post.title} — ${post.excerpt}`;
 
   const shareLinks = [
-    { name: "Facebook", Icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}` },
-    { name: "LinkedIn", Icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}` },
-    { name: "X", Icon: XIcon, href: `https://twitter.com/intent/tweet?text=${enc(shareText)}&url=${enc(url)}` },
-    { name: "Reddit", Icon: RedditIcon, href: `https://reddit.com/submit?url=${enc(url)}&title=${enc(post.title)}` },
-    { name: "Telegram", Icon: Send, href: `https://t.me/share/url?url=${enc(url)}&text=${enc(shareText)}` },
+    { name: "X",        Icon: XIcon,        brand: "#000000", href: `https://twitter.com/intent/tweet?text=${enc(shareText)}&url=${enc(url)}` },
+    { name: "LinkedIn", Icon: LinkedInIcon, brand: "#0A66C2", href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}` },
+    { name: "Facebook", Icon: FacebookIcon, brand: "#1877F2", href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}` },
+    { name: "WhatsApp", Icon: WhatsAppIcon, brand: "#25D366", href: `https://api.whatsapp.com/send?text=${enc(shareText + " " + url)}` },
+    { name: "Reddit",   Icon: RedditIcon,   brand: "#FF4500", href: `https://reddit.com/submit?url=${enc(url)}&title=${enc(post.title)}` },
+    { name: "Telegram", Icon: TelegramIcon, brand: "#26A5E4", href: `https://t.me/share/url?url=${enc(url)}&text=${enc(shareText)}` },
   ];
+
 
   const onCopy = async () => {
     try {
