@@ -301,17 +301,17 @@ div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; back
    text-foreground, text-muted-foreground, border-border…) resolves to the
    black-theme palette automatically. */
 @utility dashboard-noir {
-  --background: oklch(0.03 0 0);
+  --background: oklch(0.035 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.075 0 0);
+  --card: oklch(0.08 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.075 0 0);
+  --popover: oklch(0.09 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.12 0 0);
-  --muted-foreground: oklch(0.68 0 0);
-  --accent: oklch(0.13 0 0);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.66 0 0);
+  --accent: oklch(0.14 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 8%);
+  --border: oklch(1 0 0 / 7%);
   --input: oklch(1 0 0 / 10%);
   --ring: var(--signal);
   --primary: oklch(0.985 0 0);
@@ -320,27 +320,38 @@ div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; back
   --secondary-foreground: oklch(0.985 0 0);
   color: oklch(0.985 0 0);
   color-scheme: dark;
-  background-color: oklch(0.03 0 0);
+  background-color: oklch(0.035 0 0);
   background-image:
-    radial-gradient(1200px 600px at 12% -10%, color-mix(in oklab, var(--signal) 14%, transparent), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, oklch(0.22 0.08 260 / 0.18), transparent 65%),
-    radial-gradient(700px 700px at 50% 120%, oklch(0.20 0.06 180 / 0.12), transparent 70%);
+    radial-gradient(1100px 620px at 8% -12%, color-mix(in oklab, var(--signal) 16%, transparent), transparent 60%),
+    radial-gradient(900px 520px at 100% 0%, oklch(0.24 0.09 262 / 0.20), transparent 65%),
+    radial-gradient(720px 720px at 55% 120%, oklch(0.22 0.07 180 / 0.14), transparent 70%);
   background-attachment: fixed;
 }
 
-/* Premium panel — subtle top-highlight, soft inner glow. */
+/* Premium panel — layered highlight, subtle inner glow, refined shadow. */
 @utility panel-premium {
   position: relative;
   border-radius: 1rem;
   background:
-    linear-gradient(180deg, oklch(1 0 0 / 0.03), transparent 40%),
-    oklch(0.075 0 0 / 0.85);
-  border: 1px solid oklch(1 0 0 / 0.08);
+    linear-gradient(180deg, oklch(1 0 0 / 0.04), transparent 45%),
+    oklch(0.08 0 0 / 0.72);
+  border: 1px solid oklch(1 0 0 / 0.07);
   box-shadow:
-    inset 0 1px 0 0 oklch(1 0 0 / 0.05),
-    0 1px 0 0 oklch(0 0 0 / 0.4),
-    0 20px 40px -24px oklch(0 0 0 / 0.6);
-  backdrop-filter: blur(6px);
+    inset 0 1px 0 0 oklch(1 0 0 / 0.06),
+    0 1px 0 0 oklch(0 0 0 / 0.5),
+    0 24px 48px -28px oklch(0 0 0 / 0.7);
+  backdrop-filter: blur(10px) saturate(140%);
+  overflow: hidden;
+}
+@utility panel-premium-hover {
+  transition: border-color 260ms ease, box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1), transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    border-color: oklch(1 0 0 / 0.14);
+    box-shadow:
+      inset 0 1px 0 0 oklch(1 0 0 / 0.08),
+      0 1px 0 0 oklch(0 0 0 / 0.5),
+      0 30px 60px -28px color-mix(in oklab, var(--signal) 20%, oklch(0 0 0 / 0.7));
+  }
 }
 
 

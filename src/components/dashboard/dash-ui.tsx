@@ -16,10 +16,15 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+    <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border/70 pb-6">
       <div className="min-w-0">
-        {kicker && <Mono className="text-muted-foreground">{kicker}</Mono>}
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight md:text-3xl">{title}</h1>
+        {kicker && (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--signal)]/25 bg-[color:var(--signal)]/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[color:var(--signal)]">
+            <span className="h-1 w-1 rounded-full bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal-glow)]" />
+            {kicker}
+          </span>
+        )}
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight md:text-[28px]">{title}</h1>
         {description && <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
