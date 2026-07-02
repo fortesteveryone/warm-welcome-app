@@ -37,7 +37,7 @@ export function Platforms() {
           lede="Postly currently tracks Facebook, LinkedIn, and Reddit, with Instagram, X, and Threads planned for future coverage."
         />
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {dailyVolumeStats.map((s) => (
             <div key={s.label} className="rounded-xl border border-border bg-white p-5">
               <div className="text-2xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
