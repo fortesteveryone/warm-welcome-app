@@ -66,7 +66,7 @@ function ContactPage() {
             className="group relative flex flex-col gap-3 rounded-2xl border border-border bg-white p-6 transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)]"
           >
             <div className="flex items-center justify-between">
-              <span className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-background text-[color:var(--signal)]">
+              <span className="icon-pop grid h-10 w-10 place-items-center rounded-xl border border-border bg-background text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </span>
               <span className="font-mono text-[11px] uppercase tracking-tight text-muted-foreground">
