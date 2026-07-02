@@ -289,15 +289,17 @@ function Scope() {
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2">
-          <div className="rounded-xl border border-[color:var(--signal)]/25 bg-[color:var(--signal)]/[0.06] p-5">
-            <div className="flex items-center gap-2">
+          <div className="relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-5">
+            <div aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl" />
+            <div className="relative flex items-center gap-2">
               <Check className="h-4 w-4 text-[color:var(--signal)]" />
               <Mono className="text-[color:var(--signal)]">In scope</Mono>
             </div>
-            <p className="mt-2 text-sm text-foreground/90">
+            <p className="relative mt-2 text-sm text-foreground/90">
               Anyone selling website design, development, redesign, rebuild, landing pages, CMS setup, or platform migration services. If a public post asks for this kind of website help, it belongs in Postly.
             </p>
           </div>
+
           <div className="rounded-xl border border-border bg-white p-5">
             <div className="flex items-center gap-2">
               <X className="h-4 w-4 text-red-500" />
