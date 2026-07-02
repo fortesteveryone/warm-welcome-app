@@ -31,7 +31,7 @@ export const Route = createFileRoute("/blog/$slug")({
   notFoundComponent: () => (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <div className="mx-auto max-w-2xl px-6 py-32 text-center">
+      <div className="mx-auto max-w-2xl px-3 md:px-6 py-32 text-center">
         <p className="font-mono text-[11px] uppercase tracking-tight text-muted-foreground">404</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">Post not found</h1>
         <p className="mt-3 text-muted-foreground">That article doesn't exist or has been moved.</p>
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/blog/$slug")({
   errorComponent: ({ error }) => (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <div className="mx-auto max-w-2xl px-6 py-32 text-center">
+      <div className="mx-auto max-w-2xl px-3 md:px-6 py-32 text-center">
         <p className="font-mono text-[11px] uppercase tracking-tight text-destructive">Error</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">Could not load post</h1>
         <p className="mt-3 text-muted-foreground">{error.message}</p>
@@ -55,7 +55,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1200px] px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[1200px] px-3 md:px-6 ${className}`}>{children}</div>;
 }
 
 function Mono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
