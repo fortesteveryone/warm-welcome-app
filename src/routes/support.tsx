@@ -54,9 +54,9 @@ function SupportPage() {
 
       <Section title="Response times">
         <ul className="list-inside list-disc space-y-1.5">
-          <li>Free trial: within 2 business days.</li>
-          <li>Starter &amp; Pro: within 1 business day.</li>
-          <li>Agency: priority queue, typically under 4 hours during core hours.</li>
+          <li>Free: within 2 business days.</li>
+          <li>Pro: within 1 business day.</li>
+          <li>VIP Hot Leads: priority queue, typically under 4 hours during core hours.</li>
         </ul>
       </Section>
 
