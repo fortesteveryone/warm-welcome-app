@@ -112,7 +112,7 @@ function Home() {
       <AfterLogin />
       <Platforms />
       <Scoring />
-      <VipAddon />
+      
       <Pricing />
       <BuiltFor />
       <FAQ />
@@ -797,12 +797,15 @@ function Pricing() {
 }
 
 /* ---------- built for (replaces testimonials) ---------- */
-const builtForCards = [
-  { Icon: Paintbrush, title: "Freelance web designers",   body: "Find people asking for redesigns, portfolio updates, landing pages, small website fixes, and Shopify store refreshes." },
-  { Icon: Code2,      title: "WordPress developers",      body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and CMS migrations from Wix or Shopify." },
-  { Icon: Wand2,      title: "Webflow / Framer studios",  body: "Find founders and businesses looking for modern rebuilds, landing pages, CMS improvements, and platform migrations." },
-  { Icon: Users,      title: "Small web agencies",        body: "Build a daily outreach pipeline from public website-service requests — including Shopify rebuilds and CMS migration projects." },
+const builtForCards: { Icon: typeof Paintbrush; title: string; body: string; lgOnly?: boolean }[] = [
+  { Icon: Paintbrush,  title: "Freelance web designers",   body: "Find people asking for redesigns, portfolio updates, landing pages, small website fixes, and Shopify store refreshes." },
+  { Icon: Code2,       title: "WordPress developers",      body: "Track posts about WordPress setup, checkout issues, plugin fixes, rebuilds, and CMS migrations from Wix or Shopify." },
+  { Icon: Wand2,       title: "Webflow / Framer studios",  body: "Find founders and businesses looking for modern rebuilds, landing pages, CMS improvements, and platform migrations." },
+  { Icon: Users,       title: "Small web agencies",        body: "Build a daily outreach pipeline from public website-service requests — including Shopify rebuilds and CMS migration projects." },
+  { Icon: ShoppingBag, title: "Shopify & e-commerce devs", body: "Catch store owners asking for Shopify builds, theme customization, checkout fixes, and migrations from WooCommerce or Wix.", lgOnly: true },
+  { Icon: Globe,       title: "Full-stack & custom devs",  body: "Pick up posts asking for Next.js, React, Laravel, PHP, or Node builds — not just CMS work, any stack is fair game.", lgOnly: true },
 ];
+
 
 
 function BuiltFor() {
@@ -815,8 +818,8 @@ function BuiltFor() {
           lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {builtForCards.map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
+          {builtForCards.map(({ Icon, title, body, lgOnly }) => (
+            <div key={title} className={`rounded-xl border border-border bg-white p-6 transition hover:shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
@@ -825,6 +828,7 @@ function BuiltFor() {
             </div>
           ))}
         </div>
+
       </Container>
     </section>
   );
