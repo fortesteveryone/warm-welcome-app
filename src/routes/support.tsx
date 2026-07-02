@@ -58,7 +58,7 @@ function SupportPage() {
         <ul className="list-inside list-disc space-y-1.5">
           <li>Free: within 2 business days.</li>
           <li>Pro: within 1 business day.</li>
-          <li>VIP Hot Leads: priority queue, typically under 4 hours during core hours.</li>
+          <li>VIP Hot Leads: coming soon — dedicated SLA will be published at launch.</li>
         </ul>
       </Section>
 
