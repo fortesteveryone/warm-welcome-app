@@ -96,7 +96,7 @@ function Overview() {
 
       {/* Platform strip */}
       <Panel title="By platform" description="Today's lead volume by source">
-        <div className="grid grid-cols-4 gap-3 p-5 sm:grid-cols-6 md:grid-cols-8">
+        <div className="grid grid-cols-4 gap-3 p-5 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10">
           {byPlatform.map(([p, count]) => {
             const v = platformVisual(p as any);
             return (
