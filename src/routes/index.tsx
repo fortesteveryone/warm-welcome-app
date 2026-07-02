@@ -265,7 +265,7 @@ function Scope() {
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
           {scopeCategories.map(({ Icon, title, tags }) => (
-            <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
+            <div key={title} className="rounded-xl border border-border bg-white p-5 transition hover:bg-white">
               <div className="flex items-center gap-3">
                 <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                   <Icon className="h-4 w-4" />
