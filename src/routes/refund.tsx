@@ -18,7 +18,7 @@ function RefundPage() {
     <PageShell
       kicker="Legal"
       title="Refund policy"
-      lede="A simple 7-day money-back guarantee on first purchases, plus per-lead credits when something we ship isn't right."
+      lede="A simple 7-day money-back guarantee on first purchases, plus per-lead credits when something we ship isn't right. Applies once paid billing launches."
       updated="June 2026"
     >
       <Section title="1. 7-day money-back guarantee">
