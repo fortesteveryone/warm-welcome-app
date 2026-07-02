@@ -229,39 +229,6 @@ function Hero() {
   );
 }
 
-/* ---------- trust / category strip ---------- */
-function TrustStrip() {
-  const services = [
-    "Website design", "Website development", "Redesign", "WordPress", "Webflow",
-    "Wix", "Framer", "Shopify website rebuild", "Landing pages", "CMS migration",
-  ];
-  const countries = ["USA", "UK", "Canada", "Australia", "UAE", "Bangladesh", "India", "Singapore", "Global coverage"];
-  return (
-    <section className="section-edge section-light">
-      <Container className="py-12 md:py-14">
-        <p className="mx-auto max-w-3xl text-center text-sm font-medium text-foreground/80 md:text-base">
-          Built for web designers, web developers, CMS specialists and agencies — Postly turns public posts asking for <span className="text-[color:var(--signal)]">website design, development, redesign and CMS help</span> into scored, outreach-ready leads in your dashboard.
-        </p>
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground md:text-sm">
-          {services.map((s, i) => (
-            <React.Fragment key={s}>
-              <span className="text-foreground/75">{s}</span>
-              {i < services.length - 1 && <span aria-hidden className="text-foreground/25">·</span>}
-            </React.Fragment>
-          ))}
-        </div>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
-          {countries.map((c, i) => (
-            <React.Fragment key={c}>
-              <span>{c}</span>
-              {i < countries.length - 1 && <span aria-hidden className="text-foreground/25">·</span>}
-            </React.Fragment>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- scope (what we cover) ---------- */
 type BrandMark = { Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string };
@@ -351,94 +318,7 @@ function Scope() {
   );
 }
 
-/* ---------- why teams switch ---------- */
-const whyCards = [
-  { Icon: Filter, title: "Useful filters",     desc: "Filter by platform, country, service type, intent, budget signal, and lead temperature." },
-  { Icon: Target, title: "Scores with context", desc: "Every score includes a short reason so your team understands the priority." },
-  { Icon: Globe,  title: "Global by default",  desc: "Track website opportunities across supported countries without locking your pipeline to one market." },
-  { Icon: Send,   title: "Faster first replies", desc: "Open an opportunity, choose a reply angle, personalize it, and follow up with less manual work." },
-];
 
-function WhyTeamsSwitch() {
-  return (
-    <section className="section-edge section-dark relative overflow-hidden">
-      <Container className="py-16 md:py-20">
-        <SectionTitle
-          kicker="Why teams switch"
-          title={<>Built like a workflow, <span className="text-[color:var(--signal)]">not a spreadsheet.</span></>}
-          lede="Everything is organized so your team can review, qualify, save, and respond to website opportunities faster."
-        />
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {whyCards.map(({ Icon, title, desc }) => (
-            <div key={title} className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1">
-              <div className="grid h-10 w-10 place-items-center rounded-lg bg-white text-[color:var(--signal)] ring-1 ring-[color:var(--signal)]/30">
-                <Icon className="h-5 w-5" strokeWidth={2} />
-              </div>
-              <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-            </div>
-          ))}
-        </div>
-
-      </Container>
-    </section>
-  );
-}
-
-/* ---------- signal engine ---------- */
-function SignalEngine() {
-  return (
-    <section className="section-edge section-light">
-      <Container className="py-16 md:py-20">
-        <SectionTitle
-          kicker="Signal engine"
-          title={<>We track public posts. <span className="text-[color:var(--signal)]">You choose the best ones.</span></>}
-          lede="Postly monitors supported public sources, detects website-service intent, and turns relevant posts into structured opportunities."
-        />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-stretch">
-          <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6">
-            <div>
-              <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="inline-flex items-center gap-1.5"><SiFacebook className="h-4 w-4" style={{ color: "#1877F2" }} /> Facebook</span>
-                <span className="text-foreground/25">·</span>
-                <span className="inline-flex items-center gap-1.5"><SiLinkedIn className="h-4 w-4" style={{ color: "#0A66C2" }} /> LinkedIn</span>
-                <span className="text-foreground/25">·</span>
-                <span className="inline-flex items-center gap-1.5"><SiInstagram className="h-4 w-4" style={{ color: "#E4405F" }} /> Instagram</span>
-                <span className="text-foreground/25">·</span>
-                <span className="inline-flex items-center gap-1.5"><SiReddit className="h-4 w-4" style={{ color: "#FF4500" }} /> Reddit</span>
-              </div>
-              <h3 className="mt-4 text-xl font-semibold tracking-tight">Sources monitored today</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Postly parses public posts across four live platforms, detects website-service intent, and routes qualified opportunities into your dashboard.
-              </p>
-              <p className="mt-4 text-xs text-muted-foreground">X and Threads are planned for future coverage.</p>
-            </div>
-            <div className="mt-6"><MockSources /></div>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6">
-            <div>
-              <div className="flex items-center justify-between">
-                <Tag tone="signal">● Lead detail · High intent</Tag>
-                <MessageSquare className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight">Every opportunity opens into a full briefing.</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                See the summary, service need, score, source proof, reply angles, and activity timeline in one screen.
-              </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
-                {["Summary", "Service need", "Score & reasons", "Source proof", "Reply angles", "Activity timeline"].map((k) => (
-                  <div key={k} className="rounded-md border border-border bg-background/40 px-3 py-2 text-foreground/80">{k}</div>
-                ))}
-              </div>
-            </div>
-            <div className="mt-6"><MockScore /></div>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- after login ---------- */
 const afterLoginItems = [
@@ -482,53 +362,6 @@ function AfterLogin() {
   );
 }
 
-/* ---------- by the numbers ---------- */
-function ByTheNumbers() {
-  const liveSocials = [
-    { Icon: SiFacebook, name: "Facebook", color: "#1877F2" },
-    { Icon: SiLinkedIn, name: "LinkedIn", color: "#0A66C2" },
-    { Icon: SiInstagram, name: "Instagram", color: "#E4405F" },
-    { Icon: SiReddit, name: "Reddit", color: "#FF4500" },
-  ];
-  const stats: Array<{ value: React.ReactNode; label: React.ReactNode }> = [
-    { value: "365+",   label: "Fresh website-service posts daily" },
-    { value: "30+",    label: "Countries monitored" },
-    {
-      value: "4 Live",
-      label: (
-        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          {liveSocials.map(({ Icon, name, color }, i) => (
-            <span key={name} className="inline-flex items-center gap-1">
-              <Icon className="h-3.5 w-3.5" style={{ color }} />
-              <span>{name}</span>
-              {i < liveSocials.length - 1 && <span className="text-muted-foreground/60">·</span>}
-            </span>
-          ))}
-        </span>
-      ),
-    },
-    { value: "Auto",   label: "Structured and scored" },
-  ];
-  return (
-    <section className="section-edge section-light">
-      <Container className="py-16 md:py-20">
-        <SectionTitle
-          kicker="By the numbers"
-          title={<>Built for a <span className="text-[color:var(--signal)]">daily outreach pipeline.</span></>}
-          lede="Postly keeps your opportunity feed fresh, structured, and ready for consistent follow-up."
-        />
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <div key={i} className="rounded-xl border border-border bg-card p-5">
-              <div className="text-3xl font-semibold tracking-[-0.02em] text-foreground">{s.value}</div>
-              <div className="mt-1.5 text-sm text-muted-foreground">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 /* ---------- platforms ---------- */
 type PlatformEntry = {
