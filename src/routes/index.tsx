@@ -21,9 +21,11 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Postly — Website service opportunities from public social posts" },
       { name: "description", content: "Postly turns public website-service posts on Facebook, LinkedIn, Instagram and Reddit into structured, scored, outreach-ready opportunities for web agencies, freelancers and CMS specialists." },
-      { property: "og:title", content: "Postly" },
-      { property: "og:description", content: "Find website design, development, redesign and CMS opportunities from public social posts." },
+      { property: "og:title", content: "Postly — Website service opportunities from public social posts" },
+      { property: "og:description", content: "Find website design, development, redesign and CMS opportunities from public social posts — scored and ready for outreach." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/" }],
   }),
   component: Home,
 });
