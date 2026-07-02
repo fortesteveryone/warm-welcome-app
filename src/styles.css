@@ -296,6 +296,33 @@ div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; back
   border-color: oklch(1 0 0 / 12%);
 }
 
+/* Postly CRM dashboard — jet-black surface. Applied on the dashboard shell
+   root so every semantic Tailwind utility (bg-background, bg-card,
+   text-foreground, text-muted-foreground, border-border…) resolves to the
+   black-theme palette automatically. */
+@utility dashboard-noir {
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.09 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.09 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.66 0 0);
+  --accent: oklch(0.13 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: var(--signal);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.08 0 0);
+  --secondary: oklch(0.13 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  background-color: oklch(0.04 0 0);
+  color: oklch(0.985 0 0);
+  color-scheme: dark;
+}
+
 /* Signal Darkroom ambient effects — top horizon glow + faint dot grid.
    Compose on any .section-dark for the flagship product-page feel. */
 @utility section-glow {
