@@ -20,6 +20,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
 import { Route as DashboardLeadsRouteImport } from './routes/dashboard.leads'
 import { Route as DashboardFavouritesRouteImport } from './routes/dashboard.favourites'
 import { Route as DashboardContactsRouteImport } from './routes/dashboard.contacts'
@@ -82,6 +83,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardLeadsRoute = DashboardLeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/favourites': typeof DashboardFavouritesRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/favourites': typeof DashboardFavouritesRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/blog': typeof BlogIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/dashboard/contacts': typeof DashboardContactsRoute
   '/dashboard/favourites': typeof DashboardFavouritesRoute
   '/dashboard/leads': typeof DashboardLeadsRouteWithChildren
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/blog/': typeof BlogIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/leads/$leadId': typeof DashboardLeadsLeadIdRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/dashboard/contacts'
     | '/dashboard/favourites'
     | '/dashboard/leads'
+    | '/dashboard/notifications'
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/dashboard/contacts'
     | '/dashboard/favourites'
+    | '/dashboard/notifications'
     | '/blog'
     | '/dashboard'
     | '/dashboard/leads/$leadId'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/dashboard/contacts'
     | '/dashboard/favourites'
     | '/dashboard/leads'
+    | '/dashboard/notifications'
     | '/blog/'
     | '/dashboard/'
     | '/dashboard/leads/$leadId'
@@ -320,6 +332,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/leads': {
       id: '/dashboard/leads'
       path: '/leads'
@@ -383,6 +402,7 @@ interface DashboardRouteChildren {
   DashboardContactsRoute: typeof DashboardContactsRoute
   DashboardFavouritesRoute: typeof DashboardFavouritesRoute
   DashboardLeadsRoute: typeof DashboardLeadsRouteWithChildren
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -390,6 +410,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardContactsRoute: DashboardContactsRoute,
   DashboardFavouritesRoute: DashboardFavouritesRoute,
   DashboardLeadsRoute: DashboardLeadsRouteWithChildren,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
