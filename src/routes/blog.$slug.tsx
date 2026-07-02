@@ -187,43 +187,42 @@ function BlogDetail() {
         </Container>
       </section>
 
-      {/* CTA — convert readers into Postly users */}
-      <section className="section-edge section-light">
-        <Container className="py-16 md:py-20">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-[oklch(0.16_0.02_260)] p-8 md:p-14">
-            <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-              <div className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/20 blur-3xl" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_120%,oklch(0.72_0.19_145/0.18),transparent_60%)]" />
+      {/* CTA — matches site FinalCTA styling */}
+      <section className="relative section-edge section-dark overflow-hidden">
+        <Container className="relative py-16 md:py-20">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
+            <div aria-hidden className="pointer-events-none absolute inset-0">
+              <div className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/15 blur-3xl" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,oklch(0.72_0.19_145/0.10),transparent_60%)]" />
             </div>
-            <div className="relative z-10 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
-              <div>
-                <Mono className="text-[color:var(--signal)]">Start with Postly</Mono>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
-                  Turn public posts into <span className="text-[color:var(--signal)]">website-ready leads</span>.
-                </h2>
-                <p className="mt-3 max-w-xl text-sm text-white/70 md:text-base">
-                  Get 365+ verified website service opportunities every day — hand-collected, AI-scored, ready to pitch. Free plan available.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-stretch">
-                <Link
-                  to="/"
-                  hash="pricing"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--signal)] px-5 py-3 text-sm font-medium text-black transition hover:brightness-110"
-                >
-                  Get early access <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:border-[color:var(--signal)]/50 hover:text-[color:var(--signal)]"
-                >
-                  Talk to us
-                </Link>
-              </div>
+            <Mono className="relative text-[color:var(--signal)]">Start with Postly</Mono>
+            <h2 className="relative mt-4 text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
+              Stop reading.<br />
+              <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
+            </h2>
+            <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">
+              Get 365+ verified website service opportunities every day — hand-collected, AI-scored, ready to pitch.
+            </p>
+            <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/"
+                hash="pricing"
+                className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90"
+              >
+                Get early access <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card"
+              >
+                Talk to us
+              </Link>
             </div>
           </div>
         </Container>
       </section>
+
+
 
       {related.length > 0 && (
         <section className="section-edge section-dark">
