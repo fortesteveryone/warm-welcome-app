@@ -452,8 +452,8 @@ function Platforms() {
         </div>
 
         <div className="mt-8 mb-2">
-          <span className="inline-flex items-center gap-2 text-xs font-medium text-[color:var(--signal)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+          <span className="inline-flex items-start gap-2 text-xs font-medium text-[color:var(--signal)]">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--signal)]" />
             Daily volume can vary by platform, country, and source activity.
           </span>
         </div>
