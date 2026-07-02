@@ -818,8 +818,8 @@ function BuiltFor() {
           lede="Postly is made for teams that sell website work and need a cleaner way to find active demand."
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {builtForCards.map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
+          {builtForCards.map(({ Icon, title, body, lgOnly }) => (
+            <div key={title} className={`rounded-xl border border-border bg-white p-6 transition hover:shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
@@ -828,6 +828,7 @@ function BuiltFor() {
             </div>
           ))}
         </div>
+
       </Container>
     </section>
   );
