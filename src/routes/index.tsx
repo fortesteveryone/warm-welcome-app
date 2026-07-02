@@ -183,7 +183,7 @@ function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:bg-foreground/90">
-                Request early access <ArrowRight className="h-4 w-4" />
+                Get early access <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#product" className="inline-flex items-center gap-1.5 rounded-md border border-foreground/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-white/90">
                 See example leads
@@ -766,7 +766,7 @@ function Pricing() {
         "Outreach drafts",
         "Early access: 1 month free + lifetime 40% discount",
       ],
-      cta: "Apply for early access", featured: true,
+      cta: "Get early access", featured: true,
     },
     {
       name: "VIP · Hot Leads", price: "Coming soon", cadence: "",
@@ -870,7 +870,7 @@ function Pricing() {
             <div className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/10 px-2.5 py-0.5 text-[10px] font-medium text-[color:var(--signal)]">
               <Sparkles className="h-3 w-3" /> Early access
             </div>
-            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">Apply for early access.</h3>
+            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">Get early access.</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               Get 1 month of Pro free plus a lifetime 40% discount when paid plans go live.
             </p>
@@ -879,7 +879,7 @@ function Pricing() {
                 href="#"
                 className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background hover:bg-foreground/90"
               >
-                Create free account <ArrowRight className="h-3.5 w-3.5" />
+                Get early access <ArrowRight className="h-3.5 w-3.5" />
               </a>
               <button
                 type="button"
