@@ -301,27 +301,48 @@ div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; back
    text-foreground, text-muted-foreground, border-border…) resolves to the
    black-theme palette automatically. */
 @utility dashboard-noir {
-  --background: oklch(0.04 0 0);
+  --background: oklch(0.03 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.09 0 0);
+  --card: oklch(0.075 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.09 0 0);
+  --popover: oklch(0.075 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.13 0 0);
-  --muted-foreground: oklch(0.66 0 0);
+  --muted: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.68 0 0);
   --accent: oklch(0.13 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 10%);
   --ring: var(--signal);
   --primary: oklch(0.985 0 0);
   --primary-foreground: oklch(0.08 0 0);
   --secondary: oklch(0.13 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  background-color: oklch(0.04 0 0);
   color: oklch(0.985 0 0);
   color-scheme: dark;
+  background-color: oklch(0.03 0 0);
+  background-image:
+    radial-gradient(1200px 600px at 12% -10%, color-mix(in oklab, var(--signal) 14%, transparent), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, oklch(0.22 0.08 260 / 0.18), transparent 65%),
+    radial-gradient(700px 700px at 50% 120%, oklch(0.20 0.06 180 / 0.12), transparent 70%);
+  background-attachment: fixed;
 }
+
+/* Premium panel — subtle top-highlight, soft inner glow. */
+@utility panel-premium {
+  position: relative;
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, oklch(1 0 0 / 0.03), transparent 40%),
+    oklch(0.075 0 0 / 0.85);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.05),
+    0 1px 0 0 oklch(0 0 0 / 0.4),
+    0 20px 40px -24px oklch(0 0 0 / 0.6);
+  backdrop-filter: blur(6px);
+}
+
 
 /* Signal Darkroom ambient effects — top horizon glow + faint dot grid.
    Compose on any .section-dark for the flagship product-page feel. */

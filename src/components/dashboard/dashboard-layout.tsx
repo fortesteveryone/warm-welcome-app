@@ -29,14 +29,15 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     exact ? path === to : path === to || path.startsWith(to + "/");
 
   return (
-    <div className="dashboard-noir dark flex min-h-screen w-full bg-background text-foreground">
+    <div className="dashboard-noir dark flex min-h-screen w-full text-foreground">
       {/* Sidebar — desktop */}
       <aside
-        className={`hidden shrink-0 border-r border-border bg-[oklch(0.06_0_0)] transition-[width] duration-200 md:flex md:flex-col ${
+        className={`hidden shrink-0 border-r border-border/70 bg-[oklch(0.05_0_0)]/80 backdrop-blur-xl transition-[width] duration-200 md:flex md:flex-col ${
           collapsed ? "md:w-[72px]" : "md:w-[248px]"
         }`}
       >
-        <div className="flex h-16 items-center justify-between border-b border-border px-3">
+        <div className="flex h-16 items-center justify-between border-b border-border/70 px-3">
+
           <Link to="/" className="flex items-center gap-2 overflow-hidden">
             <img src={logoUrl} alt="Postly" className="h-8 w-auto shrink-0 brightness-0 invert" />
             {!collapsed && <span className="truncate text-sm font-semibold tracking-tight">Postly</span>}
@@ -144,7 +145,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
 
       {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-border bg-[oklch(0.04_0_0)]/85 px-4 backdrop-blur-xl md:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-border/70 bg-[oklch(0.03_0_0)]/70 px-4 backdrop-blur-xl md:px-6">
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <button
               onClick={() => setMobileOpen(true)}
