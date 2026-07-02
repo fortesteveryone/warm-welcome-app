@@ -28,7 +28,7 @@ function Overview() {
   const byPlatform = useMemo(() => {
     const map = new Map<string, number>();
     for (const l of LEADS) map.set(l.platform, (map.get(l.platform) ?? 0) + 1);
-    return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+    return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
   }, []);
 
   const byCountry = useMemo(() => {
