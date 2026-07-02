@@ -347,7 +347,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "From freelancer to small agency: what actually changes in year one",
     excerpt:
       "Going from solo to a three-person studio is mostly an operations story, not a sales story. Here's what to expect — and how to survive the month you have too many clients.",
-    category: "Lead generation",
+    category: "Agency",
     tags: ["Agency", "Operations", "Hiring"],
     author: { name: "Noah Whitman", role: "Agency founder", avatar: av(60) },
     date: "2026-06-20",
