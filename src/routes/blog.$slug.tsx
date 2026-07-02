@@ -187,6 +187,44 @@ function BlogDetail() {
         </Container>
       </section>
 
+      {/* CTA — convert readers into Postly users */}
+      <section className="section-edge section-light">
+        <Container className="py-16 md:py-20">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-[oklch(0.16_0.02_260)] p-8 md:p-14">
+            <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
+              <div className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/20 blur-3xl" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_120%,oklch(0.72_0.19_145/0.18),transparent_60%)]" />
+            </div>
+            <div className="relative z-10 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+              <div>
+                <Mono className="text-[color:var(--signal)]">Start with Postly</Mono>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
+                  Turn public posts into <span className="text-[color:var(--signal)]">website-ready leads</span>.
+                </h2>
+                <p className="mt-3 max-w-xl text-sm text-white/70 md:text-base">
+                  Get 365+ verified website service opportunities every day — hand-collected, AI-scored, ready to pitch. Free plan available.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-stretch">
+                <Link
+                  to="/"
+                  hash="pricing"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--signal)] px-5 py-3 text-sm font-medium text-black transition hover:brightness-110"
+                >
+                  Get early access <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:border-[color:var(--signal)]/50 hover:text-[color:var(--signal)]"
+                >
+                  Talk to us
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {related.length > 0 && (
         <section className="section-edge section-dark">
           <Container className="py-16 md:py-20">
