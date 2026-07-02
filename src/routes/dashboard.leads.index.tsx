@@ -423,7 +423,7 @@ function LeadPostCard({
   return (
     <article
       className={[
-        "group relative isolate flex flex-col overflow-hidden rounded-2xl border bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition",
+        "group relative isolate flex flex-col overflow-hidden rounded-2xl border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.4)] transition",
         isOpened
           ? "border-border/70 opacity-90 hover:opacity-100"
           : "border-border hover:border-foreground/25 hover:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.15)]",
