@@ -73,7 +73,7 @@ export function SiteHeader() {
             Sign in
           </a>
           <a href="/#pricing" className="hidden items-center gap-1.5 rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition hover:bg-foreground/90 sm:inline-flex">
-            Get started <ArrowRight className="h-3.5 w-3.5" />
+            Get early access <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <button
             type="button"
@@ -118,7 +118,7 @@ export function SiteHeader() {
               Sign in
             </a>
             <a href="/#pricing" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-1.5 rounded-md bg-foreground px-3.5 py-2 text-sm font-medium text-background transition hover:bg-foreground/90">
-              Get started <ArrowRight className="h-3.5 w-3.5" />
+              Get early access <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
         </Container>
@@ -189,7 +189,7 @@ export function SiteFooter() {
               href="/#pricing"
               className="inline-flex items-center gap-2 rounded-md bg-[#22C55E] px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#16a34a]"
             >
-              Start now
+              Get early access
             </a>
             <a
               href="/#pricing"
