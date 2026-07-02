@@ -32,6 +32,7 @@ export const BLOG_CATEGORIES = [
   "Framer",
   "Lead generation",
   "Outreach",
+  "Agency",
 ] as const;
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
