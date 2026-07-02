@@ -292,29 +292,48 @@ function Scope() {
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
-          {scopeCategories.map(({ Icon, title, subtitle, tags }) => (
-            <div key={title} className="rounded-xl border border-border bg-white p-5 transition hover:bg-white">
-              <div className="flex items-center gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
-                  <Icon className="h-4 w-4" />
+          {scopeCategories.map(({ Icon, title, subtitle, tags }, idx) => {
+            const tinted = idx === 0 || idx === 2;
+            return (
+              <div
+                key={title}
+                className={
+                  tinted
+                    ? "relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-5"
+                    : "relative overflow-hidden rounded-xl border border-border bg-white p-5"
+                }
+              >
+                {tinted && (
+                  <div
+                    aria-hidden
+                    className={`absolute h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl ${
+                      idx === 0 ? "-right-10 -top-10" : "-left-10 -bottom-10"
+                    }`}
+                  />
+                )}
+                <div className="relative flex items-center gap-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
                 </div>
-                <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
+                <p className="relative mt-2 text-xs text-muted-foreground">{subtitle}</p>
+                <div className="relative mt-4 flex flex-wrap gap-1.5">
+                  {tags.map((t) => {
+                    const brand = tagBrand[t];
+                    return (
+                      <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground">
+                        {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3" style={{ color: b.color }} />)}
+                        {t}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground">{subtitle}</p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {tags.map((t) => {
-                  const brand = tagBrand[t];
-                  return (
-                    <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-muted-foreground">
-                      {brand?.map((b, i) => <b.Icon key={i} className="h-3 w-3" style={{ color: b.color }} />)}
-                      {t}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
 
 
 
