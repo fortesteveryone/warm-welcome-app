@@ -39,7 +39,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
       <Container className="relative flex h-20 items-center justify-between gap-3">
         <Link to="/" className="flex shrink-0 items-center gap-2">
-          <Logo className="h-14 w-auto" />
+          <Logo className="h-9 w-auto" />
         </Link>
         <nav className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
           {NAV_LINKS.map((l) => {
@@ -204,7 +204,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <img src={footerLogoUrl} alt="Postly" className="h-20 w-auto" />
+              <img src={footerLogoUrl} alt="Postly" className="h-12 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Postly helps web agencies, developers, freelancers, and CMS specialists find website-service opportunities from public social posts.
