@@ -457,3 +457,41 @@ div.section-dark:nth-of-type(4n)::before    { background-position: 90% 20%; back
   0%   { background-position: 130% 0; }
   100% { background-position: -30% 0; }
 }
+
+/* Global arrow nudge on hover — applies to lucide arrow icons inside any clickable ancestor */
+a, button, [role="button"] {
+  & .lucide-arrow-right,
+  & .lucide-move-right,
+  & .lucide-chevron-right,
+  & .lucide-arrow-up-right {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover .lucide-arrow-right,
+  &:hover .lucide-move-right,
+  &:hover .lucide-chevron-right {
+    transform: translateX(3px);
+  }
+  &:hover .lucide-arrow-up-right {
+    transform: translate(2px, -2px);
+  }
+  & .lucide-arrow-left,
+  & .lucide-chevron-left {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover .lucide-arrow-left,
+  &:hover .lucide-chevron-left {
+    transform: translateX(-3px);
+  }
+}
+
+/* Also nudge arrows when hovering a group container (e.g. blog cards) */
+.group:hover .lucide-arrow-right,
+.group:hover .lucide-move-right,
+.group:hover .lucide-chevron-right {
+  transform: translateX(3px);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .lucide-arrow-up-right {
+  transform: translate(2px, -2px);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
