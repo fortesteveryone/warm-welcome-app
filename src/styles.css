@@ -217,12 +217,10 @@
   color: oklch(0.16 0 0);
   position: relative;
   isolation: isolate;
-  /* Tinted overlay on top of the 3D decor. Both layers use
-     background-attachment: fixed so the decor stays locked to the viewport
-     while the page scrolls — the shape doesn't move, only content does. */
+  /* Soft colorful surface with a low-opacity white AI orb floating in it. */
   background-color: oklch(0.952 0.025 150);
   background-image:
-    linear-gradient(oklch(0.952 0.025 150 / 0.89), oklch(0.952 0.025 150 / 0.89)),
+    linear-gradient(oklch(0.952 0.025 150 / 0.82), oklch(0.952 0.025 150 / 0.82)),
     url('/src/assets/section-3d-decor.png');
   background-repeat: no-repeat, no-repeat;
   background-position: center center, center center;
