@@ -36,10 +36,10 @@ function DataUsagePage() {
       <Section title="5. Retention">
         <p>Active leads are retained while they remain publicly visible upstream. If the original post is deleted or made private, we remove the lead from active feeds within 24 hours of being notified.</p>
       </Section>
-      <Section title="5. Customer exports">
+      <Section title="6. Customer exports">
         <p>Data you export (CSV / JSON) leaves our system at that point. You are responsible for compliant use of exported data under the laws that apply to you.</p>
       </Section>
-      <Section title="6. Deletion requests">
+      <Section title="7. Deletion requests">
         <p>If you are the author of a surfaced post and would like it removed, email <a className="text-foreground underline" href="mailto:privacy@growbylead.com">privacy@growbylead.com</a> with the post URL. We remove verified requests within 72 hours.</p>
       </Section>
     </PageShell>
