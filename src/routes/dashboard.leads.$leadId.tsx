@@ -104,10 +104,7 @@ function derive(lead: Lead): Derived {
   const locationConf: "High" | "Medium" | "Low" =
     lead.country === "All" || !lead.country ? "Low" : lead.city ? "High" : "Medium";
 
-  const postType =
-    lead.category === "SaaS" || lead.category === "E-commerce"
-      ? "Tooling / product request"
-      : "Service requirement post";
+  const postType = "Website-service request";
 
   const channel =
     lead.platform === "linkedin" ? "LinkedIn InMail" :

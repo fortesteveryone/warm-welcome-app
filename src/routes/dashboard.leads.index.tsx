@@ -790,7 +790,7 @@ function NewLeadDialog({ open, onClose, onCreate }: { open: boolean; onClose: ()
           about: String(d.get("about") || ""),
           dealValue: Number(d.get("dealValue") || 0),
           createdAt: now.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
-          category: "Digital marketing",
+          category: "Website Design",
           intent: "Medium",
           platform: ((d.get("source") as string) || "instagram") as Lead["platform"],
           qualification: "unreviewed",
@@ -800,6 +800,14 @@ function NewLeadDialog({ open, onClose, onCreate }: { open: boolean; onClose: ()
           comments: 0,
           drafts: 0,
           postedAt: `${pad(now.getDate())}-${pad(now.getMonth() + 1)}-${now.getFullYear()} | ${pad(now.getHours())}:${pad(now.getMinutes())}`,
+          postExcerpt: String(d.get("about") || headline),
+          postUrl: "",
+          authorHandle: "@" + String(d.get("name") || "new").toLowerCase().replace(/[^a-z0-9]+/g, "."),
+          urgency: "This week",
+          reactions: 0,
+          shares: 0,
+          replyAngles: [],
+          flag: "🌐",
         };
         onCreate(lead);
         f.reset();
