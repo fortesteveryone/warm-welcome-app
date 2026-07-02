@@ -2,32 +2,44 @@ export type LeadStatus = "hot" | "warm" | "cold";
 export type LeadSource = "instagram" | "linkedin" | "facebook";
 export type LeadIntent = "High" | "Medium" | "Low";
 export type LeadQualification = "qualified" | "disqualified" | "unreviewed";
+export type LeadUrgency = "Urgent" | "This week" | "Exploring";
 export type LeadPlatform =
   | "facebook" | "linkedin" | "instagram" | "reddit" | "whatsapp" | "twitter" | "x"
   | "youtube" | "tiktok" | "telegram" | "discord" | "snapchat" | "pinterest"
   | "threads" | "wechat" | "line" | "quora" | "medium" | "github"
   | "behance" | "dribbble" | "twitch" | "mastodon" | "other";
 
+/** Website-service categories — Postly's real product scope. */
 export const LEAD_CATEGORIES = [
-  "Digital marketing", "Video Editor", "Website", "Graphic design",
-  "SaaS", "E-commerce", "Coaching", "Real Estate", "F&B", "Healthcare",
+  "Website Design",
+  "Website Development",
+  "Website Redesign",
+  "WordPress",
+  "Webflow",
+  "Wix",
+  "Framer",
+  "Shopify",
+  "Landing Page",
+  "CMS Migration",
 ] as const;
 export type LeadCategory = (typeof LEAD_CATEGORIES)[number];
 
 export const LEAD_INTENTS: LeadIntent[] = ["High", "Medium", "Low"];
+export const LEAD_URGENCIES: LeadUrgency[] = ["Urgent", "This week", "Exploring"];
 export const LEAD_QUALIFICATIONS: LeadQualification[] = ["qualified", "disqualified", "unreviewed"];
 
 export const LEAD_PLATFORMS: LeadPlatform[] = [
-  "facebook", "linkedin", "instagram", "reddit", "whatsapp", "twitter", "x",
-  "youtube", "tiktok", "telegram", "discord", "snapchat", "pinterest",
-  "threads", "wechat", "line", "quora", "medium", "github",
-  "behance", "dribbble", "twitch", "mastodon", "other",
+  "facebook", "linkedin", "instagram", "reddit", "twitter", "x", "threads",
+  "youtube", "tiktok", "telegram", "discord", "whatsapp", "snapchat", "pinterest",
+  "wechat", "line", "quora", "medium", "github", "behance", "dribbble", "twitch",
+  "mastodon", "other",
 ];
 
 export const LEAD_COUNTRIES = [
-  "All", "Bangladesh", "United States", "India", "Germany", "Spain",
-  "Ireland", "Japan", "Italy", "United Kingdom", "Pakistan", "Singapore",
-  "United Arab Emirates",
+  "All", "United States", "United Kingdom", "Canada", "Australia", "Germany",
+  "France", "Netherlands", "Spain", "Italy", "Ireland", "Sweden", "Singapore",
+  "United Arab Emirates", "India", "Bangladesh", "Pakistan", "Japan", "Brazil",
+  "Mexico",
 ] as const;
 export type LeadCountry = (typeof LEAD_COUNTRIES)[number];
 
@@ -56,72 +68,286 @@ export type Lead = {
   platform: LeadPlatform;
   qualification: LeadQualification;
   favourite: boolean;
-  /** Post-style summary the user reads before spending a credit to open. */
+  /** Post-style summary shown before opening. */
   headline: string;
-  /** Short topic / title pill rendered under the headline. */
+  /** Short topic pill. */
   topic: string;
-  /** Replies / comments on the original post. */
+  /** Reply / comment count on the original post. */
   comments: number;
-  /** Drafts the team has prepared for this lead. */
+  /** Draft replies prepared. */
   drafts: number;
-  /** When the underlying post was published, e.g. "14-06-2026 | 17:52". */
+  /** When the underlying post was published. */
   postedAt: string;
+
+  /* ── Social-post-native fields (new) ── */
+  /** 2–4 line quote of the actual public post. */
+  postExcerpt: string;
+  /** Fake permalink to the source post. */
+  postUrl: string;
+  /** Public author handle, e.g. "@aisha.rahman". */
+  authorHandle: string;
+  /** How urgently they need help. */
+  urgency: LeadUrgency;
+  /** Reactions/likes on the source post. */
+  reactions: number;
+  /** Shares/reposts on the source post. */
+  shares: number;
+  /** 3 suggested opener angles the reply workspace can surface. */
+  replyAngles: string[];
+  /** Country flag emoji. */
+  flag: string;
 };
 
-const HEADLINES: Record<LeadCategory, { headline: (n: string, c: string) => string; topic: string }> = {
-  "Digital marketing": { headline: (n, c) => `${n} from ${c} is looking for a digital marketer to run paid ads and grow their pipeline this quarter.`, topic: "Paid ads & growth marketer" },
-  "Video Editor":      { headline: (n)    => `${n} is hiring a video editor for a YouTube vlogger with 20k subscribers, needs 3 long-form edits per week.`, topic: "Video editor for YouTube vlog" },
-  "Website":           { headline: (n, c) => `${n} is looking for a website developer to work on a ${c} portfolio website update and a fresh landing page.`, topic: "Website developer for portfolio" },
-  "Graphic design":    { headline: (n, c) => `${n} from ${c} needs a graphic designer for an upcoming product launch — logo refresh, social kit and ad creatives.`, topic: "Graphic designer for launch kit" },
-  "SaaS":              { headline: (n, c) => `${n} at ${c} is evaluating SaaS tools to replace their current CRM and asked for a 30-minute demo this week.`, topic: "Evaluating a new SaaS CRM" },
-  "E-commerce":        { headline: (n, c) => `${n} runs ${c} on Shopify and is searching for help with conversion-rate optimisation and email flows.`, topic: "Shopify CRO + email flows" },
-  "Coaching":          { headline: (n)    => `${n} wants a 1:1 sales coach to help close higher-ticket coaching offers and structure a new programme.`, topic: "Sales coach for high-ticket offers" },
-  "Real Estate":       { headline: (n, c) => `${n} from ${c} is hiring a marketing partner to generate qualified seller leads in their local market.`, topic: "Local seller-lead generation" },
-  "F&B":               { headline: (n, c) => `${n} owns ${c} and needs help building a delivery-first brand presence across Instagram and TikTok.`, topic: "F&B social presence" },
-  "Healthcare":        { headline: (n, c) => `${n} at ${c} is looking for a paid social specialist with healthcare compliance experience to run patient-acquisition ads.`, topic: "Healthcare patient acquisition" },
-};
+/* ─────────── Deterministic PRNG so IDs and content are stable ─────────── */
 
-function enrich(l: Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts" | "postedAt">, i: number): Lead {
-  const tmpl = HEADLINES[l.category];
-  const headline = tmpl.headline(l.name.split(" ")[0], l.company);
-  const day = String(((i * 3) % 27) + 1).padStart(2, "0");
-  const hh = String(((i * 7) % 22) + 1).padStart(2, "0");
-  const mm = String(((i * 11) % 59)).padStart(2, "0");
-  return {
-    ...l,
-    id: slug(l.name),
-    headline,
-    topic: tmpl.topic,
-    comments: (i * 5) % 14,
-    drafts: (i % 5) + 1,
-    postedAt: `${day}-06-2026 | ${hh}:${mm}`,
+function mulberry32(seed: number) {
+  return () => {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = seed;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
 
-const slug = (s: string) =>
-  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+/* ─────────── Content pools ─────────── */
 
-type RawLead = Omit<Lead, "id" | "headline" | "topic" | "comments" | "drafts" | "postedAt">;
-
-const RAW: RawLead[] = [
-  { name: "Aisha Rahman", company: "Velvet & Co.", role: "Founder", source: "instagram", score: 92, status: "hot", stage: "Negotiation", owner: "Nasir", updated: "2m ago", email: "aisha@velvet.co", phone: "+880 1711 234567", city: "Dhaka, BD", country: "Bangladesh", website: "velvet.co", tags: ["VIP", "Apparel"], about: "Founder of a fast-growing premium apparel label, building direct-to-consumer channels across South Asia and the Gulf.", dealValue: 12500, createdAt: "Mar 02, 2026", category: "E-commerce", intent: "High", platform: "instagram", qualification: "qualified", favourite: true },
-  { name: "Marcus Lin", company: "Northwave Studio", role: "CMO", source: "linkedin", score: 88, status: "hot", stage: "Proposal", owner: "Nasir", updated: "14m ago", email: "marcus@northwave.io", phone: "+1 415 555 0144", city: "San Francisco, US", country: "United States", website: "northwave.io", tags: ["Agency"], about: "Marketing lead at a boutique brand studio serving SaaS and consumer startups.", dealValue: 24800, createdAt: "Feb 18, 2026", category: "Digital marketing", intent: "High", platform: "linkedin", qualification: "qualified", favourite: true },
-  { name: "Priya Devi", company: "Saffron Kitchen", role: "Owner", source: "facebook", score: 74, status: "warm", stage: "Qualified", owner: "Sara", updated: "1h ago", email: "priya@saffron.kitchen", phone: "+91 98765 43210", city: "Mumbai, IN", country: "India", website: "saffron.kitchen", tags: ["F&B", "Local"], about: "Owner of a popular regional cloud kitchen network expanding to tier-1 cities.", dealValue: 4800, createdAt: "Apr 11, 2026", category: "F&B", intent: "Medium", platform: "facebook", qualification: "qualified", favourite: false },
-  { name: "Jonas Weber", company: "Atlas Logistics", role: "Ops Lead", source: "linkedin", score: 67, status: "warm", stage: "Qualified", owner: "Sara", updated: "3h ago", email: "j.weber@atlas-log.de", phone: "+49 30 9876543", city: "Berlin, DE", country: "Germany", website: "atlas-log.de", tags: ["Enterprise"], about: "Heads ground operations for a mid-market EU logistics provider.", dealValue: 38200, createdAt: "Jan 30, 2026", category: "SaaS", intent: "Medium", platform: "linkedin", qualification: "unreviewed", favourite: false },
-  { name: "Camila Reyes", company: "Lumen Health", role: "Marketing", source: "instagram", score: 51, status: "cold", stage: "New", owner: "Nasir", updated: "5h ago", email: "camila@lumenhealth.io", phone: "+34 612 345 678", city: "Madrid, ES", country: "Spain", website: "lumenhealth.io", tags: ["Healthcare"], about: "Runs paid social for a women's health subscription brand in EU + LATAM.", dealValue: 6200, createdAt: "May 04, 2026", category: "Healthcare", intent: "Low", platform: "instagram", qualification: "unreviewed", favourite: false },
-  { name: "David O'Connor", company: "Hearth Realty", role: "Broker", source: "facebook", score: 48, status: "cold", stage: "New", owner: "Mei", updated: "8h ago", email: "david@hearthrealty.com", phone: "+353 1 555 0199", city: "Dublin, IE", country: "Ireland", website: "hearthrealty.com", tags: ["Real Estate"], about: "Independent broker focused on luxury residential listings.", dealValue: 9100, createdAt: "May 22, 2026", category: "Real Estate", intent: "Low", platform: "facebook", qualification: "disqualified", favourite: false },
-  { name: "Yuki Tanaka", company: "Mori Apparel", role: "Founder", source: "instagram", score: 83, status: "hot", stage: "Proposal", owner: "Mei", updated: "1d ago", email: "yuki@moriapparel.jp", phone: "+81 80 1234 5678", city: "Tokyo, JP", country: "Japan", website: "moriapparel.jp", tags: ["Apparel", "VIP"], about: "Founder of a heritage-minded apparel brand exporting to North America.", dealValue: 18900, createdAt: "Feb 09, 2026", category: "E-commerce", intent: "High", platform: "tiktok", qualification: "qualified", favourite: true },
-  { name: "Ravi Shah", company: "Bluepeak SaaS", role: "Growth", source: "linkedin", score: 71, status: "warm", stage: "Qualified", owner: "Nasir", updated: "1d ago", email: "ravi@bluepeak.io", phone: "+1 646 555 0123", city: "New York, US", country: "United States", website: "bluepeak.io", tags: ["SaaS"], about: "Growth lead at a vertical SaaS company in the property-management space.", dealValue: 15400, createdAt: "Mar 21, 2026", category: "SaaS", intent: "Medium", platform: "twitter", qualification: "qualified", favourite: false },
-  { name: "Elena Costa", company: "Costa Wines", role: "Director", source: "instagram", score: 78, status: "warm", stage: "Proposal", owner: "Sara", updated: "2d ago", email: "elena@costawines.it", phone: "+39 06 1234 5678", city: "Rome, IT", country: "Italy", website: "costawines.it", tags: ["F&B", "Luxury"], about: "Third-generation winery exporting to the US and Asia.", dealValue: 22000, createdAt: "Feb 28, 2026", category: "F&B", intent: "High", platform: "instagram", qualification: "qualified", favourite: true },
-  { name: "Liam Foster", company: "Foster Fitness", role: "Founder", source: "instagram", score: 64, status: "warm", stage: "New", owner: "Mei", updated: "2d ago", email: "liam@fosterfit.com", phone: "+44 20 7946 0958", city: "London, UK", country: "United Kingdom", website: "fosterfit.com", tags: ["Fitness"], about: "Online coaching brand with 80k IG followers.", dealValue: 5400, createdAt: "Apr 04, 2026", category: "Coaching", intent: "Medium", platform: "youtube", qualification: "unreviewed", favourite: false },
-  { name: "Sana Iqbal", company: "Nova Beauty", role: "Marketing", source: "facebook", score: 56, status: "cold", stage: "New", owner: "Nasir", updated: "3d ago", email: "sana@novabeauty.pk", phone: "+92 300 1234567", city: "Karachi, PK", country: "Pakistan", website: "novabeauty.pk", tags: ["Beauty"], about: "DTC beauty brand expanding into the GCC.", dealValue: 3800, createdAt: "May 12, 2026", category: "Digital marketing", intent: "Low", platform: "facebook", qualification: "unreviewed", favourite: false },
-  { name: "Tom Becker", company: "Becker Build Co.", role: "Owner", source: "linkedin", score: 39, status: "cold", stage: "New", owner: "Mei", updated: "4d ago", email: "tom@beckerbuild.com", phone: "+1 312 555 0167", city: "Chicago, US", country: "United States", website: "beckerbuild.com", tags: ["Construction"], about: "Custom-home builder serving the Greater Chicago area.", dealValue: 2400, createdAt: "May 28, 2026", category: "Website", intent: "Low", platform: "linkedin", qualification: "disqualified", favourite: false },
-  { name: "Mei Wong", company: "Lotus Travel", role: "Founder", source: "instagram", score: 81, status: "hot", stage: "Negotiation", owner: "Sara", updated: "5d ago", email: "mei@lotustravel.sg", phone: "+65 8123 4567", city: "Singapore, SG", country: "Singapore", website: "lotustravel.sg", tags: ["Travel", "VIP"], about: "Boutique travel curator for HNW clients across APAC.", dealValue: 31000, createdAt: "Jan 15, 2026", category: "Video Editor", intent: "High", platform: "instagram", qualification: "qualified", favourite: true },
-  { name: "Felix Brandt", company: "Brandt Audio", role: "CEO", source: "linkedin", score: 73, status: "warm", stage: "Proposal", owner: "Nasir", updated: "6d ago", email: "felix@brandtaudio.de", phone: "+49 40 9876543", city: "Hamburg, DE", country: "Germany", website: "brandtaudio.de", tags: ["Hardware"], about: "Premium audio hardware brand selling DTC in EU + NA.", dealValue: 14600, createdAt: "Mar 09, 2026", category: "E-commerce", intent: "Medium", platform: "youtube", qualification: "qualified", favourite: false },
-  { name: "Aaliyah Khan", company: "Khan Legal", role: "Partner", source: "linkedin", score: 60, status: "warm", stage: "Qualified", owner: "Sara", updated: "1w ago", email: "aaliyah@khanlegal.ae", phone: "+971 4 123 4567", city: "Dubai, AE", country: "United Arab Emirates", website: "khanlegal.ae", tags: ["Legal"], about: "Boutique law firm focused on cross-border corporate work.", dealValue: 8200, createdAt: "Apr 22, 2026", category: "Graphic design", intent: "Medium", platform: "linkedin", qualification: "unreviewed", favourite: false },
+const FIRST_NAMES = [
+  "Aisha", "Marcus", "Priya", "Jonas", "Camila", "David", "Yuki", "Ravi", "Elena",
+  "Liam", "Sana", "Tom", "Mei", "Felix", "Aaliyah", "Nora", "Diego", "Chloe",
+  "Ahmed", "Sofia", "Hiro", "Isabelle", "Kwame", "Emma", "Rafael", "Zainab",
+  "Lucas", "Ines", "Karim", "Maya", "Owen", "Freya", "Idris", "Nadia", "Oscar",
+  "Amelie", "Sami", "Julia", "Bruno", "Anika", "Hugo", "Rania", "Kenji", "Layla",
+  "Theo", "Zoe", "Malik", "Ada", "Nikhil", "Salma",
+];
+const LAST_NAMES = [
+  "Rahman", "Lin", "Devi", "Weber", "Reyes", "O'Connor", "Tanaka", "Shah", "Costa",
+  "Foster", "Iqbal", "Becker", "Wong", "Brandt", "Khan", "Nakamura", "Silva",
+  "Dubois", "Hassan", "Kowalski", "Martinez", "Ito", "Abebe", "Rossi", "Jansen",
+  "Nguyen", "Park", "Andersson", "Cohen", "Almeida", "Fischer", "Novak", "Beck",
+  "Sato", "El-Sayed", "Petrov", "Kaur", "Perez", "Osei", "Larsen", "Yamada",
+];
+const COMPANY_SUFFIX = ["Studio", "Labs", "Co.", "Works", "Clinic", "Kitchen", "Homes", "Coffee", "Collective", "Consulting", "Academy", "Bakery", "Boutique", "Fitness", "Legal", "Wines", "Realty", "Travel", "Media", "Agency"];
+const COMPANY_ROOT = [
+  "Velvet", "Northwave", "Saffron", "Atlas", "Lumen", "Hearth", "Mori", "Bluepeak",
+  "Costa", "Foster", "Nova", "Becker", "Lotus", "Brandt", "Khan", "Aurora", "Cedar",
+  "Harbor", "Ember", "Ridge", "Marigold", "Pine", "Orbit", "Willow", "Kite",
+  "Copper", "Meadow", "Fable", "Union", "Anchor", "Halcyon", "Verve", "Rowan",
+  "Sable", "Basil", "Larch", "Juniper", "Fern", "Beacon", "Prism",
 ];
 
-export const LEADS: Lead[] = RAW.map((l, i) => enrich(l, i));
+const CITY_BY_COUNTRY: Record<Exclude<LeadCountry, "All">, { city: string; flag: string; dial: string }[]> = {
+  "United States":        [{ city: "San Francisco", flag: "🇺🇸", dial: "+1 415 555" }, { city: "New York", flag: "🇺🇸", dial: "+1 646 555" }, { city: "Austin", flag: "🇺🇸", dial: "+1 512 555" }, { city: "Chicago", flag: "🇺🇸", dial: "+1 312 555" }],
+  "United Kingdom":       [{ city: "London", flag: "🇬🇧", dial: "+44 20 7946" }, { city: "Manchester", flag: "🇬🇧", dial: "+44 161 555" }, { city: "Bristol", flag: "🇬🇧", dial: "+44 117 555" }],
+  "Canada":               [{ city: "Toronto", flag: "🇨🇦", dial: "+1 416 555" }, { city: "Vancouver", flag: "🇨🇦", dial: "+1 604 555" }],
+  "Australia":            [{ city: "Sydney", flag: "🇦🇺", dial: "+61 2 5550" }, { city: "Melbourne", flag: "🇦🇺", dial: "+61 3 5550" }],
+  "Germany":              [{ city: "Berlin", flag: "🇩🇪", dial: "+49 30 9876" }, { city: "Hamburg", flag: "🇩🇪", dial: "+49 40 9876" }, { city: "Munich", flag: "🇩🇪", dial: "+49 89 9876" }],
+  "France":               [{ city: "Paris", flag: "🇫🇷", dial: "+33 1 4555" }, { city: "Lyon", flag: "🇫🇷", dial: "+33 4 7255" }],
+  "Netherlands":          [{ city: "Amsterdam", flag: "🇳🇱", dial: "+31 20 555" }],
+  "Spain":                [{ city: "Madrid", flag: "🇪🇸", dial: "+34 612 345" }, { city: "Barcelona", flag: "🇪🇸", dial: "+34 932 555" }],
+  "Italy":                [{ city: "Rome", flag: "🇮🇹", dial: "+39 06 1234" }, { city: "Milan", flag: "🇮🇹", dial: "+39 02 1234" }],
+  "Ireland":              [{ city: "Dublin", flag: "🇮🇪", dial: "+353 1 555" }],
+  "Sweden":               [{ city: "Stockholm", flag: "🇸🇪", dial: "+46 8 555" }],
+  "Singapore":            [{ city: "Singapore", flag: "🇸🇬", dial: "+65 8123" }],
+  "United Arab Emirates": [{ city: "Dubai", flag: "🇦🇪", dial: "+971 4 123" }, { city: "Abu Dhabi", flag: "🇦🇪", dial: "+971 2 123" }],
+  "India":                [{ city: "Mumbai", flag: "🇮🇳", dial: "+91 98765" }, { city: "Bengaluru", flag: "🇮🇳", dial: "+91 80456" }, { city: "Delhi", flag: "🇮🇳", dial: "+91 11555" }],
+  "Bangladesh":           [{ city: "Dhaka", flag: "🇧🇩", dial: "+880 1711" }],
+  "Pakistan":             [{ city: "Karachi", flag: "🇵🇰", dial: "+92 300 123" }, { city: "Lahore", flag: "🇵🇰", dial: "+92 42 123" }],
+  "Japan":                [{ city: "Tokyo", flag: "🇯🇵", dial: "+81 80 1234" }],
+  "Brazil":               [{ city: "São Paulo", flag: "🇧🇷", dial: "+55 11 9555" }],
+  "Mexico":               [{ city: "Mexico City", flag: "🇲🇽", dial: "+52 55 5555" }],
+};
+
+const ROLE_POOL = ["Founder", "Owner", "CMO", "Marketing Lead", "Ops Lead", "Head of Growth", "Product Manager", "Director", "Partner", "Freelancer", "CEO"];
+
+/** Website-service post templates keyed by category. */
+const POST_TEMPLATES: Record<LeadCategory, { headline: string; excerpt: string; topic: string }[]> = {
+  "Website Design": [
+    { headline: "Looking for a website designer for a new SaaS marketing site — clean, modern feel.", excerpt: "We just closed our seed round and need a proper marketing site — 6–8 pages, clean and modern. Not looking for a big agency, ideally a designer who's shipped SaaS sites before. DM me with portfolio?", topic: "Designer for SaaS marketing site" },
+    { headline: "Need a website designer for our physiotherapy clinic — booking-focused, mobile-first.", excerpt: "Our current site looks stuck in 2015. Want a fresh design focused on getting people to book online. Mobile-first is a must — 90% of our traffic is phone. Anyone available in the next 2–3 weeks?", topic: "Clinic website designer" },
+    { headline: "Anyone freelance for a coffee shop chain website? 3 locations, need something photo-heavy.", excerpt: "We've got great photography from a recent shoot — need someone who can build a site around it. Menu, locations, story page, simple ordering. Budget is reasonable but not agency-level.", topic: "Photo-heavy small-biz site" },
+  ],
+  "Website Development": [
+    { headline: "Need a website developer to build out a Figma design — 12 pages, no CMS needed.", excerpt: "Designer is done, files are clean, we just need dev. Static site or Next.js is fine. Deadline is end of the month. If you've done marketing-site dev before please DM with rate.", topic: "Figma → live site" },
+    { headline: "Looking for a dev to build a members-only community site — auth + gated content.", excerpt: "We're launching a paid community and need a proper members area — Stripe auth, gated pages, simple search. Nothing crazy on features, but stability matters. Recommendations welcome.", topic: "Gated members site" },
+    { headline: "Need a developer to finish a half-built site — previous dev disappeared 😩", excerpt: "Site is about 60% done in Astro. Previous person stopped replying. Need someone who can pick it up, finish the last few templates, and get it live. Would rather rewrite messy sections than glue over them.", topic: "Rescue project" },
+  ],
+  "Website Redesign": [
+    { headline: "Time for a full website redesign — our site hasn't been touched in 5 years.", excerpt: "Brand has evolved a lot and the current site is embarrassing at this point. Would love a redesign that actually reflects what we do now — B2B fintech, 4 products, ~40 people. Open to studio or freelancer.", topic: "B2B redesign" },
+    { headline: "Redesigning our website — need someone who can rethink the info architecture, not just skin it.", excerpt: "The visual layer is one problem, but the bigger issue is the site's structure. Anyone who can audit content and propose a cleaner IA before jumping into designs?", topic: "IA + visual redesign" },
+    { headline: "Our conversion rate on the homepage is terrible — looking for a redesign focused on CRO.", excerpt: "We get decent traffic but very few demo requests. Need someone with CRO chops — happy to share analytics. Not looking for a pretty site, looking for one that converts.", topic: "CRO-focused redesign" },
+  ],
+  "WordPress": [
+    { headline: "Looking for a WordPress developer to fix WooCommerce checkout — losing sales daily.", excerpt: "Something broke after the last plugin update and checkout is failing on mobile Safari. Losing orders every day this drags on. Can pay for urgent fix today or tomorrow.", topic: "Urgent WooCommerce fix" },
+    { headline: "Need a WordPress dev to build a custom theme from our Figma files.", excerpt: "Not a page-builder fan, want a proper custom theme with ACF. Site is a professional services firm — about 25 pages plus a blog. Availability question first, then we can talk scope.", topic: "Custom theme build" },
+    { headline: "WordPress help — site is getting hacked repeatedly, need security overhaul.", excerpt: "Third malware infection this year. Current host isn't helping. Need someone to clean, harden, and set up proper backups + monitoring. Long-term maintenance retainer likely.", topic: "Security cleanup" },
+  ],
+  "Webflow": [
+    { headline: "Need a Webflow expert to rebuild our startup site — moving off WordPress.", excerpt: "Marketing team wants full control without dev tickets. Site is ~15 pages plus a blog and a resource library. Want it done in Webflow, CMS-first. Please share Webflow work you're proud of.", topic: "WP → Webflow rebuild" },
+    { headline: "Looking for a Webflow developer to build interactions from a motion prototype.", excerpt: "Design is finished, motion is in Rive/Lottie. Need someone strong with Webflow interactions and IX2. Timeline is 3 weeks. Portfolio must show real interaction work, not just static pages.", topic: "Webflow IX2 build" },
+    { headline: "Webflow help — CMS structure is a mess after 2 years of ad-hoc changes.", excerpt: "We've hit the limits of our current CMS setup. Collections are duplicated, references are broken, staging is unusable. Would love someone who can plan a cleaner structure and migrate content.", topic: "Webflow CMS cleanup" },
+  ],
+  "Wix": [
+    { headline: "Wix site help — need someone to customize a template beyond what the editor allows.", excerpt: "We picked a Wix template that's 80% right, but the last 20% is fighting us. Need custom CSS/Velo help to get the details right. Not a full rebuild — polish and edge-case fixes.", topic: "Wix + Velo polish" },
+    { headline: "Looking for a Wix expert to migrate our blog and set up proper SEO.", excerpt: "Blog is on a different platform, want it in Wix so the team can post easily. Also need proper redirects and SEO setup done right. About 60 posts to move.", topic: "Wix blog migration" },
+  ],
+  "Framer": [
+    { headline: "Need a Framer designer/dev to rebuild our portfolio site — should feel premium.", excerpt: "Independent studio site. Want the Framer craft — smooth transitions, tasteful motion, a real point of view. About 8 pages plus a case-study CMS. Budget is fair for good work.", topic: "Framer portfolio" },
+    { headline: "Anyone available to update a Framer site? Adding 3 new sections + a pricing page.", excerpt: "Site was built in Framer 6 months ago. Need to extend, not rebuild — keep the existing components, add new sections, add a pricing page with a toggle. Should be a couple of days for the right person.", topic: "Framer extension" },
+    { headline: "Looking for someone to migrate a Webflow marketing site into Framer.", excerpt: "Marketing team wants to be on Framer for the collaboration experience. About 12 pages plus a CMS blog. Not a redesign — mostly a faithful port with a few improvements.", topic: "Webflow → Framer" },
+  ],
+  "Shopify": [
+    { headline: "Need a Shopify → Shopify redesign — current theme feels dated, sales are stagnant.", excerpt: "We do ~$40k/month on Shopify but the site is holding us back. Would love a redesign focused on premium feel — apparel brand, strong photography. Ideally someone who's done DTC apparel before.", topic: "Shopify apparel redesign" },
+    { headline: "Looking for a Shopify developer to fix a slow site — Core Web Vitals are red.", excerpt: "Site is on Dawn but we've added a lot over time and it's dragging. Need a proper performance pass. Would love an audit + fix rather than a full rebuild.", topic: "Shopify performance" },
+    { headline: "Shopify website rebuild — leaving a big-box agency, looking for freelancer.", excerpt: "Been with the same agency for years and the relationship isn't working. Want to move to a freelancer or small team. About 40 SKUs, custom PDP, subscription integration. Referrals welcome.", topic: "Shopify rebuild" },
+  ],
+  "Landing Page": [
+    { headline: "Need a landing page for a new service launch — 1 page, 2 weeks, must convert.", excerpt: "Launching a new offer next month and want a proper landing page — not a template. Hero, value props, social proof, pricing, FAQ, CTA. Copy is already in a doc. Design + build please.", topic: "Launch landing page" },
+    { headline: "Looking for a designer/dev for a webinar landing page + thank-you flow.", excerpt: "Running a webinar in 3 weeks and need a landing page + signup form + thank-you page + email trigger. Small scope but I want it to actually convert. Zapier/Mailchimp integrated ideally.", topic: "Webinar funnel" },
+    { headline: "Landing page work — need 6 variations for A/B testing our ad campaign.", excerpt: "Running paid ads and need proper LP variants — different hero, different social proof, different CTAs. Not looking for pretty, looking for a designer who thinks about conversion.", topic: "LP variants for ads" },
+  ],
+  "CMS Migration": [
+    { headline: "CMS migration help — moving off Contentful, evaluating Sanity vs Storyblok.", excerpt: "About 400 entries, custom content model, English + German. Would love someone who's actually done this before and can recommend based on our setup. Not just \"whatever's cheapest.\"", topic: "CMS platform migration" },
+    { headline: "Need someone to move us from Wix to WordPress — 30+ pages, SEO must be preserved.", excerpt: "Site is on Wix, hitting its limits, need to move to WordPress. Content isn't huge but SEO matters — we rank for a lot of terms. Redirects, sitemaps, everything needs to be right.", topic: "Wix → WordPress" },
+    { headline: "Looking for help migrating from Squarespace to Webflow, keeping the blog intact.", excerpt: "Squarespace has been fine but we've outgrown it. Want to move to Webflow so we can build proper case studies. Blog needs to come across with authors, categories, and images.", topic: "Squarespace → Webflow" },
+  ],
+};
+
+const REPLY_ANGLE_TEMPLATES = [
+  (name: string, cat: string) => `Hi ${name}, saw your post about the ${cat.toLowerCase()} — I've shipped a few of these recently and can share 2-3 relevant examples if useful.`,
+  (name: string, cat: string) => `Hey ${name}, quick note on your ${cat.toLowerCase()} post: happy to jump on a 15-min call this week if you want to talk scope before shortlisting.`,
+  (name: string, cat: string) => `Hi ${name}, before you shortlist for the ${cat.toLowerCase()} work — I put together a short Loom walking through how I'd approach it. Want me to send it over?`,
+];
+
+const TAG_POOL: Partial<Record<LeadCategory, string[]>> = {
+  "WordPress": ["WordPress", "WooCommerce"],
+  "Webflow": ["Webflow", "CMS"],
+  "Wix": ["Wix", "Velo"],
+  "Framer": ["Framer", "Motion"],
+  "Shopify": ["Shopify", "DTC"],
+  "Landing Page": ["Landing", "Conversion"],
+  "CMS Migration": ["Migration", "CMS"],
+  "Website Design": ["Design"],
+  "Website Development": ["Dev"],
+  "Website Redesign": ["Redesign"],
+};
+
+const PLATFORM_MIX: LeadPlatform[] = [
+  "facebook", "facebook", "facebook",
+  "linkedin", "linkedin", "linkedin", "linkedin",
+  "reddit", "reddit", "reddit",
+  "instagram", "instagram",
+  "x", "x",
+  "threads",
+];
+
+const OWNER_POOL = ["Nasir", "Sara", "Mei"];
+const STAGE_POOL = ["New", "Qualified", "Proposal", "Negotiation"];
+
+const slug = (s: string, i: number) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + `-${i.toString(36)}`;
+
+function pick<T>(rng: () => number, arr: readonly T[]): T {
+  return arr[Math.floor(rng() * arr.length)];
+}
+
+function generateLeads(count: number): Lead[] {
+  const rng = mulberry32(20260702);
+  const countries = (LEAD_COUNTRIES.filter((c) => c !== "All") as Exclude<LeadCountry, "All">[]);
+  const cats = LEAD_CATEGORIES;
+  const out: Lead[] = [];
+
+  for (let i = 0; i < count; i++) {
+    const first = pick(rng, FIRST_NAMES);
+    const last = pick(rng, LAST_NAMES);
+    const name = `${first} ${last}`;
+    const company = `${pick(rng, COMPANY_ROOT)} ${pick(rng, COMPANY_SUFFIX)}`;
+    const role = pick(rng, ROLE_POOL);
+    const country = pick(rng, countries);
+    const loc = pick(rng, CITY_BY_COUNTRY[country]);
+    const platform = pick(rng, PLATFORM_MIX);
+    const category = pick(rng, cats);
+    const tmplList = POST_TEMPLATES[category];
+    const tmpl = tmplList[Math.floor(rng() * tmplList.length)];
+
+    const score = 40 + Math.floor(rng() * 60); // 40-99
+    const status: LeadStatus = score >= 80 ? "hot" : score >= 60 ? "warm" : "cold";
+    const intent: LeadIntent = score >= 80 ? "High" : score >= 60 ? "Medium" : "Low";
+    const urgency: LeadUrgency = score >= 82 ? "Urgent" : score >= 62 ? "This week" : "Exploring";
+    const qualification: LeadQualification =
+      rng() < 0.55 ? "unreviewed" : rng() < 0.75 ? "qualified" : "disqualified";
+    const source: LeadSource =
+      platform === "linkedin" ? "linkedin" :
+      platform === "facebook" ? "facebook" : "instagram";
+
+    const handle = "@" + (first + "." + last).toLowerCase().replace(/[^a-z.]/g, "");
+    const domain = company.toLowerCase().replace(/[^a-z0-9]+/g, "") + pick(rng, [".com", ".co", ".io", ".studio"]);
+    const email = `${first}@${domain}`.toLowerCase();
+    const phone = `${loc.dial} ${String(1000 + Math.floor(rng() * 8999))}`;
+
+    const day = ((i * 3) % 27) + 1;
+    const hh = ((i * 7) % 22) + 1;
+    const mm = (i * 11) % 59;
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const postedAt = `${pad(day)}-06-2026 | ${pad(hh)}:${pad(mm)}`;
+
+    // Age → "updated" label
+    const ageMinutes = Math.floor(rng() * 60 * 24 * 10);
+    const updated =
+      ageMinutes < 60      ? `${ageMinutes}m ago` :
+      ageMinutes < 60 * 24 ? `${Math.floor(ageMinutes / 60)}h ago` :
+                             `${Math.floor(ageMinutes / (60 * 24))}d ago`;
+
+    const tags = TAG_POOL[category] ?? [];
+    const dealValue = 800 + Math.floor(rng() * 24_200);
+    const comments = Math.floor(rng() * 22);
+    const reactions = Math.max(1, Math.floor(rng() * 60) + (status === "hot" ? 15 : 0));
+    const shares = Math.floor(rng() * 8);
+    const drafts = Math.floor(rng() * 4);
+
+    const postId = Math.floor(rng() * 900_000_000) + 100_000_000;
+    const postUrl =
+      platform === "linkedin" ? `https://www.linkedin.com/posts/${first.toLowerCase()}-${last.toLowerCase()}-${postId}` :
+      platform === "reddit"   ? `https://www.reddit.com/r/webdev/comments/${postId.toString(36)}/` :
+      platform === "x"        ? `https://x.com/${first.toLowerCase()}${last.toLowerCase()}/status/${postId}` :
+      platform === "threads"  ? `https://www.threads.net/${first.toLowerCase()}.${last.toLowerCase()}/post/${postId.toString(36)}` :
+      platform === "instagram"? `https://www.instagram.com/p/${postId.toString(36)}/` :
+                                 `https://www.facebook.com/${first.toLowerCase()}.${last.toLowerCase()}/posts/${postId}`;
+
+    const replyAngles = REPLY_ANGLE_TEMPLATES.map((fn) => fn(first, category));
+
+    out.push({
+      id: slug(name, i),
+      name, company, role, source, score, status,
+      stage: pick(rng, STAGE_POOL),
+      owner: pick(rng, OWNER_POOL),
+      updated,
+      email, phone,
+      city: `${loc.city}, ${country.split(" ").map(w => w[0]).join("")}`,
+      country,
+      website: domain,
+      tags,
+      about: tmpl.excerpt,
+      dealValue,
+      createdAt: `Jun ${pad(day)}, 2026`,
+      category, intent, platform, qualification,
+      favourite: rng() < 0.18,
+      headline: tmpl.headline,
+      topic: tmpl.topic,
+      comments, drafts, postedAt,
+      postExcerpt: tmpl.excerpt,
+      postUrl,
+      authorHandle: handle,
+      urgency,
+      reactions, shares,
+      replyAngles,
+      flag: loc.flag,
+    });
+  }
+  return out;
+}
+
+export const LEADS: Lead[] = generateLeads(100);
 
 export const getLeadById = (id: string): Lead | undefined =>
   LEADS.find((l) => l.id === id);
