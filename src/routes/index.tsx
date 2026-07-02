@@ -14,7 +14,9 @@ import {
   SiShopify, SiWebflow, SiFramer, SiFacebook, SiReddit, SiX, SiInstagram, SiWordpress, SiWix,
   SiSlack, SiAsana, SiAirbnb, SiSpotify, SiFigma, SiGoogle, SiAtlassian, SiZoom, SiHubspot,
   SiNotion, SiLinear, SiVercel, SiStripe, SiThreads,
+  SiNextdotjs, SiReact, SiLaravel, SiPhp, SiNodedotjs,
 } from "react-icons/si";
+
 import { FaLinkedin as SiLinkedIn } from "react-icons/fa";
 
 export const Route = createFileRoute("/")({
