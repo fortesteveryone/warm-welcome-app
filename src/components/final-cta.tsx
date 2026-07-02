@@ -12,7 +12,9 @@ export function FinalCTA() {
   // duplicate first phrase at end for seamless loop
   const loop = [...PHRASES, PHRASES[0]];
   const stepPct = 100 / loop.length;
-  const totalSec = PHRASES.length * 2.8;
+  const totalSec = PHRASES.length * 3.6;
+  const fadeMask =
+    "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 8%, #000 28%, #000 72%, rgba(0,0,0,0.15) 92%, transparent 100%)";
 
   return (
     <section className="relative section-edge section-dark overflow-hidden">
@@ -25,24 +27,26 @@ export function FinalCTA() {
 
           {/* Scrolling headline */}
           <div
-            className="relative mx-auto overflow-hidden"
-            style={{ height: "2.2em" }}
+            className="relative mx-auto overflow-hidden h-[10rem] md:h-[14rem] lg:h-[16rem]"
+            style={{
+              WebkitMaskImage: fadeMask,
+              maskImage: fadeMask,
+            }}
           >
             <div
               className="flex flex-col"
               style={{
-                animation: `cta-scroll ${totalSec}s cubic-bezier(0.65,0,0.35,1) infinite`,
+                animation: `cta-scroll ${totalSec}s cubic-bezier(0.7,0,0.3,1) infinite`,
               }}
             >
               {loop.map(([a, b], i) => (
                 <div
                   key={i}
-                  className="flex shrink-0 flex-col items-center justify-center"
-                  style={{ height: "2.2em" }}
+                  className="flex h-[10rem] shrink-0 flex-col items-center justify-center md:h-[14rem] lg:h-[16rem]"
                 >
-                  <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl lg:text-6xl">
+                  <h2 className="text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.03em] md:text-6xl lg:text-7xl">
                     <span className="block">{a}</span>
-                    <span className="block bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">
+                    <span className="block bg-gradient-to-b from-foreground to-foreground/50 bg-clip-text text-transparent">
                       {b}
                     </span>
                   </h2>
