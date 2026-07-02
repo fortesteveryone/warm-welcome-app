@@ -173,7 +173,7 @@ export function SiteFooter() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-md opacity-40 blur-3xl"
         style={{ background: "radial-gradient(closest-side, rgba(34,197,94,0.35), transparent 70%)" }}
       />
-      <Container className="relative py-20">
+      <Container className="relative pt-20 pb-6">
         {/* Top: CTA row */}
         <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-12 md:flex-row md:items-end">
           <div className="max-w-xl">
