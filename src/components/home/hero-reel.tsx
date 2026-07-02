@@ -68,7 +68,7 @@ export function HeroReel() {
       </div>
 
       {/* feed — leads cascade in from top */}
-      <div className="relative h-[440px] overflow-hidden p-3">
+      <div className="relative h-[260px] md:h-[440px] overflow-hidden p-3">
         <div className="reel-feed space-y-2">
           {[...REEL_LEADS, ...REEL_LEADS].map((l, i) => (
             <div
