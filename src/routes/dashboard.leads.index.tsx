@@ -534,8 +534,8 @@ function LeadPostCard({
           onClick={onOpen}
           className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-semibold transition ${
             isOpened
-              ? "border border-border bg-white text-foreground hover:bg-muted"
-              : "bg-[color:var(--signal)] text-white shadow-[0_6px_20px_-8px_color-mix(in_oklab,var(--signal)_60%,transparent)] hover:brightness-110"
+              ? "border border-border bg-background text-foreground hover:bg-muted"
+              : "bg-[color:var(--signal)] text-black shadow-[0_6px_20px_-8px_color-mix(in_oklab,var(--signal)_60%,transparent)] hover:brightness-110"
           }`}
         >
           {isOpened ? "View details" : "Open post"} <ArrowRight className="h-3 w-3" />
