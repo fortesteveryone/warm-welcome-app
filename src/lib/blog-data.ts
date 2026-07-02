@@ -1,12 +1,13 @@
-import facebookGroupsCover from "@/assets/blog/facebook-groups.jpg";
-import wordpressVsWebflowCover from "@/assets/blog/wordpress-vs-webflow.jpg";
-import wordpressChecklistCover from "@/assets/blog/wordpress-checklist.jpg";
-import webflowPricingCover from "@/assets/blog/webflow-pricing.jpg";
-import linkedinDmCover from "@/assets/blog/linkedin-dm.jpg";
-import discoveryQuestionsCover from "@/assets/blog/discovery-questions.jpg";
-import framerVsWixCover from "@/assets/blog/framer-vs-wix.jpg";
-import cmsMigrationCover from "@/assets/blog/cms-migration.jpg";
-import freelancerToAgencyCover from "@/assets/blog/freelancer-to-agency.jpg";
+// Real photography (Unsplash) — people, offices, real screens.
+const facebookGroupsCover = "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1600&q=80";
+const wordpressVsWebflowCover = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=80";
+const wordpressChecklistCover = "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80";
+const webflowPricingCover = "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80";
+const linkedinDmCover = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80";
+const discoveryQuestionsCover = "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1600&q=80";
+const framerVsWixCover = "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1600&q=80";
+const cmsMigrationCover = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80";
+const freelancerToAgencyCover = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80";
 
 export type BlogPost = {
   slug: string;
