@@ -134,7 +134,7 @@ export function SiteFooter() {
     {
       title: "Product",
       links: [
-        { label: "Features", href: "/#features" },
+        { label: "After login", href: "/#features" },
         { label: "Platforms", href: "/#platforms" },
         { label: "Scoring", href: "/#scoring" },
         { label: "Pricing", href: "/#pricing" },
