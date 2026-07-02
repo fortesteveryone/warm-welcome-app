@@ -43,6 +43,9 @@ function GdprPage() {
       <Section title="5. Supervisory authority">
         <p>You always have the right to lodge a complaint with your local data protection authority.</p>
       </Section>
+      <Section title="6. Data Processing Agreement (DPA)">
+        <p>Business customers can request a Data Processing Agreement at <a className="text-foreground underline" href="mailto:privacy@growbylead.com">privacy@growbylead.com</a>. We countersign and return within a few business days.</p>
+      </Section>
     </PageShell>
   );
 }
