@@ -423,7 +423,7 @@ function LeadPostCard({
   return (
     <article
       className={[
-        "group relative isolate flex flex-col overflow-hidden rounded-2xl border bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition",
+        "group relative isolate flex flex-col overflow-hidden rounded-2xl border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.4)] transition",
         isOpened
           ? "border-border/70 opacity-90 hover:opacity-100"
           : "border-border hover:border-foreground/25 hover:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.15)]",
@@ -442,7 +442,7 @@ function LeadPostCard({
       {/* ── Post header: avatar + name/handle · time + platform tile ── */}
       <header className="flex items-start gap-3 px-4 pt-4">
         <span
-          className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[13px] font-semibold text-white ring-2 ring-white"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[13px] font-semibold text-white ring-2 ring-background"
           style={{ background: `linear-gradient(135deg, ${v.brand}, color-mix(in oklab, ${v.brand} 60%, #111))` }}
           aria-hidden
         >
@@ -534,8 +534,8 @@ function LeadPostCard({
           onClick={onOpen}
           className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-semibold transition ${
             isOpened
-              ? "border border-border bg-white text-foreground hover:bg-muted"
-              : "bg-[color:var(--signal)] text-white shadow-[0_6px_20px_-8px_color-mix(in_oklab,var(--signal)_60%,transparent)] hover:brightness-110"
+              ? "border border-border bg-background text-foreground hover:bg-muted"
+              : "bg-[color:var(--signal)] text-black shadow-[0_6px_20px_-8px_color-mix(in_oklab,var(--signal)_60%,transparent)] hover:brightness-110"
           }`}
         >
           {isOpened ? "View details" : "Open post"} <ArrowRight className="h-3 w-3" />
