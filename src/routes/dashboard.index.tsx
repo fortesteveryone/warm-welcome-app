@@ -83,7 +83,7 @@ function Overview() {
               <span className="text-sm text-muted-foreground">credits left · resets {CREDITS.resets}</span>
             </div>
             <div className="mt-3 h-2 w-full overflow-hidden rounded-md bg-card">
-              <div className="h-full bg-foreground/70" style={{ width: `${creditsPct}%` }} />
+              <div className="h-full bg-[color:var(--signal,oklch(0.72_0.19_145))]" style={{ width: `${creditsPct}%` }} />
             </div>
             <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted-foreground">
               <span>Used {CREDITS.used} of {CREDITS.included}</span>
@@ -103,7 +103,7 @@ function Overview() {
           <div className="flex flex-col gap-2">
             <Link
               to="/dashboard/leads"
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-foreground px-3 text-sm font-medium text-background hover:bg-foreground/90"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-[color:var(--signal,oklch(0.72_0.19_145))] px-3 text-sm font-medium text-background shadow-[0_8px_24px_-10px_color-mix(in_oklab,var(--signal,oklch(0.72_0.19_145))_60%,transparent)] hover:brightness-110"
             >
               <Inbox className="h-4 w-4" /> Browse leads
             </Link>
