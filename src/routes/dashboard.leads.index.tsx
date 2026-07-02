@@ -442,7 +442,7 @@ function LeadPostCard({
       {/* ── Post header: avatar + name/handle · time + platform tile ── */}
       <header className="flex items-start gap-3 px-4 pt-4">
         <span
-          className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[13px] font-semibold text-white ring-2 ring-white"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[13px] font-semibold text-white ring-2 ring-background"
           style={{ background: `linear-gradient(135deg, ${v.brand}, color-mix(in oklab, ${v.brand} 60%, #111))` }}
           aria-hidden
         >
