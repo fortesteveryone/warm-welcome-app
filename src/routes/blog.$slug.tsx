@@ -71,7 +71,10 @@ function Mono({ children, className = "" }: { children: React.ReactNode; classNa
 function BlogDetail() {
   const { post, related } = Route.useLoaderData() as { post: BlogPost; related: BlogPost[] };
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined" ? window.location.href : `https://growbylead.com/blog/${post.slug}`;
+  const [url, setUrl] = useState(`https://growbylead.com/blog/${post.slug}`);
+  useEffect(() => {
+    if (typeof window !== "undefined") setUrl(window.location.href);
+  }, [post.slug]);
   const enc = encodeURIComponent;
   const shareText = `${post.title} — ${post.excerpt}`;
 
