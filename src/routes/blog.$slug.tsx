@@ -215,40 +215,71 @@ function BlogDetail() {
         </Container>
       </section>
 
-      {/* CTA — matches site FinalCTA styling */}
+      {/* CTA — high-contrast minimalist */}
       <section className="relative section-edge section-dark overflow-hidden">
         <Container className="relative py-16 md:py-20">
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
-            <div aria-hidden className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/15 blur-3xl" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,oklch(0.72_0.19_145/0.10),transparent_60%)]" />
+          <div className="group relative overflow-hidden rounded-[2rem] border border-border bg-card p-10 text-center md:p-20">
+            {/* background flourish */}
+            <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div className="absolute -top-24 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/10 blur-[120px]" />
+              <div
+                className="absolute inset-0 opacity-[0.05]"
+                style={{
+                  backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+                  backgroundSize: "40px 40px",
+                }}
+              />
             </div>
-            <Mono className="relative text-[color:var(--signal)]">Start with Postly</Mono>
-            <h2 className="relative mt-4 text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
-              Stop reading.<br />
-              <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
-            </h2>
-            <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">
-              Get 365+ verified website service opportunities every day — hand-collected, AI-scored, ready to pitch.
-            </p>
-            <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
+
+            {/* micro-label */}
+            <div className="relative z-10 mb-8 flex justify-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-1.5 shadow-sm backdrop-blur">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--signal)] opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--signal)]" />
+                </span>
+                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Start with Postly</span>
+              </span>
+            </div>
+
+            {/* headline */}
+            <div className="relative z-10 mx-auto mb-12 max-w-3xl">
+              <h2 className="text-balance text-5xl font-extrabold leading-[1.05] tracking-[-0.03em] text-foreground md:text-7xl">
+                Stop reading.
+                <span className="block text-muted-foreground/50">Start closing.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                Get 365+ verified website service opportunities every day — hand-collected, AI-scored, ready to pitch.
+              </p>
+            </div>
+
+            {/* actions */}
+            <div className="relative z-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 to="/"
                 hash="pricing"
-                className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90"
+                className="group/btn relative w-full sm:w-auto"
               >
-                Get early access <ArrowRight className="h-4 w-4" />
+                <span className="absolute -inset-1 rounded-2xl bg-[color:var(--signal)]/25 opacity-0 blur transition-opacity group-hover/btn:opacity-100" />
+                <span className="relative flex items-center justify-center gap-3 rounded-2xl bg-foreground px-8 py-4 text-base font-bold text-background transition active:scale-[0.98] md:px-10 md:py-5 md:text-lg">
+                  Get early access
+                  <ArrowRight className="h-5 w-5 text-[color:var(--signal)] transition-transform group-hover/btn:translate-x-1.5" strokeWidth={2.5} />
+                </span>
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card"
+                className="w-full rounded-2xl border border-border bg-background/40 px-8 py-4 text-center text-base font-bold text-foreground backdrop-blur transition hover:border-border hover:bg-card active:scale-[0.98] sm:w-auto md:px-10 md:py-5 md:text-lg"
               >
                 Talk to us
               </Link>
             </div>
+
+            {/* bottom edge accent */}
+            <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[color:var(--signal)]/40 to-transparent" />
           </div>
         </Container>
       </section>
+
 
 
 
