@@ -240,17 +240,11 @@ function PostCard({ p }: { p: BlogPost }) {
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-[15px] font-semibold leading-snug tracking-tight text-foreground md:text-base">{p.title}</h3>
         <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{p.excerpt}</p>
-        <div className="mt-5 flex flex-wrap gap-1.5">
-          {p.tags.slice(0, 2).map((t) => (
-            <span key={t} className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">#{t}</span>
-          ))}
-        </div>
-        <div className="mt-auto flex items-center justify-between gap-3 border-t border-border pt-4">
-          <div className="flex items-center gap-2 min-w-0">
-            <img src={p.author.avatar} alt="" className="h-6 w-6 shrink-0 rounded-full object-cover" />
-            <span className="truncate text-[11px] text-muted-foreground">
-              {p.author.name} · {p.readMinutes} min
-            </span>
+        <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+          <div className="flex flex-wrap gap-1.5">
+            {p.tags.slice(0, 2).map((t) => (
+              <span key={t} className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">#{t}</span>
+            ))}
           </div>
           <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-[color:var(--signal)]" />
         </div>
