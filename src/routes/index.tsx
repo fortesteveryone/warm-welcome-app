@@ -278,9 +278,10 @@ const scopeCategories: {
 ];
 
 const outOfScope = [
-  "SEO-only requests", "Paid ads", "Logo design only", "Social media management",
-  "Recruiting posts", "General business directories", "Physical product leads", "Unrelated service categories",
+  "E-commerce only", "Plumber sites only", "Portfolio only", "Restaurant sites only",
+  "Real estate only", "WordPress only", "Next.js only", "PHP only", "Shopify only",
 ];
+
 
 function Scope() {
   return (
