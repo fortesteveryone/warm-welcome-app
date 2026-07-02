@@ -119,12 +119,6 @@ function BlogDetail() {
             {titleNode}
           </h1>
           <p className="mt-4 max-w-4xl text-base text-muted-foreground md:text-lg">{post.excerpt}</p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-            <span>{formatDate(post.date)}</span>
-            <span className="h-1 w-1 rounded-full bg-border" />
-            <span>{Math.max(3, Math.round(post.body.reduce((n, b) => n + (b.text?.split(" ").length ?? 0), 0) / 220))} min read</span>
-          </div>
         </Container>
       </section>
 
