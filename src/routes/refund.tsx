@@ -22,7 +22,7 @@ function RefundPage() {
       updated="June 2026"
     >
       <Section title="1. 7-day money-back guarantee">
-        <p>If you're not happy with your first paid month, email us within 7 days of the first charge and we'll refund 100%. No forms, no calls.</p>
+        <p>If you're not happy with your first paid month, email us within 7 days of the first charge and we'll refund 100%. No forms, no calls. <em>Applies once paid billing launches.</em></p>
       </Section>
       <Section title="2. Bad-lead credits">
         <p>If a lead has a broken source link, is a duplicate of one we shipped in the past 30 days, or is in a country you've explicitly excluded, report it and we credit your account for the next billing cycle.</p>
