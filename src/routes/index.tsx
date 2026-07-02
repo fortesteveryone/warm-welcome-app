@@ -265,7 +265,7 @@ function Scope() {
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
           {scopeCategories.map(({ Icon, title, tags }) => (
-            <div key={title} className="rounded-xl border border-border bg-card/60 p-5 transition hover:bg-card">
+            <div key={title} className="rounded-xl border border-border bg-white p-5 transition hover:bg-white">
               <div className="flex items-center gap-3">
                 <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                   <Icon className="h-4 w-4" />
@@ -297,7 +297,7 @@ function Scope() {
               Anyone selling website design, development, redesign, rebuild, landing pages, CMS setup, or platform migration services. If a public post asks for this kind of website help, it belongs in Postly.
             </p>
           </div>
-          <div className="rounded-xl border border-border bg-card/50 p-5">
+          <div className="rounded-xl border border-border bg-white p-5">
             <div className="flex items-center gap-2">
               <X className="h-4 w-4 text-red-500" />
               <Mono className="text-red-500">Not in scope</Mono>
