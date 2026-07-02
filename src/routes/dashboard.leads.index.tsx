@@ -425,11 +425,18 @@ function LeadPostCard({
       className={[
         "group relative isolate flex flex-col overflow-hidden rounded-2xl border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.4)] transition",
         isOpened
-          ? "border-border/70 opacity-90 hover:opacity-100"
+          ? "border-border/60 bg-muted/40 saturate-[0.85]"
           : "border-border hover:border-foreground/25 hover:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.15)]",
         selected ? "ring-2 ring-[color:var(--signal)]/60" : "",
       ].join(" ")}
     >
+      {/* VISITED corner ribbon */}
+      {isOpened && (
+        <div className="pointer-events-none absolute -left-9 top-3 z-10 -rotate-45 select-none bg-muted-foreground/25 px-10 py-0.5 text-[9px] font-bold uppercase tracking-widest text-foreground/70 backdrop-blur">
+          Visited
+        </div>
+      )}
+
       {/* select checkbox — top-right, appears on hover */}
       <input
         type="checkbox"
@@ -438,6 +445,7 @@ function LeadPostCard({
         className="absolute right-3 top-3 z-10 h-3.5 w-3.5 accent-[color:var(--signal)] opacity-0 transition group-hover:opacity-100"
         aria-label="Select lead"
       />
+
 
       {/* ── Post header: avatar + name/handle · time + platform tile ── */}
       <header className="flex items-start gap-3 px-4 pt-4">
