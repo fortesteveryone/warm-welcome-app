@@ -162,6 +162,8 @@ export function SiteFooter() {
         { label: "Privacy", to: "/privacy" },
         { label: "Terms", to: "/terms" },
         { label: "GDPR", to: "/gdpr" },
+        { label: "Refund", to: "/refund" },
+        { label: "Data usage", to: "/data-usage" },
       ],
     },
   ];
