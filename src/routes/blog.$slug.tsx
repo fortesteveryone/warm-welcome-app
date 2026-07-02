@@ -13,6 +13,7 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const { post } = loaderData;
+    const url = `https://friendly-code-place.lovable.app/blog/${post.slug}`;
     return {
       meta: [
         { title: `${post.title} — Postly Blog` },
@@ -21,11 +22,13 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: post.excerpt },
         { property: "og:image", content: post.cover },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title },
         { name: "twitter:description", content: post.excerpt },
         { name: "twitter:image", content: post.cover },
       ],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   notFoundComponent: () => (
