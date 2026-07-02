@@ -387,7 +387,7 @@ function AfterLogin() {
           {afterLoginItems.map(({ Icon, title, body }, i) => (
             <div key={title} className="group relative rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
               <div className="flex items-center justify-between">
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
+                <div className="icon-pop grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                   <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </div>
                 <Mono className="text-muted-foreground">0{i + 1}</Mono>
