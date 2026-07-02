@@ -278,9 +278,10 @@ const scopeCategories: {
 ];
 
 const outOfScope = [
-  "SEO-only requests", "Paid ads", "Logo design only", "Social media management",
-  "Recruiting posts", "General business directories", "Physical product leads", "Unrelated service categories",
+  "E-commerce only", "Plumber sites only", "Portfolio only", "Restaurant sites only",
+  "Real estate only", "WordPress only", "Next.js only", "PHP only", "Shopify only",
 ];
+
 
 function Scope() {
   return (
@@ -355,6 +356,9 @@ function Scope() {
               <X className="h-4 w-4 text-red-500" />
               <Mono className="text-red-500">Not in scope</Mono>
             </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              We don't filter by niche or platform — every website-service post is in, no matter the industry or stack.
+            </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {outOfScope.map((t) => (
                 <span key={t} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-2 py-0.5 text-[11px] text-foreground/70 line-through decoration-red-500/60 decoration-[0.5px]">
@@ -362,6 +366,7 @@ function Scope() {
                 </span>
               ))}
             </div>
+
           </div>
         </div>
 
