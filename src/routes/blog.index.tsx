@@ -7,9 +7,9 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Blog — Postly" },
+      { title: "Blogs — Postly" },
       { name: "description", content: "Tactics, templates and playbooks for website design, development and CMS agencies, freelancers and lead-gen teams." },
-      { property: "og:title", content: "Postly — Blog" },
+      { property: "og:title", content: "Postly — Blogs" },
       { property: "og:description", content: "Lead generation, outreach, web design, development and CMS playbooks for agencies and freelancers." },
     ],
   }),
@@ -71,7 +71,7 @@ function BlogIndex() {
           >
             <ArrowLeft className="h-3 w-3" /> Back home
           </Link>
-          <Mono className="mt-6 block text-muted-foreground">Blog</Mono>
+          <Mono className="mt-6 block text-muted-foreground">Blogs</Mono>
           <h1 className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-tight md:text-5xl">
             Playbooks for selling website{" "}
             <span className="text-[color:var(--signal)]">&amp; CMS services.</span>
