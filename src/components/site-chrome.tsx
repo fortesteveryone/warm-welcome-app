@@ -266,18 +266,18 @@ export function SiteFooter() {
         <svg
           viewBox="0 0 1000 140"
           preserveAspectRatio="xMidYMin slice"
-          className="absolute inset-x-0 top-0 h-auto w-full"
+          className="absolute inset-x-0 top-0 w-full"
           style={{ height: "122%" }}
         >
           <defs>
             <linearGradient id="wm-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="45%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="50%" stopColor="#22C55E" stopOpacity="1" />
-              <stop offset="55%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
-              <animate attributeName="x1" values="-100%;100%" dur="6s" repeatCount="indefinite" />
-              <animate attributeName="x2" values="0%;200%" dur="6s" repeatCount="indefinite" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.14" />
+              <stop offset="40%" stopColor="#ffffff" stopOpacity="0.18" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="60%" stopColor="#ffffff" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.14" />
+              <animate attributeName="x1" values="-60%;60%;-60%" dur="6s" repeatCount="indefinite" />
+              <animate attributeName="x2" values="40%;160%;40%" dur="6s" repeatCount="indefinite" />
             </linearGradient>
           </defs>
           <text
