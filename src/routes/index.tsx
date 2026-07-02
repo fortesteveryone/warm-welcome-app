@@ -317,8 +317,6 @@ function Scope() {
         </div>
 
 
-          ))}
-        </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-2">
           <div className="relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-5">
