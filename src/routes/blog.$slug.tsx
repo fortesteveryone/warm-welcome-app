@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { BLOG_POSTS, getPostBySlug, getRelatedPosts, type BlogPost } from "@/lib/blog-data";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { FinalCTA } from "@/components/final-cta";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
