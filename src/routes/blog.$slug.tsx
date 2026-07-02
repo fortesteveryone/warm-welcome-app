@@ -287,21 +287,58 @@ function BlogDetail() {
   );
 }
 
-/* Tiny inline brand icons */
-function XIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
+/* Real brand icons — official SVG paths */
+type IconProps = { className?: string };
+const svgProps = (className: string) => ({
+  viewBox: "0 0 24 24",
+  className,
+  fill: "currentColor" as const,
+  "aria-hidden": true as const,
+});
+
+function XIcon({ className = "h-4 w-4" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+    <svg {...svgProps(className)}>
       <path d="M18.244 2H21l-6.49 7.41L22 22h-6.81l-4.78-6.26L4.8 22H2l6.94-7.93L2 2h6.94l4.32 5.72L18.244 2Zm-2.39 18h1.88L7.27 4H5.29l10.564 16Z" />
     </svg>
   );
 }
-function RedditIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
+function LinkedInIcon({ className = "h-4 w-4" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+    <svg {...svgProps(className)}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z" />
+    </svg>
+  );
+}
+function FacebookIcon({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg {...svgProps(className)}>
+      <path d="M24 12a12 12 0 1 0-13.88 11.85v-8.38H7.08V12h3.04V9.36c0-3 1.79-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12Z" />
+    </svg>
+  );
+}
+function WhatsAppIcon({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg {...svgProps(className)}>
+      <path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.44-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35ZM12.05 21.5h-.01a9.44 9.44 0 0 1-4.81-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.43 9.44-9.43a9.4 9.4 0 0 1 6.68 2.77 9.4 9.4 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43ZM20.52 3.47A11.34 11.34 0 0 0 12.05.02C5.8.02.71 5.11.71 11.36c0 2 .52 3.95 1.51 5.67L.6 22.98l6.06-1.59a11.32 11.32 0 0 0 5.39 1.38h.01c6.25 0 11.34-5.09 11.34-11.34a11.28 11.28 0 0 0-3.32-8.06Z" />
+    </svg>
+  );
+}
+function RedditIcon({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg {...svgProps(className)}>
       <path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm5.7 12.3a1.5 1.5 0 0 1-.1 2.1c-1.5 1.4-4 2.3-5.6 2.3s-4.1-.9-5.6-2.3a1.5 1.5 0 0 1 2-2.2c.8.8 2.3 1.5 3.6 1.5s2.8-.7 3.6-1.5a1.5 1.5 0 0 1 2.1.1Zm-7.8-2.1a1.6 1.6 0 1 1-3.1 0 1.6 1.6 0 0 1 3.1 0Zm7.3 0a1.6 1.6 0 1 1-3.1 0 1.6 1.6 0 0 1 3.1 0ZM18.8 6a1.8 1.8 0 0 0-1.3.6c-1.1-.7-2.5-1.1-4-1.2l.8-3.5 2.5.6a1.5 1.5 0 1 0 .2-1l-3-.7a.5.5 0 0 0-.6.4l-.9 4.2c-1.6.1-3 .5-4.2 1.2A1.8 1.8 0 1 0 6 9.4a3 3 0 0 0 0 .8c0 2.7 3 4.9 6.6 4.9s6.6-2.2 6.6-4.9a3 3 0 0 0 0-.8A1.8 1.8 0 0 0 18.8 6Z" />
     </svg>
   );
 }
+function TelegramIcon({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg {...svgProps(className)}>
+      <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm5.56 8.16-1.86 8.78c-.14.62-.51.77-1.03.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.28-4.77c.23-.2-.05-.32-.36-.12l-6.52 4.11-2.81-.88c-.61-.19-.62-.61.13-.9l10.98-4.24c.51-.19.96.12.78.94Z" />
+    </svg>
+  );
+}
+
 
 /* keep BLOG_POSTS import referenced when tree-shaking (no-op) */
 void BLOG_POSTS;
