@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Postly — Website service opportunities from public social posts" },
-      { name: "description", content: "Postly turns public website-service posts on Facebook, LinkedIn, Instagram and Reddit into structured, scored, outreach-ready opportunities for web agencies, freelancers and CMS specialists." },
+      { name: "description", content: "Postly turns public website-service posts on Facebook, LinkedIn, and Reddit into structured, scored, outreach-ready opportunities for web agencies, freelancers and CMS specialists." },
       { property: "og:title", content: "Postly — Website service opportunities from public social posts" },
       { property: "og:description", content: "Find website design, development, redesign and CMS opportunities from public social posts — scored and ready for outreach." },
       { property: "og:url", content: "https://friendly-code-place.lovable.app/" },
@@ -435,7 +435,7 @@ type PlatformEntry = {
 const platforms: PlatformEntry[] = [
   { icon: SiFacebook,  color: "#1877F2", name: "Facebook",  state: "live", note: "Public groups and pages where business owners ask for website help." },
   { icon: SiLinkedIn,  color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Founder posts, agency requests, and public website service recommendations." },
-  { icon: SiInstagram, color: "#E4405F", name: "Instagram", state: "live", note: "Captions and comments from creators and businesses asking for website support." },
+  { icon: SiInstagram, color: "#E4405F", name: "Instagram", state: "soon", note: "Captions and comments from creators and businesses asking for website support." },
   { icon: SiReddit,    color: "#FF4500", name: "Reddit",    state: "live", note: "Niche communities where people discuss website fixes, rebuilds, and CMS help." },
   { icon: SiX,         color: "#0F0F0F", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
   { icon: SiThreads,   color: "#0F0F0F", name: "Threads",   state: "soon", note: "Conversation-first posts from creators and small businesses asking for support." },
@@ -455,7 +455,7 @@ function Platforms() {
         <SectionTitle
           kicker="Platforms"
           title={<>Monitor the places where <span className="text-[color:var(--signal)]">buyers ask for website help.</span></>}
-          lede="Postly currently tracks Facebook, LinkedIn, Instagram, and Reddit, with X and Threads planned for future coverage."
+          lede="Postly currently tracks Facebook, LinkedIn, and Reddit, with Instagram, X, and Threads planned for future coverage."
         />
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -838,7 +838,7 @@ function BuiltFor() {
 const faqs = [
   { q: "What kind of leads will I get?", a: "You will get public posts where people ask for website design, development, redesign, rebuild, landing page, CMS setup, WordPress, Webflow, Wix, Framer, or Shopify website help." },
   { q: "What do I get after login?", a: "You get a fresh opportunity feed, structured profiles, scoring with reasons, original post proof, outreach drafts, filters, save actions, and export options." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, Instagram, and Reddit are live. X and Threads are planned for future coverage." },
+  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, and Reddit are live. Instagram, X, and Threads are planned for future coverage." },
   { q: "How many leads will I get per day?", a: "Postly surfaces 365+ fresh website-service posts daily. Exact volume can vary by platform, country, and source activity." },
   { q: "Which countries do the leads come from?", a: "Postly monitors public website-service posts from 30+ countries. Country is shown only when it is clear from the post, profile, or source context." },
   { q: "Do you guess missing information?", a: "No. If budget, country, service type, or contact details are not clear from the original post, Postly marks the field as unknown." },

@@ -70,7 +70,7 @@ export function ProductShowcase() {
                 Your website opportunity feed, organized and ready.
               </h3>
               <p className="mt-2 max-w-md text-sm text-white/60">
-                Review fresh public posts from Facebook, LinkedIn, Instagram, and Reddit with filters, scores, and source proof in one clean view.
+                Review fresh public posts from Facebook, LinkedIn, and Reddit with filters, scores, and source proof in one clean view.
               </p>
               <div className="relative mt-6 overflow-hidden rounded-xl border border-white/10">
                 <img
@@ -289,8 +289,6 @@ export function StatsStrip() {
     { Icon: SiFacebook, color: "#1877F2" },
     { Icon: SiLinkedIn, color: "#0A66C2" },
     { Icon: SiReddit, color: "#FF4500" },
-    { Icon: SiX, color: "#000000" },
-    { Icon: SiInstagram, color: "#E4405F" },
   ];
   return (
     <section className="section-edge section-light">
@@ -332,7 +330,7 @@ export function StatsStrip() {
 
               {/* Platforms */}
               <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white p-5">
-                <div className="text-3xl font-semibold tracking-tight text-foreground">5</div>
+                <div className="text-3xl font-semibold tracking-tight text-foreground">3</div>
                 <div className="mt-1 text-xs text-muted-foreground">Platforms parsed</div>
                 <div className="mt-3 flex items-center gap-1.5">
                   {platforms.map(({ Icon, color }, i) => (
