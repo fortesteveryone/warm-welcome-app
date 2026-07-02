@@ -836,18 +836,14 @@ function BuiltFor() {
 
 /* ---------- FAQ ---------- */
 const faqs = [
-  { q: "What kind of leads will I get?", a: "You will get public posts where people ask for website design, development, redesign, rebuild, landing page, CMS setup, WordPress, Webflow, Wix, Framer, or Shopify website help." },
-  { q: "What do I get after login?", a: "You get a fresh opportunity feed, structured profiles, scoring with reasons, original post proof, outreach drafts, filters, save actions, and export options." },
-  { q: "Which platforms are supported?", a: "Facebook, LinkedIn, and Reddit are live. Instagram, X, and Threads are planned for future coverage." },
-  { q: "How many leads will I get per day?", a: "Postly surfaces 365+ fresh website-service posts daily. Exact volume can vary by platform, country, and source activity." },
-  { q: "Which countries do the leads come from?", a: "Postly monitors public website-service posts from 30+ countries. Country is shown only when it is clear from the post, profile, or source context." },
-  { q: "Do you guess missing information?", a: "No. If budget, country, service type, or contact details are not clear from the original post, Postly marks the field as unknown." },
-  { q: "Can I see the original post?", a: "Yes. Each opportunity includes source proof so you can verify the original post before contacting anyone." },
-  { q: "Who is this for?", a: "Postly is for web agencies, web designers, web developers, WordPress developers, Webflow experts, Wix specialists, Framer specialists, Shopify website specialists, freelancers, and CMS teams." },
-  { q: "Do I get outreach messages?", a: "Yes. Postly provides multiple reply angles that you can personalize before sending." },
-  { q: "How is the lead score calculated?", a: "The score is based on intent, urgency, budget signal, competition, freshness, and service fit. Each score includes a short reason." },
-  { q: "Can I export leads to my own CRM?", a: "Yes. Pro users can export opportunities and organize them inside their own outreach or CRM workflow." },
+  { q: "Do you guess missing information?", a: "No. If budget, country, service type, or contact details are not clear from the original post, Postly marks the field as unknown — we never invent details." },
+  { q: "Can I see the original post?", a: "Yes. Each opportunity includes source proof with a direct link so you can verify the original post before contacting anyone." },
+  { q: "Can I export leads to my own CRM?", a: "Yes. Pro users can export opportunities as CSV and plug them into HubSpot, Pipedrive, Notion, Airtable, or any outreach workflow you already use." },
+  { q: "How fast do new posts show up in Postly?", a: "Most public posts appear in your feed within a few hours of being published, depending on the platform and source activity." },
+  { q: "Do I need to connect my own social accounts?", a: "No. Postly reads only publicly-visible posts through its own infrastructure — you don't connect Facebook, LinkedIn, or Reddit accounts." },
+  { q: "What happens if I cancel?", a: "You keep access until the end of your billing period, and any leads you've already exported stay yours. No lock-in, no data held hostage." },
 ];
+
 
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
