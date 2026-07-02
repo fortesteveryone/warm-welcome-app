@@ -173,7 +173,7 @@ function BlogDetail() {
                 <Mono className="text-muted-foreground">Share this article</Mono>
                 <p className="mt-2 text-sm text-foreground/70">Found this useful? Send it to someone who needs it.</p>
 
-                <div className="mt-4 grid grid-cols-6 gap-2 md:grid-cols-3">
+                <div className="mt-4 grid grid-cols-6 gap-1.5 sm:gap-2 md:grid-cols-3">
                   {shareLinks.map((s) => (
                     <a
                       key={s.name}
@@ -182,13 +182,14 @@ function BlogDetail() {
                       rel="noopener noreferrer"
                       aria-label={`Share on ${s.name}`}
                       title={`Share on ${s.name}`}
-                      style={{ ["--brand" as string]: s.brand }}
-                      className="group/share relative flex aspect-square items-center justify-center rounded-xl border border-border bg-white text-foreground/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent hover:text-white hover:shadow-[0_10px_24px_-12px_var(--brand)] hover:bg-[color:var(--brand)]"
+                      style={{ ["--brand" as string]: s.brand, color: s.brand }}
+                      className="group/share relative flex aspect-square min-w-0 items-center justify-center rounded-xl border border-border bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent hover:text-white hover:shadow-[0_10px_24px_-12px_var(--brand)] hover:bg-[color:var(--brand)]"
                     >
-                      <s.Icon className="h-[18px] w-[18px]" />
+                      <s.Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
                     </a>
                   ))}
                 </div>
+
 
                 <button
                   type="button"
