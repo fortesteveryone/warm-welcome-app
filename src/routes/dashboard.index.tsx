@@ -28,7 +28,7 @@ function Overview() {
   const byPlatform = useMemo(() => {
     const map = new Map<string, number>();
     for (const l of LEADS) map.set(l.platform, (map.get(l.platform) ?? 0) + 1);
-    return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+    return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
   }, []);
 
   const byCountry = useMemo(() => {
@@ -96,7 +96,7 @@ function Overview() {
 
       {/* Platform strip */}
       <Panel title="By platform" description="Today's lead volume by source">
-        <div className="grid grid-cols-4 gap-3 p-5 sm:grid-cols-6 md:grid-cols-8">
+        <div className="grid grid-cols-4 gap-3 p-5 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10">
           {byPlatform.map(([p, count]) => {
             const v = platformVisual(p as any);
             return (
