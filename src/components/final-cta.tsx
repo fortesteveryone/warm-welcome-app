@@ -56,9 +56,10 @@ export function FinalCTA() {
           </div>
 
 
-          <p className="relative mx-auto mt-6 max-w-lg text-muted-foreground">
+          <p className="relative mx-auto mt-4 max-w-lg text-sm text-muted-foreground md:text-base">
             Find structured, scored website opportunities from public social posts without manually checking every platform.
           </p>
+
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/"
