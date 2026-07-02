@@ -72,9 +72,9 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <div className={`rounded-xl border border-border bg-card/40 ${className}`}>
+    <div className={`panel-premium ${className}`}>
       {(title || actions) && (
-        <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
+        <div className="flex items-center justify-between border-b border-border/70 px-5 py-3.5">
           <div className="min-w-0">
             {title && <h2 className="text-sm font-semibold tracking-tight">{title}</h2>}
             {description && <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>}
@@ -86,6 +86,7 @@ export function Panel({
     </div>
   );
 }
+
 
 export function Badge({
   children,
