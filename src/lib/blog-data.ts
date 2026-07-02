@@ -46,7 +46,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Lead generation",
     tags: ["Facebook", "Outreach", "Web design"],
     author: { name: "Arifa Rahman", role: "Lead strategist · Postly", avatar: av(47) },
-    date: "2026-06-02",
+    date: "2026-07-02",
     readMinutes: 9,
     cover: facebookGroupsCover,
     body: [
@@ -84,7 +84,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "WordPress",
     tags: ["WordPress", "Webflow", "CMS"],
     author: { name: "Tanvir Hasan", role: "Senior web developer", avatar: av(12) },
-    date: "2026-05-21",
+    date: "2026-06-30",
     readMinutes: 11,
     cover: wordpressVsWebflowCover,
     body: [
@@ -124,7 +124,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "WordPress",
     tags: ["WordPress", "Redesign", "Checklist"],
     author: { name: "Maya Chen", role: "WordPress consultant", avatar: av(32) },
-    date: "2026-05-12",
+    date: "2026-06-28",
     readMinutes: 8,
     cover: wordpressChecklistCover,
     body: [
@@ -163,7 +163,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Webflow",
     tags: ["Webflow", "Pricing", "Redesign"],
     author: { name: "Lucas Pereira", role: "Webflow studio owner", avatar: av(15) },
-    date: "2026-04-30",
+    date: "2026-06-26",
     readMinutes: 7,
     cover: webflowPricingCover,
     body: [
@@ -191,7 +191,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Outreach",
     tags: ["LinkedIn", "Cold outreach", "Templates"],
     author: { name: "Priya Shah", role: "Outreach lead", avatar: av(23) },
-    date: "2026-04-18",
+    date: "2026-06-25",
     readMinutes: 6,
     cover: linkedinDmCover,
     body: [
@@ -223,7 +223,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Web design",
     tags: ["Discovery", "Rebuild", "Process"],
     author: { name: "Eitan Gold", role: "Design lead", avatar: av(7) },
-    date: "2026-04-04",
+    date: "2026-06-24",
     readMinutes: 10,
     cover: discoveryQuestionsCover,
     body: [
@@ -273,7 +273,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Framer",
     tags: ["Framer", "Wix", "Comparison"],
     author: { name: "Sara Lindqvist", role: "Freelance designer", avatar: av(38) },
-    date: "2026-03-25",
+    date: "2026-06-22",
     readMinutes: 7,
     cover: framerVsWixCover,
     body: [
@@ -308,7 +308,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "WordPress",
     tags: ["Migration", "WordPress", "Webflow", "CMS"],
     author: { name: "Jordan Ali", role: "CMS migration specialist", avatar: av(53) },
-    date: "2026-03-11",
+    date: "2026-06-21",
     readMinutes: 9,
     cover: cmsMigrationCover,
     body: [
@@ -349,7 +349,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Lead generation",
     tags: ["Agency", "Operations", "Hiring"],
     author: { name: "Noah Whitman", role: "Agency founder", avatar: av(60) },
-    date: "2026-02-28",
+    date: "2026-06-20",
     readMinutes: 9,
     cover: freelancerToAgencyCover,
     body: [
