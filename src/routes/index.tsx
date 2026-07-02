@@ -298,10 +298,10 @@ function Scope() {
             return (
               <div
                 key={title}
-                className="relative overflow-hidden rounded-xl border border-border bg-white p-5"
+                className="group relative overflow-hidden rounded-xl border border-border bg-white p-5 transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)]"
               >
                 <div className="relative flex items-center gap-3">
-                  <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                  <div className="icon-pop grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                     <Icon className="h-4 w-4" />
                   </div>
                   <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
