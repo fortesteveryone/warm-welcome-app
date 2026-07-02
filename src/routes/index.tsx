@@ -756,15 +756,16 @@ function Pricing() {
       cta: "Start free", featured: false, free: true,
     },
     {
-      name: "Pro", price: "$10", cadence: "/ month after launch",
+      name: "Pro", price: "$6", cadence: "/ month forever", originalPrice: "$10",
       desc: "For freelancers and agencies doing website-service outreach every day.",
       features: [
+        "40% off for life (regular price $10/month)",
+        "1 month free during early access",
         "Access to all live platforms",
         "More daily website opportunities",
         "Save opportunities for up to 1 month",
         "Filters, tags, and export",
         "Outreach drafts",
-        "Early access: 1 month free + lifetime 40% discount",
       ],
       cta: "Get early access", featured: true,
     },
@@ -818,6 +819,9 @@ function Pricing() {
               <Mono className="text-muted-foreground">{p.name}</Mono>
               <div className="mt-4 flex items-baseline gap-1.5">
                 <span className="text-5xl font-semibold tracking-[-0.03em]">{p.price}</span>
+                {p.originalPrice && (
+                  <span className="text-lg text-muted-foreground line-through">{p.originalPrice}</span>
+                )}
                 <span className="text-sm text-muted-foreground">{p.cadence}</span>
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
