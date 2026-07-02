@@ -39,7 +39,10 @@ function TermsPage() {
       <Section title="6. Liability">
         <p>The service is provided as-is. We are not liable for missed deals, lost opportunities or business decisions made based on the leads we surface. Our total liability is capped at the amount you paid in the prior 12 months.</p>
       </Section>
-      <Section title="7. Changes">
+      <Section title="7. Governing law">
+        <p>These terms are governed by the laws of the Province of Ontario and the federal laws of Canada applicable therein, without regard to conflict-of-law rules. Any dispute arising out of or relating to these terms or the service will be resolved exclusively in the courts located in Toronto, Ontario, Canada, and you consent to their personal jurisdiction.</p>
+      </Section>
+      <Section title="8. Changes">
         <p>If we make material changes to these terms we'll email account owners at least 14 days in advance.</p>
       </Section>
     </PageShell>
