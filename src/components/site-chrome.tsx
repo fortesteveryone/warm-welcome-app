@@ -261,37 +261,55 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      {/* Oversized brand wordmark — auto-fits full viewport width, bottom clipped */}
-      <div aria-hidden className="relative w-full select-none overflow-hidden" style={{ aspectRatio: "21 / 3.4" }}>
+      {/* Oversized brand wordmark — scales to show the full domain on every viewport */}
+      <div aria-hidden className="relative h-[clamp(4.5rem,8.2vw,8.25rem)] w-full select-none overflow-hidden">
         <svg
-          viewBox="0 0 1000 140"
-          preserveAspectRatio="xMidYMin slice"
-          className="absolute inset-x-0 top-0 w-full"
-          style={{ height: "122%" }}
+          viewBox="0 0 1800 170"
+          preserveAspectRatio="xMidYMin meet"
+          className="absolute inset-x-0 top-0 h-auto w-full"
         >
           <defs>
-            <linearGradient id="wm-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.14" />
-              <stop offset="40%" stopColor="#ffffff" stopOpacity="0.18" />
-              <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="60%" stopColor="#ffffff" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.14" />
-              <animate attributeName="x1" values="-60%;60%;-60%" dur="6s" repeatCount="indefinite" />
-              <animate attributeName="x2" values="40%;160%;40%" dur="6s" repeatCount="indefinite" />
+            <clipPath id="wm-text-clip">
+              <text
+                x="900"
+                y="132"
+                textAnchor="middle"
+                fontFamily="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+                fontWeight="700"
+                fontSize="132"
+                letterSpacing="-2"
+                textLength="1680"
+                lengthAdjust="spacingAndGlyphs"
+              >
+                POSTLY.GROWBYLEAD.COM
+              </text>
+            </clipPath>
+            <linearGradient id="wm-shimmer" x1="-35%" y1="0%" x2="15%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+              <stop offset="42%" stopColor="#ffffff" stopOpacity="0" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.9" />
+              <stop offset="58%" stopColor="#ffffff" stopOpacity="0" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+              <animate attributeName="x1" values="-35%;85%;-35%" dur="7s" repeatCount="indefinite" />
+              <animate attributeName="x2" values="15%;135%;15%" dur="7s" repeatCount="indefinite" />
             </linearGradient>
           </defs>
           <text
-            x="500"
-            y="112"
+            x="900"
+            y="132"
             textAnchor="middle"
             fontFamily="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
             fontWeight="700"
-            fontSize="128"
-            letterSpacing="-4"
-            fill="url(#wm-shimmer)"
+            fontSize="132"
+            letterSpacing="-2"
+            textLength="1680"
+            lengthAdjust="spacingAndGlyphs"
+            fill="#ffffff"
+            opacity="0.14"
           >
             POSTLY.GROWBYLEAD.COM
           </text>
+          <rect width="1800" height="170" fill="url(#wm-shimmer)" clipPath="url(#wm-text-clip)" />
         </svg>
       </div>
 
