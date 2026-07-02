@@ -547,11 +547,14 @@ function Scoring() {
 /* ---------- VIP add-on ---------- */
 function VipAddon() {
   const perks = [
-    { Icon: Flame,  title: "Hot leads only",       body: "We select the strongest website-service opportunities from the daily feed." },
-    { Icon: Shield, title: "Human-reviewed",       body: "Each VIP lead is checked before it reaches your inbox." },
-    { Icon: Send,   title: "Gmail delivery",       body: "Approved hot leads will be sent to Gmail when the VIP add-on launches." },
-    { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first." },
+    { Icon: Flame,  title: "Hot leads only",       body: "We select the strongest website-service opportunities from the daily feed.", lgOnly: false },
+    { Icon: Shield, title: "Human-reviewed",       body: "Each VIP lead is checked before it reaches your inbox.", lgOnly: false },
+    { Icon: Send,   title: "Gmail delivery",       body: "Approved hot leads will be sent to Gmail when the VIP add-on launches.", lgOnly: false },
+    { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first.", lgOnly: false },
+    { Icon: Target, title: "Priority scoring",     body: "VIP opportunities are ranked by intent, budget, and urgency signals so the strongest ones surface first.", lgOnly: true },
+    { Icon: Sparkles, title: "First-look access",  body: "VIP members see reviewed hot leads before they roll into the standard feed the next day.", lgOnly: true },
   ];
+
   return (
     <section id="vip" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
@@ -610,9 +613,9 @@ function VipAddon() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          {perks.map(({ Icon, title, body }) => (
-            <div key={title} className="rounded-xl border border-black/10 bg-white p-5 shadow-sm">
+        <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-6">
+          {perks.map(({ Icon, title, body, lgOnly }) => (
+            <div key={title} className={`rounded-xl border border-black/10 bg-white p-5 shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
               <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
@@ -621,6 +624,7 @@ function VipAddon() {
             </div>
           ))}
         </div>
+
       </Container>
     </section>
   );
