@@ -204,7 +204,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <img src={footerLogoUrl} alt="Postly" className="h-20 w-auto" />
+              <img src={footerLogoUrl} alt="Postly" className="h-12 w-auto" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/55">
               Postly helps web agencies, developers, freelancers, and CMS specialists find website-service opportunities from public social posts.
