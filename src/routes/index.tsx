@@ -112,7 +112,7 @@ function Home() {
       <AfterLogin />
       <Platforms />
       <Scoring />
-      <VipAddon />
+      
       <Pricing />
       <BuiltFor />
       <FAQ />
