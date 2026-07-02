@@ -580,10 +580,9 @@ function Pricing() {
       name: "Free", price: "$0", cadence: "/ month",
       desc: "A limited way to test fresh website opportunities.",
       features: [
-        "Limited daily opportunities",
-        "Facebook and Reddit sample feed",
-        "Refreshed every 24 hours",
-        "Save opportunities for up to 24 hours",
+        "150 fresh opportunities daily (100 Facebook + 50 Reddit)",
+        "New batch every 24 hours — previous day's leads auto-hide",
+        "Saved leads also expire after 24 hours",
         "No card required",
       ] as React.ReactNode[],
       cta: "Start free", featured: false, free: true,
