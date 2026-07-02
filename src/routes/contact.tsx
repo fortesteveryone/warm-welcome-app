@@ -9,7 +9,9 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Get in touch with Postly — sales, support, partnerships and press." },
       { property: "og:title", content: "Contact — Postly" },
       { property: "og:description", content: "Reach our sales, support and partnerships teams." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/contact" }],
   }),
   component: ContactPage,
 });

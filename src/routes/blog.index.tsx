@@ -11,7 +11,9 @@ export const Route = createFileRoute("/blog/")({
       { name: "description", content: "Tactics, templates and playbooks for website design, development and CMS agencies, freelancers and lead-gen teams." },
       { property: "og:title", content: "Postly — Blogs" },
       { property: "og:description", content: "Lead generation, outreach, web design, development and CMS playbooks for agencies and freelancers." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/blog" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/blog" }],
   }),
   component: BlogIndex,
 });

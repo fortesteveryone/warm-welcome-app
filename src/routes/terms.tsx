@@ -8,7 +8,9 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "The terms under which Postly is offered to customers." },
       { property: "og:title", content: "Terms of Service — Postly" },
       { property: "og:description", content: "Account rules, acceptable use, billing and termination." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/terms" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/terms" }],
   }),
   component: TermsPage,
 });

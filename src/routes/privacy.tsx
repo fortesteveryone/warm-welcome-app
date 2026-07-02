@@ -8,7 +8,9 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: "How Postly collects, stores and uses information about customers and the public posts we surface." },
       { property: "og:title", content: "Privacy Policy — Postly" },
       { property: "og:description", content: "Our approach to customer data, cookies and third-party processors." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/privacy" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/privacy" }],
   }),
   component: PrivacyPage,
 });
