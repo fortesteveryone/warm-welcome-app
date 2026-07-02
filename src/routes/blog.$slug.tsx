@@ -88,9 +88,13 @@ function BlogDetail() {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      toast.success("Link copied to clipboard");
       setTimeout(() => setCopied(false), 1600);
-    } catch { /* noop */ }
+    } catch {
+      toast.error("Copy failed — please copy the URL manually");
+    }
   };
+
 
   // Highlight last word of title in signal green (matches home/PageShell)
   const titleNode = (() => {
