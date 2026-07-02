@@ -4,7 +4,7 @@ import {
   Filter, Download, Plus, Search,
   ArrowUpDown, ArrowUp, ArrowDown, LayoutGrid, List, X, Trash2, Tag as TagIcon,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Star, Flame, Snowflake,
-  MessageSquare, FileText, ArrowRight, Eye, Lock,
+  MessageSquare, FileText, ArrowRight, Eye, Lock, Heart, Repeat2,
 } from "lucide-react";
 
 import { PageHeader, Panel, Mono } from "@/components/dashboard/dash-ui";
