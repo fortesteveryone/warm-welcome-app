@@ -101,14 +101,13 @@ export function SiteHeader() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center justify-between rounded-md px-3 py-2.5 text-sm transition ${
+                className={`flex items-center rounded-md px-3 py-2.5 text-sm transition ${
                   active
                     ? "bg-card text-foreground border-l-2 border-[color:var(--signal)]"
                     : "text-foreground/90 hover:bg-card"
                 }`}
               >
                 <span>{l.label}</span>
-                <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
               </a>
             );
           })}
