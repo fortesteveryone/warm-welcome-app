@@ -298,10 +298,10 @@ function Scope() {
             return (
               <div
                 key={title}
-                className="relative overflow-hidden rounded-xl border border-border bg-white p-5"
+                className="group relative overflow-hidden rounded-xl border border-border bg-white p-5 transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)]"
               >
                 <div className="relative flex items-center gap-3">
-                  <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+                  <div className="icon-pop grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                     <Icon className="h-4 w-4" />
                   </div>
                   <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
@@ -387,7 +387,7 @@ function AfterLogin() {
           {afterLoginItems.map(({ Icon, title, body }, i) => (
             <div key={title} className="group relative rounded-xl border border-border bg-white p-6 transition hover:shadow-sm">
               <div className="flex items-center justify-between">
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
+                <div className="icon-pop grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                   <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </div>
                 <Mono className="text-muted-foreground">0{i + 1}</Mono>
@@ -605,8 +605,8 @@ function VipAddon() {
 
         <div className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-6">
           {perks.map(({ Icon, title, body, lgOnly }) => (
-            <div key={title} className={`rounded-xl border border-black/10 bg-white p-5 shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
-              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+            <div key={title} className={`group rounded-xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)] ${lgOnly ? "hidden lg:block" : ""}`}>
+              <div className="icon-pop grid h-10 w-10 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
@@ -803,8 +803,8 @@ function BuiltFor() {
         />
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {builtForCards.map(({ Icon, title, body, lgOnly }) => (
-            <div key={title} className={`rounded-xl border border-border bg-white p-6 transition hover:shadow-sm ${lgOnly ? "hidden lg:block" : ""}`}>
-              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
+            <div key={title} className={`group rounded-xl border border-border bg-white p-6 transition hover:-translate-y-0.5 hover:border-[color:var(--signal)]/40 hover:shadow-[0_20px_60px_-30px_oklch(0.72_0.19_145/0.35)] ${lgOnly ? "hidden lg:block" : ""}`}>
+              <div className="icon-pop grid h-10 w-10 place-items-center rounded-lg border border-border bg-white text-[color:var(--signal)]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>

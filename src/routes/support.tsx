@@ -38,7 +38,7 @@ function SupportPage() {
             className={`group flex flex-col gap-2 rounded-xl border border-border bg-card/50 p-5 transition ${soon ? "cursor-default" : "hover:bg-card"}`}
           >
             <div className="flex items-center gap-2">
-              <span className="grid h-8 w-8 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
+              <span className="icon-pop grid h-8 w-8 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                 <Icon className="h-4 w-4" strokeWidth={1.75} />
               </span>
               <span className="text-sm font-semibold text-foreground">{title}</span>
