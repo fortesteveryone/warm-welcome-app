@@ -24,7 +24,7 @@ function DataUsagePage() {
       updated="June 2026"
     >
       <Section title="1. Sources">
-        <p>Our lead content originates from publicly-visible posts on Facebook, LinkedIn, Reddit and Instagram (with more platforms in development). We do not run automated scrapers against these platforms and we do not access private groups, paid content, direct messages, or anything gated behind a login.</p>
+        <p>Our lead content originates from publicly-visible posts on Facebook, LinkedIn and Reddit (with Instagram, X, and Threads in development). We do not run automated scrapers against these platforms and we do not access private groups, paid content, direct messages, or anything gated behind a login.</p>
       </Section>
       <Section title="2. How we collect">
         <p>A human research team discovers relevant public posts through normal browsing and platform-provided search. Each candidate is manually reviewed for relevance, then passed through AI to extract structured fields (service type, project type, budget signal, country signal) and to draft a clean, human-readable summary. A person signs off before the lead is published into customer feeds.</p>
