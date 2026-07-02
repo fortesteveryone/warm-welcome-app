@@ -18,16 +18,16 @@ export function FinalCTA() {
 
   return (
     <section className="relative section-edge section-dark overflow-hidden">
-      <div className="mx-auto w-full max-w-[1200px] px-3 py-16 md:px-6 md:py-20">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
+      <div className="mx-auto w-full max-w-[1200px] px-3 py-12 md:px-6 md:py-16">
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 text-center md:p-10">
           <div
             aria-hidden
-            className="pointer-events-none absolute -top-24 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/10 blur-[120px]"
+            className="pointer-events-none absolute -top-24 left-1/2 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-[color:var(--signal)]/10 blur-[100px]"
           />
 
           {/* Scrolling headline */}
           <div
-            className="relative mx-auto overflow-hidden h-[10rem] md:h-[14rem] lg:h-[16rem]"
+            className="relative mx-auto overflow-hidden h-[6rem] md:h-[8rem] lg:h-[9rem]"
             style={{
               WebkitMaskImage: fadeMask,
               maskImage: fadeMask,
@@ -42,9 +42,9 @@ export function FinalCTA() {
               {loop.map(([a, b], i) => (
                 <div
                   key={i}
-                  className="flex h-[10rem] shrink-0 flex-col items-center justify-center md:h-[14rem] lg:h-[16rem]"
+                  className="flex h-[6rem] shrink-0 flex-col items-center justify-center md:h-[8rem] lg:h-[9rem]"
                 >
-                  <h2 className="text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.03em] md:text-6xl lg:text-7xl">
+                  <h2 className="text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.03em] md:text-4xl lg:text-5xl">
                     <span className="block">{a}</span>
                     <span className="block bg-gradient-to-b from-foreground to-foreground/50 bg-clip-text text-transparent">
                       {b}
@@ -54,6 +54,7 @@ export function FinalCTA() {
               ))}
             </div>
           </div>
+
 
           <p className="relative mx-auto mt-6 max-w-lg text-muted-foreground">
             Find structured, scored website opportunities from public social posts without manually checking every platform.
