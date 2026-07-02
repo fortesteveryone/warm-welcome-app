@@ -225,7 +225,7 @@ function BlogDetail() {
 
 
       {related.length > 0 && (
-        <section className="section-edge section-dark">
+        <section className="section-edge section-light">
           <Container className="py-16 md:py-20">
             <div className="flex items-end justify-between gap-6">
               <div>
