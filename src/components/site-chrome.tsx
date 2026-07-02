@@ -88,7 +88,7 @@ export function SiteHeader() {
       </Container>
 
       <div
-        className={`absolute left-0 right-0 top-full overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
+        className={`absolute left-0 right-0 top-full overflow-hidden border-t border-border bg-white transition-[max-height,opacity] duration-300 md:hidden ${
           open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
