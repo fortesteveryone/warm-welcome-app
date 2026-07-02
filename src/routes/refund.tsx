@@ -36,7 +36,7 @@ function RefundPage() {
         <p>Charges for usage outside the trial / guarantee window where the service worked as described, and add-ons explicitly marked non-refundable at purchase.</p>
       </Section>
       <Section title="5. How to request">
-        <p>Email <a className="text-foreground underline" href="mailto:billing@growbylead.com">billing@growbylead.com</a> from the address on your account. Most refunds are processed within 3 business days.</p>
+        <p>Email <a className="text-foreground underline" href="mailto:support@growbylead.com">support@growbylead.com</a> from the address on your account. Most refunds are processed within 3 business days.</p>
       </Section>
     </PageShell>
   );
