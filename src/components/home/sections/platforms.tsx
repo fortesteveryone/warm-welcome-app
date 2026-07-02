@@ -24,7 +24,6 @@ const dailyVolumeStats = [
   { value: "365+",       label: "Fresh website-service posts daily" },
   { value: "Website work", label: "Design, development, redesign, rebuild, and landing pages" },
   { value: "CMS work",   label: "WordPress, Webflow, Wix, Framer, Shopify rebuilds, and migrations" },
-  { value: "Worldwide",  label: "Opportunities from supported countries around the world" },
 ];
 
 export function Platforms() {
