@@ -261,20 +261,38 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      {/* Oversized brand wordmark — static, bottom third clipped */}
-      <div
-        aria-hidden
-        className="relative select-none overflow-hidden"
-        style={{ height: "calc(clamp(72px, 18vw, 260px) * 0.82)" }}
-      >
-        <div
-          className="wordmark-shimmer pointer-events-none flex w-full items-start justify-center whitespace-nowrap text-center font-semibold uppercase leading-[1] tracking-tight"
-          style={{
-            fontSize: "clamp(72px, 18vw, 260px)",
-          }}
+      {/* Oversized brand wordmark — auto-fits full viewport width, bottom clipped */}
+      <div aria-hidden className="relative w-full select-none overflow-hidden" style={{ aspectRatio: "21 / 3.4" }}>
+        <svg
+          viewBox="0 0 1000 140"
+          preserveAspectRatio="xMidYMin slice"
+          className="absolute inset-x-0 top-0 h-auto w-full"
+          style={{ height: "122%" }}
         >
-          POSTLY.GROWBYLEAD.COM
-        </div>
+          <defs>
+            <linearGradient id="wm-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="45%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="50%" stopColor="#22C55E" stopOpacity="1" />
+              <stop offset="55%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+              <animate attributeName="x1" values="-100%;100%" dur="6s" repeatCount="indefinite" />
+              <animate attributeName="x2" values="0%;200%" dur="6s" repeatCount="indefinite" />
+            </linearGradient>
+          </defs>
+          <text
+            x="500"
+            y="112"
+            textAnchor="middle"
+            fontFamily="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+            fontWeight="700"
+            fontSize="128"
+            letterSpacing="-4"
+            fill="url(#wm-shimmer)"
+          >
+            POSTLY.GROWBYLEAD.COM
+          </text>
+        </svg>
       </div>
 
 
