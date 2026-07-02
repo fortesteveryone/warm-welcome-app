@@ -294,25 +294,12 @@ function Scope() {
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
-          {scopeCategories.map(({ Icon, title, subtitle, tags }, idx) => {
-            const tinted = idx === 0 || idx === 2;
+          {scopeCategories.map(({ Icon, title, subtitle, tags }) => {
             return (
               <div
                 key={title}
-                className={
-                  tinted
-                    ? "relative overflow-hidden rounded-xl border border-[color:var(--signal)]/30 bg-gradient-to-br from-[color:var(--signal)]/12 via-card to-card p-5"
-                    : "relative overflow-hidden rounded-xl border border-border bg-white p-5"
-                }
+                className="relative overflow-hidden rounded-xl border border-border bg-white p-5"
               >
-                {tinted && (
-                  <div
-                    aria-hidden
-                    className={`absolute h-40 w-40 rounded-md bg-[color:var(--signal)]/20 blur-3xl ${
-                      idx === 0 ? "-right-10 -top-10" : "-left-10 -bottom-10"
-                    }`}
-                  />
-                )}
                 <div className="relative flex items-center gap-3">
                   <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
                     <Icon className="h-4 w-4" />
