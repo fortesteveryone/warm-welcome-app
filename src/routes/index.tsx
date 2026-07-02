@@ -547,11 +547,14 @@ function Scoring() {
 /* ---------- VIP add-on ---------- */
 function VipAddon() {
   const perks = [
-    { Icon: Flame,  title: "Hot leads only",       body: "We select the strongest website-service opportunities from the daily feed." },
-    { Icon: Shield, title: "Human-reviewed",       body: "Each VIP lead is checked before it reaches your inbox." },
-    { Icon: Send,   title: "Gmail delivery",       body: "Approved hot leads will be sent to Gmail when the VIP add-on launches." },
-    { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first." },
+    { Icon: Flame,  title: "Hot leads only",       body: "We select the strongest website-service opportunities from the daily feed.", lgOnly: false },
+    { Icon: Shield, title: "Human-reviewed",       body: "Each VIP lead is checked before it reaches your inbox.", lgOnly: false },
+    { Icon: Send,   title: "Gmail delivery",       body: "Approved hot leads will be sent to Gmail when the VIP add-on launches.", lgOnly: false },
+    { Icon: Inbox,  title: "Dedicated VIP inbox",  body: "A separate Hot Leads section will help teams focus on the best opportunities first.", lgOnly: false },
+    { Icon: Target, title: "Priority scoring",     body: "VIP opportunities are ranked by intent, budget, and urgency signals so the strongest ones surface first.", lgOnly: true },
+    { Icon: Sparkles, title: "First-look access",  body: "VIP members see reviewed hot leads before they roll into the standard feed the next day.", lgOnly: true },
   ];
+
   return (
     <section id="vip" className="section-edge section-dark">
       <Container className="py-16 md:py-20">
