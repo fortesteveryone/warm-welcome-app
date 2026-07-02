@@ -8,7 +8,9 @@ export const Route = createFileRoute("/refund")({
       { name: "description", content: "When and how Postly issues refunds and lead credits." },
       { property: "og:title", content: "Refund Policy — Postly" },
       { property: "og:description", content: "Our 7-day money-back guarantee, lead credits, and how to request a refund." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/refund" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/refund" }],
   }),
   component: RefundPage,
 });

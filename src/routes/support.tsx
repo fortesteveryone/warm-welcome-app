@@ -9,7 +9,9 @@ export const Route = createFileRoute("/support")({
       { name: "description", content: "Help, troubleshooting and contact channels for Postly customers." },
       { property: "og:title", content: "Support — Postly" },
       { property: "og:description", content: "How to reach support, what we cover, and typical response times." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/support" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/support" }],
   }),
   component: SupportPage,
 });

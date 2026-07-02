@@ -8,7 +8,9 @@ export const Route = createFileRoute("/gdpr")({
       { name: "description", content: "How Postly supports GDPR rights for EU/EEA/UK customers and post authors." },
       { property: "og:title", content: "GDPR — Postly" },
       { property: "og:description", content: "Data subject rights, lawful basis, and how to file a request." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/gdpr" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/gdpr" }],
   }),
   component: GdprPage,
 });

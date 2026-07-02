@@ -8,7 +8,9 @@ export const Route = createFileRoute("/data-usage")({
       { name: "description", content: "What data Postly processes, why, and how it leaves the system." },
       { property: "og:title", content: "Data Usage Policy — Postly" },
       { property: "og:description", content: "Sources, processing, retention and deletion of the data we handle." },
+      { property: "og:url", content: "https://friendly-code-place.lovable.app/data-usage" },
     ],
+    links: [{ rel: "canonical", href: "https://friendly-code-place.lovable.app/data-usage" }],
   }),
   component: DataUsagePage,
 });
