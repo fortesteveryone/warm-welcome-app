@@ -18,7 +18,6 @@ export function FinalCTA() {
 
   return (
     <section className="relative section-edge section-dark overflow-hidden">
-      <div className="mx-auto w-full max-w-[1200px] px-3 md:px-6">
       <div className="mx-auto w-full max-w-[1200px] px-3 py-16 md:px-6 md:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
           <div
