@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check, Link2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { BLOG_POSTS, getPostBySlug, getRelatedPosts, type BlogPost } from "@/lib/blog-data";
@@ -71,7 +71,10 @@ function Mono({ children, className = "" }: { children: React.ReactNode; classNa
 function BlogDetail() {
   const { post, related } = Route.useLoaderData() as { post: BlogPost; related: BlogPost[] };
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined" ? window.location.href : `https://growbylead.com/blog/${post.slug}`;
+  const [url, setUrl] = useState(`https://growbylead.com/blog/${post.slug}`);
+  useEffect(() => {
+    if (typeof window !== "undefined") setUrl(window.location.href);
+  }, [post.slug]);
   const enc = encodeURIComponent;
   const shareText = `${post.title} — ${post.excerpt}`;
 
