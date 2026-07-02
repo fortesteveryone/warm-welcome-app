@@ -89,39 +89,66 @@ export function SiteHeader() {
 
       <div
         className={`absolute left-0 right-0 top-full overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
-          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+          open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
-        <Container className="flex flex-col gap-1 py-3">
-          {NAV_LINKS.map((l) => {
-            const active = isActive(l.href, pathname);
-            return (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={`flex items-center rounded-md px-3 py-2.5 text-sm transition ${
-                  active
-                    ? "bg-card text-foreground border-l-2 border-[color:var(--signal)]"
-                    : "text-foreground/90 hover:bg-card"
-                }`}
-              >
-                <span>{l.label}</span>
-              </a>
-            );
-          })}
+        <Container className="flex flex-col py-4">
+          <div className="mb-3 px-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            Menu
+          </div>
+          <nav className="flex flex-col gap-1">
+            {NAV_LINKS.map((l) => {
+              const active = isActive(l.href, pathname);
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`group relative flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] transition ${
+                    active
+                      ? "bg-card text-foreground"
+                      : "text-foreground/85 hover:bg-card/70 hover:text-foreground"
+                  }`}
+                >
+                  <span
+                    aria-hidden
+                    className={`h-1.5 w-1.5 rounded-full transition ${
+                      active
+                        ? "bg-[color:var(--signal)] shadow-[0_0_8px_var(--signal)]"
+                        : "bg-border group-hover:bg-foreground/40"
+                    }`}
+                  />
+                  <span className={active ? "font-medium" : ""}>{l.label}</span>
+                </a>
+              );
+            })}
+          </nav>
 
-          <div className="mt-2 grid grid-cols-2 gap-2 border-t border-border pt-3">
-            <a href="#" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-md border border-border bg-card/60 px-3.5 py-2 text-sm font-medium text-foreground transition hover:bg-card">
-              Sign in
-            </a>
-            <a href="/#pricing" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-1.5 rounded-md bg-foreground px-3.5 py-2 text-sm font-medium text-background transition hover:bg-foreground/90">
+          <div className="mt-5 flex flex-col gap-2 border-t border-border pt-4">
+            <a
+              href="/#pricing"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background shadow-sm transition hover:bg-foreground/90"
+            >
               Get early access <ArrowRight className="h-3.5 w-3.5" />
             </a>
+            <a
+              href="#"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center rounded-xl border border-border bg-card/60 px-4 py-3 text-sm font-medium text-foreground transition hover:bg-card"
+            >
+              Sign in
+            </a>
+          </div>
+
+          <div className="mt-4 flex items-center justify-center gap-2 pt-1 text-[11px] text-muted-foreground">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--signal)]" />
+            postly.growbylead.com
           </div>
         </Container>
       </div>
+
     </header>
   );
 }
