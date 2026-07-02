@@ -189,7 +189,7 @@ export function SiteFooter() {
               href="/#pricing"
               className="inline-flex items-center gap-2 rounded-md bg-[#22C55E] px-5 py-2.5 text-sm font-medium text-black transition hover:bg-[#16a34a]"
             >
-              Start now
+              Get early access
             </a>
             <a
               href="/#pricing"

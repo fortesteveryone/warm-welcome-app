@@ -1078,7 +1078,7 @@ function FinalCTA() {
           </p>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
             <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-              Get access <ArrowRight className="h-4 w-4" />
+              Get early access <ArrowRight className="h-4 w-4" />
             </a>
             <a href="#platforms" className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
               See platforms
