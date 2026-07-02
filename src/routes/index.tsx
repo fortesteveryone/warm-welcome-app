@@ -243,12 +243,37 @@ const tagBrand: Record<string, BrandMark[]> = {
   Wix:       [{ Icon: SiWix,       color: "#0C6EFC" }],
   Framer:    [{ Icon: SiFramer,    color: "#0055FF" }],
   "Shopify website rebuild": [{ Icon: SiShopify, color: "#95BF47" }],
+  "Next.js":  [{ Icon: SiNextdotjs, color: "#111111" }],
+  React:      [{ Icon: SiReact,     color: "#61DAFB" }],
+  Laravel:    [{ Icon: SiLaravel,   color: "#FF2D20" }],
+  PHP:        [{ Icon: SiPhp,       color: "#777BB4" }],
+  "Node.js":  [{ Icon: SiNodedotjs, color: "#5FA04E" }],
 };
 
-const scopeCategories: { Icon: React.ComponentType<{ className?: string }>; title: string; tags: string[] }[] = [
-  { Icon: Code2,   title: "Website work",       tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild", "Landing pages"] },
-  { Icon: Layers,  title: "CMS platforms",      tags: ["WordPress", "Webflow", "Wix", "Framer", "Shopify website rebuild"] },
-  { Icon: Search,  title: "Migrations & setup", tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "CMS setup", "Platform migration"] },
+const scopeCategories: {
+  Icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  subtitle: string;
+  tags: string[];
+}[] = [
+  {
+    Icon: Code2,
+    title: "Website work — any stack",
+    subtitle: "CMS or custom code — if it's a website, it counts.",
+    tags: ["Website design", "Website development", "Design + development", "Redesign", "Rebuild", "Landing pages", "Custom code builds"],
+  },
+  {
+    Icon: Layers,
+    title: "CMS & custom stacks",
+    subtitle: "Not just CMS. Next.js, React, Laravel, PHP, Node — all in scope.",
+    tags: ["WordPress", "Webflow", "Wix", "Framer", "Shopify website rebuild", "Next.js", "React", "Laravel", "PHP", "Node.js"],
+  },
+  {
+    Icon: Search,
+    title: "Migrations & setup",
+    subtitle: "Moving between CMS platforms or from a custom stack to a CMS (and vice versa).",
+    tags: ["WordPress → Webflow", "Wix → WordPress", "Shopify → Webflow", "WordPress → Next.js", "CMS setup", "Platform migration"],
+  },
 ];
 
 const outOfScope = [
@@ -262,12 +287,12 @@ function Scope() {
       <Container className="relative py-16 md:py-20">
         <SectionTitle
           kicker="What we cover"
-          title={<>Only <span className="text-[color:var(--signal)]">website and CMS</span> opportunities.</>}
-          lede="Postly tracks posts where people ask for website design, development, redesign, landing page, CMS, or platform migration help."
+          title={<>Any <span className="text-[color:var(--signal)]">website build</span> — CMS or custom code.</>}
+          lede="Postly tracks posts where people ask for website design, development, redesign, landing pages, CMS work, or custom stack builds — WordPress, Webflow, Next.js, Laravel, PHP, and more."
         />
 
         <div className="mt-12 grid gap-3 md:grid-cols-3">
-          {scopeCategories.map(({ Icon, title, tags }) => (
+          {scopeCategories.map(({ Icon, title, subtitle, tags }) => (
             <div key={title} className="rounded-xl border border-border bg-white p-5 transition hover:bg-white">
               <div className="flex items-center gap-3">
                 <div className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/40 text-[color:var(--signal)]">
@@ -275,6 +300,7 @@ function Scope() {
                 </div>
                 <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
               </div>
+              <p className="mt-2 text-xs text-muted-foreground">{subtitle}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {tags.map((t) => {
                   const brand = tagBrand[t];
@@ -287,6 +313,10 @@ function Scope() {
                 })}
               </div>
             </div>
+          ))}
+        </div>
+
+
           ))}
         </div>
 
