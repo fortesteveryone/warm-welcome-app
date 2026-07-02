@@ -544,7 +544,7 @@ const platforms: PlatformEntry[] = [
   { icon: SiLinkedIn,  color: "#0A66C2", name: "LinkedIn",  state: "live", note: "Founder posts, agency requests, and public website service recommendations." },
   { icon: SiInstagram, color: "#E4405F", name: "Instagram", state: "live", note: "Captions and comments from creators and businesses asking for website support." },
   { icon: SiReddit,    color: "#FF4500", name: "Reddit",    state: "live", note: "Niche communities where people discuss website fixes, rebuilds, and CMS help." },
-  { icon: SiX,         color: "#0F0F0F", name: "X",         state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
+  { icon: SiX,         color: "#0F0F0F", name: "X (Twitter)", state: "soon", note: "Public posts with service requests, RFPs, and website-intent keywords." },
   { icon: SiThreads,   color: "#0F0F0F", name: "Threads",   state: "soon", note: "Conversation-first posts from creators and small businesses asking for support." },
 ];
 
