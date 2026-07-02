@@ -902,29 +902,3 @@ function FloatingSocials() {
   );
 }
 
-function FinalCTA() {
-  return (
-    <section className="relative section-edge section-dark overflow-hidden">
-      <Container className="relative py-16 md:py-20">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 text-center md:p-16">
-          <FloatingSocials />
-          <h2 className="relative text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.03em] md:text-6xl">
-            Stop scrolling.<br />
-            <span className="bg-gradient-to-b from-foreground to-foreground/40 bg-clip-text text-transparent">Start closing.</span>
-          </h2>
-          <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">
-            Find structured, scored website opportunities from public social posts without manually checking every platform.
-          </p>
-          <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="#pricing" className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90">
-              Get early access <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#platforms" className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/40 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition hover:bg-card">
-              See platforms
-            </a>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
