@@ -50,8 +50,8 @@ export function ShareRail({ slug, title, excerpt }: { slug: string; title: strin
               rel="noopener noreferrer"
               aria-label={`Share on ${s.name}`}
               title={`Share on ${s.name}`}
-              style={{ ["--brand" as string]: s.brand, color: s.brand }}
-              className="group/share relative flex aspect-square min-w-0 items-center justify-center rounded-xl border border-border bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent hover:text-white hover:shadow-[0_10px_24px_-12px_var(--brand)] hover:bg-[color:var(--brand)]"
+              style={{ ["--brand" as string]: s.brand }}
+              className="group/share relative flex aspect-square min-w-0 items-center justify-center rounded-xl border border-border bg-white text-[color:var(--brand)] transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent hover:!text-white hover:shadow-[0_10px_24px_-12px_var(--brand)] hover:bg-[color:var(--brand)]"
             >
               <s.Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
             </a>
