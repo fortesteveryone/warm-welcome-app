@@ -61,7 +61,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
                 title={collapsed ? item.label : undefined}
                 className={`flex items-center gap-3 rounded-md px-2.5 py-2 text-sm transition ${
                   isActive
-                    ? "bg-foreground/10 text-foreground"
+                    ? "bg-[color:var(--signal,oklch(0.72_0.19_145))]/12 text-foreground ring-1 ring-[color:var(--signal,oklch(0.72_0.19_145))]/30"
                     : "text-muted-foreground hover:bg-card hover:text-foreground"
                 } ${collapsed ? "justify-center" : ""}`}
               >
@@ -83,7 +83,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             </button>
           ) : (
             <div className="flex items-center gap-2.5 rounded-md p-2">
-              <span className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[11px] font-semibold ring-1 ring-border">
+              <span className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-[color:var(--signal,oklch(0.72_0.19_145))]/60 to-emerald-700/40 text-[11px] font-semibold ring-1 ring-[color:var(--signal,oklch(0.72_0.19_145))]/30">
                 NS
               </span>
               <div className="min-w-0 flex-1">
@@ -161,12 +161,12 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="hidden items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90 sm:inline-flex">
+            <Link to="/dashboard/leads" className="hidden items-center gap-1.5 rounded-md bg-[color:var(--signal,oklch(0.72_0.19_145))] px-3 py-1.5 text-sm font-medium text-background shadow-[0_6px_20px_-8px_color-mix(in_oklab,var(--signal,oklch(0.72_0.19_145))_60%,transparent)] hover:brightness-110 sm:inline-flex">
               <Plus className="h-3.5 w-3.5" /> New lead
-            </button>
+            </Link>
             <ComplaintBoxButton />
             <NotificationsBell />
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-to-br from-emerald-500/40 to-sky-700/40 text-[12px] font-semibold ring-1 ring-border">
+            <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-to-br from-[color:var(--signal,oklch(0.72_0.19_145))]/60 to-emerald-700/40 text-[12px] font-semibold ring-1 ring-[color:var(--signal,oklch(0.72_0.19_145))]/30">
               NS
             </span>
           </div>
