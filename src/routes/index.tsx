@@ -1010,7 +1010,7 @@ function HeroFloatingSocials() {
   return (
     <div
       key={item.key}
-      className="social-fade absolute blur-[1.5px]"
+      className="social-fade absolute"
       style={{
         ...slot,
         width: item.size,
@@ -1018,13 +1018,15 @@ function HeroFloatingSocials() {
         color,
         transform: `rotate(${item.rotate}deg)`,
         ['--dur' as never]: `4.2s`,
-        ['--peak' as never]: '0.38',
+        ['--peak' as never]: '0.95',
         ['--fx' as never]: '0px',
         ['--fy' as never]: '0px',
+        filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.18))',
       } as React.CSSProperties}
     >
       <Icon size={item.size} />
     </div>
+
   );
 }
 
